@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>India Tourist - Divine Ujjain</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">India Tourist</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="slider-section">
+        <!-- Slide 1: Ujjain -->
+        <div class="slide active">
+            <img src="./god img/Ujjain-Mahakal.jpg" alt="Divine Ujjain">
+            <div class="slide-content">
+                <h2>Divine Ujjain</h2>
+                <p>A journey to the heart of spirituality.</p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Varanasi -->
+        <div class="slide">
+            <img src="./god img/vn1.jpg" alt="Varanasi">
+            <div class="slide-content">
+                <h2>Holy Varanasi</h2>
+                <p>Experience the eternal city of lights.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Mahakal Night -->
+        <div class="slide">
+            <img src="./god img/mahalkaleshwar-temple-night.jpg" alt="Mahakal Night">
+            <div class="slide-content">
+                <h2>Mystic Nights</h2>
+                <p>Witness the divine aarti at Mahakaleshwar.</p>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <button class="control-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="control-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <div class="dot active" onclick="goToSlide(0)"></div>
+            <div class="dot" onclick="goToSlide(1)"></div>
+            <div class="dot" onclick="goToSlide(2)"></div>
+        </div>
+
+        <!-- Route Planner CTA -->
+        <div class="route-planner-cta">
+            <a href="/wizard" class="route-planner-btn">🗺️ Plan Your Perfect Route</a>
+        </div>
+    </section>
+
+    <!-- Location Selector Section -->
+    <section class="selector-section">
+        <div class="selector-container">
+            <h3>Find Your Destination</h3>
+            <div class="form-row">
+                <select id="state-select" onchange="loadDistricts()">
+                    <option value="">Select State</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                </select>
+
+                <select id="district-select" disabled>
+                    <option value="">-- Select State First --</option>
+                </select>
+
+                <button class="search-btn" onclick="searchPlaces()">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discover India Section -->
+    <section class="discover-section">
+        <div class="section-header">
+            <h2>Discover India</h2>
+            <p>Explore the diverse beauty of our nation</p>
+        </div>
+
+        <div class="cards-container">
+
+            <!-- Card 1: Religious -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="./god img/vn3.jpg" alt="Religious - Varanasi">
+                </div>
+                <div class="card-content">
+                    <h3>Religious</h3>
+                    <p>Find peace in the divine spiritual hubs.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Heritage -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="./tajmahal.png" alt="Heritage - Taj Mahal">
+                </div>
+                <div class="card-content">
+                    <h3>Heritage</h3>
+                    <p>Walk through the corridors of history.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Beautiful Places -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="./ch2.jpg" alt="Beautiful Places - Charminar">
+                </div>
+                <div class="card-content">
+                    <h3>Beautiful Places</h3>
+                    <p>Immerse yourself in scenic landscapes.</p>
+                </div>
+            </div>
+
+            <!-- Card 4: Hidden Waterfalls -->
+            <div class="card">
+                <div class="card-image">
+                    <img src="./waterfall.png" alt="Hidden Waterfalls">
+                </div>
+                <div class="card-content">
+                    <h3>Hidden Waterfalls</h3>
+                    <p>Discover nature's secret cascades.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        let autoplayInterval;
+
+        function showSlide(index) {
+            // Wrap index
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+
+            currentSlideIndex = index;
+
+            // Remove active classes
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            // Add active classes
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function moveSlide(step) {
+            showSlide(currentSlideIndex + step);
+            resetAutoplay();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetAutoplay();
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                moveSlide(1);
+            }, 5000);
+        }
+
+        function resetAutoplay() {
+            clearInterval(autoplayInterval);
+            startAutoplay();
+        }
+
+        // Location Data
+        const stateData = {
+            "Uttar Pradesh": ["Agra", "Varanasi", "Lucknow", "Prayagraj", "Mathura", "Ayodhya"],
+            "Madhya Pradesh": ["Ujjain", "Indore", "Bhopal", "Gwalior", "Khajuraho"],
+            "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Jaisalmer", "Pushkar"],
+            "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"]
+        };
+
+        function loadDistricts() {
+            const stateSelect = document.getElementById("state-select");
+            const districtSelect = document.getElementById("district-select");
+            const selectedState = stateSelect.value;
+
+            console.log("State selected:", selectedState);
+
+            // Clear existing options
+            districtSelect.innerHTML = '<option value="">-- Choose District --</option>';
+
+            if (selectedState && stateData[selectedState]) {
+                const districts = stateData[selectedState];
+                districts.forEach(district => {
+                    const option = document.createElement("option");
+                    option.value = district;
+                    option.textContent = district;
+                    districtSelect.appendChild(option);
+                });
+                districtSelect.disabled = false;
+            } else {
+                districtSelect.innerHTML = '<option value="">-- Select State First --</option>';
+                districtSelect.disabled = true;
+            }
+        }
+
+        function searchPlaces() {
+            const state = document.getElementById("state-select").value;
+            const district = document.getElementById("district-select").value;
+
+            if (state && district) {
+                if (district === "Varanasi") {
+                    window.location.href = "varanasi.html";
+                } else if (district === "Prayagraj") {
+                    window.location.href = "prayagraj.html";
+                } else if (district === "Agra") {
+                    window.location.href = "agra.html";
+                } else if (district === "Lucknow") {
+                    window.location.href = "lucknow.html";
+                } else if (district === "Mathura") {
+                    window.location.href = "mathura.html";
+                } else if (district === "Ayodhya") {
+                    window.location.href = "ayodhya.html";
+                } else {
+                    alert(`Searching for best places in ${district}, ${state}...`);
+                }
+            } else {
+                alert("Please select both a State and a District.");
+            }
+        }
+
+        // Initialize
+        startAutoplay();
+        loadDistricts();
+    </script>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Column 1: Our Services -->
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="home.html">Hotels Booking</a></li>
+                        <li><a href="home.html">Flight Tickets</a></li>
+                        <li><a href="home.html">Train Booking</a></li>
+                        <li><a href="home.html">Cab Booking</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="packages.html">Holiday Packages</a></li>
+                        <li><a href="home.html">Travel Guide</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: About India Tourist -->
+                <div class="footer-column">
+                    <h3>About India Tourist</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">About Us</a></li>
+                        <li><a href="home.html">Our Team</a></li>
+                        <li><a href="home.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="home.html">Testimonials</a></li>
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">Terms & Conditions</a></li>
+                        <li><a href="home.html">Sitemap</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Top Pilgrimage Places -->
+                <div class="footer-column">
+                    <h3>Top Pilgrimage Places</h3>
+                    <ul class="footer-links">
+                        <li><a href="varanasi.html">Varanasi Tour</a></li>
+                        <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Package</a></li>
+                        <li><a href="mathura.html">Mathura Vrindavan</a></li>
+                        <li><a href="home.html">Ujjain Mahakal</a></li>
+                        <li><a href="home.html">Haridwar Rishikesh</a></li>
+                        <li><a href="home.html">Amritsar Golden Temple</a></li>
+                        <li><a href="home.html">Shirdi Sai Baba</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Popular Packages -->
+                <div class="footer-column">
+                    <h3>Popular Packages</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Golden Triangle Tour</a></li>
+                        <li><a href="packages.html">Rajasthan Package</a></li>
+                        <li><a href="packages.html">Kerala Tour</a></li>
+                        <li><a href="packages.html">Himachal Package</a></li>
+                        <li><a href="packages.html">Goa Beach Holiday</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal Tour</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage Walk</a></li>
+                        <li><a href="packages.html">North India Circuit</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: Follow Us -->
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://facebook.com" class="social-icon" target="_blank" title="Facebook">
+                            <span>f</span>
+                        </a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" title="Twitter">
+                            <span>𝕏</span>
+                        </a>
+                        <a href="https://instagram.com" class="social-icon" target="_blank" title="Instagram">
+                            <span>📷</span>
+                        </a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" title="YouTube">
+                            <span>▶</span>
+                        </a>
+                    </div>
+                    <button class="live-chat-button">💬 Live Chat</button>
+                    <button class="callback-button">📞 Get a Callback</button>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        © 2024 India Tourist. All Rights Reserved.
+                    </div>
+                    <ul class="footer-bottom-links">
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">User Agreement</a></li>
+                        <li><a href="contact.html">Payment Security</a></li>
+                        <li><a href="home.html">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

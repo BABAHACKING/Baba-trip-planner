@@ -1,0 +1,4 @@
+{
+    "livePreview.portNumber": 3000,
+    "comment": "VS Code Live Preview uses port 3000 for static files. React dev server uses port 3005 (configured in .env)"
+}

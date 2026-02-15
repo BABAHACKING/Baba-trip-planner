@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - India Tourist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Gallery-specific styles */
+        .gallery-hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #ff9933 0%, #ff7700 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .gallery-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./god img/vn3.jpg') center/cover;
+            opacity: 0.2;
+            z-index: 0;
+        }
+
+        .gallery-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .gallery-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 12px 30px;
+            background: white;
+            border: 2px solid #ff9933;
+            color: #333;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #ff9933;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 153, 51, 0.3);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.15);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item-overlay h3 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .gallery-item-overlay p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">India Tourist</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="gallery-hero">
+        <div class="gallery-hero-content">
+            <h1>Photo Gallery</h1>
+            <p>Explore the breathtaking beauty of India through our lens</p>
+        </div>
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery-filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="temples">Temples</button>
+            <button class="filter-btn" data-filter="heritage">Heritage</button>
+            <button class="filter-btn" data-filter="nature">Nature</button>
+            <button class="filter-btn" data-filter="cities">Cities</button>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Temples -->
+            <div class="gallery-item" data-category="temples">
+                <img src="./god img/Ujjain-Mahakal.jpg" alt="Mahakaleshwar Temple">
+                <div class="gallery-item-overlay">
+                    <h3>Mahakaleshwar Temple</h3>
+                    <p>Ujjain, Madhya Pradesh</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="temples">
+                <img src="./god img/vn3.jpg" alt="Kashi Vishwanath">
+                <div class="gallery-item-overlay">
+                    <h3>Kashi Vishwanath Temple</h3>
+                    <p>Varanasi, Uttar Pradesh</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="temples">
+                <img src="./god img/mahalkaleshwar-temple-night.jpg" alt="Temple Night View">
+                <div class="gallery-item-overlay">
+                    <h3>Temple at Night</h3>
+                    <p>Divine Illumination</p>
+                </div>
+            </div>
+
+            <!-- Heritage -->
+            <div class="gallery-item" data-category="heritage">
+                <img src="./tajmahal.png" alt="Taj Mahal">
+                <div class="gallery-item-overlay">
+                    <h3>Taj Mahal</h3>
+                    <p>Agra, Uttar Pradesh</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="heritage">
+                <img src="./ch2.jpg" alt="Historic Monument">
+                <div class="gallery-item-overlay">
+                    <h3>Historic Architecture</h3>
+                    <p>Cultural Heritage</p>
+                </div>
+            </div>
+
+            <!-- Nature -->
+            <div class="gallery-item" data-category="nature">
+                <img src="./waterfall.png" alt="Waterfall">
+                <div class="gallery-item-overlay">
+                    <h3>Hidden Waterfalls</h3>
+                    <p>Natural Wonder</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="nature">
+                <img src="./god img/vn.jpg" alt="River Ganga">
+                <div class="gallery-item-overlay">
+                    <h3>River Ganges</h3>
+                    <p>Varanasi Ghats</p>
+                </div>
+            </div>
+
+            <!-- Cities -->
+            <div class="gallery-item" data-category="cities">
+                <img src="./god img/vn1.jpg" alt="Varanasi City">
+                <div class="gallery-item-overlay">
+                    <h3>Varanasi Ghats</h3>
+                    <p>The Eternal City</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="temples">
+                <img src="./god img/vns4.webp" alt="Sarnath">
+                <div class="gallery-item-overlay">
+                    <h3>Sarnath</h3>
+                    <p>Buddhist Heritage</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="heritage">
+                <img src="./ch1.jpg" alt="Historic Site">
+                <div class="gallery-item-overlay">
+                    <h3>Historic Monument</h3>
+                    <p>Ancient Architecture</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="cities">
+                <img src="./OIP.jpg" alt="Cityscape">
+                <div class="gallery-item-overlay">
+                    <h3>City View</h3>
+                    <p>Urban India</p>
+                </div>
+            </div>
+
+            <div class="gallery-item" data-category="temples">
+                <img src="./god img/mahakal.jpg" alt="Divine Temple">
+                <div class="gallery-item-overlay">
+                    <h3>Sacred Temple</h3>
+                    <p>Spiritual Journey</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gallery filter functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        item.style.animation = 'fadeIn 0.5s ease-in';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

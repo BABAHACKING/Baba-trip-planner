@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour Packages - India Tourist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        /* Packages-specific styles */
+        .packages-hero {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #138808 0%, #0d6006 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+        }
+
+        .packages-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./god img/vn1.jpg') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .packages-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .packages-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .packages-hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+        }
+
+        .packages-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 80px;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #ff9933;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            z-index: 2;
+            box-shadow: 0 3px 10px rgba(255, 153, 51, 0.4);
+        }
+
+        .package-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .package-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .package-card:hover .package-image img {
+            transform: scale(1.1);
+        }
+
+        .package-content {
+            padding: 30px;
+        }
+
+        .package-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .package-subtitle {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        .package-features li::before {
+            content: '✓';
+            color: #138808;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .package-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ff9933;
+        }
+
+        .package-price span {
+            font-size: 1rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .package-btn {
+            padding: 12px 30px;
+            background: #138808;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .package-btn:hover {
+            background: #0d6006;
+            transform: scale(1.05);
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .section-intro h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .section-intro p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .packages-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">India Tourist</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="packages-hero">
+        <div class="packages-hero-content">
+            <h1>Tour Packages</h1>
+            <p>Discover India with our carefully curated travel experiences</p>
+        </div>
+    </div>
+
+    <div class="packages-container">
+        <div class="section-intro">
+            <h2>Choose Your Journey</h2>
+            <p>From spiritual pilgrimages to heritage tours, we offer personalized packages designed to give you an
+                authentic Indian experience.</p>
+        </div>
+
+        <div class="packages-grid">
+            <!-- Package 1: Spiritual Tour -->
+            <div class="package-card">
+                <div class="package-badge">Popular</div>
+                <div class="package-image">
+                    <img src="./god img/vn3.jpg" alt="Spiritual Tour">
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Divine Spiritual Tour</h3>
+                    <p class="package-subtitle">📍 Varanasi • Prayagraj • Ayodhya</p>
+                    <ul class="package-features">
+                        <li>5 Days / 4 Nights</li>
+                        <li>Temple visits & Ganga Aarti</li>
+                        <li>Accommodation & Meals</li>
+                        <li>Expert spiritual guide</li>
+                        <li>Private transportation</li>
+                    </ul>
+                    <div class="package-footer">
+                        <div class="package-price">
+                            ₹18,999 <span>/ person</span>
+                        </div>
+                        <button class="package-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 2: Heritage Tour -->
+            <div class="package-card">
+                <div class="package-badge">Premium</div>
+                <div class="package-image">
+                    <img src="./tajmahal.png" alt="Heritage Tour">
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Golden Triangle Heritage</h3>
+                    <p class="package-subtitle">📍 Agra • Delhi • Jaipur</p>
+                    <ul class="package-features">
+                        <li>6 Days / 5 Nights</li>
+                        <li>Taj Mahal & UNESCO sites</li>
+                        <li>Luxury hotels & dining</li>
+                        <li>Professional tour guide</li>
+                        <li>All transfers included</li>
+                    </ul>
+                    <div class="package-footer">
+                        <div class="package-price">
+                            ₹32,999 <span>/ person</span>
+                        </div>
+                        <button class="package-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 3: Culture & Cities -->
+            <div class="package-card">
+                <div class="package-image">
+                    <img src="./god img/Ujjain-Mahakal.jpg" alt="Cultural Tour">
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Madhya Pradesh Explorer</h3>
+                    <p class="package-subtitle">📍 Ujjain • Indore • Bhopal</p>
+                    <ul class="package-features">
+                        <li>4 Days / 3 Nights</li>
+                        <li>Mahakaleshwar Temple visit</li>
+                        <li>Local cuisine experience</li>
+                        <li>Cultural performances</li>
+                        <li>Guided city tours</li>
+                    </ul>
+                    <div class="package-footer">
+                        <div class="package-price">
+                            ₹14,999 <span>/ person</span>
+                        </div>
+                        <button class="package-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 4: Lucknow Special -->
+            <div class="package-card">
+                <div class="package-image">
+                    <img src="./ch2.jpg" alt="Lucknow Tour">
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Nawabi Lucknow Experience</h3>
+                    <p class="package-subtitle">📍 Lucknow</p>
+                    <ul class="package-features">
+                        <li>3 Days / 2 Nights</li>
+                        <li>Bara Imambara & Residency</li>
+                        <li>Authentic Awadhi cuisine</li>
+                        <li>Heritage walk in old city</li>
+                        <li>Chikankari shopping tour</li>
+                    </ul>
+                    <div class="package-footer">
+                        <div class="package-price">
+                            ₹9,999 <span>/ person</span>
+                        </div>
+                        <button class="package-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 5: Nature & Waterfalls -->
+            <div class="package-card">
+                <div class="package-badge">Adventure</div>
+                <div class="package-image">
+                    <img src="./waterfall.png" alt="Nature Tour">
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Hidden Waterfalls Trek</h3>
+                    <p class="package-subtitle">📍 Madhya Pradesh</p>
+                    <ul class="package-features">
+                        <li>4 Days / 3 Nights</li>
+                        <li>Guided trekking experience</li>
+                        <li>Camping & bonfire nights</li>
+                        <li>Nature photography sessions</li>
+                        <li>All equipment provided</li>
+                    </ul>
+                    <div class="package-footer">
+                        <div class="package-price">
+                            ₹12,499 <span>/ person</span>
+                        </div>
+                        <button class="package-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Package 6: Mathura-Vrindavan -->
+            <div class="package-card">
+                <div class="package-image">
+                    <img src="./god img/vn1.jpg" alt="Krishna Tour">
+                </div>
+                <div class="package-content">
+                    <h3 class="package-title">Krishna Circuit</h3>
+                    <p class="package-subtitle">📍 Mathura • Vrindavan</p>
+                    <ul class="package-features">
+                        <li>3 Days / 2 Nights</li>
+                        <li>All major temple visits</li>
+                        <li>Evening aarti ceremonies</li>
+                        <li>Yamuna boat ride</li>
+                        <li>Vegetarian meal plan</li>
+                    </ul>
+                    <div class="package-footer">
+                        <div class="package-price">
+                            ₹11,999 <span>/ person</span>
+                        </div>
+                        <button class="package-btn">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Book Now button functionality
+        const bookButtons = document.querySelectorAll('.package-btn');
+
+        bookButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const packageCard = this.closest('.package-card');
+                const packageName = packageCard.querySelector('.package-title').textContent;
+                const packagePrice = packageCard.querySelector('.package-price').textContent.split('/')[0].trim();
+
+                alert(`Thank you for your interest in ${packageName}!\n\nPrice: ${packagePrice}\n\nOur team will contact you shortly to complete your booking.\n\nFor immediate assistance, please call: +91-1234567890`);
+            });
+        });
+    </script>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Column 1: Our Services -->
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="home.html">Hotels Booking</a></li>
+                        <li><a href="home.html">Flight Tickets</a></li>
+                        <li><a href="home.html">Train Booking</a></li>
+                        <li><a href="home.html">Cab Booking</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="packages.html">Holiday Packages</a></li>
+                        <li><a href="home.html">Travel Guide</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: About India Tourist -->
+                <div class="footer-column">
+                    <h3>About India Tourist</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">About Us</a></li>
+                        <li><a href="home.html">Our Team</a></li>
+                        <li><a href="home.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="home.html">Testimonials</a></li>
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">Terms & Conditions</a></li>
+                        <li><a href="home.html">Sitemap</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Top Pilgrimage Places -->
+                <div class="footer-column">
+                    <h3>Top Pilgrimage Places</h3>
+                    <ul class="footer-links">
+                        <li><a href="varanasi.html">Varanasi Tour</a></li>
+                        <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Package</a></li>
+                        <li><a href="mathura.html">Mathura Vrindavan</a></li>
+                        <li><a href="home.html">Ujjain Mahakal</a></li>
+                        <li><a href="home.html">Haridwar Rishikesh</a></li>
+                        <li><a href="home.html">Amritsar Golden Temple</a></li>
+                        <li><a href="home.html">Shirdi Sai Baba</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Popular Packages -->
+                <div class="footer-column">
+                    <h3>Popular Packages</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Golden Triangle Tour</a></li>
+                        <li><a href="packages.html">Rajasthan Package</a></li>
+                        <li><a href="packages.html">Kerala Tour</a></li>
+                        <li><a href="packages.html">Himachal Package</a></li>
+                        <li><a href="packages.html">Goa Beach Holiday</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal Tour</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage Walk</a></li>
+                        <li><a href="packages.html">North India Circuit</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 5: Follow Us -->
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://facebook.com" class="social-icon" target="_blank" title="Facebook">
+                            <span>f</span>
+                        </a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" title="Twitter">
+                            <span>𝕏</span>
+                        </a>
+                        <a href="https://instagram.com" class="social-icon" target="_blank" title="Instagram">
+                            <span>📷</span>
+                        </a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" title="YouTube">
+                            <span>▶</span>
+                        </a>
+                    </div>
+                    <button class="live-chat-button">💬 Live Chat</button>
+                    <button class="callback-button">📞 Get a Callback</button>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        © 2024 India Tourist. All Rights Reserved.
+                    </div>
+                    <ul class="footer-bottom-links">
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">User Agreement</a></li>
+                        <li><a href="contact.html">Payment Security</a></li>
+                        <li><a href="home.html">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
