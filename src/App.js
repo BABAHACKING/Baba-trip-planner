@@ -8,6 +8,7 @@ import ChatWidget from './ChatWidget';
 const TravelWizard = lazy(() => import('./TravelWizard'));
 const Login = lazy(() => import('./Login'));
 const UserProfile = lazy(() => import('./UserProfile'));
+const TripPlan = lazy(() => import('./TripPlan'));
 
 function App() {
     return (
@@ -22,6 +23,8 @@ function App() {
                 }>
                     <Routes>
                         <Route path="/wizard" element={<TravelWizard />} />
+                        <Route path="/trip-plan" element={<TripPlan />} />
+                        <Route path="/plan" element={<TripPlan />} />
                         <Route path="/profile" element={<UserProfile />} />
                         <Route path="/login" element={<Login />} />
                         {/* Redirect to home.html for root path */}

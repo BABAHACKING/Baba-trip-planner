@@ -74,8 +74,11 @@ const UserProfile = () => {
                     <Link to="/home.html" className="profile-nav-btn secondary">
                         Home
                     </Link>
-                    <Link to="/wizard" className="profile-nav-btn primary">
-                        <FaRedo /> New Trip Recommendation
+                    <Link to="/trip-plan" className="profile-nav-btn primary">
+                        <FaCalendarAlt /> View Personalized Trip Plan
+                    </Link>
+                    <Link to="/wizard" className="profile-nav-btn secondary">
+                        <FaRedo /> New Trip
                     </Link>
                 </div>
             </header>
@@ -122,6 +125,11 @@ const UserProfile = () => {
                                         {profile.formData.landscapes.map((l, idx) => (
                                             <span key={idx} className="trait-chip">✦ {l.replace('_', ' ')}</span>
                                         ))}
+                                    </div>
+                                    <div style={{ marginTop: '14px' }}>
+                                        <Link to="/trip-plan" className="profile-nav-btn primary" style={{ display: 'inline-flex', gap: '8px' }}>
+                                            <FaCalendarAlt /> View Detailed Day-by-Day Itinerary & Plan →
+                                        </Link>
                                     </div>
                                 </div>
 
@@ -223,7 +231,17 @@ const UserProfile = () => {
                                                     onClick={() => handleLoadSnapshot(item)}
                                                     className="history-btn load-btn"
                                                 >
-                                                    {profile.id === item.id ? '✓ Current' : 'View Recommendations'}
+                                                    {profile.id === item.id ? '✓ Current' : 'View Scores'}
+                                                </button>
+                                                <button
+                                                    onClick={() => {
+                                                        handleLoadSnapshot(item);
+                                                        navigate('/trip-plan');
+                                                    }}
+                                                    className="history-btn"
+                                                    style={{ background: '#597E52', color: '#FFFFFF' }}
+                                                >
+                                                    <FaCalendarAlt /> View Trip Plan
                                                 </button>
                                                 <button
                                                     onClick={(e) => handleDeleteHistory(item.id, e)}

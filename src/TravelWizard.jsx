@@ -31,14 +31,17 @@ import {
     INTEREST_OPTIONS,
     buildAndSaveUserProfile,
     evaluateUPDestinations,
-    generateComprehensiveItinerary
+    generateComprehensiveItinerary,
+    generateTripPlan
 } from './services/scoringService';
+import TripPlan from './TripPlan';
 import './TravelWizard.css';
 
 const TravelWizard = () => {
     const navigate = useNavigate();
     const [step, setStep] = useState(1);
     const [showResults, setShowResults] = useState(false);
+    const [activeResultView, setActiveResultView] = useState('trip_plan'); // 'trip_plan' | 'rankings'
     const [currentDay, setCurrentDay] = useState(0);
     const [vehicleProgress, setVehicleProgress] = useState(0);
     const [weatherData, setWeatherData] = useState({});
@@ -475,9 +478,9 @@ const TravelWizard = () => {
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     maxWidth: '1400px',
-                    margin: '0 auto 24px auto',
+                    margin: '0 auto 18px auto',
                     padding: '12px 24px',
-                    background: 'rgba(255, 255, 255, 0.85)',
+                    background: 'rgba(255, 255, 255, 0.88)',
                     borderRadius: '16px',
                     backdropFilter: 'blur(10px)',
                     border: '1px solid rgba(89, 126, 82, 0.15)'
@@ -485,40 +488,124 @@ const TravelWizard = () => {
                     <Link to="/home.html" style={{ textDecoration: 'none', color: '#597E52', fontWeight: 700, fontSize: '1.15rem' }}>
                         🌿 India Tourist
                     </Link>
+                    <div style={{ display: 'flex', gap: '10px' }}>
+                        <Link
+                            to="/trip-plan"
+                            style={{
+                                textDecoration: 'none',
+                                background: '#597E52',
+                                color: '#FFFFFF',
+                                border: 'none',
+                                padding: '8px 18px',
+                                borderRadius: '100px',
+                                fontWeight: 700,
+                                fontSize: '0.88rem',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px'
+                            }}
+                        >
+                            <FaCalendarAlt /> Full Trip Plan Page
+                        </Link>
+                        <button
+                            onClick={() => {
+                                setShowResults(false);
+                                setVehicleProgress(0);
+                                setCurrentDay(0);
+                                setStep(1);
+                            }}
+                            style={{
+                                background: 'rgba(89, 126, 82, 0.12)',
+                                color: '#597E52',
+                                border: 'none',
+                                padding: '8px 18px',
+                                borderRadius: '100px',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px'
+                            }}
+                        >
+                            <FaRedo /> Plan Another Trip
+                        </button>
+                    </div>
+                </div>
+
+                {/* View Switcher Pill Strip */}
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '12px',
+                    maxWidth: '1400px',
+                    margin: '0 auto 24px auto',
+                    flexWrap: 'wrap'
+                }}>
                     <button
-                        onClick={() => {
-                            setShowResults(false);
-                            setVehicleProgress(0);
-                            setCurrentDay(0);
-                            setStep(1);
-                        }}
+                        type="button"
+                        onClick={() => setActiveResultView('trip_plan')}
                         style={{
-                            background: 'rgba(89, 126, 82, 0.12)',
-                            color: '#597E52',
-                            border: 'none',
-                            padding: '8px 18px',
+                            padding: '12px 26px',
                             borderRadius: '100px',
-                            fontWeight: 600,
+                            border: '1px solid ' + (activeResultView === 'trip_plan' ? '#597E52' : 'rgba(89, 126, 82, 0.2)'),
+                            background: activeResultView === 'trip_plan' ? '#597E52' : '#FFFFFF',
+                            color: activeResultView === 'trip_plan' ? '#FFFFFF' : '#2C352D',
+                            fontWeight: 800,
+                            fontFamily: 'Outfit, sans-serif',
+                            fontSize: '1rem',
                             cursor: 'pointer',
+                            boxShadow: activeResultView === 'trip_plan' ? '0 6px 18px rgba(89, 126, 82, 0.3)' : '0 2px 8px rgba(0,0,0,0.04)',
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '6px'
+                            gap: '8px',
+                            transition: 'all 0.2s ease'
                         }}
                     >
-                        <FaRedo /> Plan Another Trip
+                        <FaCalendarAlt /> 🗺️ Your Personalized Trip Plan & Blueprint
+                    </button>
+
+                    <button
+                        type="button"
+                        onClick={() => setActiveResultView('rankings')}
+                        style={{
+                            padding: '12px 26px',
+                            borderRadius: '100px',
+                            border: '1px solid ' + (activeResultView === 'rankings' ? '#597E52' : 'rgba(89, 126, 82, 0.2)'),
+                            background: activeResultView === 'rankings' ? '#597E52' : '#FFFFFF',
+                            color: activeResultView === 'rankings' ? '#FFFFFF' : '#2C352D',
+                            fontWeight: 800,
+                            fontFamily: 'Outfit, sans-serif',
+                            fontSize: '1rem',
+                            cursor: 'pointer',
+                            boxShadow: activeResultView === 'rankings' ? '0 6px 18px rgba(89, 126, 82, 0.3)' : '0 2px 8px rgba(0,0,0,0.04)',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            transition: 'all 0.2s ease'
+                        }}
+                    >
+                        <FaCompass /> 🏆 Destination Rankings & Multi-Factor Scores
                     </button>
                 </div>
 
-                {/* 🎯 Interactive Destination Switcher Bar */}
-                <div className="destination-switcher-container">
-                    <div className="switcher-heading-row">
-                        <span className="switcher-heading">
-                            <FaCompass /> Compare & Switch Recommended UP Destinations:
-                        </span>
-                        <span style={{ fontSize: '0.82rem', color: '#7A8C7C' }}>
-                            Click any destination below to view its tailored itinerary
-                        </span>
-                    </div>
+                {/* VIEW 1: COMPLETE PERSONALIZED TRIP PLAN */}
+                {activeResultView === 'trip_plan' && (
+                    <TripPlan tripPlanData={userProfile.tripPlan} />
+                )}
+
+                {/* VIEW 2: MULTI-FACTOR DESTINATION COMPARISON & RANKINGS */}
+                {activeResultView === 'rankings' && (
+                    <>
+                        {/* 🎯 Interactive Destination Switcher Bar */}
+                        <div className="destination-switcher-container">
+                            <div className="switcher-heading-row">
+                                <span className="switcher-heading">
+                                    <FaCompass /> Compare & Switch Recommended UP Destinations:
+                                </span>
+                                <span style={{ fontSize: '0.82rem', color: '#7A8C7C' }}>
+                                    Click any destination below to view its tailored itinerary
+                                </span>
+                            </div>
 
                     <div className="destination-switcher-grid">
                         {ranked.map((city, idx) => {
@@ -1052,6 +1139,8 @@ const TravelWizard = () => {
                         </button>
                     </div>
                 </div>
+                    </>
+                )}
             </div>
         );
     }

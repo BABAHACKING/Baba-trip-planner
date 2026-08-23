@@ -614,11 +614,1061 @@ export const evaluateUPDestinations = (formData) => {
 };
 
 /**
- * Builds the User Travel Profile and persists to localStorage
+ * Master Trip Plan Generator: Constructs the central "Trip Plan Object"
+ * which serves as the single source of truth for:
+ * 1. Itinerary
+ * 2. Map & Route
+ * 3. Food & Stay
+ * 4. AI Travel Guide
+ */
+export const generateTripPlan = (formData) => {
+    const ranked = evaluateUPDestinations(formData);
+    const topCity = ranked[0];
+    const totalDays = Math.max(1, Math.min(14, Number(formData.days) || 3));
+    const people = Math.max(1, Number(formData.people) || 2);
+    const budgetTier = formData.budget || 'moderate';
+    const transportType = formData.transport || 'cab';
+    const userInterests = formData.landscapes || ['spiritual'];
+    const pickupLoc = formData.pickupLocation || 'Varanasi';
+
+    // 1. Determine Circuit Route across top destinations based on totalDays
+    let circuitCities = [];
+    if (totalDays === 1) {
+        circuitCities = [topCity];
+    } else if (totalDays === 2) {
+        circuitCities = [topCity, ranked[1] || topCity];
+    } else if (totalDays <= 4) {
+        circuitCities = [topCity, ranked[1] || topCity, ranked[2] || topCity];
+    } else {
+        circuitCities = [topCity, ranked[1], ranked[2], ranked[3] || ranked[0]].filter(Boolean);
+    }
+
+    // Deduplicate while preserving order, ensuring we have at least 1 city
+    const uniqueCircuit = Array.from(new Set(circuitCities.map(c => c.id)))
+        .map(id => ranked.find(c => c.id === id));
+
+    const routeCircuitNames = uniqueCircuit.map(c => c.name.split(' ')[0]);
+    const routeCircuitString = routeCircuitNames.join(' → ');
+
+    // 2. City Details & Place Master Catalog
+    const DESTINATION_MASTER = {
+        banaras: {
+            name: 'Banaras (Varanasi)',
+            tagline: 'Eternal Ghats, Sacred Temples & Classical Heritage',
+            image: 'god img/vn1.jpg',
+            coordinates: { lat: 25.3176, lng: 82.9739 },
+            hotels: {
+                budget: { name: 'Kashi Heritage Guesthouse (Assi Ghat)', type: 'Homestay / Guesthouse', pricePerNight: 1200, address: 'Assi Ghat Road, Shivala, Varanasi', rating: 4.4, amenities: ['Free Wi-Fi', 'Rooftop River View', 'Satvik Breakfast'] },
+                moderate: { name: 'Hotel Surya Kaiser Palace (Cantt)', type: '3-Star Heritage Hotel', pricePerNight: 3200, address: 'The Mall Road, Cantonment, Varanasi', rating: 4.6, amenities: ['Pool & Spa', 'AC Deluxe Rooms', 'Multi-Cuisine Dining'] },
+                luxury: { name: 'BrijRama Palace / Taj Nadesar Palace', type: '5-Star Luxury Heritage Palace', pricePerNight: 9500, address: 'Darbhanga Ghat / Nadesar, Varanasi', rating: 4.9, amenities: ['Private River Chauffeur', 'Royal Dining', 'VIP Corridor Access'] }
+            },
+            culinarySpots: [
+                { name: 'Ram Bhandar (Thatheri Gali)', specialty: 'Authentic Poori-Bhaji & Jalebi with Hing Aloo', mealType: 'Breakfast', avgCost: 120 },
+                { name: 'Keshari Restaurant (Godowlia)', specialty: 'Classic Banarasi Pure Ghee Satvik Thali & Malai Kofta', mealType: 'Lunch', avgCost: 280 },
+                { name: 'Blue Lassi Shop (Manikarnika)', specialty: '30+ Varieties of Thick Cream Lassi in Clay Kulhads', mealType: 'Snack/Dessert', avgCost: 90 },
+                { name: 'Pizzeria Vaatika Cafe (Assi Ghat)', specialty: 'Apple Pie & Woodfired Thin-Crust Pizza by the Ganges', mealType: 'Dinner', avgCost: 450 },
+                { name: 'Keshav Tambool Bhandar', specialty: 'Legendary Royal Banarasi Meetha Paan with Gulkand & Silver Vark', mealType: 'Digestif', avgCost: 50 }
+            ],
+            sights: [
+                {
+                    id: 'b_sunrise_boat',
+                    place: 'Assi Ghat to Manikarnika Ghat',
+                    category: 'ghats_culture',
+                    categoryLabel: 'Ghats & Culture',
+                    icon: '🚣',
+                    activity: 'Sunrise Ganges Rowboat Cruise past 84 Historic Ghats',
+                    description: 'Witness Subah-e-Banaras dawn Vedic chants at Assi Ghat, followed by a serene wooden rowboat ride past morning bathers, palaces, and ancient ghats.',
+                    duration: '1.5 hrs',
+                    distFromBase: '3.5 km',
+                    travelTimeCab: '12 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 250,
+                    image: 'god img/vn1.jpg',
+                    coordinates: { lat: 25.2985, lng: 83.0076 },
+                    insiderTip: 'Board by 5:45 AM to catch the pristine golden light reflecting across the river.',
+                    tags: ['Sunrise Cruise', '84 Ghats', 'Photography']
+                },
+                {
+                    id: 'b_vishwanath',
+                    place: 'Kashi Vishwanath Corridor & Temple',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Kashi Vishwanath Jyotirlinga Darshan & Sacred Corridor Walk',
+                    description: 'Explore the newly constructed marble corridor connecting the holy Ganges directly to the revered golden spire Jyotirlinga temple.',
+                    duration: '2 hrs',
+                    distFromBase: '1.2 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 100,
+                    image: 'god img/vn.jpg',
+                    coordinates: { lat: 25.3109, lng: 83.0107 },
+                    insiderTip: 'Deposit electronic devices at the corridor locker gate for swift security clearance.',
+                    tags: ['Jyotirlinga', 'Temple', 'Sacred Corridor']
+                },
+                {
+                    id: 'b_sarnath',
+                    place: 'Sarnath Archaeological Complex & Museum',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & History',
+                    icon: '🏛️',
+                    activity: 'Sarnath Dhamek Stupa & Ashoka Pillar Museum Tour',
+                    description: 'Visit the sacred deer park where Lord Buddha gave his first sermon, and view the original 4-lion Ashoka Capital housed in the ASI museum.',
+                    duration: '2.5 hrs',
+                    distFromBase: '10.5 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '40 mins',
+                    cost: 150,
+                    image: 'god img/vns4.webp',
+                    coordinates: { lat: 25.3811, lng: 83.0214 },
+                    insiderTip: 'Hire a certified archaeological guide at the entrance for rich historical storytelling.',
+                    tags: ['UNESCO Site', 'Buddhism', 'Ashoka Pillar']
+                },
+                {
+                    id: 'b_aarti',
+                    place: 'Dashashwamedh Ghat',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🙏',
+                    activity: 'Dashashwamedh Ghat Grand Evening Ganga Aarti',
+                    description: 'High priests perform synchronized Vedic chants holding tiered brass lamps with conch shells and incense as thousands of floating diyas glow on the river.',
+                    duration: '1.5 hrs',
+                    distFromBase: '2.0 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 100,
+                    image: 'god img/vn3.jpg',
+                    coordinates: { lat: 25.3076, lng: 83.0104 },
+                    insiderTip: 'Reserve a wooden boat seat on the river 30 minutes in advance for an unobstructed viewpoint.',
+                    tags: ['Ganga Aarti', 'Spiritual', 'Sacred Chants']
+                },
+                {
+                    id: 'b_ramnagar',
+                    place: 'Ramnagar Fort & Ganga East Bank',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Forts',
+                    icon: '🏰',
+                    activity: 'Ramnagar Sandstone Fort & Royal Carriage Museum',
+                    description: '18th-century royal palace fortress overlooking the bending Ganges, preserving vintage royal palanquins, ivory carvings, and astronomical clocks.',
+                    duration: '1.5 hrs',
+                    distFromBase: '12 km',
+                    travelTimeCab: '30 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '45 mins',
+                    cost: 120,
+                    image: 'god img/vn1.jpg',
+                    coordinates: { lat: 25.2678, lng: 83.0264 },
+                    insiderTip: 'Try the famous chilled rabri lassi right outside the fort main gate.',
+                    tags: ['Royal Fort', 'Museum', 'Mughal Architecture']
+                },
+                {
+                    id: 'b_silk',
+                    place: 'Thatheri Bazaar & Chowk Silk Guilds',
+                    category: 'ghats_culture',
+                    categoryLabel: 'Culture & Crafts',
+                    icon: '🧶',
+                    activity: 'Banarasi Zari Silk Weaving & Ancient Galis Walking Tour',
+                    description: 'Walk through historic labyrinthine alleyways to see hereditary master weavers hand-operating wooden jacquard looms to craft world-famous Banarasi sarees.',
+                    duration: '1.5 hrs',
+                    distFromBase: '1.5 km',
+                    travelTimeCab: 'Walking/E-Rickshaw',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '—',
+                    cost: 50,
+                    image: 'god img/vn.jpg',
+                    coordinates: { lat: 25.3120, lng: 83.0080 },
+                    insiderTip: 'Buy directly from certified weaver cooperatives to ensure authentic pure silk zari work.',
+                    tags: ['Silk Weaving', 'Handloom', 'Ancient Bazaars']
+                }
+            ]
+        },
+        allahabad: {
+            name: 'Allahabad (Prayagraj)',
+            tagline: 'Sacred Triveni Sangam, Grand Forts & Cultural Legacy',
+            image: 'god img/ayodhya.jpg',
+            coordinates: { lat: 25.4358, lng: 81.8463 },
+            hotels: {
+                budget: { name: 'Prayag Yatri Niwas (Civil Lines)', type: 'Budget Hotel / Guesthouse', pricePerNight: 1100, address: 'MG Marg, Civil Lines, Prayagraj', rating: 4.3, amenities: ['Free Wi-Fi', 'Clean AC Rooms', 'Travel Desk'] },
+                moderate: { name: 'Hotel Kanha Shyam / Grand Continental', type: '3-Star Deluxe Hotel', pricePerNight: 2900, address: 'Civil Lines, Prayagraj', rating: 4.5, amenities: ['Buffet Breakfast', 'Spacious AC Rooms', 'Ample Parking'] },
+                luxury: { name: 'The Legend Hotel / Heritage Kasmanda', type: '4-Star Premium Boutique', pricePerNight: 6500, address: 'Cantonment / Civil Lines, Prayagraj', rating: 4.8, amenities: ['Fine Dining', 'Chauffeur Service', 'Sangam Tour Specialist'] }
+            },
+            culinarySpots: [
+                { name: 'Netram Mulchand & Sons (Katra)', specialty: 'Pure Desi Ghee Kachori-Sabzi Thali with Jalebi', mealType: 'Breakfast', avgCost: 150 },
+                { name: 'Hari Ram & Sons (Loknath Chowk)', specialty: 'Crispy Spicy Samosas, Dalmoth & Gulab Jamun', mealType: 'Lunch/Snack', avgCost: 110 },
+                { name: 'Dehati ke Rasgulle (Civil Lines)', specialty: 'Mouth-melting Warm Black Rasgullas', mealType: 'Snack/Dessert', avgCost: 80 },
+                { name: 'El Chico Restaurant (Civil Lines)', specialty: 'Heritage Mughlai Biryani, Butter Paneer & Baked Alaska', mealType: 'Dinner', avgCost: 550 },
+                { name: 'Indian Coffee House (MG Marg)', specialty: 'Filter Coffee & Cold Coffee in a historic 1957 setting', mealType: 'Evening Refresher', avgCost: 120 }
+            ],
+            sights: [
+                {
+                    id: 'a_sangam',
+                    place: 'Triveni Sangam Ghats',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🙏',
+                    activity: 'Triveni Sangam Confluence Boat Ride & Holy Snan',
+                    description: 'Take a boat ride to the exact meeting point where the greenish waters of Yamuna merge with the pale waters of Ganga and invisible Saraswati.',
+                    duration: '2 hrs',
+                    distFromBase: '6.5 km',
+                    travelTimeCab: '18 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '30 mins',
+                    cost: 200,
+                    image: 'god img/ayodhya.jpg',
+                    coordinates: { lat: 25.4243, lng: 81.8845 },
+                    insiderTip: 'From October to March, carry bird grain to feed thousands of migratory Siberian seagulls.',
+                    tags: ['Holy Sangam', 'Boat Ride', 'Seagulls']
+                },
+                {
+                    id: 'a_fort',
+                    place: 'Allahabad Fort & Patalpuri Temple',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Forts',
+                    icon: '🏰',
+                    activity: 'Historic Akbar Fort, Patalpuri & Akshayavat Tree',
+                    description: 'Grand 1583 AD sandstone fortress built by Emperor Akbar on the banks of Yamuna, housing the underground Patalpuri shrine and the immortal Akshayavat tree.',
+                    duration: '1.5 hrs',
+                    distFromBase: '5.0 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 80,
+                    image: 'god img/ayodhya.jpg',
+                    coordinates: { lat: 25.4300, lng: 81.8760 },
+                    insiderTip: 'Keep a government ID handy for entry into the fort army-managed precinct.',
+                    tags: ['Akbar Fort', 'Akshayavat', 'Mughal Architecture']
+                },
+                {
+                    id: 'a_hanuman',
+                    place: 'Bade Hanuman Ji (Letey Hanuman)',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Bade Hanuman Ji (Subterranean Reclining Hanuman) Darshan',
+                    description: 'Unique subterranean temple enshrining a 20-foot reclining idol of Lord Hanuman, submerged during peak Ganga monsoon floods.',
+                    duration: '1 hr',
+                    distFromBase: '5.5 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 50,
+                    image: 'god img/ayodhya.jpg',
+                    coordinates: { lat: 25.4280, lng: 81.8790 },
+                    insiderTip: 'Tuesday and Saturday mornings have vibrant vermilion (sindoor) pujas.',
+                    tags: ['Reclining Hanuman', 'Rare Temple', 'Spiritual Energy']
+                },
+                {
+                    id: 'a_anand_bhawan',
+                    place: 'Anand Bhawan & Jawahar Planetarium',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & History',
+                    icon: '🏛️',
+                    activity: 'Anand Bhawan Freedom Mansion & Sky Planetarium Tour',
+                    description: 'The historic ancestral residence of the Nehru family showcasing original rooms, memorabilia from India’s independence struggle, and celestial planetarium shows.',
+                    duration: '2 hrs',
+                    distFromBase: '3.0 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 120,
+                    image: 'god img/ayodhya.jpg',
+                    coordinates: { lat: 25.4594, lng: 81.8596 },
+                    insiderTip: 'Book the 30-minute sky show at the Jawahar Planetarium upon arrival.',
+                    tags: ['Freedom Movement', 'Mansion', 'Planetarium']
+                },
+                {
+                    id: 'a_khusro',
+                    place: 'Khusro Bagh Mughal Complex',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Gardens',
+                    icon: '🌿',
+                    activity: 'Khusro Bagh Mughal Fresco Garden & Mausoleums',
+                    description: 'Sprawling quadrilateral walled Mughal garden with intricately carved red sandstone mausoleums of Prince Khusrau and sweet Allahabad Surkha guava orchards.',
+                    duration: '1.5 hrs',
+                    distFromBase: '2.5 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 50,
+                    image: 'god img/ayodhya.jpg',
+                    coordinates: { lat: 25.4468, lng: 81.8252 },
+                    insiderTip: 'Late afternoons provide the best lighting for photographing Persian stone jaalis.',
+                    tags: ['Mughal Tombs', 'Persian Art', 'Guava Orchards']
+                }
+            ]
+        },
+        mirzapur: {
+            name: 'Mirzapur',
+            tagline: 'Cascading Waterfalls, Vindhyavasini Shaktipeeth & Hills',
+            image: 'waterfall.png',
+            coordinates: { lat: 25.1337, lng: 82.5644 },
+            hotels: {
+                budget: { name: 'Vindhyachal Tourist Guesthouse', type: 'Budget Guesthouse', pricePerNight: 950, address: 'Temple Road, Vindhyachal, Mirzapur', rating: 4.2, amenities: ['Clean Rooms', 'Temple Proximity', 'Vegetarian Meals'] },
+                moderate: { name: 'The Galaxy Hotel / Vindhya Retreat', type: '3-Star Comfort Hotel', pricePerNight: 2400, address: 'Station Road / Vindhyachal Hills, Mirzapur', rating: 4.4, amenities: ['AC Deluxe Rooms', 'Nature Views', 'In-House Dining'] },
+                luxury: { name: 'Chunar Ganga Cliff Eco-Resort', type: 'Heritage Nature Resort', pricePerNight: 5200, address: 'Chunar Cliff View, Mirzapur', rating: 4.7, amenities: ['River Panorama', 'Private Waterfall Trek Guide', 'Organic Dining'] }
+            },
+            culinarySpots: [
+                { name: 'Vindhyachal Mandir Chowk', specialty: 'Fresh Desi Ghee Pedas, Poori-Sabzi & Kheer', mealType: 'Breakfast', avgCost: 110 },
+                { name: 'Chunar Fort Road Dhaba', specialty: 'Authentic UP Litti Chokha with Desi Ghee & Green Chutney', mealType: 'Lunch', avgCost: 140 },
+                { name: 'Mirzapur Clock Tower Food Lane', specialty: 'Crispy Samosas, Jalebis & Rabri in Clay Cups', mealType: 'Snack/Dessert', avgCost: 75 },
+                { name: 'Vindhya Greens Restaurant', specialty: 'Dal Tadka, Shahi Paneer, Garlic Naan & Gulab Jamun', mealType: 'Dinner', avgCost: 350 }
+            ],
+            sights: [
+                {
+                    id: 'm_wyndham',
+                    place: 'Wyndham Falls & Nature Gorge',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
+                    icon: '🌊',
+                    activity: 'Wyndham Falls Rocky Stepping Pools & Nature Hike',
+                    description: 'Picturesque tiered waterfall cascading through rocky Vindhyan red sandstone crags, surrounded by peaceful forests and scenic picnic viewpoints.',
+                    duration: '2.5 hrs',
+                    distFromBase: '14 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '40 mins',
+                    cost: 80,
+                    image: 'waterfall.png',
+                    coordinates: { lat: 25.0744, lng: 82.5831 },
+                    insiderTip: 'Wear sports shoes with firm rubber grip on wet rocks; carry drinking water.',
+                    tags: ['Waterfall Trek', 'Natural Pools', 'Scenic Gorge']
+                },
+                {
+                    id: 'm_sirsi',
+                    place: 'Sirsi Dam & Reservoir Lake',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Nature',
+                    icon: '🌊',
+                    activity: 'Sirsi Dam Reservoir Lake & Foaming Water Cascades',
+                    description: 'Sprawling water reservoir nestled in rolling green hills where overflow waters create dramatic foaming rapids and quiet scenic viewpoints.',
+                    duration: '2 hrs',
+                    distFromBase: '38 km',
+                    travelTimeCab: '50 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '1.2 hrs',
+                    cost: 50,
+                    image: 'waterfall.png',
+                    coordinates: { lat: 24.9650, lng: 82.6850 },
+                    insiderTip: 'Great location for landscape photography during mid-day and early afternoon.',
+                    tags: ['Dam Reservoir', 'Cascades', 'Green Hills']
+                },
+                {
+                    id: 'm_vindhyachal',
+                    place: 'Maa Vindhyavasini Shaktipeeth & Ashtabhuja',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🙏',
+                    activity: 'Vindhyachal Corridor Darshan & Ashtabhuja Hill Ropeway',
+                    description: 'Sacred 51 Shaktipeeth pilgrimage completing the holy triangle: Maa Vindhyavasini (Goddess of Wealth), Kali Khoh cave shrine, and Ashtabhuja ropeway with hilltop views.',
+                    duration: '3 hrs',
+                    distFromBase: '8 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 150,
+                    image: 'god img/ayodhya.jpg',
+                    coordinates: { lat: 25.1667, lng: 82.5167 },
+                    insiderTip: 'Use the newly built Vindhya Corridor for fast and smooth darshan without long queues.',
+                    tags: ['Shaktipeeth', 'Ropeway', 'Hilltop Shrine']
+                },
+                {
+                    id: 'm_chunar',
+                    place: 'Chunar Fort on Ganga Cliff',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Ancient Forts',
+                    icon: '🏰',
+                    activity: '56 BC Chunar Fort & Ganga Cliff Viewpoint Exploration',
+                    description: 'Impregnable hilltop fortress fought over by Sher Shah Suri and Warren Hastings, featuring the Sonwa Mandap and a 180° panorama of the curving Ganges river.',
+                    duration: '2 hrs',
+                    distFromBase: '32 km',
+                    travelTimeCab: '45 mins',
+                    travelTimeTrain: '35 mins',
+                    travelTimeBus: '1 hr',
+                    cost: 100,
+                    image: 'assets/varanasi/fort.jpg',
+                    coordinates: { lat: 25.1278, lng: 82.8767 },
+                    insiderTip: 'Sunset over the curving Ganga from the fort ramparts is a photographer’s dream.',
+                    tags: ['Sher Shah Suri', 'Cliff Fort', 'Ganga Panorama']
+                },
+                {
+                    id: 'm_tanda',
+                    place: 'Tanda Falls & Forest Trail',
+                    category: 'adventure',
+                    categoryLabel: 'Adventure & Nature Treks',
+                    icon: '🧗',
+                    activity: 'Tanda Falls Stepping Terraces & Bird Watching Walk',
+                    description: 'Tranquil natural stepped waterfall surrounded by scrub forests and migratory birds, perfect for a refreshing afternoon stroll.',
+                    duration: '1.5 hrs',
+                    distFromBase: '12 km',
+                    travelTimeCab: '20 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '35 mins',
+                    cost: 50,
+                    image: 'waterfall.png',
+                    coordinates: { lat: 25.0920, lng: 82.5980 },
+                    insiderTip: 'Carry a light pair of binoculars to spot kingfishers and painted storks.',
+                    tags: ['Forest Walk', 'Bird Watching', 'Stepped Waterfall']
+                },
+                {
+                    id: 'm_crafts',
+                    place: 'Mirzapur Carpet & Brass Guilds',
+                    category: 'ghats_culture',
+                    categoryLabel: 'Culture & Crafts',
+                    icon: '🧶',
+                    activity: 'Handcrafted Persian Carpet Looms & Brass Guild Tour',
+                    description: 'Visit traditional artisan workshops to watch hereditary master craftspeople weave hand-knotted woolen carpets and cast bell-metal utensils.',
+                    duration: '1.5 hrs',
+                    distFromBase: '4 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 50,
+                    image: 'god img/vn1.jpg',
+                    coordinates: { lat: 25.1480, lng: 82.5720 },
+                    insiderTip: 'GI-tagged Mirzapur woolen dhurries make authentic, lightweight take-home souvenirs.',
+                    tags: ['GI Tag Heritage', 'Woolen Carpets', 'Brass Casting']
+                }
+            ]
+        },
+        sonbhadra: {
+            name: 'Sonbhadra',
+            tagline: 'Fossil Parks, Prehistoric Cave Art, Forests & Giant Dams',
+            image: 'assets/varanasi/fort.jpg',
+            coordinates: { lat: 24.6860, lng: 83.0640 },
+            hotels: {
+                budget: { name: 'Forest Rest House / Robertsganj Inn', type: 'Eco Guesthouse', pricePerNight: 850, address: 'Robertsganj Market, Sonbhadra', rating: 4.1, amenities: ['Basic Clean Rooms', 'Homestyle Food', 'Forest Desk'] },
+                moderate: { name: 'Hotel Shivam / Renukoot Heights', type: 'Comfort Hotel', pricePerNight: 2200, address: 'Robertsganj / Renukoot Road, Sonbhadra', rating: 4.3, amenities: ['AC Deluxe Rooms', 'Restaurant', 'Guide Arrangement'] },
+                luxury: { name: 'Govind Sagar Lakefront Eco-Camp', type: 'Lakefront Nature Camp', pricePerNight: 4800, address: 'Rihand Dam Road, Sonbhadra', rating: 4.6, amenities: ['Lakefront Tents', 'Campfire & Stargazing', 'Geology Guide'] }
+            },
+            culinarySpots: [
+                { name: 'Robertsganj Chowk Dhaba', specialty: 'Hot Poori-Sabzi, Fresh Curd & Jalebi', mealType: 'Breakfast', avgCost: 90 },
+                { name: 'Belan Valley Tribal Kitchen', specialty: 'Roasted Bhutta (Corn), Desi Aloo Chokha & Arhar Dal', mealType: 'Lunch', avgCost: 130 },
+                { name: 'Rihand Lakefront Eateries', specialty: 'Crispy Hot Samosas & Masala Chai at Sunset', mealType: 'Snack/Tea', avgCost: 60 },
+                { name: 'Son Valley Dining Hall', specialty: 'Local River Fish Curry or Paneer Butter Masala with Fresh Rotis', mealType: 'Dinner', avgCost: 320 }
+            ],
+            sights: [
+                {
+                    id: 's_fossils',
+                    place: 'Salkhan Fossil Park',
+                    category: 'forests_fossils',
+                    categoryLabel: 'Forests, Fossils & Cave Art',
+                    icon: '🌲',
+                    activity: 'Salkhan Fossil Park Guided Geological Exploration',
+                    description: 'Walk among 1.4-billion-year-old fossilized stromatolites (cyanobacteria tree rings) that date back to the Mesoproterozoic era—older than the Grand Canyon fossils.',
+                    duration: '2.5 hrs',
+                    distFromBase: '15 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '40 mins',
+                    cost: 80,
+                    image: 'god img/vn1.jpg',
+                    coordinates: { lat: 24.5886, lng: 83.0886 },
+                    insiderTip: 'Carry a camera with a macro mode to capture the intricate concentric rings on the petrified tree trunks.',
+                    tags: ['1.4 Billion Yrs Old', 'Geological Wonder', 'Fossil Forest']
+                },
+                {
+                    id: 's_caves',
+                    place: 'Panchmukhi & Kauva Khoh Caves',
+                    category: 'forests_fossils',
+                    categoryLabel: 'Forests, Fossils & Cave Art',
+                    icon: '🎨',
+                    activity: 'Panchmukhi Prehistoric Red-Ochre Cave Paintings Exploration',
+                    description: 'Discover secluded rock shelters adorned with Stone Age Mesolithic cave art depicting hunting parties, wild rhinos, sun symbols, and ancient dancers.',
+                    duration: '2 hrs',
+                    distFromBase: '22 km',
+                    travelTimeCab: '35 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '50 mins',
+                    cost: 50,
+                    image: 'god img/vn.jpg',
+                    coordinates: { lat: 24.6200, lng: 83.0500 },
+                    insiderTip: 'Hire a knowledgeable local forest guide in Robertsganj to easily spot hidden cave crevices.',
+                    tags: ['Prehistoric Art', 'Cave Shelters', 'Stone Age Paintings']
+                },
+                {
+                    id: 's_mukha',
+                    place: 'Mukha Falls & Belan Canyon',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
+                    icon: '🌊',
+                    activity: 'Mukha Falls Jungle Trek & Sandstone Canyon Gorge',
+                    description: 'Dramatic waterfall where the Belan River plunges over 100 feet of sheer red sandstone cliff faces into a pristine jungle canyon.',
+                    duration: '2 hrs',
+                    distFromBase: '40 km',
+                    travelTimeCab: '55 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '1.3 hrs',
+                    cost: 60,
+                    image: 'waterfall.png',
+                    coordinates: { lat: 24.5500, lng: 83.1500 },
+                    insiderTip: 'Spectacular wilderness photo opportunities; remain on marked viewing perimeters.',
+                    tags: ['Canyon Waterfall', 'Jungle Valley', 'Wilderness']
+                },
+                {
+                    id: 's_rihand',
+                    place: 'Rihand Dam & Govind Ballabh Pant Sagar',
+                    category: 'adventure',
+                    categoryLabel: 'Scenic Views & Waterways',
+                    icon: '🏞️',
+                    activity: 'Govind Ballabh Pant Sagar Inland Sea Sunset View',
+                    description: 'Marvel at one of Asia’s largest artificial lakes, framed by emerald Vindhyan ridges and generating clean hydroelectric energy.',
+                    duration: '2 hrs',
+                    distFromBase: '65 km',
+                    travelTimeCab: '1.2 hrs',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '1.8 hrs',
+                    cost: 50,
+                    image: 'waterfall.png',
+                    coordinates: { lat: 24.2000, lng: 83.0300 },
+                    insiderTip: 'Sunset over the vast reservoir gives the illusion of being at an endless seaside shore.',
+                    tags: ['Mega Dam', 'Inland Sea', 'Sunset Panorama']
+                },
+                {
+                    id: 's_vijaygarh',
+                    place: 'Vijaygarh Fort Hilltop Citadel',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Forts',
+                    icon: '🏰',
+                    activity: '5th-Century Vijaygarh Fort Mountain Citadel Trek',
+                    description: 'Climb 400 feet up to the ancient mountain citadel famous for perennial hilltop sweetwater reservoirs (Ram Sagar) and ancient rock inscriptions.',
+                    duration: '3 hrs',
+                    distFromBase: '30 km',
+                    travelTimeCab: '45 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '1 hr',
+                    cost: 60,
+                    image: 'assets/varanasi/fort.jpg',
+                    coordinates: { lat: 24.5800, lng: 83.2200 },
+                    insiderTip: 'Requires climbing ~750 stone steps; start early in the morning with ample drinking water.',
+                    tags: ['Hilltop Fort', 'Trek', 'Ancient Inscriptions']
+                }
+            ]
+        }
+    };
+
+    // 3. Helper for Transport Transit Times & Distance
+    const getTransitDetails = (fromCityId, toCityId) => {
+        if (!toCityId || fromCityId === toCityId) {
+            return {
+                route: 'Local city transit & local sightseeing loop',
+                distance: '15–25 km intra-city',
+                distanceKm: 20,
+                duration: transportType === 'cab' ? '20–30 mins' : transportType === 'train' ? '15 mins' : '45 mins',
+                costPerPerson: transportType === 'cab' ? 250 : transportType === 'train' ? 80 : 50
+            };
+        }
+
+        const intercityDistances = {
+            'banaras_allahabad': { km: 125, cabHr: '2.2 hrs', trainHr: '1.5 hrs', busHr: '3 hrs', cabCost: 650, trainCost: 180, busCost: 140 },
+            'allahabad_banaras': { km: 125, cabHr: '2.2 hrs', trainHr: '1.5 hrs', busHr: '3 hrs', cabCost: 650, trainCost: 180, busCost: 140 },
+            'banaras_mirzapur': { km: 65, cabHr: '1.3 hrs', trainHr: '1 hr', busHr: '1.8 hrs', cabCost: 400, trainCost: 90, busCost: 80 },
+            'mirzapur_banaras': { km: 65, cabHr: '1.3 hrs', trainHr: '1 hr', busHr: '1.8 hrs', cabCost: 400, trainCost: 90, busCost: 80 },
+            'mirzapur_allahabad': { km: 90, cabHr: '1.8 hrs', trainHr: '1.2 hrs', busHr: '2.3 hrs', cabCost: 500, trainCost: 120, busCost: 100 },
+            'allahabad_mirzapur': { km: 90, cabHr: '1.8 hrs', trainHr: '1.2 hrs', busHr: '2.3 hrs', cabCost: 500, trainCost: 120, busCost: 100 },
+            'mirzapur_sonbhadra': { km: 75, cabHr: '1.8 hrs', trainHr: '2 hrs', busHr: '2.5 hrs', cabCost: 450, trainCost: 100, busCost: 90 },
+            'sonbhadra_mirzapur': { km: 75, cabHr: '1.8 hrs', trainHr: '2 hrs', busHr: '2.5 hrs', cabCost: 450, trainCost: 100, busCost: 90 },
+            'banaras_sonbhadra': { km: 110, cabHr: '2.5 hrs', trainHr: '2.5 hrs', busHr: '3.2 hrs', cabCost: 600, trainCost: 150, busCost: 120 },
+            'sonbhadra_banaras': { km: 110, cabHr: '2.5 hrs', trainHr: '2.5 hrs', busHr: '3.2 hrs', cabCost: 600, trainCost: 150, busCost: 120 },
+            'allahabad_sonbhadra': { km: 165, cabHr: '3.5 hrs', trainHr: '3.5 hrs', busHr: '4.5 hrs', cabCost: 850, trainCost: 220, busCost: 180 },
+            'sonbhadra_allahabad': { km: 165, cabHr: '3.5 hrs', trainHr: '3.5 hrs', busHr: '4.5 hrs', cabCost: 850, trainCost: 220, busCost: 180 }
+        };
+
+        const key = `${fromCityId}_${toCityId}`;
+        const match = intercityDistances[key] || { km: 80, cabHr: '1.8 hrs', trainHr: '1.5 hrs', busHr: '2.5 hrs', cabCost: 450, trainCost: 120, busCost: 100 };
+
+        let timeStr = match.cabHr;
+        let costVal = match.cabCost;
+        let modeLabel = 'Private AC Cab / Self-Drive';
+
+        if (transportType === 'train') {
+            timeStr = match.trainHr;
+            costVal = match.trainCost;
+            modeLabel = 'Express Superfast Train';
+        } else if (transportType === 'bus') {
+            timeStr = match.busHr;
+            costVal = match.busCost;
+            modeLabel = 'Inter-City State/Private Bus';
+        }
+
+        return {
+            route: `Transit: ${DESTINATION_MASTER[fromCityId]?.name.split(' ')[0]} → ${DESTINATION_MASTER[toCityId]?.name.split(' ')[0]} via ${modeLabel}`,
+            distance: `${match.km} km highway transit`,
+            distanceKm: match.km,
+            duration: timeStr,
+            costPerPerson: costVal
+        };
+    };
+
+    // 4. Build Structured Day-by-Day Schedule
+    const itineraryDays = [];
+    let cumulativeCost = 0;
+
+    // Distribute days across circuit
+    for (let dayNum = 1; dayNum <= totalDays; dayNum++) {
+        // Determine which city is active on this day
+        let cityIndex = 0;
+        if (uniqueCircuit.length === 1) {
+            cityIndex = 0;
+        } else if (uniqueCircuit.length === 2) {
+            cityIndex = dayNum <= Math.ceil(totalDays / 2) ? 0 : 1;
+        } else if (uniqueCircuit.length === 3) {
+            if (dayNum === 1) cityIndex = 0;
+            else if (dayNum <= Math.ceil(totalDays * 0.6)) cityIndex = 1;
+            else cityIndex = 2;
+        } else {
+            const fraction = (dayNum - 1) / totalDays;
+            cityIndex = Math.min(uniqueCircuit.length - 1, Math.floor(fraction * uniqueCircuit.length));
+        }
+
+        const activeCityObj = uniqueCircuit[cityIndex] || uniqueCircuit[0];
+        const activeCityId = activeCityObj.id;
+        const cityData = DESTINATION_MASTER[activeCityId] || DESTINATION_MASTER.banaras;
+
+        const prevCityId = dayNum > 1 ? (itineraryDays[dayNum - 2]?.destinationId || activeCityId) : activeCityId;
+        const isTransitDay = prevCityId !== activeCityId;
+        const transitInfo = getTransitDetails(prevCityId, activeCityId);
+
+        // Pick Hotel & Meals according to Budget Tier
+        const hotelInfo = cityData.hotels[budgetTier] || cityData.hotels.moderate;
+        const breakfastSpot = cityData.culinarySpots.find(s => s.mealType.includes('Breakfast')) || cityData.culinarySpots[0];
+        const lunchSpot = cityData.culinarySpots.find(s => s.mealType.includes('Lunch')) || cityData.culinarySpots[1];
+        const dinnerSpot = cityData.culinarySpots.find(s => s.mealType.includes('Dinner')) || cityData.culinarySpots[3];
+        const snackSpot = cityData.culinarySpots.find(s => s.mealType.includes('Snack') || s.mealType.includes('Dessert')) || cityData.culinarySpots[2];
+
+        // Sights Prioritization based on User Interests
+        const allSights = cityData.sights.map(s => {
+            const isMatch = userInterests.includes(s.category);
+            return {
+                ...s,
+                isUserPreferenceMatch: isMatch,
+                matchBadge: isMatch ? `🌟 Priority: Matches your ${s.categoryLabel} preference` : null
+            };
+        }).sort((a, b) => (b.isUserPreferenceMatch ? 1 : 0) - (a.isUserPreferenceMatch ? 1 : 0));
+
+        // Assign 2 to 3 main sights for the day
+        const sightIndexOffset = ((dayNum - 1) * 2) % allSights.length;
+        const morningSight = allSights[sightIndexOffset] || allSights[0];
+        const afternoonSight = allSights[(sightIndexOffset + 1) % allSights.length] || allSights[1] || allSights[0];
+        const eveningSight = allSights[(sightIndexOffset + 2) % allSights.length] || allSights[0];
+
+        // Multipliers for budget tier on meals & activities
+        const mealMultiplier = budgetTier === 'luxury' ? 2.2 : budgetTier === 'budget' ? 0.8 : 1.2;
+        const activityMultiplier = budgetTier === 'luxury' ? 1.8 : budgetTier === 'budget' ? 0.9 : 1.1;
+
+        // Structured Activities Timeline
+        const activities = [];
+
+        // 1. Morning Breakfast & Start
+        activities.push({
+            id: `d${dayNum}_act_1_breakfast`,
+            day: dayNum,
+            destination: cityData.name,
+            destinationId: activeCityId,
+            place: breakfastSpot.name,
+            category: 'meal',
+            categoryLabel: 'Culinary & Breakfast',
+            icon: '☕',
+            startTime: '08:00 AM',
+            endTime: '09:00 AM',
+            timeSlot: '08:00 AM – 09:00 AM',
+            activity: `Morning Breakfast at ${breakfastSpot.name}`,
+            description: `Start your day with ${breakfastSpot.specialty}. Freshly prepared local flavors to energize your morning excursion.`,
+            estimatedDuration: '1 hr',
+            distance: '1–2 km',
+            travelTime: transportType === 'cab' ? '5 mins via Cab' : '10 mins walk/transit',
+            meal: {
+                type: 'Breakfast',
+                place: breakfastSpot.name,
+                recommendation: breakfastSpot.specialty,
+                estimatedCostPerPerson: Math.round(breakfastSpot.avgCost * mealMultiplier)
+            },
+            stay: null,
+            estimatedCost: Math.round(breakfastSpot.avgCost * mealMultiplier * people),
+            image: cityData.image,
+            coordinates: cityData.coordinates,
+            insiderTip: 'Pair with piping hot masala chai served in an authentic earthen kulhad.',
+            tags: ['Breakfast', 'Local Flavors', 'Morning Start'],
+            isUserPreferenceMatch: userInterests.includes('culinary') || userInterests.includes('ghats_culture'),
+            matchBadge: userInterests.includes('ghats_culture') ? '🌟 Authentic Food Trail' : null
+        });
+
+        // 2. If Transit Day: Intercity Transit Block
+        if (isTransitDay) {
+            activities.push({
+                id: `d${dayNum}_act_transit`,
+                day: dayNum,
+                destination: cityData.name,
+                destinationId: activeCityId,
+                place: `${DESTINATION_MASTER[prevCityId]?.name.split(' ')[0]} to ${cityData.name.split(' ')[0]} Highway`,
+                category: 'transit',
+                categoryLabel: 'Scenic Transit & Check-In',
+                icon: transportType === 'train' ? '🚆' : transportType === 'bus' ? '🚌' : '🚗',
+                startTime: '09:15 AM',
+                endTime: '11:00 AM',
+                timeSlot: '09:15 AM – 11:00 AM',
+                activity: transitInfo.route,
+                description: `Smooth scenic connection from ${DESTINATION_MASTER[prevCityId]?.name} to ${cityData.name}. Relax as the landscape transitions along Eastern UP highways.`,
+                estimatedDuration: transitInfo.duration,
+                distance: transitInfo.distance,
+                travelTime: transitInfo.duration,
+                meal: null,
+                stay: {
+                    type: 'Hotel Check-in & Fresh up',
+                    name: hotelInfo.name,
+                    category: hotelInfo.type,
+                    estimatedCost: hotelInfo.pricePerNight
+                },
+                estimatedCost: Math.round(transitInfo.costPerPerson * people),
+                image: cityData.image,
+                coordinates: cityData.coordinates,
+                insiderTip: 'Keep ID cards ready for swift hotel check-in upon arrival.',
+                tags: ['Transit', 'Scenic Drive', 'Intercity'],
+                isUserPreferenceMatch: false,
+                matchBadge: null
+            });
+        }
+
+        // 3. Morning Highlight Attraction
+        const morningStartTime = isTransitDay ? '11:15 AM' : '09:15 AM';
+        const morningEndTime = isTransitDay ? '01:00 PM' : '12:30 PM';
+        activities.push({
+            id: `d${dayNum}_act_2_morning_sight`,
+            day: dayNum,
+            destination: cityData.name,
+            destinationId: activeCityId,
+            place: morningSight.place,
+            category: morningSight.category,
+            categoryLabel: morningSight.categoryLabel,
+            icon: morningSight.icon,
+            startTime: morningStartTime,
+            endTime: morningEndTime,
+            timeSlot: `${morningStartTime} – ${morningEndTime}`,
+            activity: morningSight.activity,
+            description: morningSight.description,
+            estimatedDuration: morningSight.duration,
+            distance: morningSight.distFromBase,
+            travelTime: transportType === 'cab' ? morningSight.travelTimeCab : transportType === 'train' ? (morningSight.travelTimeTrain !== '—' ? morningSight.travelTimeTrain : morningSight.travelTimeCab) : morningSight.travelTimeBus,
+            meal: null,
+            stay: null,
+            estimatedCost: Math.round(morningSight.cost * activityMultiplier * people),
+            image: morningSight.image || cityData.image,
+            coordinates: morningSight.coordinates || cityData.coordinates,
+            insiderTip: morningSight.insiderTip,
+            tags: morningSight.tags,
+            isUserPreferenceMatch: morningSight.isUserPreferenceMatch,
+            matchBadge: morningSight.matchBadge
+        });
+
+        // 4. Midday Authentic Lunch
+        activities.push({
+            id: `d${dayNum}_act_3_lunch`,
+            day: dayNum,
+            destination: cityData.name,
+            destinationId: activeCityId,
+            place: lunchSpot.name,
+            category: 'meal',
+            categoryLabel: 'Culinary & Lunch',
+            icon: '🍲',
+            startTime: '01:00 PM',
+            endTime: '02:15 PM',
+            timeSlot: '01:00 PM – 02:15 PM',
+            activity: `Traditional Lunch at ${lunchSpot.name}`,
+            description: `Savor authentic regional cuisine featuring ${lunchSpot.specialty}. Specially selected for clean, rich flavors suited to your ${budgetTier} travel style.`,
+            estimatedDuration: '1.25 hrs',
+            distance: '2–3 km',
+            travelTime: '10 mins via local transit',
+            meal: {
+                type: 'Lunch',
+                place: lunchSpot.name,
+                recommendation: lunchSpot.specialty,
+                estimatedCostPerPerson: Math.round(lunchSpot.avgCost * mealMultiplier)
+            },
+            stay: null,
+            estimatedCost: Math.round(lunchSpot.avgCost * mealMultiplier * people),
+            image: cityData.image,
+            coordinates: cityData.coordinates,
+            insiderTip: 'Try the house special Thali with seasonal curries and crisp hot breads.',
+            tags: ['Lunch', 'Traditional Thali', 'Culinary Delight'],
+            isUserPreferenceMatch: userInterests.includes('culinary'),
+            matchBadge: null
+        });
+
+        // 5. Afternoon Highlight Attraction
+        activities.push({
+            id: `d${dayNum}_act_4_afternoon_sight`,
+            day: dayNum,
+            destination: cityData.name,
+            destinationId: activeCityId,
+            place: afternoonSight.place,
+            category: afternoonSight.category,
+            categoryLabel: afternoonSight.categoryLabel,
+            icon: afternoonSight.icon,
+            startTime: '02:30 PM',
+            endTime: '05:00 PM',
+            timeSlot: '02:30 PM – 05:00 PM',
+            activity: afternoonSight.activity,
+            description: afternoonSight.description,
+            estimatedDuration: afternoonSight.duration,
+            distance: afternoonSight.distFromBase,
+            travelTime: transportType === 'cab' ? afternoonSight.travelTimeCab : transportType === 'train' ? (afternoonSight.travelTimeTrain !== '—' ? afternoonSight.travelTimeTrain : afternoonSight.travelTimeCab) : afternoonSight.travelTimeBus,
+            meal: null,
+            stay: null,
+            estimatedCost: Math.round(afternoonSight.cost * activityMultiplier * people),
+            image: afternoonSight.image || cityData.image,
+            coordinates: afternoonSight.coordinates || cityData.coordinates,
+            insiderTip: afternoonSight.insiderTip,
+            tags: afternoonSight.tags,
+            isUserPreferenceMatch: afternoonSight.isUserPreferenceMatch,
+            matchBadge: afternoonSight.matchBadge
+        });
+
+        // 6. Evening Spectacle / Aarti / Sunset / Culture
+        activities.push({
+            id: `d${dayNum}_act_5_evening_sight`,
+            day: dayNum,
+            destination: cityData.name,
+            destinationId: activeCityId,
+            place: eveningSight.place,
+            category: eveningSight.category,
+            categoryLabel: eveningSight.categoryLabel,
+            icon: eveningSight.icon,
+            startTime: '05:30 PM',
+            endTime: '07:30 PM',
+            timeSlot: '05:30 PM – 07:30 PM',
+            activity: eveningSight.activity,
+            description: eveningSight.description,
+            estimatedDuration: eveningSight.duration,
+            distance: eveningSight.distFromBase,
+            travelTime: '15 mins via local transit',
+            meal: {
+                type: 'Evening Snack',
+                place: snackSpot.name,
+                recommendation: snackSpot.specialty,
+                estimatedCostPerPerson: Math.round(snackSpot.avgCost * mealMultiplier)
+            },
+            stay: null,
+            estimatedCost: Math.round(eveningSight.cost * activityMultiplier * people) + Math.round(snackSpot.avgCost * mealMultiplier * people),
+            image: eveningSight.image || cityData.image,
+            coordinates: eveningSight.coordinates || cityData.coordinates,
+            insiderTip: eveningSight.insiderTip,
+            tags: eveningSight.tags,
+            isUserPreferenceMatch: eveningSight.isUserPreferenceMatch,
+            matchBadge: eveningSight.matchBadge
+        });
+
+        // 7. Dinner & Hotel Overnight Stay
+        activities.push({
+            id: `d${dayNum}_act_6_dinner_hotel`,
+            day: dayNum,
+            destination: cityData.name,
+            destinationId: activeCityId,
+            place: dinnerSpot.name,
+            category: 'stay',
+            categoryLabel: 'Dinner & Overnight Stay',
+            icon: '🏨',
+            startTime: '08:00 PM',
+            endTime: '10:00 PM',
+            timeSlot: '08:00 PM – 10:00 PM',
+            activity: `Dinner at ${dinnerSpot.name} & Rest at ${hotelInfo.name}`,
+            description: `Conclude Day ${dayNum} with a relaxing dinner tasting ${dinnerSpot.specialty}, followed by restful stay at ${hotelInfo.name} (${hotelInfo.type}).`,
+            estimatedDuration: '2 hrs',
+            distance: '2–4 km',
+            travelTime: '10 mins',
+            meal: {
+                type: 'Dinner',
+                place: dinnerSpot.name,
+                recommendation: dinnerSpot.specialty,
+                estimatedCostPerPerson: Math.round(dinnerSpot.avgCost * mealMultiplier)
+            },
+            stay: {
+                type: 'Overnight Stay',
+                name: hotelInfo.name,
+                category: hotelInfo.type,
+                address: hotelInfo.address,
+                rating: hotelInfo.rating,
+                amenities: hotelInfo.amenities,
+                estimatedCost: hotelInfo.pricePerNight
+            },
+            estimatedCost: Math.round(dinnerSpot.avgCost * mealMultiplier * people) + hotelInfo.pricePerNight,
+            image: cityData.image,
+            coordinates: cityData.coordinates,
+            insiderTip: 'Inquire with hotel reception for next morning’s recommended departure slot.',
+            tags: ['Dinner', 'Overnight Stay', 'Rest'],
+            isUserPreferenceMatch: false,
+            matchBadge: null
+        });
+
+        // Calculate Day Totals
+        const dayEstimatedCost = activities.reduce((sum, act) => sum + (act.estimatedCost || 0), 0);
+        cumulativeCost += dayEstimatedCost;
+
+        itineraryDays.push({
+            day: dayNum,
+            destination: cityData.name,
+            destinationId: activeCityId,
+            title: dayNum === 1 ? `Arrival & Immersion into ${cityData.name.split(' ')[0]}` : dayNum === totalDays ? `Grand Finale & Farewell from ${cityData.name.split(' ')[0]}` : `Deep Discovery of ${cityData.name.split(' ')[0]} Circuit`,
+            theme: morningSight.categoryLabel,
+            hotel: hotelInfo,
+            activities,
+            daySummary: {
+                totalDistance: isTransitDay ? `${transitInfo.distanceKm + 25} km (including intercity)` : '28–35 km intra-city',
+                totalTravelTime: isTransitDay ? `${transitInfo.duration} transit + 1 hr local` : '1.5 hrs local transit',
+                estimatedDayCost: dayEstimatedCost,
+                mealsIncluded: ['Breakfast', 'Lunch', 'Evening Snack', 'Dinner'],
+                primaryStay: hotelInfo.name
+            }
+        });
+    }
+
+    // 5. Curated Food & Stay Catalog (Reusable by Food & Stay Module)
+    const foodAndStay = {
+        budgetTier,
+        stays: uniqueCircuit.map(c => {
+            const data = DESTINATION_MASTER[c.id] || DESTINATION_MASTER.banaras;
+            return {
+                city: data.name,
+                cityId: c.id,
+                recommendedHotel: data.hotels[budgetTier] || data.hotels.moderate,
+                allOptions: data.hotels
+            };
+        }),
+        foodSpots: uniqueCircuit.flatMap(c => {
+            const data = DESTINATION_MASTER[c.id] || DESTINATION_MASTER.banaras;
+            return data.culinarySpots.map(spot => ({
+                ...spot,
+                city: data.name,
+                cityId: c.id
+            }));
+        })
+    };
+
+    // 6. Map & Route Data (Reusable by Map Module)
+    const mapRoute = {
+        startingLocation: pickupLoc,
+        circuitSequence: routeCircuitNames,
+        circuitWaypoints: uniqueCircuit.map((c, i) => {
+            const data = DESTINATION_MASTER[c.id] || DESTINATION_MASTER.banaras;
+            return {
+                step: i + 1,
+                city: data.name,
+                cityId: c.id,
+                coordinates: data.coordinates,
+                image: data.image,
+                tagline: data.tagline
+            };
+        }),
+        totalCircuitDistanceKm: itineraryDays.reduce((acc, d) => acc + (d.daySummary.totalDistance.includes('km') ? parseInt(d.daySummary.totalDistance) || 30 : 30), 0)
+    };
+
+    // 7. AI Travel Guide Context (Reusable by AI Guide Module)
+    const aiGuideContext = {
+        systemContext: `Personalized ${totalDays}-Day UP Trip Plan for ${people} travelers (${formData.groupType || 'Travelers'}) traveling via ${transportType} on a ${budgetTier} budget. Circuit: ${routeCircuitString}. Interests: ${userInterests.join(', ')}.`,
+        quickPrompts: [
+            `What is the best time to attend the Ganga Aarti in Varanasi?`,
+            `What are the must-eat breakfast dishes in ${topCity.name.split(' ')[0]}?`,
+            `Are there any special clothing or photography guidelines for temples and waterfalls?`,
+            `How should we plan our transit from ${routeCircuitNames[0] || 'Varanasi'} to ${routeCircuitNames[1] || 'Prayagraj'}?`
+        ],
+        culturalTips: [
+            'Temple Etiquette: Remove footwear outside and dress in modest breathable cotton clothing.',
+            'Waterfall Safety: Keep to designated viewing areas and wear rubber-soled footwear on rock trails.',
+            'Bargaining: Friendly negotiation is common in silk bazaars and boat rentals; look for government GI tags.'
+        ]
+    };
+
+    // 8. Overall Summary Metadata
+    const groupLabels = {
+        single: 'Solo Traveler',
+        couple: 'Romantic Couple',
+        friends: 'Friends Squad',
+        family: 'Family Duo / Vacation'
+    };
+
+    const budgetLabels = {
+        budget: 'Budget-Friendly (Homestays & Street Flavors)',
+        moderate: 'Standard & Comfortable (3-Star & Guided Tours)',
+        luxury: 'Premium & Luxury (Heritage Haveli & Chauffeur)'
+    };
+
+    const transportLabels = {
+        cab: 'Private AC Cab / Self-Drive',
+        train: 'Superfast Train / Rail Network',
+        bus: 'Bus & Local Shared Autos'
+    };
+
+    const interestLabels = userInterests.map(id => {
+        const found = INTEREST_OPTIONS.find(o => o.id === id);
+        return found ? found.label : id;
+    });
+
+    const tripPlan = {
+        id: 'tripplan_' + Date.now(),
+        createdAt: new Date().toISOString(),
+        summary: {
+            travelers: people,
+            travelersLabel: `${people} Traveler${people > 1 ? 's' : ''}`,
+            groupType: formData.groupType || 'couple',
+            groupTypeLabel: groupLabels[formData.groupType] || 'Travelers',
+            durationDays: totalDays,
+            durationLabel: `${totalDays} Day${totalDays > 1 ? 's' : ''} Circuit`,
+            budget: budgetTier,
+            budgetLabel: budgetLabels[budgetTier] || 'Comfortable',
+            transport: transportType,
+            transportLabel: transportLabels[transportType] || 'Private Cab',
+            pickupLocation: pickupLoc,
+            interests: userInterests,
+            interestLabels,
+            recommendedDestinations: routeCircuitNames,
+            routeCircuitString,
+            estimatedTotalCost: {
+                min: Math.round(cumulativeCost * 0.85),
+                max: Math.round(cumulativeCost * 1.15),
+                calculatedTotal: cumulativeCost,
+                formatted: `₹${(Math.round(cumulativeCost * 0.85)).toLocaleString('en-IN')} – ₹${(Math.round(cumulativeCost * 1.15)).toLocaleString('en-IN')}`
+            }
+        },
+        rankedDestinations: ranked,
+        itinerary: itineraryDays,
+        foodAndStay,
+        mapRoute,
+        aiGuideContext
+    };
+
+    // Save to localStorage safely
+    try {
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('india_tourist_active_trip_plan', JSON.stringify(tripPlan));
+        }
+    } catch (e) {
+        console.error('Error storing trip plan:', e);
+    }
+
+    return tripPlan;
+};
+
+export const getStoredTripPlan = () => {
+    try {
+        if (typeof localStorage !== 'undefined') {
+            const item = localStorage.getItem('india_tourist_active_trip_plan');
+            if (item) return JSON.parse(item);
+        }
+    } catch (e) {
+        console.error(e);
+    }
+    return null;
+};
+
+/**
+ * Enhanced buildAndSaveUserProfile: also triggers and attaches the central TripPlan
  */
 export const buildAndSaveUserProfile = (formData) => {
     const rankedDestinations = evaluateUPDestinations(formData);
     const topDestination = rankedDestinations[0];
+    const tripPlan = generateTripPlan(formData);
 
     const profile = {
         id: 'up_trip_' + Date.now(),
@@ -626,19 +1676,23 @@ export const buildAndSaveUserProfile = (formData) => {
         formData: { ...formData },
         topDestination,
         rankedDestinations,
+        tripPlan,
         recommendationSummary: {
             primaryCity: topDestination.name,
             score: topDestination.scores.final,
             tagline: topDestination.tagline,
-            highlights: topDestination.highlights
+            highlights: topDestination.highlights,
+            route: tripPlan.summary.routeCircuitString
         }
     };
 
     try {
-        localStorage.setItem('india_tourist_active_profile', JSON.stringify(profile));
-        const history = getStoredProfileHistory();
-        const updated = [profile, ...history.filter(p => p.id !== profile.id)].slice(0, 10);
-        localStorage.setItem('india_tourist_profile_history', JSON.stringify(updated));
+        if (typeof localStorage !== 'undefined') {
+            localStorage.setItem('india_tourist_active_profile', JSON.stringify(profile));
+            const history = getStoredProfileHistory();
+            const updated = [profile, ...history.filter(p => p.id !== profile.id)].slice(0, 10);
+            localStorage.setItem('india_tourist_profile_history', JSON.stringify(updated));
+        }
     } catch (e) {
         console.error('Error saving profile:', e);
     }
@@ -648,8 +1702,10 @@ export const buildAndSaveUserProfile = (formData) => {
 
 export const getStoredUserProfile = () => {
     try {
-        const item = localStorage.getItem('india_tourist_active_profile');
-        if (item) return JSON.parse(item);
+        if (typeof localStorage !== 'undefined') {
+            const item = localStorage.getItem('india_tourist_active_profile');
+            if (item) return JSON.parse(item);
+        }
     } catch (e) {
         console.error(e);
     }
@@ -658,8 +1714,10 @@ export const getStoredUserProfile = () => {
 
 export const getStoredProfileHistory = () => {
     try {
-        const item = localStorage.getItem('india_tourist_profile_history');
-        if (item) return JSON.parse(item);
+        if (typeof localStorage !== 'undefined') {
+            const item = localStorage.getItem('india_tourist_profile_history');
+            if (item) return JSON.parse(item);
+        }
     } catch (e) {
         console.error(e);
     }
@@ -667,509 +1725,51 @@ export const getStoredProfileHistory = () => {
 };
 
 /**
- * Master 7-Day Curated Circuit & Guide Generator
- * Generates an in-depth, structured Day-by-Day itinerary tailored from 1 to 7 days
- * for the user's top recommended city and regional circuit stops.
+ * Backward-compatible helper for legacy callers
  */
 export const generateComprehensiveItinerary = (primaryCity, allRanked, totalDays = 3, userInterests = []) => {
-    const pId = primaryCity.id;
-    const days = [];
+    const plan = generateTripPlan({
+        days: totalDays,
+        landscapes: userInterests,
+        budget: 'moderate',
+        transport: 'cab',
+        people: 2
+    });
 
-    // Master 7-Day Day Templates per primary city
-    const MASTER_PLANS = {
-        banaras: [
-            {
-                day: 1,
-                city: 'Banaras (Varanasi)',
-                cityId: 'banaras',
-                title: 'Sacred Ghats, Ancient Corridors & Celestial Aarti',
-                theme: 'Spiritual Awakening & Riverfront Culture',
-                morning: {
-                    time: '6:00 AM – 11:30 AM',
-                    activity: 'Sunrise Ganges Rowboat from Assi to Manikarnika Ghat',
-                    description: 'Start at dawn with Subah-e-Banaras Vedic chants at Assi Ghat, followed by a peaceful wooden rowboat ride past historic palatial ghats.',
-                    foodTip: 'Hot Kachori-Jalebi at Ram Bhandar in Thatheri Gali'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:30 PM',
-                    activity: 'Kashi Vishwanath Jyotirlinga & Golden Temple Darshan',
-                    description: 'Walk through the majestic Kashi Vishwanath marble corridor connecting the temple directly to the holy river.',
-                    foodTip: 'Traditional Banarasi Satvik Thali at Keshari Restaurant'
-                },
-                evening: {
-                    time: '5:30 PM – 8:30 PM',
-                    activity: 'Dashashwamedh Ghat Grand Evening Ganga Aarti',
-                    description: 'Watch high priests chant Vedic mantras with glowing brass oil lamps, conch shells, and thousands of floating diyas.',
-                    foodTip: 'Creamy Blue Lassi & authentic Banarasi Meetha Paan'
-                },
-                stay: {
-                    type: 'Riverfront Heritage Haveli',
-                    recommendation: 'Heritage Haveli near Godowlia Chowk or Assi Ghat for quick river access'
-                },
-                transit: {
-                    route: 'Walking through ancient heritage galis + battery e-rickshaw',
-                    distance: '4–6 km intra-city'
-                },
-                packingTip: 'Slip-on shoes for temple entry and modest breathable attire.'
-            },
-            {
-                day: 2,
-                city: 'Banaras & Sarnath',
-                cityId: 'banaras',
-                title: 'Buddha’s First Sermon, Silk Looms & Classical Arts',
-                theme: 'Buddhist Heritage, Textiles & Cultural Legacy',
-                morning: {
-                    time: '8:30 AM – 12:30 PM',
-                    activity: 'Sarnath Buddhist Stupas & Ashoka Pillar Museum',
-                    description: 'Visit Dhamek Stupa where Lord Buddha gave his first sermon (Dharmachakra Pravartana) and see the original 4-lion Ashoka Capital.',
-                    foodTip: 'Breakfast tea and fresh samosas near Sarnath museum road'
-                },
-                afternoon: {
-                    time: '1:30 PM – 4:30 PM',
-                    activity: 'Banarasi Zari Silk Weaving Masterclass & Ramnagar Fort',
-                    description: 'Watch hereditary master weavers create authentic Katan silk brocades, followed by an excursion to the 18th-century Ramnagar sandstone fort.',
-                    foodTip: 'Famous chilled Lassi outside Ramnagar Fort main gate'
-                },
-                evening: {
-                    time: '5:30 PM – 8:30 PM',
-                    activity: 'Assi Ghat Classical Music & Ganga Boating',
-                    description: 'Enjoy classical sitar and tabla recitals on the riverfront, followed by a stroll along the vibrant cafes of Assi.',
-                    foodTip: 'Woodfired thin-crust pizza & apple pie at Pizzeria Vaatika Assi'
-                },
-                stay: {
-                    type: 'Boutique City Hotel',
-                    recommendation: 'Boutique property in Cantt or Assi Ghat'
-                },
-                transit: {
-                    route: 'AC Cab / Auto: Varanasi $\\rightarrow$ Sarnath (10 km, ~30 min) $\\rightarrow$ Ramnagar (14 km)',
-                    distance: '28 km total circuit'
-                },
-                packingTip: 'Camera with zoom lens for museum artifacts and Buddhist stupas.'
-            },
-            {
-                day: 3,
-                city: 'Mirzapur',
-                cityId: 'mirzapur',
-                title: 'Cascading Waterfalls & Scenic Vindhya Gorges',
-                theme: 'Wilderness Escapes, Waterfalls & Dam Lakes',
-                morning: {
-                    time: '7:30 AM – 12:00 PM',
-                    activity: 'Scenic Drive to Wyndham Falls & Nature Gorge Trek',
-                    description: 'Drive from Varanasi across the Vindhya foothills to Wyndham Falls. Hike down rock stepping pools and enjoy the fresh mountain air.',
-                    foodTip: 'Pack fresh breakfast or stop for highway tea & poori-sabzi'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:00 PM',
-                    activity: 'Sirsi Dam Reservoir & Foaming Cascades',
-                    description: 'Marvel at the sprawling green hills around Sirsi Dam lake and relax beside the foaming water overflow cascades.',
-                    foodTip: 'Local Dhaba lunch: hot Arhar Dal, spicy Aloo Bhujia & fresh Rotis'
-                },
-                evening: {
-                    time: '4:30 PM – 7:30 PM',
-                    activity: 'Tanda Falls Sunset Walk & Vindhya Hill Panorama',
-                    description: 'Quiet nature walk around Tanda Falls natural stone terraces surrounded by scrub forests and migratory birds.',
-                    foodTip: 'Fresh evening snacks and tea in Mirzapur town'
-                },
-                stay: {
-                    type: 'Nature Resort or Vindhyachal Hotel',
-                    recommendation: 'Resort near Vindhyachal hills or heritage stay in Mirzapur'
-                },
-                transit: {
-                    route: 'AC Cab: Varanasi $\\rightarrow$ Wyndham Falls Mirzapur (65 km, 1.5 hrs via NH 135A)',
-                    distance: '85 km total daily drive'
-                },
-                packingTip: 'Trekking sports shoes with rubber grip for wet rocks & extra towel.'
-            },
-            {
-                day: 4,
-                city: 'Mirzapur',
-                cityId: 'mirzapur',
-                title: 'Vindhyachal Shaktipeeth Pilgrimage & 56 BC Chunar Fort',
-                theme: 'Sacred Hilltop Shrines & Ancient Citadels',
-                morning: {
-                    time: '6:30 AM – 11:30 AM',
-                    activity: 'Maa Vindhyavasini Darshan & Ashtabhuja Hill Ropeway',
-                    description: 'Complete the sacred Trikona Parikrama: Maa Vindhyavasini Devi (wealth), Kali Khoh cave shrine, and Ashtabhuja ropeway with hilltop views.',
-                    foodTip: 'Vindhyachal Temple Prasad and pure ghee pedas'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:30 PM',
-                    activity: 'Chunar Fort Overlooking the Ganga Cliff',
-                    description: 'Explore the impregnable 56 BC cliffside fortress of Sher Shah Suri, the Sonwa Mandap, and the 180° panorama of the curving Ganga river.',
-                    foodTip: 'Traditional Litti Chokha with desi ghee in Chunar bazaar'
-                },
-                evening: {
-                    time: '5:00 PM – 7:30 PM',
-                    activity: 'Mirzapur Handcrafted Woolen Carpet & Brass Tour',
-                    description: 'Visit hereditary master weavers crafting Persian-style knotted carpets and bell-metal brass casting workshops.',
-                    foodTip: 'Crispy samosas and Jalebis at Mirzapur Clock Tower chowk'
-                },
-                stay: {
-                    type: 'Heritage Hotel',
-                    recommendation: 'Stay in Mirzapur / Vindhyachal or transit towards Sonbhadra'
-                },
-                transit: {
-                    route: 'AC Cab: Vindhyachal $\\rightarrow$ Chunar Fort (32 km, 45 min)',
-                    distance: '50 km day drive'
-                },
-                packingTip: 'Modest temple clothing and hat/sunglasses for fort walking.'
-            },
-            {
-                day: 5,
-                city: 'Sonbhadra',
-                cityId: 'sonbhadra',
-                title: '1.4-Billion-Year-Old Fossils & Prehistoric Rock Art',
-                theme: 'Deep Earth History, Mesolithic Caves & Giant Lakes',
-                morning: {
-                    time: '8:00 AM – 12:30 PM',
-                    activity: 'Salkhan Fossil Park Guided Geological Exploration',
-                    description: 'Walk among 1.4-billion-year-old fossilized stromatolites (cyanobacteria trees) that predated dinosaurs and animal life on earth.',
-                    foodTip: 'Hearty breakfast in Robertsganj market'
-                },
-                afternoon: {
-                    time: '1:30 PM – 4:30 PM',
-                    activity: 'Panchmukhi Prehistoric Rock Paintings & Mukha Falls',
-                    description: 'Discover red-ochre cave shelters painted by Stone Age humans depicting hunting scenes, followed by a trek to Mukha canyon falls.',
-                    foodTip: 'Local tribal lunch featuring roasted maize and seasonal curries'
-                },
-                evening: {
-                    time: '5:00 PM – 7:30 PM',
-                    activity: 'Govind Ballabh Pant Sagar & Rihand Dam Sunset',
-                    description: 'Watch the sunset over one of Asia’s largest artificial lakes looking out like an endless inland sea.',
-                    foodTip: 'Fresh local river fish fry or traditional vegetarian thali'
-                },
-                stay: {
-                    type: 'Eco Resort / Hotel',
-                    recommendation: 'Hotel / Forest Guest House in Robertsganj or Renukoot'
-                },
-                transit: {
-                    route: 'AC Cab: Mirzapur $\\rightarrow$ Robertsganj $\\rightarrow$ Salkhan (75 km, ~2 hrs via SH 5A)',
-                    distance: '110 km scenic hill drive'
-                },
-                packingTip: 'Camera with macro lens for fossil concentric rings and hiking boots.'
-            },
-            {
-                day: 6,
-                city: 'Allahabad (Prayagraj)',
-                cityId: 'allahabad',
-                title: 'Sacred Confluence of Triveni Sangam & Akbar’s Fort',
-                theme: 'The Holy Confluence & Imperial Fortifications',
-                morning: {
-                    time: '6:30 AM – 11:30 AM',
-                    activity: 'Triveni Sangam Sacred Confluence Boat Ride & Holy Snan',
-                    description: 'Take a wooden boat to the exact meeting point of Ganga, Yamuna, and invisible Saraswati where you can feed migratory Siberian seagulls.',
-                    foodTip: 'Netram Mulchand pure ghee Kachori-Jalebi thali in Katra'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:30 PM',
-                    activity: 'Historic Allahabad Fort, Patalpuri & Bade Hanuman Temple',
-                    description: 'Visit Akbar’s 1583 AD sandstone fort, the immortal Akshayavat tree, and the unique 20-foot underground reclining Hanuman idol.',
-                    foodTip: 'Famous Dehati ke Rasgulle near Civil Lines'
-                },
-                evening: {
-                    time: '5:00 PM – 8:00 PM',
-                    activity: 'Sangam Promenade Sunset & Ghat Evening Aarti',
-                    description: 'Stroll along the sprawling Sangam riverbanks as lights reflect across the vast waters, enjoying the peaceful atmosphere.',
-                    foodTip: 'Evening Chaat, Dahi Bhalle and Kulfi at Civil Lines'
-                },
-                stay: {
-                    type: 'City Boutique Hotel',
-                    recommendation: 'Heritage or 4-Star Hotel in Civil Lines Prayagraj'
-                },
-                transit: {
-                    route: 'AC Cab / Train: Sonbhadra/Varanasi $\\rightarrow$ Prayagraj (125 km, ~2.5 hrs)',
-                    distance: '130 km highway transit'
-                },
-                packingTip: 'Quick-dry clothes and towel for the sacred Sangam boat ride.'
-            },
-            {
-                day: 7,
-                city: 'Allahabad & Farewell',
-                cityId: 'allahabad',
-                title: 'Mughal Mausoleums, Anand Bhawan & Farewell Souvenirs',
-                theme: 'Literary Culture, Freedom Movement & Departure',
-                morning: {
-                    time: '8:30 AM – 12:00 PM',
-                    activity: 'Khusro Bagh Mughal Gardens & Persian Fresco Tombs',
-                    description: 'Explore the walled Mughal garden with magnificent carved sandstone mausoleums of Prince Khusrau and sweet guava orchards.',
-                    foodTip: 'Spicy Samosas & Gulab Jamun at Hari Ram & Sons in Loknath'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:00 PM',
-                    activity: 'Anand Bhawan Freedom Mansion & Jawahar Planetarium',
-                    description: 'Tour the ancestral home of the Nehru-Gandhi family preserving original rooms, library, and exhibits from India’s independence movement.',
-                    foodTip: 'Coffee & snacks at historic Indian Coffee House Civil Lines'
-                },
-                evening: {
-                    time: '4:30 PM – 7:30 PM',
-                    activity: 'Souvenir Shopping & Departure Connection',
-                    description: 'Shop for Allahabad Surkha guavas, Banarasi silk scarves, and brass keepsakes before boarding your onward train or flight.',
-                    foodTip: 'Farewell dinner at El Chico Civil Lines'
-                },
-                stay: {
-                    type: 'Departure',
-                    recommendation: 'Proceed to Prayagraj / Varanasi Junction or Airport'
-                },
-                transit: {
-                    route: 'Local city transit $\\rightarrow$ Prayagraj Chheoki / Junction or VNS Airport',
-                    distance: '15–30 km to departure hub'
-                },
-                packingTip: 'Ensure souvenirs & sweets are securely packed for transit.'
-            }
-        ],
-        mirzapur: [
-            {
-                day: 1,
-                city: 'Mirzapur',
-                cityId: 'mirzapur',
-                title: 'Cascading Waterfalls, Stepping Pools & Sirsi Lake',
-                theme: 'Nature Cascades & Vindhya Mountain Gorges',
-                morning: {
-                    time: '8:00 AM – 12:00 PM',
-                    activity: 'Wyndham Falls Trek & Natural Swimming Pools',
-                    description: 'Explore the multi-tiered natural waterfall gorge, stepping along natural stone terraces surrounded by Vindhyan greenery.',
-                    foodTip: 'Hot Poori-Sabzi and masala chai at scenic viewpoint'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:00 PM',
-                    activity: 'Sirsi Dam Reservoir & Foaming Overflow Cascades',
-                    description: 'Visit the vast water reservoir and take in panoramic views of the water plunging over the dam gates into the gorge.',
-                    foodTip: 'Local Dhaba meal: freshly cooked Dal Tadka and hot Rotis'
-                },
-                evening: {
-                    time: '4:30 PM – 7:30 PM',
-                    activity: 'Tanda Falls Sunset Walk & Bird Watching',
-                    description: 'Quiet nature walk along Tanda falls as the evening light paints the rocky Vindhya hills in golden hues.',
-                    foodTip: 'Evening tea and hot samosas in Mirzapur market'
-                },
-                stay: {
-                    type: 'Nature Resort',
-                    recommendation: 'Eco-resort or hotel near Vindhyachal hills'
-                },
-                transit: {
-                    route: 'AC Cab: Pickup $\\rightarrow$ Wyndham Falls $\\rightarrow$ Sirsi Dam $\\rightarrow$ Tanda',
-                    distance: '45 km scenic drive'
-                },
-                packingTip: 'Sturdy walking shoes with rubber grip for wet rocks.'
-            },
-            {
-                day: 2,
-                city: 'Mirzapur',
-                cityId: 'mirzapur',
-                title: 'Maa Vindhyavasini Shaktipeeth & Ancient Chunar Fort',
-                theme: 'Sacred Hilltop Pilgrimage & Ganga Cliff Fortress',
-                morning: {
-                    time: '6:30 AM – 11:30 AM',
-                    activity: 'Vindhyachal Shaktipeeth & Ashtabhuja Ropeway',
-                    description: 'Darshan at Maa Vindhyavasini Devi mandir, Kali Khoh cave shrine, and ropeway ascent to Ashtabhuja hill shrine.',
-                    foodTip: 'Vindhyachal Temple pure ghee Pedas & fresh breakfast'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:30 PM',
-                    activity: '56 BC Chunar Fort Overlooking the Ganges',
-                    description: 'Explore the historic fortress of Sher Shah Suri and Warren Hastings perched high on the Ganga cliff with 180° river views.',
-                    foodTip: 'Famous Chunar Litti Chokha with desi ghee'
-                },
-                evening: {
-                    time: '5:00 PM – 7:30 PM',
-                    activity: 'Handloom Carpet Weaving & Brass Artisan Guilds',
-                    description: 'Witness master artisans hand-knotting Persian-style woolen carpets and casting traditional bell-metal brass utensils.',
-                    foodTip: 'Crispy Jalebis & Rabri in Mirzapur chowk'
-                },
-                stay: {
-                    type: 'Heritage Hotel',
-                    recommendation: 'Stay in Mirzapur or transit towards Sonbhadra / Varanasi'
-                },
-                transit: {
-                    route: 'AC Cab: Vindhyachal $\\rightarrow$ Chunar Fort (32 km, 45 min)',
-                    distance: '40 km day drive'
-                },
-                packingTip: 'Modest attire for temple & sunglasses for fort exploration.'
-            },
-            {
-                day: 3,
-                city: 'Sonbhadra',
-                cityId: 'sonbhadra',
-                title: '1.4-Billion-Yr Fossil Park & Prehistoric Cave Art',
-                theme: 'Deep Geology & Stone Age Rock Shelters',
-                morning: {
-                    time: '8:00 AM – 12:30 PM',
-                    activity: 'Salkhan Fossil Park Guided Geology Walk',
-                    description: 'Explore giant fossilized stromatolite tree trunks dating back 1.4 billion years—older than the Grand Canyon fossils.',
-                    foodTip: 'Hearty breakfast in Robertsganj'
-                },
-                afternoon: {
-                    time: '1:30 PM – 4:30 PM',
-                    activity: 'Panchmukhi Prehistoric Rock Art & Mukha Falls Trek',
-                    description: 'Discover ancient cave paintings in red ochre depicting prehistoric life, followed by a hike to Mukha canyon falls.',
-                    foodTip: 'Local roasted corn and authentic UP thali'
-                },
-                evening: {
-                    time: '5:00 PM – 7:30 PM',
-                    activity: 'Govind Ballabh Pant Sagar Reservoir Sunset',
-                    description: 'Relax by the shores of the inland sea reservoir surrounded by forested hill ranges.',
-                    foodTip: 'Fresh evening dinner at Renukoot / Robertsganj'
-                },
-                stay: {
-                    type: 'Forest / Eco Guest House',
-                    recommendation: 'Comfortable hotel in Robertsganj or eco guest house'
-                },
-                transit: {
-                    route: 'AC Cab: Mirzapur $\\rightarrow$ Robertsganj $\\rightarrow$ Salkhan (75 km, 2 hrs)',
-                    distance: '100 km hill drive'
-                },
-                packingTip: 'Camera with macro lens and light jacket for evening.'
-            },
-            {
-                day: 4,
-                city: 'Sonbhadra to Banaras',
-                cityId: 'banaras',
-                title: 'Scenic Hill Pass & Welcome to the Sacred City',
-                theme: 'Vindhya Mountain Crossing to River Ganges',
-                morning: {
-                    time: '8:30 AM – 12:00 PM',
-                    activity: 'Vijaygarh Fort Hilltop Trek or Scenic Drive to Varanasi',
-                    description: 'Trek the historic 5th-century mountain citadel or take a scenic drive through Vindhya forest passes toward Varanasi.',
-                    foodTip: 'Highway Dhaba tea and breakfast'
-                },
-                afternoon: {
-                    time: '1:30 PM – 4:30 PM',
-                    activity: 'Check-in at Riverfront Haveli & Gali Exploration',
-                    description: 'Check into your heritage property in Varanasi and take a guided walk through ancient silk and brass alleyways.',
-                    foodTip: 'Authentic Banarasi Thali at Keshari'
-                },
-                evening: {
-                    time: '5:30 PM – 8:30 PM',
-                    activity: 'Dashashwamedh Ghat Grand Evening Ganga Aarti',
-                    description: 'Experience the world-renowned multi-tiered brass lamp ritual from a reserved wooden boat on the Ganges.',
-                    foodTip: 'Blue Lassi and Banarasi Paan'
-                },
-                stay: {
-                    type: 'Heritage Haveli',
-                    recommendation: 'Riverfront Haveli near Dashashwamedh Ghat'
-                },
-                transit: {
-                    route: 'AC Cab: Sonbhadra $\\rightarrow$ Varanasi (110 km, ~2.5 hrs via NH 35)',
-                    distance: '115 km transit'
-                },
-                packingTip: 'Camera for the evening river aarti.'
-            },
-            {
-                day: 5,
-                city: 'Banaras (Varanasi)',
-                cityId: 'banaras',
-                title: 'Sunrise Rowboat, Kashi Vishwanath & Sarnath',
-                theme: 'Spiritual Jyotirlinga & Buddhist Enlightenment',
-                morning: {
-                    time: '6:00 AM – 11:30 AM',
-                    activity: 'Sunrise Ganges Boat Ride & Kashi Vishwanath Darshan',
-                    description: 'Rowing boat past 84 ghats from Assi to Manikarnika, followed by darshan at the Kashi Vishwanath Golden Temple.',
-                    foodTip: 'Kachori-Jalebi at Ram Bhandar Thatheri Bazaar'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:30 PM',
-                    activity: 'Sarnath Buddhist Stupas & Ashoka Museum',
-                    description: 'Visit Dhamek Stupa where Lord Buddha delivered his first sermon and explore the original Ashoka 4-lion pillar.',
-                    foodTip: 'Sarnath garden cafe snacks and tea'
-                },
-                evening: {
-                    time: '5:30 PM – 8:30 PM',
-                    activity: 'Assi Ghat Subah-e-Banaras Cultural recitals',
-                    description: 'Enjoy classical sitar and vocal performances by the riverfront, followed by dinner in Assi cafes.',
-                    foodTip: 'Pizzeria Vaatika Assi Ghat'
-                },
-                stay: {
-                    type: 'Heritage Hotel',
-                    recommendation: 'Stay in Varanasi (Assi or Godowlia)'
-                },
-                transit: {
-                    route: 'Local E-rickshaw + Cab to Sarnath (10 km, 30 min)',
-                    distance: '24 km day circuit'
-                },
-                packingTip: 'Comfortable walking shoes.'
-            },
-            {
-                day: 6,
-                city: 'Allahabad (Prayagraj)',
-                cityId: 'allahabad',
-                title: 'Holy Confluence at Triveni Sangam & Akbar Fort',
-                theme: 'Confluence Dip, Forts & Underground Shrines',
-                morning: {
-                    time: '6:30 AM – 11:30 AM',
-                    activity: 'Triveni Sangam Boat Ride & Sacred Bathing Ritual',
-                    description: 'Boat ride to the holy confluence of Ganga, Yamuna & Saraswati with migratory Siberian seagulls.',
-                    foodTip: 'Netram Mulchand pure ghee Kachori thali'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:30 PM',
-                    activity: 'Allahabad Fort, Akshayavat Tree & Bade Hanuman Temple',
-                    description: 'Visit Akbar’s 1583 AD fortress, the immortal banyan tree, and the 20-foot underground reclining Hanuman temple.',
-                    foodTip: 'Dehati ke Rasgulle near Civil Lines'
-                },
-                evening: {
-                    time: '5:00 PM – 8:00 PM',
-                    activity: 'Sangam Ghat Promenade & Evening Cultural Stroll',
-                    description: 'Enjoy a peaceful evening walk along the Sangam riverbanks and watch twilight reflections.',
-                    foodTip: 'Loknath Street Chaat & Rabri Kulfi'
-                },
-                stay: {
-                    type: 'Boutique Hotel',
-                    recommendation: 'Hotel in Civil Lines Prayagraj'
-                },
-                transit: {
-                    route: 'AC Cab: Varanasi $\\rightarrow$ Prayagraj (125 km, ~2.5 hrs via NH 19)',
-                    distance: '130 km highway'
-                },
-                packingTip: 'Quick dry clothes for holy dip.'
-            },
-            {
-                day: 7,
-                city: 'Allahabad & Farewell',
-                cityId: 'allahabad',
-                title: 'Mughal Khusro Bagh, Anand Bhawan & Departure',
-                theme: 'Historic Mansions, Mughal Tombs & Farewell',
-                morning: {
-                    time: '8:30 AM – 12:00 PM',
-                    activity: 'Khusro Bagh Mughal Fresco Garden & Mausoleums',
-                    description: 'Wander through peaceful 17th-century sandstone tombs of Prince Khusrau and surrounding guava orchards.',
-                    foodTip: 'Hari Ram & Sons spicy samosas in Loknath'
-                },
-                afternoon: {
-                    time: '1:00 PM – 4:00 PM',
-                    activity: 'Anand Bhawan Freedom Mansion & Jawahar Planetarium',
-                    description: 'Explore the ancestral estate of the Nehru family and its role in India’s freedom movement.',
-                    foodTip: 'Indian Coffee House Civil Lines'
-                },
-                evening: {
-                    time: '4:30 PM – 7:30 PM',
-                    activity: 'Souvenir Shopping & Farewell Departure',
-                    description: 'Pick up Allahabad Surkha pink guavas and brass souvenirs before heading to Prayagraj Junction or airport.',
-                    foodTip: 'Farewell dinner at El Chico'
-                },
-                stay: {
-                    type: 'Departure',
-                    recommendation: 'Departure from Prayagraj / Varanasi Junction or Airport'
-                },
-                transit: {
-                    route: 'Local city transit to station / airport',
-                    distance: '15 km'
-                },
-                packingTip: 'Pack memories and souvenirs safely.'
-            }
-        ]
-    };
-
-    // Pick template list matching primary city or fallback to banaras/mirzapur
-    let templateList = MASTER_PLANS[pId] || MASTER_PLANS.banaras;
-
-    // Build the exact required number of days (1 to 7)
-    for (let i = 0; i < totalDays && i < templateList.length; i++) {
-        days.push({
-            ...templateList[i],
-            day: i + 1
-        });
-    }
-
-    return days;
+    return plan.itinerary.map(d => ({
+        day: d.day,
+        city: d.destination,
+        cityId: d.destinationId,
+        title: d.title,
+        theme: d.theme,
+        morning: {
+            time: d.activities[0]?.timeSlot || '08:00 AM – 12:00 PM',
+            activity: d.activities[1]?.activity || d.activities[0]?.activity,
+            description: d.activities[1]?.description || d.activities[0]?.description,
+            foodTip: d.activities[0]?.meal?.recommendation || 'Local specialty'
+        },
+        afternoon: {
+            time: d.activities[3]?.timeSlot || '01:00 PM – 05:00 PM',
+            activity: d.activities[3]?.activity || d.activities[2]?.activity,
+            description: d.activities[3]?.description || d.activities[2]?.description,
+            foodTip: d.activities[2]?.meal?.recommendation || 'Lunch'
+        },
+        evening: {
+            time: d.activities[4]?.timeSlot || '05:30 PM – 08:30 PM',
+            activity: d.activities[4]?.activity || d.activities[3]?.activity,
+            description: d.activities[4]?.description || d.activities[3]?.description,
+            foodTip: d.activities[5]?.meal?.recommendation || 'Dinner'
+        },
+        stay: {
+            type: d.hotel.type,
+            recommendation: `${d.hotel.name} (${d.hotel.type})`
+        },
+        transit: {
+            route: d.daySummary.totalDistance,
+            distance: d.daySummary.totalTravelTime
+        },
+        packingTip: 'Slip-on footwear for temples & comfortable shoes for walking.'
+    }));
 };
+
 
