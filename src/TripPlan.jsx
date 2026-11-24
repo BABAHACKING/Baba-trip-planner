@@ -508,7 +508,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                                                                             ? act.images
                                                                             : (act.image ? [act.image] : []);
                                                                         const activePhotoIdx = selectedPhotoIndex[act.id] || 0;
-                                                                        const currentPhoto = actImages[activePhotoIdx] || act.image || 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                                                        const currentPhoto = actImages[activePhotoIdx] || act.image || '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
 
                                                                         return (
                                                                             <div className="act-visual-meta-grid">
@@ -530,7 +530,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                                                                                                 src={currentPhoto}
                                                                                                 alt={`${act.place} - Real Photo ${activePhotoIdx + 1}`}
                                                                                                 onError={(e) => {
-                                                                                                    e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                                                                                    e.target.src = '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
                                                                                                 }}
                                                                                             />
                                                                                             <div className="gallery-badge-overlay">
@@ -562,7 +562,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                                                                                                             src={imgSrc}
                                                                                                             alt={`${act.place} thumbnail ${imgIdx + 1}`}
                                                                                                             onError={(e) => {
-                                                                                                                e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                                                                                                e.target.src = '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
                                                                                                             }}
                                                                                                         />
                                                                                                     </button>
@@ -889,7 +889,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                                     src={lightboxData.images[lightboxData.activeIndex]}
                                     alt={`${lightboxData.placeName} photo ${lightboxData.activeIndex + 1}`}
                                     onError={(e) => {
-                                        e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=1200&q=80';
+                                        e.target.src = '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
                                     }}
                                 />
                             </div>
@@ -920,7 +920,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                                         src={thumbUrl}
                                         alt={`Thumbnail ${tIdx + 1}`}
                                         onError={(e) => {
-                                            e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                            e.target.src = '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
                                         }}
                                     />
                                 </button>

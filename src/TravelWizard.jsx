@@ -217,6 +217,7 @@ const TravelWizard = () => {
                 label: 'Budget-Friendly',
                 subtitle: '₹1,000 – ₹2,200 / person / day',
                 icon: '🪙',
+                image: '/varansi/Assi Ghat Varanasi/Assi Ghat Varanasi.jpg',
                 totalEstimate: `Est. Total: ~₹${budgetMin.toLocaleString('en-IN')} – ₹${budgetMax.toLocaleString('en-IN')} for ${p} traveler${p > 1 ? 's' : ''}`,
                 desc: 'Cozy homestays, famous street food trails, shared transit & pocket-saver spots.'
             },
@@ -225,6 +226,7 @@ const TravelWizard = () => {
                 label: 'Standard & Comfortable',
                 subtitle: '₹2,500 – ₹4,800 / person / day',
                 icon: '🌟',
+                image: '/mirzapur/chunar-fort/chunar-fort-1.jpg',
                 totalEstimate: `Est. Total: ~₹${modMin.toLocaleString('en-IN')} – ₹${modMax.toLocaleString('en-IN')} for ${p} traveler${p > 1 ? 's' : ''}`,
                 desc: '3-Star hotels, private AC cab with chauffeur, guided tours & fine dining.'
             },
@@ -233,6 +235,7 @@ const TravelWizard = () => {
                 label: 'Premium & Luxury',
                 subtitle: '₹5,500+ / person / day',
                 icon: '👑',
+                image: '/varansi/Ramnagar Fort/Ramnagar Fort.jpg',
                 totalEstimate: `Est. Total: ~₹${luxMin.toLocaleString('en-IN')}+ for ${p} traveler${p > 1 ? 's' : ''}`,
                 desc: 'Heritage riverfront havelis, luxury private boats, VIP temple darshan & concierge.'
             }
@@ -627,537 +630,617 @@ const TravelWizard = () => {
                                 </span>
                             </div>
 
-                    <div className="destination-switcher-grid">
-                        {ranked.map((city, idx) => {
-                            const isVisited = visitedCityIds.includes(city.id);
-                            const isActive = idx === selectedCityIndex;
-
-                            return (
-                                <div
-                                    key={city.id}
-                                    className={`switcher-city-card ${isActive ? 'active' : ''} ${isVisited ? 'visited' : ''}`}
-                                    onClick={() => handleSelectCity(idx)}
-                                >
-                                    <div className="switcher-card-top">
-                                        <span className="switcher-rank-badge">
-                                            {idx === 0 ? '🏆 #1 Top Match' : idx === 1 ? '✨ #2 Alternative' : idx === 2 ? '🌟 #3 Alternative' : '📍 #4 Alternative'}
-                                        </span>
-                                        <span className="switcher-score-badge">
-                                            {city.scores.final}%
-                                        </span>
-                                    </div>
-                                    <div className="switcher-city-name">
-                                        {city.name}
-                                    </div>
-                                    {isVisited ? (
-                                        <div className="switcher-visited-tag">
-                                            <FaCheckCircle style={{ color: '#2E7D32' }} /> Already Visited
-                                        </div>
-                                    ) : (
-                                        <div style={{ fontSize: '0.75rem', color: isActive ? '#2E7D32' : '#7A8C7C', fontWeight: 600 }}>
-                                            {isActive ? '● Currently Selected' : 'Click to View'}
-                                        </div>
-                                    )}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* Visited Notification Banner */}
-                {selectedCityIndex > 0 && visitedCityIds.includes(ranked[0].id) && (
-                    <motion.div
-                        className="visited-info-banner"
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                    >
-                        <FaCheckCircle />
-                        <span>
-                            You've already visited <strong>{ranked[0].name}</strong>. Showing your #{selectedCityIndex + 1} best recommendation: <strong>{activeDest.name}</strong>!
-                        </span>
-                    </motion.div>
-                )}
-
-                {/* 🏆 Active Recommended Destination Showcase */}
-                <motion.div
-                    key={activeDest.id}
-                    className="recommendation-showcase-box"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    <div>
-                        <div className="rec-title-row">
-                            <span className="rec-badge">
-                                {selectedCityIndex === 0 ? '🏆 #1 BEST MATCH' : `✨ #${selectedCityIndex + 1} RECOMMENDED DESTINATION`}
-                            </span>
-                            <span style={{ fontSize: '0.9rem', color: '#7A8C7C', fontWeight: 500 }}>
-                                {activeDest.name} • Uttar Pradesh
-                            </span>
-                        </div>
-                        <h2 className="rec-dest-name">{activeDest.name}</h2>
-                        <p className="rec-tagline">"{activeDest.tagline}"</p>
-
-                        <div className="rec-reasons-list">
-                            {activeDest.matchReasons.map((reason, idx) => (
-                                <span key={idx} className="rec-reason-tag">✓ {reason}</span>
-                            ))}
-                        </div>
-
-                        {/* Already Visited Toggle Button */}
-                        <div>
-                            <button
-                                type="button"
-                                className={`already-visited-btn ${isCurrentCityVisited ? 'is-visited' : ''}`}
-                                onClick={() => handleToggleVisited(activeDest.id)}
-                            >
-                                {isCurrentCityVisited ? (
-                                    <>
-                                        <FaCheckCircle style={{ color: '#2E7D32' }} /> Marked as Already Visited (Click to unmark)
-                                    </>
-                                ) : (
-                                    <>
-                                        <FaCheck /> I have already visited {activeDest.name.split(' ')[0]} → Switch to next best
-                                    </>
-                                )}
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="rec-score-bubble">
-                        <span className="rec-score-value">{activeDest.scores.final}%</span>
-                        <span className="rec-score-label">Match Score</span>
-                    </div>
-                </motion.div>
-
-                {/* ==================== 7-DAY COMPREHENSIVE DAILY GUIDE ==================== */}
-                <section className="daily-guide-section">
-                    <div className="daily-guide-header">
-                        <div>
-                            <h2 className="daily-guide-title">
-                                <FaCalendarAlt style={{ color: '#597E52' }} />
-                                Complete {formData.days}-Day Daily Travel Blueprint & Guide
-                            </h2>
-                            <p className="activities-subheading">
-                                Morning, Afternoon, Evening schedules, local food trails, stay zones & transit for {activeDest.name} Circuit
-                            </p>
-                        </div>
-                        <button
-                            className="view-toggle-btn"
-                            onClick={() => setShowAllDaysMode(!showAllDaysMode)}
-                        >
-                            {showAllDaysMode ? '⊞ Focus on Selected Day' : `📜 View All ${dailyGuide.length} Days Blueprint`}
-                        </button>
-                    </div>
-
-                    {/* Day Selection Strip */}
-                    <div className="day-selector-strip">
-                        {dailyGuide.map((dayItem, idx) => (
-                            <button
-                                key={dayItem.day}
-                                type="button"
-                                className={`day-selector-pill ${idx === activeGuideDay ? 'active' : ''}`}
-                                onClick={() => {
-                                    setActiveGuideDay(idx);
-                                    setShowAllDaysMode(false);
-                                }}
-                            >
-                                <span className="pill-day-num">Day {dayItem.day}</span>
-                                <span className="pill-city-name">{dayItem.city.split(' ')[0]}</span>
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* Render Either Single Active Day Card OR All Days */}
-                    {showAllDaysMode ? (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                            {dailyGuide.map((guideItem) => (
-                                <div key={guideItem.day} className="detailed-day-card">
-                                    <div className="detailed-day-header">
-                                        <div>
-                                            <span className="day-badge-large">DAY {guideItem.day} • {guideItem.city}</span>
-                                            <h3 className="detailed-day-title">{guideItem.title}</h3>
-                                            <p className="detailed-day-theme">Theme: {guideItem.theme}</p>
-                                        </div>
-                                    </div>
-
-                                    {/* 3-Column Time Slots */}
-                                    <div className="time-slots-grid">
-                                        <div className="time-slot-card morning">
-                                            <div className="slot-header">
-                                                <span className="slot-label"><FaSun /> Morning Slot</span>
-                                                <span className="slot-time">{guideItem.morning.time}</span>
-                                            </div>
-                                            <h4 className="slot-activity-title">{guideItem.morning.activity}</h4>
-                                            <p className="slot-desc">{guideItem.morning.description}</p>
-                                            <div className="slot-food-box">
-                                                <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                <span><strong>Breakfast Pick:</strong> {guideItem.morning.foodTip}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="time-slot-card afternoon">
-                                            <div className="slot-header">
-                                                <span className="slot-label"><FaClock /> Afternoon Slot</span>
-                                                <span className="slot-time">{guideItem.afternoon.time}</span>
-                                            </div>
-                                            <h4 className="slot-activity-title">{guideItem.afternoon.activity}</h4>
-                                            <p className="slot-desc">{guideItem.afternoon.description}</p>
-                                            <div className="slot-food-box" style={{ borderLeftColor: '#E65100', background: '#FBE9E7', color: '#4E342E' }}>
-                                                <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                <span><strong>Lunch Pick:</strong> {guideItem.afternoon.foodTip}</span>
-                                            </div>
-                                        </div>
-
-                                        <div className="time-slot-card evening">
-                                            <div className="slot-header">
-                                                <span className="slot-label"><FaMoon /> Evening Slot</span>
-                                                <span className="slot-time">{guideItem.evening.time}</span>
-                                            </div>
-                                            <h4 className="slot-activity-title">{guideItem.evening.activity}</h4>
-                                            <p className="slot-desc">{guideItem.evening.description}</p>
-                                            <div className="slot-food-box" style={{ borderLeftColor: '#5C6BC0', background: '#EDE7F6', color: '#311B92' }}>
-                                                <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                <span><strong>Dinner / Sweet:</strong> {guideItem.evening.foodTip}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    {/* Logistics Strip */}
-                                    <div className="day-logistics-grid">
-                                        <div className="logistic-item">
-                                            <span className="logistic-icon"><FaHotel style={{ color: '#2E7D32' }} /></span>
-                                            <div>
-                                                <div className="logistic-title">Overnight Stay</div>
-                                                <div className="logistic-detail">{guideItem.stay.recommendation}</div>
-                                            </div>
-                                        </div>
-                                        <div className="logistic-item">
-                                            <span className="logistic-icon"><FaCarSide style={{ color: '#0277BD' }} /></span>
-                                            <div>
-                                                <div className="logistic-title">Transit Route</div>
-                                                <div className="logistic-detail">{guideItem.transit.route} ({guideItem.transit.distance})</div>
-                                            </div>
-                                        </div>
-                                        <div className="logistic-item">
-                                            <span className="logistic-icon"><FaSuitcaseRolling style={{ color: '#F57C00' }} /></span>
-                                            <div>
-                                                <div className="logistic-title">Daily Tip</div>
-                                                <div className="logistic-detail">{guideItem.packingTip}</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        currentActiveGuide && (
-                            <motion.div
-                                key={currentActiveGuide.day}
-                                className="detailed-day-card"
-                                initial={{ opacity: 0, y: 15 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.3 }}
-                            >
-                                <div className="detailed-day-header">
-                                    <div>
-                                        <span className="day-badge-large">DAY {currentActiveGuide.day} OF {dailyGuide.length} • {currentActiveGuide.city}</span>
-                                        <h3 className="detailed-day-title">{currentActiveGuide.title}</h3>
-                                        <p className="detailed-day-theme">Theme: {currentActiveGuide.theme}</p>
-                                    </div>
-                                    <div style={{ fontSize: '0.85rem', color: '#7A8C7C', fontWeight: 600 }}>
-                                        Step {currentActiveGuide.day} of {dailyGuide.length} in Your Circuit
-                                    </div>
-                                </div>
-
-                                {/* 3-Column Time Slots */}
-                                <div className="time-slots-grid">
-                                    <div className="time-slot-card morning">
-                                        <div className="slot-header">
-                                            <span className="slot-label"><FaSun /> Morning (Dawn to Noon)</span>
-                                            <span className="slot-time">{currentActiveGuide.morning.time}</span>
-                                        </div>
-                                        <h4 className="slot-activity-title">{currentActiveGuide.morning.activity}</h4>
-                                        <p className="slot-desc">{currentActiveGuide.morning.description}</p>
-                                        <div className="slot-food-box">
-                                            <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                            <span><strong>Breakfast Pick:</strong> {currentActiveGuide.morning.foodTip}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="time-slot-card afternoon">
-                                        <div className="slot-header">
-                                            <span className="slot-label"><FaClock /> Afternoon (1 PM to 5 PM)</span>
-                                            <span className="slot-time">{currentActiveGuide.afternoon.time}</span>
-                                        </div>
-                                        <h4 className="slot-activity-title">{currentActiveGuide.afternoon.activity}</h4>
-                                        <p className="slot-desc">{currentActiveGuide.afternoon.description}</p>
-                                        <div className="slot-food-box" style={{ borderLeftColor: '#E65100', background: '#FBE9E7', color: '#4E342E' }}>
-                                            <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                            <span><strong>Lunch Pick:</strong> {currentActiveGuide.afternoon.foodTip}</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="time-slot-card evening">
-                                        <div className="slot-header">
-                                            <span className="slot-label"><FaMoon /> Evening & Twilight</span>
-                                            <span className="slot-time">{currentActiveGuide.evening.time}</span>
-                                        </div>
-                                        <h4 className="slot-activity-title">{currentActiveGuide.evening.activity}</h4>
-                                        <p className="slot-desc">{currentActiveGuide.evening.description}</p>
-                                        <div className="slot-food-box" style={{ borderLeftColor: '#5C6BC0', background: '#EDE7F6', color: '#311B92' }}>
-                                            <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                            <span><strong>Dinner / Sweet:</strong> {currentActiveGuide.evening.foodTip}</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Logistics Strip */}
-                                <div className="day-logistics-grid">
-                                    <div className="logistic-item">
-                                        <span className="logistic-icon"><FaHotel style={{ color: '#2E7D32' }} /></span>
-                                        <div>
-                                            <div className="logistic-title">Recommended Stay</div>
-                                            <div className="logistic-detail">{currentActiveGuide.stay.recommendation}</div>
-                                        </div>
-                                    </div>
-                                    <div className="logistic-item">
-                                        <span className="logistic-icon"><FaCarSide style={{ color: '#0277BD' }} /></span>
-                                        <div>
-                                            <div className="logistic-title">Transit Route</div>
-                                            <div className="logistic-detail">{currentActiveGuide.transit.route} ({currentActiveGuide.transit.distance})</div>
-                                        </div>
-                                    </div>
-                                    <div className="logistic-item">
-                                        <span className="logistic-icon"><FaSuitcaseRolling style={{ color: '#F57C00' }} /></span>
-                                        <div>
-                                            <div className="logistic-title">Daily Tip</div>
-                                            <div className="logistic-detail">{currentActiveGuide.packingTip}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )
-                    )}
-                </section>
-
-                {/* 🎯 Curated Experiences in Destination Matching User Preferences */}
-                <motion.section
-                    key={`act_${activeDest.id}`}
-                    className="activities-showcase-section"
-                    initial={{ opacity: 0, y: 25 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35 }}
-                >
-                    <div className="activities-header-row">
-                        <div>
-                            <h2 className="activities-header-title">
-                                <span>🎯</span> Top Experiences in {activeDest.name}
-                            </h2>
-                            <p className="activities-subheading">
-                                Personalized to your selected interests ({formData.landscapes.map(l => l.replace('_', ' ')).join(', ')})
-                            </p>
-                        </div>
-                        <span style={{
-                            padding: '6px 14px',
-                            background: '#E8F5E9',
-                            color: '#2E7D32',
-                            borderRadius: '100px',
-                            fontSize: '0.85rem',
-                            fontWeight: 700
-                        }}>
-                            ✨ {activeDest.curatedActivities?.filter(a => a.isUserPreferenceMatch).length || 0} Priority Matches
-                        </span>
-                    </div>
-
-                    <div className="activities-grid">
-                        {activeDest.curatedActivities?.map((activity) => (
-                            <motion.div
-                                key={activity.id}
-                                className={`activity-card ${activity.isUserPreferenceMatch ? 'preference-match' : ''}`}
-                                whileHover={{ scale: 1.02 }}
-                            >
-                                {activity.isUserPreferenceMatch && (
-                                    <div className="activity-pref-badge">
-                                        <FaStar /> {activity.matchBadge || 'Matches Your Selected Preference'}
-                                    </div>
-                                )}
-
-                                <div className="activity-top-row">
-                                    <div className="activity-icon-wrap">
-                                        {activity.icon}
-                                    </div>
-                                    <div>
-                                        <h3 className="activity-title">{activity.title}</h3>
-                                    </div>
-                                </div>
-
-                                <div className="activity-meta-pills">
-                                    <span className="activity-pill">⏱️ {activity.duration}</span>
-                                    <span className="activity-pill">🕒 {activity.bestTime}</span>
-                                    <span className="activity-pill">🏷️ {activity.categoryLabel}</span>
-                                </div>
-
-                                <p className="activity-desc">{activity.description}</p>
-
-                                {activity.insiderTip && (
-                                    <div className="activity-tip-box">
-                                        <FaLightbulb style={{ color: '#F57F17', flexShrink: 0, marginTop: '2px' }} />
-                                        <span><strong>Insider Tip:</strong> {activity.insiderTip}</span>
-                                    </div>
-                                )}
-
-                                <div className="activity-tags-row">
-                                    {activity.tags.map((tag, tIdx) => (
-                                        <span key={tIdx} className="activity-tag-chip">#{tag}</span>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
-
-                <div className="results-header">
-                    <h1>Journey Overview & Route Simulation</h1>
-                    <p>Starting from {formData.pickupLocation} • {formData.people} Travelers ({formData.groupType})</p>
-                </div>
-
-                <div className="results-content">
-                    {/* Day-by-Day Sidebar */}
-                    <div className="itinerary-sidebar">
-                        <h2>Circuit Stops Summary</h2>
-                        {itinerary.map((day, index) => (
-                            <motion.div
-                                key={day.day}
-                                className={`itinerary-day ${index === currentDay ? 'active' : ''} ${index < currentDay ? 'completed' : ''}`}
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: index * 0.1 }}
-                                onClick={() => setActiveGuideDay(index)}
-                                style={{ cursor: 'pointer' }}
-                            >
-                                <div className="day-number">Day {day.day}</div>
-                                <div className="day-info">
-                                    <div className="day-destination">{day.destination}</div>
-                                    <div className="day-activity">{day.activity}</div>
-
-                                    {/* Weather Display */}
-                                    {weatherData[index] && index === currentDay && (
-                                        <motion.div
-                                            className="day-weather"
-                                            initial={{ scale: 0 }}
-                                            animate={{ scale: 1 }}
-                                            transition={{ delay: 0.3 }}
-                                        >
-                                            {getWeatherIcon(weatherData[index].condition)}
-                                            <span>{weatherData[index].temp}°C</span>
-                                        </motion.div>
-                                    )}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-
-                    {/* Route Visualization */}
-                    <div className="route-visualization">
-                        <div className="route-map">
-                            <svg width="100%" height="500" viewBox="0 0 800 500">
-                                {/* Route Path */}
-                                <motion.path
-                                    d="M 120,150 Q 280,80 420,160 T 680,220 Q 580,380 420,410 T 180,420"
-                                    fill="none"
-                                    stroke="#597E52"
-                                    strokeWidth="4"
-                                    strokeDasharray="10,5"
-                                    initial={{ pathLength: 0 }}
-                                    animate={{ pathLength: vehicleProgress / 100 }}
-                                    transition={{ duration: 0.5 }}
-                                />
-
-                                {/* Destination Markers */}
-                                {itinerary.map((day, index) => {
-                                    const positions = [
-                                        { x: 120, y: 150 },
-                                        { x: 320, y: 100 },
-                                        { x: 520, y: 180 },
-                                        { x: 680, y: 220 },
-                                        { x: 550, y: 380 },
-                                        { x: 350, y: 410 },
-                                        { x: 180, y: 420 }
-                                    ];
-                                    const pos = positions[index] || positions[positions.length - 1];
+                            <div className="destination-switcher-grid">
+                                {ranked.map((city, idx) => {
+                                    const isVisited = visitedCityIds.includes(city.id);
+                                    const isActive = idx === selectedCityIndex;
 
                                     return (
-                                        <g key={index}>
-                                            <motion.circle
-                                                cx={pos.x}
-                                                cy={pos.y}
-                                                r={index <= currentDay ? "12" : "8"}
-                                                fill={index === currentDay ? "#E89A5D" : index < currentDay ? "#597E52" : "#D7CCC8"}
-                                                initial={{ scale: 0 }}
-                                                animate={{ scale: 1 }}
-                                                transition={{ delay: index * 0.2 }}
-                                            />
-                                            <text
-                                                x={pos.x}
-                                                y={pos.y - 20}
-                                                textAnchor="middle"
-                                                fill="#5D4037"
-                                                fontSize="13"
-                                                fontWeight="bold"
-                                            >
-                                                Day {day.day}: {day.destination.split(' - ')[0]}
-                                            </text>
-                                        </g>
+                                        <div
+                                            key={city.id}
+                                            className={`switcher-city-card ${isActive ? 'active' : ''} ${isVisited ? 'visited' : ''}`}
+                                            onClick={() => handleSelectCity(idx)}
+                                        >
+                                            <div className="switcher-city-img-wrap">
+                                                <img src={city.image} alt={city.name} className="switcher-city-img" />
+                                                <span className="switcher-rank-badge">
+                                                    {idx === 0 ? '🏆 #1 Top Match' : idx === 1 ? '✨ #2 Alternative' : idx === 2 ? '🌟 #3 Alternative' : '📍 #4 Alternative'}
+                                                </span>
+                                                <span className="switcher-score-badge">
+                                                    {city.scores.final}%
+                                                </span>
+                                            </div>
+                                            <div className="switcher-city-body">
+                                                <div className="switcher-city-name">
+                                                    {city.name}
+                                                </div>
+                                                <div className="switcher-city-affinities">
+                                                    <span>🎯 Interest: <strong>{city.scores.interest}%</strong></span>
+                                                    <span>📍 Route: <strong>{city.scores.distance}%</strong></span>
+                                                </div>
+                                                {isVisited ? (
+                                                    <div className="switcher-visited-tag">
+                                                        <FaCheckCircle style={{ color: '#2E7D32' }} /> Already Visited
+                                                    </div>
+                                                ) : (
+                                                    <div style={{ fontSize: '0.78rem', color: isActive ? '#2E7D32' : '#7A8C7C', fontWeight: 700, marginTop: '4px' }}>
+                                                        {isActive ? '● Currently Active' : 'Click to View'}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
                                     );
                                 })}
-
-                                {/* Animated Vehicle (Car) */}
-                                <motion.g
-                                    initial={{ x: 120, y: 150 }}
-                                    animate={{
-                                        x: 120 + (vehicleProgress / 100) * 560,
-                                        y: 150 + Math.sin((vehicleProgress / 100) * Math.PI * 2) * 140
-                                    }}
-                                    transition={{ duration: 0.5 }}
-                                >
-                                    <circle cx="0" cy="0" r="20" fill="#2C352D" />
-                                    <text
-                                        x="0"
-                                        y="5"
-                                        textAnchor="middle"
-                                        fill="#FFF"
-                                        fontSize="20"
-                                    >
-                                        🚗
-                                    </text>
-                                </motion.g>
-                            </svg>
-                        </div>
-
-                        <div className="route-progress">
-                            <div className="progress-text">Journey Simulation: {Math.round(vehicleProgress)}%</div>
-                            <div className="progress-bar-results">
-                                <motion.div
-                                    className="progress-fill-results"
-                                    initial={{ width: '0%' }}
-                                    animate={{ width: `${vehicleProgress}%` }}
-                                />
                             </div>
                         </div>
 
-                        <button
-                            className="back-to-form"
-                            onClick={() => {
-                                setShowResults(false);
-                                setVehicleProgress(0);
-                                setCurrentDay(0);
-                            }}
+                        {/* Visited Notification Banner */}
+                        {selectedCityIndex > 0 && visitedCityIds.includes(ranked[0].id) && (
+                            <motion.div
+                                className="visited-info-banner"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                            >
+                                <FaCheckCircle />
+                                <span>
+                                    You've already visited <strong>{ranked[0].name}</strong>. Showing your #{selectedCityIndex + 1} best recommendation: <strong>{activeDest.name}</strong>!
+                                </span>
+                            </motion.div>
+                        )}
+
+                        {/* 🏆 Active Recommended Destination Showcase */}
+                        <motion.div
+                            key={activeDest.id}
+                            className="recommendation-showcase-box"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.3 }}
                         >
-                            ✏️ Edit Route Preferences / Plan Another Trip ✨
-                        </button>
-                    </div>
-                </div>
+                            <div className="rec-showcase-header-row">
+                                <div className="rec-hero-img-col">
+                                    <img src={activeDest.image} alt={activeDest.name} className="rec-hero-image" />
+                                    <div className="rec-hero-badge">
+                                        {selectedCityIndex === 0 ? '🏆 #1 Ranked Destination' : `✨ #${selectedCityIndex + 1} Best Circuit Match`}
+                                    </div>
+                                </div>
+
+                                <div className="rec-hero-info-col">
+                                    <div className="rec-title-row">
+                                        <span className="rec-badge">
+                                            {selectedCityIndex === 0 ? '🏆 #1 BEST MATCH' : `✨ #${selectedCityIndex + 1} RECOMMENDED DESTINATION`}
+                                        </span>
+                                        <span style={{ fontSize: '0.9rem', color: '#7A8C7C', fontWeight: 600 }}>
+                                            {activeDest.name} • Uttar Pradesh
+                                        </span>
+                                    </div>
+                                    <h2 className="rec-dest-name">{activeDest.name}</h2>
+                                    <p className="rec-tagline">"{activeDest.tagline}"</p>
+
+                                    <div className="rec-reasons-list">
+                                        {activeDest.matchReasons.map((reason, idx) => (
+                                            <span key={idx} className="rec-reason-tag">✓ {reason}</span>
+                                        ))}
+                                    </div>
+
+                                    {/* 5-Factor Weighted Score Breakdown Bars */}
+                                    <div className="rec-breakdown-container">
+                                        <div className="rec-breakdown-title">
+                                            <span>📊 Multi-Factor District Ranking Score Breakdown:</span>
+                                            <span className="rec-breakdown-final-tag">{activeDest.scores.final}% Overall</span>
+                                        </div>
+                                        <div className="score-breakdown-grid">
+                                            <div className="score-breakdown-item">
+                                                <div className="score-breakdown-header">
+                                                    <span>🎯 Interest Synergy (40%)</span>
+                                                    <strong>{activeDest.scores.interest}%</strong>
+                                                </div>
+                                                <div className="score-bar-track">
+                                                    <div className="score-bar-fill" style={{ width: `${activeDest.scores.interest}%` }}></div>
+                                                </div>
+                                            </div>
+                                            <div className="score-breakdown-item">
+                                                <div className="score-breakdown-header">
+                                                    <span>💰 Budget Tier Fit (20%)</span>
+                                                    <strong>{activeDest.scores.budget}%</strong>
+                                                </div>
+                                                <div className="score-bar-track">
+                                                    <div className="score-bar-fill" style={{ width: `${activeDest.scores.budget}%` }}></div>
+                                                </div>
+                                            </div>
+                                            <div className="score-breakdown-item">
+                                                <div className="score-breakdown-header">
+                                                    <span>📍 Proximity / Distance (15%)</span>
+                                                    <strong>{activeDest.scores.distance}%</strong>
+                                                </div>
+                                                <div className="score-bar-track">
+                                                    <div className="score-bar-fill" style={{ width: `${activeDest.scores.distance}%` }}></div>
+                                                </div>
+                                            </div>
+                                            <div className="score-breakdown-item">
+                                                <div className="score-breakdown-header">
+                                                    <span>⏱️ Trip Duration Match (15%)</span>
+                                                    <strong>{activeDest.scores.duration}%</strong>
+                                                </div>
+                                                <div className="score-bar-track">
+                                                    <div className="score-bar-fill" style={{ width: `${activeDest.scores.duration}%` }}></div>
+                                                </div>
+                                            </div>
+                                            <div className="score-breakdown-item">
+                                                <div className="score-breakdown-header">
+                                                    <span>🚗 Transport Compatibility (10%)</span>
+                                                    <strong>{activeDest.scores.transport}%</strong>
+                                                </div>
+                                                <div className="score-bar-track">
+                                                    <div className="score-bar-fill" style={{ width: `${activeDest.scores.transport}%` }}></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Already Visited Toggle Button */}
+                                    <div style={{ marginTop: '16px' }}>
+                                        <button
+                                            type="button"
+                                            className={`already-visited-btn ${isCurrentCityVisited ? 'is-visited' : ''}`}
+                                            onClick={() => handleToggleVisited(activeDest.id)}
+                                        >
+                                            {isCurrentCityVisited ? (
+                                                <>
+                                                    <FaCheckCircle style={{ color: '#2E7D32' }} /> Marked as Already Visited (Click to unmark)
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <FaCheck /> I have already visited {activeDest.name.split(' ')[0]} → Switch to next best
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="rec-score-bubble">
+                                    <span className="rec-score-value">{activeDest.scores.final}%</span>
+                                    <span className="rec-score-label">Match Score</span>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        {/* ==================== 7-DAY COMPREHENSIVE DAILY GUIDE ==================== */}
+                        <section className="daily-guide-section">
+                            <div className="daily-guide-header">
+                                <div>
+                                    <h2 className="daily-guide-title">
+                                        <FaCalendarAlt style={{ color: '#597E52' }} />
+                                        Complete {formData.days}-Day Daily Travel Blueprint & Guide
+                                    </h2>
+                                    <p className="daily-guide-subtitle">
+                                        Every morning, afternoon & evening meticulously timed with authentic local culinary recommendations
+                                    </p>
+                                </div>
+                                <div className="daily-guide-actions">
+                                    <button
+                                        type="button"
+                                        className={`view-mode-toggle ${!showAllDaysMode ? 'active' : ''}`}
+                                        onClick={() => setShowAllDaysMode(false)}
+                                    >
+                                        Single Day Focus
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className={`view-mode-toggle ${showAllDaysMode ? 'active' : ''}`}
+                                        onClick={() => setShowAllDaysMode(true)}
+                                    >
+                                        View All {formData.days} Days
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Day Selection Tabs (Only in Single Day Mode) */}
+                            {!showAllDaysMode && (
+                                <div className="day-tabs-slider">
+                                    {dailyGuide.map((d, index) => (
+                                        <button
+                                            key={d.day}
+                                            type="button"
+                                            className={`day-tab-pill ${activeGuideDay === index ? 'active' : ''}`}
+                                            onClick={() => setActiveGuideDay(index)}
+                                        >
+                                            <span className="pill-day-num">Day {d.day}</span>
+                                            <span className="pill-city-name">{d.city}</span>
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
+                            {/* Render Either Single Active Day Card OR All Days */}
+                            {showAllDaysMode ? (
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                                    {dailyGuide.map((guideItem) => (
+                                        <div key={guideItem.day} className="detailed-day-card">
+                                            <div className="detailed-day-header">
+                                                <div>
+                                                    <span className="day-badge-large">DAY {guideItem.day} • {guideItem.city}</span>
+                                                    <h3 className="detailed-day-title">{guideItem.title}</h3>
+                                                    <p className="detailed-day-theme">Theme: {guideItem.theme}</p>
+                                                </div>
+                                            </div>
+
+                                            {/* 3-Column Time Slots */}
+                                            <div className="time-slots-grid">
+                                                <div className="time-slot-card morning">
+                                                    <div className="slot-header">
+                                                        <span className="slot-label"><FaSun /> Morning Slot</span>
+                                                        <span className="slot-time">{guideItem.morning.time}</span>
+                                                    </div>
+                                                    <h4 className="slot-activity-title">{guideItem.morning.activity}</h4>
+                                                    <p className="slot-desc">{guideItem.morning.description}</p>
+                                                    <div className="slot-food-box">
+                                                        <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
+                                                        <span><strong>Breakfast Pick:</strong> {guideItem.morning.foodTip}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="time-slot-card afternoon">
+                                                    <div className="slot-header">
+                                                        <span className="slot-label"><FaClock /> Afternoon Slot</span>
+                                                        <span className="slot-time">{guideItem.afternoon.time}</span>
+                                                    </div>
+                                                    <h4 className="slot-activity-title">{guideItem.afternoon.activity}</h4>
+                                                    <p className="slot-desc">{guideItem.afternoon.description}</p>
+                                                    <div className="slot-food-box" style={{ borderLeftColor: '#E65100', background: '#FBE9E7', color: '#4E342E' }}>
+                                                        <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
+                                                        <span><strong>Lunch Pick:</strong> {guideItem.afternoon.foodTip}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="time-slot-card evening">
+                                                    <div className="slot-header">
+                                                        <span className="slot-label"><FaMoon /> Evening Slot</span>
+                                                        <span className="slot-time">{guideItem.evening.time}</span>
+                                                    </div>
+                                                    <h4 className="slot-activity-title">{guideItem.evening.activity}</h4>
+                                                    <p className="slot-desc">{guideItem.evening.description}</p>
+                                                    <div className="slot-food-box" style={{ borderLeftColor: '#5C6BC0', background: '#EDE7F6', color: '#311B92' }}>
+                                                        <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
+                                                        <span><strong>Dinner / Sweet:</strong> {guideItem.evening.foodTip}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            {/* Logistics Strip */}
+                                            <div className="day-logistics-grid">
+                                                <div className="logistic-item">
+                                                    <span className="logistic-icon"><FaHotel style={{ color: '#2E7D32' }} /></span>
+                                                    <div>
+                                                        <div className="logistic-title">Overnight Stay</div>
+                                                        <div className="logistic-detail">{guideItem.stay.recommendation}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="logistic-item">
+                                                    <span className="logistic-icon"><FaCarSide style={{ color: '#0277BD' }} /></span>
+                                                    <div>
+                                                        <div className="logistic-title">Transit Route</div>
+                                                        <div className="logistic-detail">{guideItem.transit.route} ({guideItem.transit.distance})</div>
+                                                    </div>
+                                                </div>
+                                                <div className="logistic-item">
+                                                    <span className="logistic-icon"><FaSuitcaseRolling style={{ color: '#F57C00' }} /></span>
+                                                    <div>
+                                                        <div className="logistic-title">Daily Tip</div>
+                                                        <div className="logistic-detail">{guideItem.packingTip}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ) : (
+                                currentActiveGuide && (
+                                    <motion.div
+                                        key={currentActiveGuide.day}
+                                        className="detailed-day-card"
+                                        initial={{ opacity: 0, y: 15 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    >
+                                        <div className="detailed-day-header">
+                                            <div>
+                                                <span className="day-badge-large">DAY {currentActiveGuide.day} OF {dailyGuide.length} • {currentActiveGuide.city}</span>
+                                                <h3 className="detailed-day-title">{currentActiveGuide.title}</h3>
+                                                <p className="detailed-day-theme">Theme: {currentActiveGuide.theme}</p>
+                                            </div>
+                                            <div style={{ fontSize: '0.85rem', color: '#7A8C7C', fontWeight: 600 }}>
+                                                Step {currentActiveGuide.day} of {dailyGuide.length} in Your Circuit
+                                            </div>
+                                        </div>
+
+                                        {/* 3-Column Time Slots */}
+                                        <div className="time-slots-grid">
+                                            <div className="time-slot-card morning">
+                                                <div className="slot-header">
+                                                    <span className="slot-label"><FaSun /> Morning (Dawn to Noon)</span>
+                                                    <span className="slot-time">{currentActiveGuide.morning.time}</span>
+                                                </div>
+                                                <h4 className="slot-activity-title">{currentActiveGuide.morning.activity}</h4>
+                                                <p className="slot-desc">{currentActiveGuide.morning.description}</p>
+                                                <div className="slot-food-box">
+                                                    <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
+                                                    <span><strong>Breakfast Pick:</strong> {currentActiveGuide.morning.foodTip}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="time-slot-card afternoon">
+                                                <div className="slot-header">
+                                                    <span className="slot-label"><FaClock /> Afternoon (1 PM to 5 PM)</span>
+                                                    <span className="slot-time">{currentActiveGuide.afternoon.time}</span>
+                                                </div>
+                                                <h4 className="slot-activity-title">{currentActiveGuide.afternoon.activity}</h4>
+                                                <p className="slot-desc">{currentActiveGuide.afternoon.description}</p>
+                                                <div className="slot-food-box" style={{ borderLeftColor: '#E65100', background: '#FBE9E7', color: '#4E342E' }}>
+                                                    <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
+                                                    <span><strong>Lunch Pick:</strong> {currentActiveGuide.afternoon.foodTip}</span>
+                                                </div>
+                                            </div>
+
+                                            <div className="time-slot-card evening">
+                                                <div className="slot-header">
+                                                    <span className="slot-label"><FaMoon /> Evening & Twilight</span>
+                                                    <span className="slot-time">{currentActiveGuide.evening.time}</span>
+                                                </div>
+                                                <h4 className="slot-activity-title">{currentActiveGuide.evening.activity}</h4>
+                                                <p className="slot-desc">{currentActiveGuide.evening.description}</p>
+                                                <div className="slot-food-box" style={{ borderLeftColor: '#5C6BC0', background: '#EDE7F6', color: '#311B92' }}>
+                                                    <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
+                                                    <span><strong>Dinner / Sweet:</strong> {currentActiveGuide.evening.foodTip}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Logistics Strip */}
+                                        <div className="day-logistics-grid">
+                                            <div className="logistic-item">
+                                                <span className="logistic-icon"><FaHotel style={{ color: '#2E7D32' }} /></span>
+                                                <div>
+                                                    <div className="logistic-title">Recommended Stay</div>
+                                                    <div className="logistic-detail">{currentActiveGuide.stay.recommendation}</div>
+                                                </div>
+                                            </div>
+                                            <div className="logistic-item">
+                                                <span className="logistic-icon"><FaCarSide style={{ color: '#0277BD' }} /></span>
+                                                <div>
+                                                    <div className="logistic-title">Transit Route</div>
+                                                    <div className="logistic-detail">{currentActiveGuide.transit.route} ({currentActiveGuide.transit.distance})</div>
+                                                </div>
+                                            </div>
+                                            <div className="logistic-item">
+                                                <span className="logistic-icon"><FaSuitcaseRolling style={{ color: '#F57C00' }} /></span>
+                                                <div>
+                                                    <div className="logistic-title">Daily Tip</div>
+                                                    <div className="logistic-detail">{currentActiveGuide.packingTip}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )
+                            )}
+                        </section>
+
+                        {/* 🎯 Curated Experiences in Destination Matching User Preferences */}
+                        <motion.section
+                            key={`act_${activeDest.id}`}
+                            className="activities-showcase-section"
+                            initial={{ opacity: 0, y: 25 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.35 }}
+                        >
+                            <div className="activities-header-row">
+                                <div>
+                                    <h2 className="activities-header-title">
+                                        <span>🎯</span> Top Experiences in {activeDest.name}
+                                    </h2>
+                                    <p className="activities-subheading">
+                                        Personalized to your selected interests ({formData.landscapes.map(l => l.replace('_', ' ')).join(', ')})
+                                    </p>
+                                </div>
+                                <span style={{
+                                    padding: '6px 14px',
+                                    background: '#E8F5E9',
+                                    color: '#2E7D32',
+                                    borderRadius: '100px',
+                                    fontSize: '0.85rem',
+                                    fontWeight: 700
+                                }}>
+                                    ✨ {activeDest.curatedActivities?.filter(a => a.isUserPreferenceMatch).length || 0} Priority Matches
+                                </span>
+                            </div>
+
+                            <div className="activities-grid">
+                                {activeDest.curatedActivities?.map((activity) => (
+                                    <motion.div
+                                        key={activity.id}
+                                        className={`activity-card ${activity.isUserPreferenceMatch ? 'preference-match' : ''}`}
+                                        whileHover={{ scale: 1.02 }}
+                                    >
+                                        {activity.isUserPreferenceMatch && (
+                                            <div className="activity-pref-badge">
+                                                <FaStar /> {activity.matchBadge || 'Matches Your Selected Preference'}
+                                            </div>
+                                        )}
+
+                                        <div className="activity-top-row">
+                                            <div className="activity-icon-wrap">
+                                                {activity.icon}
+                                            </div>
+                                            <div>
+                                                <h3 className="activity-title">{activity.title}</h3>
+                                            </div>
+                                        </div>
+
+                                        <div className="activity-meta-pills">
+                                            <span className="activity-pill">⏱️ {activity.duration}</span>
+                                            <span className="activity-pill">🕒 {activity.bestTime}</span>
+                                            <span className="activity-pill">🏷️ {activity.categoryLabel}</span>
+                                        </div>
+
+                                        <p className="activity-desc">{activity.description}</p>
+
+                                        {activity.insiderTip && (
+                                            <div className="activity-tip-box">
+                                                <FaLightbulb style={{ color: '#F57F17', flexShrink: 0, marginTop: '2px' }} />
+                                                <span><strong>Insider Tip:</strong> {activity.insiderTip}</span>
+                                            </div>
+                                        )}
+
+                                        <div className="activity-tags-row">
+                                            {activity.tags.map((tag, tIdx) => (
+                                                <span key={tIdx} className="activity-tag-chip">#{tag}</span>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+                        </motion.section>
+
+                        <div className="results-header">
+                            <h1>Journey Overview & Route Simulation</h1>
+                            <p>Starting from {formData.pickupLocation} • {formData.people} Travelers ({formData.groupType})</p>
+                        </div>
+
+                        <div className="results-content">
+                            {/* Day-by-Day Sidebar */}
+                            <div className="itinerary-sidebar">
+                                <h2>Circuit Stops Summary</h2>
+                                {itinerary.map((day, index) => (
+                                    <motion.div
+                                        key={day.day}
+                                        className={`itinerary-day ${index === currentDay ? 'active' : ''} ${index < currentDay ? 'completed' : ''}`}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: index * 0.1 }}
+                                        onClick={() => setActiveGuideDay(index)}
+                                        style={{ cursor: 'pointer' }}
+                                    >
+                                        <div className="day-number">Day {day.day}</div>
+                                        <div className="day-info">
+                                            <div className="day-destination">{day.destination}</div>
+                                            <div className="day-activity">{day.activity}</div>
+
+                                            {/* Weather Display */}
+                                            {weatherData[index] && index === currentDay && (
+                                                <motion.div
+                                                    className="day-weather"
+                                                    initial={{ scale: 0 }}
+                                                    animate={{ scale: 1 }}
+                                                    transition={{ delay: 0.3 }}
+                                                >
+                                                    {getWeatherIcon(weatherData[index].condition)}
+                                                    <span>{weatherData[index].temp}°C</span>
+                                                </motion.div>
+                                            )}
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </div>
+
+                            {/* Route Visualization */}
+                            <div className="route-visualization">
+                                <div className="route-map">
+                                    <svg width="100%" height="500" viewBox="0 0 800 500">
+                                        {/* Route Path */}
+                                        <motion.path
+                                            d="M 120,150 Q 280,80 420,160 T 680,220 Q 580,380 420,410 T 180,420"
+                                            fill="none"
+                                            stroke="#597E52"
+                                            strokeWidth="4"
+                                            strokeDasharray="10,5"
+                                            initial={{ pathLength: 0 }}
+                                            animate={{ pathLength: vehicleProgress / 100 }}
+                                            transition={{ duration: 0.5 }}
+                                        />
+
+                                        {/* Destination Markers */}
+                                        {itinerary.map((day, index) => {
+                                            const positions = [
+                                                { x: 120, y: 150 },
+                                                { x: 320, y: 100 },
+                                                { x: 520, y: 180 },
+                                                { x: 680, y: 220 },
+                                                { x: 550, y: 380 },
+                                                { x: 350, y: 410 },
+                                                { x: 180, y: 420 }
+                                            ];
+                                            const pos = positions[index] || positions[positions.length - 1];
+
+                                            return (
+                                                <g key={index}>
+                                                    <motion.circle
+                                                        cx={pos.x}
+                                                        cy={pos.y}
+                                                        r={index <= currentDay ? "12" : "8"}
+                                                        fill={index === currentDay ? "#E89A5D" : index < currentDay ? "#597E52" : "#D7CCC8"}
+                                                        initial={{ scale: 0 }}
+                                                        animate={{ scale: 1 }}
+                                                        transition={{ delay: index * 0.2 }}
+                                                    />
+                                                    <text
+                                                        x={pos.x}
+                                                        y={pos.y - 20}
+                                                        textAnchor="middle"
+                                                        fill="#5D4037"
+                                                        fontSize="13"
+                                                        fontWeight="bold"
+                                                    >
+                                                        Day {day.day}: {day.destination.split(' - ')[0]}
+                                                    </text>
+                                                </g>
+                                            );
+                                        })}
+
+                                        {/* Animated Vehicle (Car) */}
+                                        <motion.g
+                                            initial={{ x: 120, y: 150 }}
+                                            animate={{
+                                                x: 120 + (vehicleProgress / 100) * 560,
+                                                y: 150 + Math.sin((vehicleProgress / 100) * Math.PI * 2) * 140
+                                            }}
+                                            transition={{ duration: 0.5 }}
+                                        >
+                                            <circle cx="0" cy="0" r="20" fill="#2C352D" />
+                                            <text
+                                                x="0"
+                                                y="5"
+                                                textAnchor="middle"
+                                                fill="#FFF"
+                                                fontSize="20"
+                                            >
+                                                🚗
+                                            </text>
+                                        </motion.g>
+                                    </svg>
+                                </div>
+
+                                <div className="route-progress">
+                                    <div className="progress-text">Journey Simulation: {Math.round(vehicleProgress)}%</div>
+                                    <div className="progress-bar-results">
+                                        <motion.div
+                                            className="progress-fill-results"
+                                            initial={{ width: '0%' }}
+                                            animate={{ width: `${vehicleProgress}%` }}
+                                        />
+                                    </div>
+                                </div>
+
+                                <button
+                                    className="back-to-form"
+                                    onClick={() => {
+                                        setShowResults(false);
+                                        setVehicleProgress(0);
+                                        setCurrentDay(0);
+                                    }}
+                                >
+                                    ✏️ Edit Route Preferences / Plan Another Trip ✨
+                                </button>
+                            </div>
+                        </div>
                     </>
                 )}
             </div>
@@ -1457,21 +1540,27 @@ const TravelWizard = () => {
                             </span>
                         </div>
 
-                        <div className="budget-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px', marginTop: 0 }}>
+                        <div className="budget-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginTop: 0 }}>
                             {dynamicBudgets.map((b) => (
                                 <div
                                     key={b.id}
                                     className={`budget-card ${formData.budget === b.id ? 'selected' : ''}`}
                                     onClick={() => handleBudgetSelect(b.id)}
-                                    style={{ padding: '24px 20px', borderRadius: '16px', cursor: 'pointer' }}
                                 >
-                                    <div className="budget-icon" style={{ fontSize: '2rem', marginBottom: '10px' }}>{b.icon}</div>
-                                    <div className="budget-title" style={{ fontSize: '1.2rem', fontWeight: 800 }}>{b.label}</div>
-                                    <div className="budget-subtitle" style={{ fontSize: '0.85rem', color: '#7A8C7C', marginBottom: '10px' }}>{b.subtitle}</div>
-                                    <div className="budget-estimate-pill" style={{ fontSize: '0.9rem', fontWeight: 700, padding: '4px 12px' }}>
-                                        {b.totalEstimate}
+                                    <div className="budget-card-image-wrap">
+                                        <img src={b.image} alt={b.label} className="budget-card-image" />
+                                        <div className={`budget-card-tag ${formData.budget === b.id ? 'selected' : ''}`}>
+                                            {formData.budget === b.id ? '✓ Selected Plan' : 'Select Plan'}
+                                        </div>
                                     </div>
-                                    <p className="budget-desc" style={{ fontSize: '0.86rem', marginTop: '10px', color: '#7A8C7C' }}>{b.desc}</p>
+                                    <div className="budget-card-content">
+                                        <div className="budget-title">{b.label}</div>
+                                        <div className="budget-subtitle">{b.subtitle}</div>
+                                        <div className="budget-estimate-pill">
+                                            {b.totalEstimate}
+                                        </div>
+                                        <p className="budget-desc">{b.desc}</p>
+                                    </div>
                                 </div>
                             ))}
                         </div>
