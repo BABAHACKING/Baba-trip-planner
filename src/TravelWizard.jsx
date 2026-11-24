@@ -415,16 +415,15 @@ const TravelWizard = () => {
     };
 
     const canProceed = () => {
-        switch (step) {
-            case 1: return formData.people >= 1;
-            case 2: return Boolean(formData.groupType);
-            case 3: return formData.landscapes.length > 0;
-            case 4: return Boolean(formData.budget);
-            case 5: return Boolean(formData.transport);
-            case 6: return formData.days >= 1;
-            case 7: return formData.pickupLocation.trim().length > 0;
-            default: return true;
-        }
+        return (
+            formData.people >= 1 &&
+            Boolean(formData.groupType) &&
+            formData.landscapes.length > 0 &&
+            Boolean(formData.budget) &&
+            Boolean(formData.transport) &&
+            formData.days >= 1 &&
+            formData.pickupLocation.trim().length > 0
+        );
     };
 
     const getWeatherIcon = (condition) => {
@@ -533,22 +532,22 @@ const TravelWizard = () => {
                                 setShowResults(false);
                                 setVehicleProgress(0);
                                 setCurrentDay(0);
-                                setStep(1);
                             }}
                             style={{
-                                background: 'rgba(89, 126, 82, 0.12)',
-                                color: '#597E52',
+                                background: '#597E52',
+                                color: '#FFFFFF',
                                 border: 'none',
-                                padding: '8px 18px',
+                                padding: '10px 22px',
                                 borderRadius: '100px',
-                                fontWeight: 600,
+                                fontWeight: 700,
                                 cursor: 'pointer',
                                 display: 'flex',
                                 alignItems: 'center',
-                                gap: '6px'
+                                gap: '8px',
+                                boxShadow: '0 4px 15px rgba(89, 126, 82, 0.4)'
                             }}
                         >
-                            <FaRedo /> Plan Another Trip
+                            <FaRedo /> ✏️ Edit Route Preferences
                         </button>
                     </div>
                 </div>
@@ -1153,10 +1152,9 @@ const TravelWizard = () => {
                                 setShowResults(false);
                                 setVehicleProgress(0);
                                 setCurrentDay(0);
-                                setStep(1);
                             }}
                         >
-                            Plan Another Trip ✨
+                            ✏️ Edit Route Preferences / Plan Another Trip ✨
                         </button>
                     </div>
                 </div>
@@ -1170,345 +1168,381 @@ const TravelWizard = () => {
     const availableTransport = getAvailableTransportOptions();
     const dynamicBudgets = getDynamicBudgetOptions();
 
+    const selectedBudgetObj = dynamicBudgets.find(b => b.id === formData.budget) || dynamicBudgets[0];
+    const selectedTransportObj = availableTransport.find(t => t.id === formData.transport) || availableTransport[0];
+
     return (
-        <div className="wizard-container">
+        <div className="wizard-container" style={{ background: '#FDFCF8' }}>
             {/* Top Navigation Strip */}
             <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                padding: '12px 30px',
-                background: 'rgba(255, 255, 255, 0.7)',
-                backdropFilter: 'blur(8px)',
-                borderBottom: '1px solid rgba(89, 126, 82, 0.1)'
+                padding: '14px 32px',
+                background: 'rgba(255, 255, 255, 0.85)',
+                backdropFilter: 'blur(10px)',
+                borderBottom: '1px solid rgba(89, 126, 82, 0.15)',
+                position: 'sticky',
+                top: 0,
+                zIndex: 90
             }}>
-                <Link to="/home.html" style={{ textDecoration: 'none', color: '#597E52', fontWeight: 700, fontSize: '1.1rem' }}>
-                    🌿 India Tourist • UP Explorer
-                </Link>
-                <span style={{ fontSize: '0.85rem', color: '#7A8C7C', fontWeight: 500 }}>
-                    Mirzapur • Allahabad • Banaras • Sonbhadra
-                </span>
-            </div>
-
-            {/* Progress Bar */}
-            <div className="progress-bar-container">
-                <div className="progress-bar">
-                    <motion.div
-                        className="progress-fill"
-                        initial={{ width: '0%' }}
-                        animate={{ width: `${(step / totalSteps) * 100}%` }}
-                        transition={{ duration: 0.3 }}
-                    />
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <button
+                        onClick={() => {
+                            if (window.history.length > 1) {
+                                navigate(-1);
+                            } else {
+                                window.location.href = '/home.html';
+                            }
+                        }}
+                        style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '6px',
+                            background: '#F0F4EF',
+                            color: '#597E52',
+                            border: '1px solid rgba(89, 126, 82, 0.25)',
+                            padding: '8px 16px',
+                            borderRadius: '8px',
+                            fontWeight: 700,
+                            cursor: 'pointer',
+                            fontSize: '0.88rem',
+                            fontFamily: 'Outfit, sans-serif'
+                        }}
+                        title="Return 1 step back"
+                    >
+                        ← Back
+                    </button>
+                    <Link to="/home.html" style={{ textDecoration: 'none', color: '#597E52', fontWeight: 700, fontSize: '1.15rem' }}>
+                        🌿 India Tourist • UP Circuit Planner
+                    </Link>
                 </div>
-                <div className="progress-text">Step {step} of {totalSteps}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontSize: '0.85rem', color: '#7A8C7C', fontWeight: 600 }}>
+                        Varanasi • Mirzapur • Sonbhadra • Prayagraj
+                    </span>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            setFormData({
+                                people: 2,
+                                groupType: 'couple',
+                                landscapes: ['waterfalls', 'spiritual'],
+                                budget: 'budget',
+                                transport: 'cab',
+                                days: 4,
+                                pickupLocation: 'Varanasi'
+                            });
+                        }}
+                        style={{
+                            background: 'transparent',
+                            border: '1px solid rgba(122, 140, 124, 0.3)',
+                            color: '#7A8C7C',
+                            padding: '6px 12px',
+                            borderRadius: '6px',
+                            fontSize: '0.8rem',
+                            fontWeight: 600,
+                            cursor: 'pointer'
+                        }}
+                        title="Reset all fields to default"
+                    >
+                        ↺ Reset
+                    </button>
+                </div>
             </div>
 
-            {/* Question Content */}
-            <div className="wizard-content">
-                <AnimatePresence mode="wait">
-                    {/* STEP 1: PEOPLE */}
-                    {step === 1 && (
-                        <motion.div
-                            key="step1"
-                            variants={pageVariants}
-                            initial="initial"
-                            animate="in"
-                            exit="out"
-                            transition={pageTransition}
-                            className="step-container"
-                        >
-                            <h1 className="question-title">How many people are traveling?</h1>
-                            <div className="people-counter">
-                                <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="counter-btn"
-                                    onClick={() => handlePeopleChange(-1)}
-                                >
-                                    −
-                                </motion.button>
-                                <motion.div
-                                    className="counter-display"
-                                    key={formData.people}
-                                    initial={{ scale: 1.2 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ type: 'spring', stiffness: 300 }}
-                                >
-                                    {formData.people}
-                                </motion.div>
-                                <motion.button
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="counter-btn"
-                                    onClick={() => handlePeopleChange(1)}
-                                >
-                                    +
-                                </motion.button>
-                            </div>
-                            <p style={{ marginTop: '12px', fontSize: '0.9rem', color: '#7A8C7C', fontWeight: 500 }}>
-                                {formData.people === 1 ? '👤 Solo traveler selected' : formData.people === 2 ? '👥 Duo travel selected' : `👨‍👩‍👧‍👦 Group of ${formData.people} travelers`}
-                            </p>
-                        </motion.div>
-                    )}
+            {/* Main Single Page Planner */}
+            <div className="single-page-wizard">
+                {/* Hero Card */}
+                <div className="planner-hero-card">
+                    <span className="planner-badge">🗺️ All-In-One Route Planner</span>
+                    <h1 className="planner-title">Plan Your Perfect Route</h1>
+                    <p className="planner-subtitle">
+                        Configure your travel party, duration, interests, and budget on this single page. Generate a comprehensive multi-city circuit with live route maps, stays, and day-by-day itineraries in seconds.
+                    </p>
+                </div>
 
-                    {/* STEP 2: GROUP TYPE */}
-                    {step === 2 && (
-                        <motion.div
-                            key="step2"
-                            variants={pageVariants}
-                            initial="initial"
-                            animate="in"
-                            exit="out"
-                            transition={pageTransition}
-                            className="step-container"
-                        >
-                            <h1 className="question-title">What type of group are you?</h1>
-                            <p className="subtitle">
-                                {formData.people === 1 ? 'Showing options tailored for 1 person' : `Filtered for ${formData.people} travelers`}
-                            </p>
-                            <div className="card-grid">
-                                {availableGroupTypes.map((type, index) => (
-                                    <motion.div
-                                        key={type.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        whileHover={{ scale: 1.05, y: -5 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className={`group-card ${formData.groupType === type.id ? 'selected' : ''}`}
-                                        onClick={() => handleGroupTypeSelect(type.id)}
-                                    >
-                                        <div className="card-icon">{type.icon}</div>
-                                        <div className="card-label">{type.label}</div>
-                                        {type.hint && <div className="card-hint">{type.hint}</div>}
-                                    </motion.div>
-                                ))}
+                <div className="single-page-sections-grid">
+                    {/* SECTION 1: TRAVELERS & GROUP TYPE */}
+                    <div className="planner-section">
+                        <div className="section-header-row">
+                            <div className="section-header-title">
+                                <span className="section-num-pill">1</span>
+                                👥 Travelers & Group Composition
                             </div>
-                        </motion.div>
-                    )}
+                            <span className="section-header-hint">
+                                {formData.people === 1 ? '👤 Solo traveler' : formData.people === 2 ? '👥 2 travelers' : `👨‍👩‍👧‍👦 Group of ${formData.people} travelers`}
+                            </span>
+                        </div>
 
-                    {/* STEP 3: INTERESTS */}
-                    {step === 3 && (
-                        <motion.div
-                            key="step3"
-                            variants={pageVariants}
-                            initial="initial"
-                            animate="in"
-                            exit="out"
-                            transition={pageTransition}
-                            className="step-container"
-                        >
-                            <h1 className="question-title">What interests you most?</h1>
-                            <p className="subtitle">Select one or more key experiences</p>
-                            <div className="landscape-grid">
-                                {INTEREST_OPTIONS.map((item, index) => (
-                                    <motion.div
-                                        key={item.id}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ delay: index * 0.08 }}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className={`landscape-card ${formData.landscapes.includes(item.id) ? 'selected' : ''}`}
-                                        onClick={() => handleLandscapeToggle(item.id)}
-                                        style={{ '--landscape-color': item.color }}
-                                    >
-                                        <div className="landscape-icon">{item.icon}</div>
-                                        <div className="landscape-label">{item.label}</div>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {/* STEP 4: BUDGET STYLE */}
-                    {step === 4 && (
-                        <motion.div
-                            key="step4"
-                            variants={pageVariants}
-                            initial="initial"
-                            animate="in"
-                            exit="out"
-                            transition={pageTransition}
-                            className="step-container"
-                        >
-                            <h1 className="question-title">What is your trip budget style?</h1>
-                            <p className="subtitle">
-                                Dynamically calculated for {formData.people} traveler{formData.people > 1 ? 's' : ''} across {formData.days} days
-                            </p>
-                            <div className="budget-grid">
-                                {dynamicBudgets.map((b, index) => (
-                                    <motion.div
-                                        key={b.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        whileHover={{ scale: 1.04 }}
-                                        whileTap={{ scale: 0.96 }}
-                                        className={`budget-card ${formData.budget === b.id ? 'selected' : ''}`}
-                                        onClick={() => handleBudgetSelect(b.id)}
-                                    >
-                                        <div className="budget-icon">{b.icon}</div>
-                                        <div className="budget-title">{b.label}</div>
-                                        <div className="budget-subtitle">{b.subtitle}</div>
-                                        <div className="budget-estimate-pill">
-                                            {b.totalEstimate}
+                        <div className="two-col-layout">
+                            {/* People Counter */}
+                            <div className="col-block">
+                                <label className="col-block-label">Number of People Traveling:</label>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                                    <div className="single-page-counter">
+                                        <motion.button
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="counter-btn"
+                                            style={{ width: '48px', height: '48px', fontSize: '1.5rem' }}
+                                            onClick={() => handlePeopleChange(-1)}
+                                            type="button"
+                                        >
+                                            −
+                                        </motion.button>
+                                        <div
+                                            className="counter-display"
+                                            style={{ fontSize: '3rem', minWidth: '70px', textAlign: 'center' }}
+                                        >
+                                            {formData.people}
                                         </div>
-                                        <p className="budget-desc">{b.desc}</p>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {/* STEP 5: PREFERRED TRANSPORT */}
-                    {step === 5 && (
-                        <motion.div
-                            key="step5"
-                            variants={pageVariants}
-                            initial="initial"
-                            animate="in"
-                            exit="out"
-                            transition={pageTransition}
-                            className="step-container"
-                        >
-                            <h1 className="question-title">How do you prefer to travel?</h1>
-                            <p className="subtitle">
-                                {formData.people >= 5 ? `Recommended options for group of ${formData.people} travelers` : 'Transit matching across city connections and nature trails'}
-                            </p>
-                            <div className="transport-grid">
-                                {availableTransport.map((t, index) => (
-                                    <motion.div
-                                        key={t.id}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ delay: index * 0.1 }}
-                                        whileHover={{ scale: 1.04 }}
-                                        whileTap={{ scale: 0.96 }}
-                                        className={`transport-card ${formData.transport === t.id ? 'selected' : ''}`}
-                                        onClick={() => handleTransportSelect(t.id)}
-                                    >
-                                        <div className="transport-icon">{t.icon}</div>
-                                        <div className="transport-title">{t.label}</div>
-                                        <p className="transport-desc">{t.desc}</p>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-
-                    {/* STEP 6: DURATION */}
-                    {step === 6 && (
-                        <motion.div
-                            key="step6"
-                            variants={pageVariants}
-                            initial="initial"
-                            animate="in"
-                            exit="out"
-                            transition={pageTransition}
-                            className="step-container"
-                        >
-                            <h1 className="question-title">How many days is your trip?</h1>
-                            <p className="subtitle">{getDurationScopeText()}</p>
-                            <div className="slider-container">
-                                <motion.div
-                                    className="day-display"
-                                    key={formData.days}
-                                    initial={{ scale: 1.2 }}
-                                    animate={{ scale: 1 }}
-                                    transition={{ type: 'spring', stiffness: 300 }}
-                                >
-                                    <span className="day-number">{formData.days}</span>
-                                    <span className="day-label">days</span>
-                                </motion.div>
-                                <input
-                                    type="range"
-                                    min="1"
-                                    max="7"
-                                    value={formData.days}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, days: parseInt(e.target.value) }))}
-                                    className="day-slider"
-                                />
-                                <div className="slider-labels">
-                                    <span>1 Day Trip</span>
-                                    <span>7 Days Circuit</span>
+                                        <motion.button
+                                            whileHover={{ scale: 1.1 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            className="counter-btn"
+                                            style={{ width: '48px', height: '48px', fontSize: '1.5rem' }}
+                                            onClick={() => handlePeopleChange(1)}
+                                            type="button"
+                                        >
+                                            +
+                                        </motion.button>
+                                    </div>
+                                    <span style={{ fontSize: '0.9rem', color: '#7A8C7C', fontWeight: 500 }}>
+                                        {formData.people === 1 ? 'Solo explorer' : formData.people === 2 ? 'Couple or 2 friends' : `${formData.people} person party`}
+                                    </span>
                                 </div>
                             </div>
-                        </motion.div>
-                    )}
 
-                    {/* STEP 7: PICKUP / STARTING LOCATION */}
-                    {step === 7 && (
-                        <motion.div
-                            key="step7"
-                            variants={pageVariants}
-                            initial="initial"
-                            animate="in"
-                            exit="out"
-                            transition={pageTransition}
-                            className="step-container"
+                            {/* Group Type Selection */}
+                            <div className="col-block">
+                                <label className="col-block-label">Who is traveling with you?</label>
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '12px' }}>
+                                    {availableGroupTypes.map((type) => (
+                                        <div
+                                            key={type.id}
+                                            className={`group-card ${formData.groupType === type.id ? 'selected' : ''}`}
+                                            onClick={() => handleGroupTypeSelect(type.id)}
+                                            style={{ padding: '16px 12px', textAlign: 'center', borderRadius: '14px' }}
+                                        >
+                                            <div className="card-icon" style={{ fontSize: '1.8rem', marginBottom: '8px' }}>{type.icon}</div>
+                                            <div className="card-label" style={{ fontSize: '0.95rem', fontWeight: 700 }}>{type.label}</div>
+                                            {type.hint && <div className="card-hint" style={{ fontSize: '0.75rem', marginTop: '4px' }}>{type.hint}</div>}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SECTION 2: DURATION & STARTING LOCATION */}
+                    <div className="planner-section">
+                        <div className="section-header-row">
+                            <div className="section-header-title">
+                                <span className="section-num-pill">2</span>
+                                📅 Trip Duration & Starting Point
+                            </div>
+                            <span className="section-header-hint">
+                                {getDurationScopeText()}
+                            </span>
+                        </div>
+
+                        <div className="two-col-layout">
+                            {/* Duration Slider */}
+                            <div className="col-block">
+                                <label className="col-block-label">
+                                    Trip Length: <strong style={{ color: '#597E52', marginLeft: '6px' }}>{formData.days} Day{formData.days > 1 ? 's' : ''}</strong>
+                                </label>
+                                <div className="slider-container" style={{ margin: '8px 0', padding: '16px 20px', background: '#FFFFFF', borderRadius: '14px', border: '1px solid rgba(89, 126, 82, 0.15)' }}>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                                        <span style={{ fontSize: '1.1rem', fontWeight: 800, color: '#597E52' }}>
+                                            {formData.days} Days Itinerary
+                                        </span>
+                                        <span style={{ fontSize: '0.82rem', background: 'rgba(89, 126, 82, 0.1)', color: '#597E52', padding: '3px 10px', borderRadius: '50px', fontWeight: 600 }}>
+                                            {getDurationScopeText()}
+                                        </span>
+                                    </div>
+                                    <input
+                                        type="range"
+                                        min="1"
+                                        max="7"
+                                        value={formData.days}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, days: parseInt(e.target.value) }))}
+                                        className="day-slider"
+                                        style={{ width: '100%', accentColor: '#597E52' }}
+                                    />
+                                    <div className="slider-labels" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8rem', color: '#7A8C7C', marginTop: '6px' }}>
+                                        <span>1 Day (Flash)</span>
+                                        <span>4 Days (Circuit)</span>
+                                        <span>7 Days (Full Grand Tour)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Starting Point */}
+                            <div className="col-block">
+                                <label className="col-block-label">Starting / Pickup Location:</label>
+                                <div style={{ position: 'relative' }}>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter starting city (e.g. Varanasi, Prayagraj, Mirzapur)"
+                                        value={formData.pickupLocation}
+                                        onChange={(e) => setFormData(prev => ({ ...prev, pickupLocation: e.target.value }))}
+                                        className="location-input"
+                                        style={{ width: '100%', padding: '14px 18px', borderRadius: '12px', border: '1px solid rgba(89, 126, 82, 0.3)', fontSize: '1rem', background: '#FFFFFF' }}
+                                    />
+                                </div>
+                                <div className="pickup-pills-row" style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {quickPickupCities.map((city, idx) => (
+                                        <button
+                                            key={idx}
+                                            type="button"
+                                            className={`pickup-pill ${formData.pickupLocation === city ? 'active' : ''}`}
+                                            onClick={() => setFormData(prev => ({ ...prev, pickupLocation: city }))}
+                                            style={{ cursor: 'pointer', fontSize: '0.84rem' }}
+                                        >
+                                            <FaMapMarkerAlt style={{ marginRight: '4px' }} /> {city}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* SECTION 3: KEY INTERESTS & EXPERIENCES */}
+                    <div className="planner-section">
+                        <div className="section-header-row">
+                            <div className="section-header-title">
+                                <span className="section-num-pill">3</span>
+                                🌿 Key Interests & Experiences
+                            </div>
+                            <span className="section-header-hint">
+                                {formData.landscapes.length} experience{formData.landscapes.length !== 1 ? 's' : ''} selected
+                            </span>
+                        </div>
+
+                        <p style={{ color: '#7A8C7C', fontSize: '0.92rem', marginBottom: '18px' }}>
+                            Select the types of places and activities you want highlighted in your daily schedule:
+                        </p>
+
+                        <div className="landscape-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '14px', marginTop: 0 }}>
+                            {INTEREST_OPTIONS.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className={`landscape-card ${formData.landscapes.includes(item.id) ? 'selected' : ''}`}
+                                    onClick={() => handleLandscapeToggle(item.id)}
+                                    style={{
+                                        '--landscape-color': item.color,
+                                        padding: '18px 14px',
+                                        borderRadius: '14px',
+                                        cursor: 'pointer'
+                                    }}
+                                >
+                                    <div className="landscape-icon" style={{ fontSize: '2rem', marginBottom: '8px' }}>{item.icon}</div>
+                                    <div className="landscape-label" style={{ fontSize: '0.9rem', fontWeight: 700 }}>{item.label}</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* SECTION 4: BUDGET & TRAVEL STYLE */}
+                    <div className="planner-section">
+                        <div className="section-header-row">
+                            <div className="section-header-title">
+                                <span className="section-num-pill">4</span>
+                                💰 Trip Budget Style
+                            </div>
+                            <span className="section-header-hint">
+                                Calculated for {formData.people} traveler{formData.people > 1 ? 's' : ''} across {formData.days} day{formData.days > 1 ? 's' : ''}
+                            </span>
+                        </div>
+
+                        <div className="budget-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px', marginTop: 0 }}>
+                            {dynamicBudgets.map((b) => (
+                                <div
+                                    key={b.id}
+                                    className={`budget-card ${formData.budget === b.id ? 'selected' : ''}`}
+                                    onClick={() => handleBudgetSelect(b.id)}
+                                    style={{ padding: '24px 20px', borderRadius: '16px', cursor: 'pointer' }}
+                                >
+                                    <div className="budget-icon" style={{ fontSize: '2rem', marginBottom: '10px' }}>{b.icon}</div>
+                                    <div className="budget-title" style={{ fontSize: '1.2rem', fontWeight: 800 }}>{b.label}</div>
+                                    <div className="budget-subtitle" style={{ fontSize: '0.85rem', color: '#7A8C7C', marginBottom: '10px' }}>{b.subtitle}</div>
+                                    <div className="budget-estimate-pill" style={{ fontSize: '0.9rem', fontWeight: 700, padding: '4px 12px' }}>
+                                        {b.totalEstimate}
+                                    </div>
+                                    <p className="budget-desc" style={{ fontSize: '0.86rem', marginTop: '10px', color: '#7A8C7C' }}>{b.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* SECTION 5: PREFERRED TRANSPORT */}
+                    <div className="planner-section">
+                        <div className="section-header-row">
+                            <div className="section-header-title">
+                                <span className="section-num-pill">5</span>
+                                🚗 Preferred Transportation
+                            </div>
+                            <span className="section-header-hint">
+                                Intercity transit connecting your circuit
+                            </span>
+                        </div>
+
+                        <div className="transport-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '18px', marginTop: 0 }}>
+                            {availableTransport.map((t) => (
+                                <div
+                                    key={t.id}
+                                    className={`transport-card ${formData.transport === t.id ? 'selected' : ''}`}
+                                    onClick={() => handleTransportSelect(t.id)}
+                                    style={{ padding: '22px 18px', borderRadius: '16px', cursor: 'pointer' }}
+                                >
+                                    <div className="transport-icon" style={{ fontSize: '2.2rem', marginBottom: '10px' }}>{t.icon}</div>
+                                    <div className="transport-title" style={{ fontSize: '1.15rem', fontWeight: 800 }}>{t.label}</div>
+                                    <p className="transport-desc" style={{ fontSize: '0.86rem', marginTop: '8px', color: '#7A8C7C' }}>{t.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                {/* STICKY LIVE SUMMARY & GENERATE ACTION CTA BAR */}
+                <div className="planner-cta-bar">
+                    <div className="cta-summary-left">
+                        <div className="cta-summary-title">
+                            <span>✨ Your Planned Circuit:</span>
+                            <span style={{ color: '#E89A5D' }}>{formData.days} Days from {formData.pickupLocation}</span>
+                        </div>
+                        <div className="cta-summary-tags">
+                            <span className="cta-summary-pill">👥 {formData.people} {formData.people > 1 ? 'Travelers' : 'Traveler'}</span>
+                            <span className="cta-summary-pill">📅 {formData.days} Days</span>
+                            <span className="cta-summary-pill">📍 {formData.pickupLocation}</span>
+                            <span className="cta-summary-pill">{selectedBudgetObj.label}</span>
+                            <span className="cta-summary-pill">{selectedTransportObj.label}</span>
+                            <span className="cta-summary-pill">🌿 {formData.landscapes.length} Interests</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button
+                            type="button"
+                            className="generate-route-btn"
+                            onClick={handleSubmit}
+                            disabled={!canProceed() || isLoading}
                         >
-                            <h1 className="question-title">Where should we start your trip?</h1>
-                            <p className="subtitle">Select your starting city or enter custom location</p>
-                            <div className="input-container">
-                                <motion.input
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    transition={{ delay: 0.2 }}
-                                    type="text"
-                                    placeholder="Enter starting city (e.g. Varanasi, Prayagraj)"
-                                    value={formData.pickupLocation}
-                                    onChange={(e) => setFormData(prev => ({ ...prev, pickupLocation: e.target.value }))}
-                                    className="location-input"
-                                    autoFocus
-                                />
-                            </div>
-
-                            <div className="pickup-pills-row">
-                                {quickPickupCities.map((city, idx) => (
-                                    <button
-                                        key={idx}
-                                        type="button"
-                                        className={`pickup-pill ${formData.pickupLocation === city ? 'active' : ''}`}
-                                        onClick={() => setFormData(prev => ({ ...prev, pickupLocation: city }))}
-                                    >
-                                        <FaMapMarkerAlt style={{ marginRight: '4px' }} /> {city}
-                                    </button>
-                                ))}
-                            </div>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="wizard-navigation">
-                <motion.button
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="nav-btn back-btn"
-                    onClick={step > 1 ? handleBack : () => {
-                        if (window.history.length > 1) {
-                            navigate(-1);
-                        } else {
-                            window.location.href = '/home.html';
-                        }
-                    }}
-                    title="Return 1 step back"
-                >
-                    ← Back
-                </motion.button>
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`nav-btn next-btn ${!canProceed() ? 'disabled' : ''}`}
-                    onClick={handleNext}
-                    disabled={!canProceed()}
-                >
-                    {step === totalSteps ? 'Find Best Destination & Itinerary 🗺️' : 'Next'} →
-                </motion.button>
+                            {isLoading ? (
+                                <>
+                                    <FaSpinner className="spin-icon" /> Crafting Blueprint...
+                                </>
+                            ) : (
+                                <>
+                                    <span>🚀 Generate My Perfect Route & Itinerary</span>
+                                    <span>🗺️</span>
+                                </>
+                            )}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     );
