@@ -20,8 +20,6 @@ import {
     FaCalendarAlt,
     FaSun,
     FaMoon,
-    FaUtensils,
-    FaHotel,
     FaCarSide,
     FaSuitcaseRolling,
     FaClock
@@ -219,7 +217,7 @@ const TravelWizard = () => {
                 icon: '🪙',
                 image: '/varansi/Assi Ghat Varanasi/Assi Ghat Varanasi.jpg',
                 totalEstimate: `Est. Total: ~₹${budgetMin.toLocaleString('en-IN')} – ₹${budgetMax.toLocaleString('en-IN')} for ${p} traveler${p > 1 ? 's' : ''}`,
-                desc: 'Cozy homestays, famous street food trails, shared transit & pocket-saver spots.'
+                desc: 'Economical sightseeing, public/shared transit, and pocket-saver tourist entry passes.'
             },
             {
                 id: 'moderate',
@@ -228,7 +226,7 @@ const TravelWizard = () => {
                 icon: '🌟',
                 image: '/mirzapur/chunar-fort/chunar-fort-1.jpg',
                 totalEstimate: `Est. Total: ~₹${modMin.toLocaleString('en-IN')} – ₹${modMax.toLocaleString('en-IN')} for ${p} traveler${p > 1 ? 's' : ''}`,
-                desc: '3-Star hotels, private AC cab with chauffeur, guided tours & fine dining.'
+                desc: 'Private AC cab with chauffeur, guided attraction tours & all tourist entry permits.'
             },
             {
                 id: 'luxury',
@@ -237,7 +235,7 @@ const TravelWizard = () => {
                 icon: '👑',
                 image: '/varansi/Ramnagar Fort/Ramnagar Fort.jpg',
                 totalEstimate: `Est. Total: ~₹${luxMin.toLocaleString('en-IN')}+ for ${p} traveler${p > 1 ? 's' : ''}`,
-                desc: 'Heritage riverfront havelis, luxury private boats, VIP temple darshan & concierge.'
+                desc: 'VIP temple darshan, private luxury river cruises & dedicated historian guide.'
             }
         ];
     };
@@ -813,7 +811,7 @@ const TravelWizard = () => {
                                         Complete {formData.days}-Day Daily Travel Blueprint & Guide
                                     </h2>
                                     <p className="daily-guide-subtitle">
-                                        Every morning, afternoon & evening meticulously timed with authentic local culinary recommendations
+                                        Every morning, afternoon & evening meticulously timed with authentic Eastern UP tourist attractions, waterfalls & heritage sights
                                     </p>
                                 </div>
                                 <div className="daily-guide-actions">
@@ -873,10 +871,11 @@ const TravelWizard = () => {
                                                     </div>
                                                     <h4 className="slot-activity-title">{guideItem.morning.activity}</h4>
                                                     <p className="slot-desc">{guideItem.morning.description}</p>
-                                                    <div className="slot-food-box">
-                                                        <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                        <span><strong>Breakfast Pick:</strong> {guideItem.morning.foodTip}</span>
-                                                    </div>
+                                                    {guideItem.morning.sightHighlight && (
+                                                        <div className="slot-highlight-box">
+                                                            <span>📍 <strong>Top Sight:</strong> {guideItem.morning.sightHighlight}</span>
+                                                        </div>
+                                                    )}
                                                 </div>
 
                                                 <div className="time-slot-card afternoon">
@@ -886,10 +885,11 @@ const TravelWizard = () => {
                                                     </div>
                                                     <h4 className="slot-activity-title">{guideItem.afternoon.activity}</h4>
                                                     <p className="slot-desc">{guideItem.afternoon.description}</p>
-                                                    <div className="slot-food-box" style={{ borderLeftColor: '#E65100', background: '#FBE9E7', color: '#4E342E' }}>
-                                                        <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                        <span><strong>Lunch Pick:</strong> {guideItem.afternoon.foodTip}</span>
-                                                    </div>
+                                                    {guideItem.afternoon.sightHighlight && (
+                                                        <div className="slot-highlight-box">
+                                                            <span>📍 <strong>Top Sight:</strong> {guideItem.afternoon.sightHighlight}</span>
+                                                        </div>
+                                                    )}
                                                 </div>
 
                                                 <div className="time-slot-card evening">
@@ -899,20 +899,21 @@ const TravelWizard = () => {
                                                     </div>
                                                     <h4 className="slot-activity-title">{guideItem.evening.activity}</h4>
                                                     <p className="slot-desc">{guideItem.evening.description}</p>
-                                                    <div className="slot-food-box" style={{ borderLeftColor: '#5C6BC0', background: '#EDE7F6', color: '#311B92' }}>
-                                                        <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                        <span><strong>Dinner / Sweet:</strong> {guideItem.evening.foodTip}</span>
-                                                    </div>
+                                                    {guideItem.evening.sightHighlight && (
+                                                        <div className="slot-highlight-box">
+                                                            <span>📍 <strong>Top Sight:</strong> {guideItem.evening.sightHighlight}</span>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
 
                                             {/* Logistics Strip */}
                                             <div className="day-logistics-grid">
                                                 <div className="logistic-item">
-                                                    <span className="logistic-icon"><FaHotel style={{ color: '#2E7D32' }} /></span>
+                                                    <span className="logistic-icon"><FaCompass style={{ color: '#2E7D32' }} /></span>
                                                     <div>
-                                                        <div className="logistic-title">Overnight Stay</div>
-                                                        <div className="logistic-detail">{guideItem.stay.recommendation}</div>
+                                                        <div className="logistic-title">Sightseeing Circuit</div>
+                                                        <div className="logistic-detail">{guideItem.circuitHighlight || `${guideItem.city} Top Tourist Sights`}</div>
                                                     </div>
                                                 </div>
                                                 <div className="logistic-item">
@@ -962,10 +963,11 @@ const TravelWizard = () => {
                                                 </div>
                                                 <h4 className="slot-activity-title">{currentActiveGuide.morning.activity}</h4>
                                                 <p className="slot-desc">{currentActiveGuide.morning.description}</p>
-                                                <div className="slot-food-box">
-                                                    <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                    <span><strong>Breakfast Pick:</strong> {currentActiveGuide.morning.foodTip}</span>
-                                                </div>
+                                                {currentActiveGuide.morning.sightHighlight && (
+                                                    <div className="slot-highlight-box">
+                                                        <span>📍 <strong>Top Sight:</strong> {currentActiveGuide.morning.sightHighlight}</span>
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <div className="time-slot-card afternoon">
@@ -975,10 +977,11 @@ const TravelWizard = () => {
                                                 </div>
                                                 <h4 className="slot-activity-title">{currentActiveGuide.afternoon.activity}</h4>
                                                 <p className="slot-desc">{currentActiveGuide.afternoon.description}</p>
-                                                <div className="slot-food-box" style={{ borderLeftColor: '#E65100', background: '#FBE9E7', color: '#4E342E' }}>
-                                                    <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                    <span><strong>Lunch Pick:</strong> {currentActiveGuide.afternoon.foodTip}</span>
-                                                </div>
+                                                {currentActiveGuide.afternoon.sightHighlight && (
+                                                    <div className="slot-highlight-box">
+                                                        <span>📍 <strong>Top Sight:</strong> {currentActiveGuide.afternoon.sightHighlight}</span>
+                                                    </div>
+                                                )}
                                             </div>
 
                                             <div className="time-slot-card evening">
@@ -988,20 +991,21 @@ const TravelWizard = () => {
                                                 </div>
                                                 <h4 className="slot-activity-title">{currentActiveGuide.evening.activity}</h4>
                                                 <p className="slot-desc">{currentActiveGuide.evening.description}</p>
-                                                <div className="slot-food-box" style={{ borderLeftColor: '#5C6BC0', background: '#EDE7F6', color: '#311B92' }}>
-                                                    <FaUtensils style={{ flexShrink: 0, marginTop: '2px' }} />
-                                                    <span><strong>Dinner / Sweet:</strong> {currentActiveGuide.evening.foodTip}</span>
-                                                </div>
+                                                {currentActiveGuide.evening.sightHighlight && (
+                                                    <div className="slot-highlight-box">
+                                                        <span>📍 <strong>Top Sight:</strong> {currentActiveGuide.evening.sightHighlight}</span>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
 
                                         {/* Logistics Strip */}
                                         <div className="day-logistics-grid">
                                             <div className="logistic-item">
-                                                <span className="logistic-icon"><FaHotel style={{ color: '#2E7D32' }} /></span>
+                                                <span className="logistic-icon"><FaCompass style={{ color: '#2E7D32' }} /></span>
                                                 <div>
-                                                    <div className="logistic-title">Recommended Stay</div>
-                                                    <div className="logistic-detail">{currentActiveGuide.stay.recommendation}</div>
+                                                    <div className="logistic-title">Sightseeing Focus</div>
+                                                    <div className="logistic-detail">{currentActiveGuide.circuitHighlight || `${currentActiveGuide.city} Top Tourist Sights`}</div>
                                                 </div>
                                             </div>
                                             <div className="logistic-item">

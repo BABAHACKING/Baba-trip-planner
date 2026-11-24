@@ -656,7 +656,7 @@ export const INTEREST_OPTIONS = [
     { id: 'heritage', label: 'Heritage & Ancient Forts', icon: '🏛️', color: '#5D4037' },
     { id: 'forests_fossils', label: 'Forests, Fossils & Cave Art', icon: '🌲', color: '#33691E' },
     { id: 'adventure', label: 'Adventure & Nature Treks', icon: '🧗', color: '#BF360C' },
-    { id: 'ghats_culture', label: 'Ghats, Boating & Street Food', icon: '🍲', color: '#C6A969' }
+    { id: 'ghats_culture', label: 'Ghats, Boating & Cultural Heritage', icon: '🚣', color: '#C6A969' }
 ];
 
 export const BUDGET_OPTIONS = [
@@ -665,24 +665,24 @@ export const BUDGET_OPTIONS = [
         label: 'Budget-Friendly',
         subtitle: '₹1,000 – ₹2,200 / day',
         icon: '🪙',
-        image: 'https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=600&q=80',
-        desc: 'Homestays, shared rides, authentic street foods & pocket-saving travel.'
+        image: '/varansi/Assi Ghat Varanasi/Assi Ghat Varanasi.jpg',
+        desc: 'Economical sightseeing, shared transit & pocket-saver tourist entry passes.'
     },
     {
         id: 'moderate',
         label: 'Standard & Comfortable',
         subtitle: '₹2,500 – ₹4,800 / day',
         icon: '🌟',
-        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
-        desc: '3-Star hotels, private AC cab, guided tours & comfortable dining.'
+        image: '/mirzapur/chunar-fort/chunar-fort-1.jpg',
+        desc: 'Private AC cab with chauffeur, guided attraction tours & all tourist permits.'
     },
     {
         id: 'luxury',
         label: 'Premium & Luxury',
         subtitle: '₹5,500+ / day',
         icon: '👑',
-        image: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80',
-        desc: 'Heritage properties, luxury boat rides, private chauffeur & VIP access.'
+        image: '/varansi/Ramnagar Fort/Ramnagar Fort.jpg',
+        desc: 'VIP temple darshan, private luxury river cruises & dedicated historian guide.'
     }
 ];
 
@@ -1795,13 +1795,6 @@ export const generateTripPlan = (formData, customRanked = null) => {
         const isTransitDay = prevCityId !== activeCityId;
         const transitInfo = getTransitDetails(prevCityId, activeCityId);
 
-        // Pick Hotel & Meals according to Budget Tier
-        const hotelInfo = cityData.hotels[budgetTier] || cityData.hotels.moderate;
-        const breakfastSpot = cityData.culinarySpots.find(s => s.mealType.includes('Breakfast')) || cityData.culinarySpots[0];
-        const lunchSpot = cityData.culinarySpots.find(s => s.mealType.includes('Lunch')) || cityData.culinarySpots[1];
-        const dinnerSpot = cityData.culinarySpots.find(s => s.mealType.includes('Dinner')) || cityData.culinarySpots[3];
-        const snackSpot = cityData.culinarySpots.find(s => s.mealType.includes('Snack') || s.mealType.includes('Dessert')) || cityData.culinarySpots[2];
-
         // Sights Prioritization based on User Interests
         const allSights = cityData.sights.map(s => {
             const isMatch = userInterests.includes(s.category);
@@ -1812,328 +1805,158 @@ export const generateTripPlan = (formData, customRanked = null) => {
             };
         }).sort((a, b) => (b.isUserPreferenceMatch ? 1 : 0) - (a.isUserPreferenceMatch ? 1 : 0));
 
-        // Assign 2 to 3 main sights for the day
-        const sightIndexOffset = ((dayNum - 1) * 2) % allSights.length;
-        const morningSight = allSights[sightIndexOffset] || allSights[0];
-        const afternoonSight = allSights[(sightIndexOffset + 1) % allSights.length] || allSights[1] || allSights[0];
-        const eveningSight = allSights[(sightIndexOffset + 2) % allSights.length] || allSights[0];
+        const activityMultiplier = budgetTier === 'luxury' ? 1.6 : budgetTier === 'budget' ? 0.9 : 1.1;
 
-        // Multipliers for budget tier on meals & activities
-        const mealMultiplier = budgetTier === 'luxury' ? 2.2 : budgetTier === 'budget' ? 0.8 : 1.2;
-        const activityMultiplier = budgetTier === 'luxury' ? 1.8 : budgetTier === 'budget' ? 0.9 : 1.1;
-
-        // Structured Activities Timeline
+        // Structured Activities Timeline - 100% Focused on Tourist Places
         const activities = [];
 
-        // 1. Morning Breakfast & Start
-        activities.push({
-            id: `d${dayNum}_act_1_breakfast`,
-            day: dayNum,
-            destination: cityData.name,
-            destinationId: activeCityId,
-            place: breakfastSpot.name,
-            category: 'meal',
-            categoryLabel: 'Culinary & Breakfast',
-            icon: '☕',
-            startTime: '08:00 AM',
-            endTime: '09:00 AM',
-            timeSlot: '08:00 AM – 09:00 AM',
-            activity: `Morning Breakfast at ${breakfastSpot.name}`,
-            description: `Start your day with ${breakfastSpot.specialty}. Freshly prepared local flavors to energize your morning excursion.`,
-            estimatedDuration: '1 hr',
-            distance: '1–2 km',
-            travelTime: transportType === 'cab' ? '5 mins via Cab' : '10 mins walk/transit',
-            meal: {
-                type: 'Breakfast',
-                place: breakfastSpot.name,
-                recommendation: breakfastSpot.specialty,
-                estimatedCostPerPerson: Math.round(breakfastSpot.avgCost * mealMultiplier)
-            },
-            stay: null,
-            estimatedCost: Math.round(breakfastSpot.avgCost * mealMultiplier * people),
-            image: breakfastSpot.image || cityData.image,
-            images: breakfastSpot.images || (cityData.images || [cityData.image]),
-            googleImagesUrl: getGoogleImagesUrl(breakfastSpot.name, cityData.name),
-            googleMapsUrl: getGoogleMapsPlaceUrl(breakfastSpot.name, cityData.name),
-            coordinates: breakfastSpot.coordinates || cityData.coordinates,
-            insiderTip: 'Pair with piping hot masala chai served in an authentic earthen kulhad.',
-            tags: ['Breakfast', 'Local Flavors', 'Morning Start'],
-            isUserPreferenceMatch: userInterests.includes('culinary') || userInterests.includes('ghats_culture'),
-            matchBadge: userInterests.includes('ghats_culture') ? '🌟 Authentic Food Trail' : null
-        });
-
-        // 2. If Transit Day: Intercity Transit Block
         if (isTransitDay) {
+            // Intercity Scenic Transit between destinations
             activities.push({
                 id: `d${dayNum}_act_transit`,
                 day: dayNum,
                 destination: cityData.name,
                 destinationId: activeCityId,
-                place: `${DESTINATION_MASTER[prevCityId]?.name.split(' ')[0]} to ${cityData.name.split(' ')[0]} Highway`,
+                place: `${DESTINATION_MASTER[prevCityId]?.name.split(' ')[0]} to ${cityData.name.split(' ')[0]} Scenic Highway`,
                 category: 'transit',
-                categoryLabel: 'Scenic Transit & Check-In',
+                categoryLabel: 'Scenic Intercity Transit',
                 icon: transportType === 'train' ? '🚆' : transportType === 'bus' ? '🚌' : '🚗',
-                startTime: '09:15 AM',
-                endTime: '11:00 AM',
-                timeSlot: '09:15 AM – 11:00 AM',
+                startTime: '08:30 AM',
+                endTime: '10:30 AM',
+                timeSlot: '08:30 AM – 10:30 AM',
                 activity: transitInfo.route,
-                description: `Smooth scenic connection from ${DESTINATION_MASTER[prevCityId]?.name} to ${cityData.name}. Relax as the landscape transitions along Eastern UP highways.`,
+                description: `Smooth scenic transit from ${DESTINATION_MASTER[prevCityId]?.name} to ${cityData.name}. Enjoy rolling Vindhyan terrain, rural vistas, and river crossings along Eastern UP highways.`,
                 estimatedDuration: transitInfo.duration,
                 distance: transitInfo.distance,
                 travelTime: transitInfo.duration,
                 meal: null,
-                stay: {
-                    type: 'Hotel Check-in & Fresh up',
-                    name: hotelInfo.name,
-                    category: hotelInfo.type,
-                    estimatedCost: hotelInfo.pricePerNight,
-                    coordinates: hotelInfo.coordinates || cityData.coordinates
-                },
+                stay: null,
                 estimatedCost: Math.round(transitInfo.costPerPerson * people),
                 image: cityData.image,
                 images: cityData.images || [cityData.image],
-                googleImagesUrl: getGoogleImagesUrl(`${cityData.name} Highway and Hotels`, cityData.name),
-                googleMapsUrl: getGoogleMapsPlaceUrl(hotelInfo.name, cityData.name),
-                coordinates: hotelInfo.coordinates || cityData.coordinates,
-                insiderTip: 'Keep ID cards ready for swift hotel check-in upon arrival.',
-                tags: ['Transit', 'Scenic Drive', 'Intercity'],
+                googleImagesUrl: getGoogleImagesUrl(`${cityData.name} Scenic Highway`, cityData.name),
+                googleMapsUrl: getGoogleMapsPlaceUrl(cityData.name, 'Uttar Pradesh'),
+                coordinates: cityData.coordinates,
+                insiderTip: 'Keep your camera ready for scenic rocky escarpments and river viewpoints along the road.',
+                tags: ['Scenic Transit', 'Intercity Drive', 'Eastern UP Route'],
                 isUserPreferenceMatch: false,
                 matchBadge: null
             });
+
+            // 3 Tourist Attractions for Transit Day
+            const sightOffset = ((dayNum - 1) * 3) % allSights.length;
+            const slotSights = [
+                { sight: allSights[sightOffset % allSights.length], start: '11:00 AM', end: '01:30 PM', label: 'Midday Tourist Excursion' },
+                { sight: allSights[(sightOffset + 1) % allSights.length], start: '02:15 PM', end: '04:45 PM', label: 'Afternoon Landmark Exploration' },
+                { sight: allSights[(sightOffset + 2) % allSights.length], start: '05:15 PM', end: '07:30 PM', label: 'Evening Sunset & Cultural Vista' }
+            ];
+
+            slotSights.forEach((slot, sIdx) => {
+                const s = slot.sight || allSights[0];
+                activities.push({
+                    id: `d${dayNum}_act_${sIdx + 1}_${s.id}`,
+                    day: dayNum,
+                    destination: cityData.name,
+                    destinationId: activeCityId,
+                    place: s.place,
+                    category: s.category,
+                    categoryLabel: s.categoryLabel,
+                    icon: s.icon,
+                    startTime: slot.start,
+                    endTime: slot.end,
+                    timeSlot: `${slot.start} – ${slot.end}`,
+                    activity: s.activity,
+                    description: s.description,
+                    estimatedDuration: s.duration,
+                    distance: s.distFromBase,
+                    travelTime: transportType === 'cab' ? s.travelTimeCab : transportType === 'train' ? (s.travelTimeTrain !== '—' ? s.travelTimeTrain : s.travelTimeCab) : s.travelTimeBus,
+                    meal: null,
+                    stay: null,
+                    estimatedCost: Math.round(s.cost * activityMultiplier * people),
+                    image: s.image || cityData.image,
+                    images: s.images || (cityData.images || [cityData.image]),
+                    googleImagesUrl: s.googleImagesUrl || getGoogleImagesUrl(s.place, cityData.name),
+                    googleMapsUrl: getGoogleMapsPlaceUrl(s.place, cityData.name),
+                    coordinates: s.coordinates || cityData.coordinates,
+                    insiderTip: s.insiderTip,
+                    tags: s.tags,
+                    isUserPreferenceMatch: s.isUserPreferenceMatch,
+                    matchBadge: s.matchBadge
+                });
+            });
+        } else {
+            // Full Day: 4 Distinct Tourist Attractions
+            const sightOffset = ((dayNum - 1) * 3) % allSights.length;
+            const slotSights = [
+                { sight: allSights[sightOffset % allSights.length], start: '08:00 AM', end: '10:30 AM', label: 'Early Morning Sight / Darshan / Falls' },
+                { sight: allSights[(sightOffset + 1) % allSights.length], start: '11:00 AM', end: '01:30 PM', label: 'Midday Heritage & Geological Excursion' },
+                { sight: allSights[(sightOffset + 2) % allSights.length], start: '02:15 PM', end: '04:45 PM', label: 'Afternoon Scenic Wonder & Nature Hike' },
+                { sight: allSights[(sightOffset + 3) % allSights.length] || allSights[0], start: '05:15 PM', end: '07:30 PM', label: 'Evening Twilight / Sunset & Sacred Ritual' }
+            ];
+
+            slotSights.forEach((slot, sIdx) => {
+                const s = slot.sight || allSights[0];
+                activities.push({
+                    id: `d${dayNum}_act_${sIdx + 1}_${s.id}`,
+                    day: dayNum,
+                    destination: cityData.name,
+                    destinationId: activeCityId,
+                    place: s.place,
+                    category: s.category,
+                    categoryLabel: s.categoryLabel,
+                    icon: s.icon,
+                    startTime: slot.start,
+                    endTime: slot.end,
+                    timeSlot: `${slot.start} – ${slot.end}`,
+                    activity: s.activity,
+                    description: s.description,
+                    estimatedDuration: s.duration,
+                    distance: s.distFromBase,
+                    travelTime: transportType === 'cab' ? s.travelTimeCab : transportType === 'train' ? (s.travelTimeTrain !== '—' ? s.travelTimeTrain : s.travelTimeCab) : s.travelTimeBus,
+                    meal: null,
+                    stay: null,
+                    estimatedCost: Math.round(s.cost * activityMultiplier * people),
+                    image: s.image || cityData.image,
+                    images: s.images || (cityData.images || [cityData.image]),
+                    googleImagesUrl: s.googleImagesUrl || getGoogleImagesUrl(s.place, cityData.name),
+                    googleMapsUrl: getGoogleMapsPlaceUrl(s.place, cityData.name),
+                    coordinates: s.coordinates || cityData.coordinates,
+                    insiderTip: s.insiderTip,
+                    tags: s.tags,
+                    isUserPreferenceMatch: s.isUserPreferenceMatch,
+                    matchBadge: s.matchBadge
+                });
+            });
         }
-
-        // 3. Morning Highlight Attraction
-        const morningStartTime = isTransitDay ? '11:15 AM' : '09:15 AM';
-        const morningEndTime = isTransitDay ? '01:00 PM' : '12:30 PM';
-        activities.push({
-            id: `d${dayNum}_act_2_morning_sight`,
-            day: dayNum,
-            destination: cityData.name,
-            destinationId: activeCityId,
-            place: morningSight.place,
-            category: morningSight.category,
-            categoryLabel: morningSight.categoryLabel,
-            icon: morningSight.icon,
-            startTime: morningStartTime,
-            endTime: morningEndTime,
-            timeSlot: `${morningStartTime} – ${morningEndTime}`,
-            activity: morningSight.activity,
-            description: morningSight.description,
-            estimatedDuration: morningSight.duration,
-            distance: morningSight.distFromBase,
-            travelTime: transportType === 'cab' ? morningSight.travelTimeCab : transportType === 'train' ? (morningSight.travelTimeTrain !== '—' ? morningSight.travelTimeTrain : morningSight.travelTimeCab) : morningSight.travelTimeBus,
-            meal: null,
-            stay: null,
-            estimatedCost: Math.round(morningSight.cost * activityMultiplier * people),
-            image: morningSight.image || cityData.image,
-            images: morningSight.images || (cityData.images || [cityData.image]),
-            googleImagesUrl: morningSight.googleImagesUrl || getGoogleImagesUrl(morningSight.place, cityData.name),
-            googleMapsUrl: getGoogleMapsPlaceUrl(morningSight.place, cityData.name),
-            coordinates: morningSight.coordinates || cityData.coordinates,
-            insiderTip: morningSight.insiderTip,
-            tags: morningSight.tags,
-            isUserPreferenceMatch: morningSight.isUserPreferenceMatch,
-            matchBadge: morningSight.matchBadge
-        });
-
-        // 4. Midday Authentic Lunch
-        activities.push({
-            id: `d${dayNum}_act_3_lunch`,
-            day: dayNum,
-            destination: cityData.name,
-            destinationId: activeCityId,
-            place: lunchSpot.name,
-            category: 'meal',
-            categoryLabel: 'Culinary & Lunch',
-            icon: '🍲',
-            startTime: '01:00 PM',
-            endTime: '02:15 PM',
-            timeSlot: '01:00 PM – 02:15 PM',
-            activity: `Traditional Lunch at ${lunchSpot.name}`,
-            description: `Savor authentic regional cuisine featuring ${lunchSpot.specialty}. Specially selected for clean, rich flavors suited to your ${budgetTier} travel style.`,
-            estimatedDuration: '1.25 hrs',
-            distance: '2–3 km',
-            travelTime: '10 mins via local transit',
-            meal: {
-                type: 'Lunch',
-                place: lunchSpot.name,
-                recommendation: lunchSpot.specialty,
-                estimatedCostPerPerson: Math.round(lunchSpot.avgCost * mealMultiplier),
-                coordinates: lunchSpot.coordinates || cityData.coordinates
-            },
-            stay: null,
-            estimatedCost: Math.round(lunchSpot.avgCost * mealMultiplier * people),
-            image: lunchSpot.image || cityData.image,
-            images: lunchSpot.images || (cityData.images || [cityData.image]),
-            googleImagesUrl: getGoogleImagesUrl(lunchSpot.name, cityData.name),
-            googleMapsUrl: getGoogleMapsPlaceUrl(lunchSpot.name, cityData.name),
-            coordinates: lunchSpot.coordinates || cityData.coordinates,
-            insiderTip: 'Try the house special Thali with seasonal curries and crisp hot breads.',
-            tags: ['Lunch', 'Traditional Thali', 'Culinary Delight'],
-            isUserPreferenceMatch: userInterests.includes('culinary'),
-            matchBadge: null
-        });
-
-        // 5. Afternoon Highlight Attraction
-        activities.push({
-            id: `d${dayNum}_act_4_afternoon_sight`,
-            day: dayNum,
-            destination: cityData.name,
-            destinationId: activeCityId,
-            place: afternoonSight.place,
-            category: afternoonSight.category,
-            categoryLabel: afternoonSight.categoryLabel,
-            icon: afternoonSight.icon,
-            startTime: '02:30 PM',
-            endTime: '05:00 PM',
-            timeSlot: '02:30 PM – 05:00 PM',
-            activity: afternoonSight.activity,
-            description: afternoonSight.description,
-            estimatedDuration: afternoonSight.duration,
-            distance: afternoonSight.distFromBase,
-            travelTime: transportType === 'cab' ? afternoonSight.travelTimeCab : transportType === 'train' ? (afternoonSight.travelTimeTrain !== '—' ? afternoonSight.travelTimeTrain : afternoonSight.travelTimeCab) : afternoonSight.travelTimeBus,
-            meal: null,
-            stay: null,
-            estimatedCost: Math.round(afternoonSight.cost * activityMultiplier * people),
-            image: afternoonSight.image || cityData.image,
-            images: afternoonSight.images || (cityData.images || [cityData.image]),
-            googleImagesUrl: afternoonSight.googleImagesUrl || getGoogleImagesUrl(afternoonSight.place, cityData.name),
-            googleMapsUrl: getGoogleMapsPlaceUrl(afternoonSight.place, cityData.name),
-            coordinates: afternoonSight.coordinates || cityData.coordinates,
-            insiderTip: afternoonSight.insiderTip,
-            tags: afternoonSight.tags,
-            isUserPreferenceMatch: afternoonSight.isUserPreferenceMatch,
-            matchBadge: afternoonSight.matchBadge
-        });
-
-        // 6. Evening Spectacle / Aarti / Sunset / Culture
-        activities.push({
-            id: `d${dayNum}_act_5_evening_sight`,
-            day: dayNum,
-            destination: cityData.name,
-            destinationId: activeCityId,
-            place: eveningSight.place,
-            category: eveningSight.category,
-            categoryLabel: eveningSight.categoryLabel,
-            icon: eveningSight.icon,
-            startTime: '05:30 PM',
-            endTime: '07:30 PM',
-            timeSlot: '05:30 PM – 07:30 PM',
-            activity: eveningSight.activity,
-            description: eveningSight.description,
-            estimatedDuration: eveningSight.duration,
-            distance: eveningSight.distFromBase,
-            travelTime: '15 mins via local transit',
-            meal: {
-                type: 'Evening Snack',
-                place: snackSpot.name,
-                recommendation: snackSpot.specialty,
-                estimatedCostPerPerson: Math.round(snackSpot.avgCost * mealMultiplier),
-                coordinates: snackSpot.coordinates || cityData.coordinates
-            },
-            stay: null,
-            estimatedCost: Math.round(eveningSight.cost * activityMultiplier * people) + Math.round(snackSpot.avgCost * mealMultiplier * people),
-            image: eveningSight.image || cityData.image,
-            images: eveningSight.images || (cityData.images || [cityData.image]),
-            googleImagesUrl: eveningSight.googleImagesUrl || getGoogleImagesUrl(eveningSight.place, cityData.name),
-            googleMapsUrl: getGoogleMapsPlaceUrl(eveningSight.place, cityData.name),
-            coordinates: eveningSight.coordinates || cityData.coordinates,
-            insiderTip: eveningSight.insiderTip,
-            tags: eveningSight.tags,
-            isUserPreferenceMatch: eveningSight.isUserPreferenceMatch,
-            matchBadge: eveningSight.matchBadge
-        });
-
-        // 7. Dinner & Hotel Overnight Stay
-        activities.push({
-            id: `d${dayNum}_act_6_dinner_hotel`,
-            day: dayNum,
-            destination: cityData.name,
-            destinationId: activeCityId,
-            place: dinnerSpot.name,
-            category: 'stay',
-            categoryLabel: 'Dinner & Overnight Stay',
-            icon: '🏨',
-            startTime: '08:00 PM',
-            endTime: '10:00 PM',
-            timeSlot: '08:00 PM – 10:00 PM',
-            activity: `Dinner at ${dinnerSpot.name} & Rest at ${hotelInfo.name}`,
-            description: `Conclude Day ${dayNum} with a relaxing dinner tasting ${dinnerSpot.specialty}, followed by restful stay at ${hotelInfo.name} (${hotelInfo.type}).`,
-            estimatedDuration: '2 hrs',
-            distance: '2–4 km',
-            travelTime: '10 mins',
-            meal: {
-                type: 'Dinner',
-                place: dinnerSpot.name,
-                recommendation: dinnerSpot.specialty,
-                estimatedCostPerPerson: Math.round(dinnerSpot.avgCost * mealMultiplier),
-                coordinates: dinnerSpot.coordinates || cityData.coordinates
-            },
-            stay: {
-                type: 'Overnight Stay',
-                name: hotelInfo.name,
-                category: hotelInfo.type,
-                address: hotelInfo.address,
-                rating: hotelInfo.rating,
-                amenities: hotelInfo.amenities,
-                estimatedCost: hotelInfo.pricePerNight,
-                coordinates: hotelInfo.coordinates || cityData.coordinates
-            },
-            estimatedCost: Math.round(dinnerSpot.avgCost * mealMultiplier * people) + hotelInfo.pricePerNight,
-            image: dinnerSpot.image || cityData.image,
-            images: dinnerSpot.images || (cityData.images || [cityData.image]),
-            googleImagesUrl: getGoogleImagesUrl(hotelInfo.name, cityData.name),
-            googleMapsUrl: getGoogleMapsPlaceUrl(hotelInfo.name, cityData.name),
-            coordinates: hotelInfo.coordinates || cityData.coordinates,
-            insiderTip: 'Inquire with hotel reception for next morning’s recommended departure slot.',
-            tags: ['Dinner', 'Overnight Stay', 'Rest'],
-            isUserPreferenceMatch: false,
-            matchBadge: null
-        });
 
         // Calculate Day Totals
         const dayEstimatedCost = activities.reduce((sum, act) => sum + (act.estimatedCost || 0), 0);
         cumulativeCost += dayEstimatedCost;
+
+        const dayMainSight = activities.find(a => a.category !== 'transit') || activities[0];
 
         itineraryDays.push({
             day: dayNum,
             destination: cityData.name,
             destinationId: activeCityId,
             title: dayNum === 1 ? `Arrival & Immersion into ${cityData.name.split(' ')[0]}` : dayNum === totalDays ? `Grand Finale & Farewell from ${cityData.name.split(' ')[0]}` : `Deep Discovery of ${cityData.name.split(' ')[0]} Circuit`,
-            theme: morningSight.categoryLabel,
-            hotel: hotelInfo,
+            theme: dayMainSight.categoryLabel,
             activities,
             schedule: activities,
             daySummary: {
-                totalDistance: isTransitDay ? `${transitInfo.distanceKm + 25} km (including intercity)` : '28–35 km intra-city',
-                totalTravelTime: isTransitDay ? `${transitInfo.duration} transit + 1 hr local` : '1.5 hrs local transit',
+                totalDistance: isTransitDay ? `${transitInfo.distanceKm + 20} km (including intercity transit)` : '20–30 km intra-city sightseeing loop',
+                totalTravelTime: isTransitDay ? `${transitInfo.duration} transit + 1.5 hrs sightseeing` : '1.5–2 hrs sightseeing transit',
                 estimatedDayCost: dayEstimatedCost,
-                mealsIncluded: ['Breakfast', 'Lunch', 'Evening Snack', 'Dinner'],
-                primaryStay: hotelInfo.name
+                touristSpotsCovered: activities.filter(a => a.category !== 'transit').map(a => a.place)
             }
         });
     }
 
-    // 5. Curated Food & Stay Catalog (Reusable by Food & Stay Module)
+    // 5. Curated Food & Stay Catalog (Empty since focus is 100% on tourist attractions)
     const foodAndStay = {
         budgetTier,
-        stays: uniqueCircuit.map(c => {
-            const data = DESTINATION_MASTER[c.id] || DESTINATION_MASTER.banaras;
-            return {
-                city: data.name,
-                cityId: c.id,
-                recommendedHotel: data.hotels[budgetTier] || data.hotels.moderate,
-                allOptions: data.hotels
-            };
-        }),
-        foodSpots: uniqueCircuit.flatMap(c => {
-            const data = DESTINATION_MASTER[c.id] || DESTINATION_MASTER.banaras;
-            return data.culinarySpots.map(spot => ({
-                ...spot,
-                city: data.name,
-                cityId: c.id
-            }));
-        })
+        stays: [],
+        foodSpots: []
     };
 
     // 6. Map & Route Data (Reusable by Map Module)
@@ -2179,9 +2002,9 @@ export const generateTripPlan = (formData, customRanked = null) => {
     };
 
     const budgetLabels = {
-        budget: 'Budget-Friendly (Homestays & Street Flavors)',
-        moderate: 'Standard & Comfortable (3-Star & Guided Tours)',
-        luxury: 'Premium & Luxury (Heritage Haveli & Chauffeur)'
+        budget: 'Budget-Friendly (Pocket-Saver Sightseeing & Shared Transit)',
+        moderate: 'Standard & Comfortable (Private AC Cab & Guided Tours)',
+        luxury: 'Premium & Luxury (VIP Corridors, Luxury Boats & Concierge)'
     };
 
     const transportLabels = {
@@ -2338,40 +2161,43 @@ export const generateComprehensiveItinerary = (primaryCity, allRanked, totalDays
         people: 2
     });
 
-    return plan.itinerary.map(d => ({
-        day: d.day,
-        city: d.destination,
-        cityId: d.destinationId,
-        title: d.title,
-        theme: d.theme,
-        morning: {
-            time: d.activities[0]?.timeSlot || '08:00 AM – 12:00 PM',
-            activity: d.activities[1]?.activity || d.activities[0]?.activity,
-            description: d.activities[1]?.description || d.activities[0]?.description,
-            foodTip: d.activities[0]?.meal?.recommendation || 'Local specialty'
-        },
-        afternoon: {
-            time: d.activities[3]?.timeSlot || '01:00 PM – 05:00 PM',
-            activity: d.activities[3]?.activity || d.activities[2]?.activity,
-            description: d.activities[3]?.description || d.activities[2]?.description,
-            foodTip: d.activities[2]?.meal?.recommendation || 'Lunch'
-        },
-        evening: {
-            time: d.activities[4]?.timeSlot || '05:30 PM – 08:30 PM',
-            activity: d.activities[4]?.activity || d.activities[3]?.activity,
-            description: d.activities[4]?.description || d.activities[3]?.description,
-            foodTip: d.activities[5]?.meal?.recommendation || 'Dinner'
-        },
-        stay: {
-            type: d.hotel.type,
-            recommendation: `${d.hotel.name} (${d.hotel.type})`
-        },
-        transit: {
-            route: d.daySummary.totalDistance,
-            distance: d.daySummary.totalTravelTime
-        },
-        packingTip: 'Slip-on footwear for temples & comfortable shoes for walking.'
-    }));
+    return plan.itinerary.map(d => {
+        const morningAct = d.activities[0];
+        const afternoonAct = d.activities[1] || d.activities[0];
+        const eveningAct = d.activities[2] || d.activities[1] || d.activities[0];
+
+        return {
+            day: d.day,
+            city: d.destination,
+            cityId: d.destinationId,
+            title: d.title,
+            theme: d.theme,
+            morning: {
+                time: morningAct?.timeSlot || '08:30 AM – 11:30 AM',
+                activity: morningAct?.activity || 'Morning Sightseeing Exploration',
+                description: morningAct?.description || 'Explore scenic heritage and sacred landmarks.',
+                sightHighlight: morningAct?.place || 'Historical Heritage Landmark'
+            },
+            afternoon: {
+                time: afternoonAct?.timeSlot || '12:00 PM – 04:00 PM',
+                activity: afternoonAct?.activity || 'Afternoon Attraction Visit',
+                description: afternoonAct?.description || 'Visit iconic regional waterfalls, forts and temples.',
+                sightHighlight: afternoonAct?.place || 'Natural Wonder & Scenic Vista'
+            },
+            evening: {
+                time: eveningAct?.timeSlot || '05:00 PM – 07:30 PM',
+                activity: eveningAct?.activity || 'Sunset & Cultural Experience',
+                description: eveningAct?.description || 'Enjoy evening sunset viewpoints and spiritual river ceremonies.',
+                sightHighlight: eveningAct?.place || 'Riverfront Sunset & Culture'
+            },
+            transit: {
+                route: d.daySummary.totalDistance,
+                distance: d.daySummary.totalTravelTime
+            },
+            circuitHighlight: `${d.destination.split(' ')[0]} Top Tourist Attractions`,
+            packingTip: 'Slip-on footwear for temples & comfortable shoes for walking.'
+        };
+    });
 };
 
 

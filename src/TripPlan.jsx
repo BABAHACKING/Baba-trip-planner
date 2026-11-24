@@ -4,9 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
     FaCalendarAlt,
     FaMapMarkedAlt,
-    FaUtensils,
     FaRobot,
-    FaHotel,
     FaCar,
     FaClock,
     FaMapPin,
@@ -35,7 +33,7 @@ import './TripPlan.css';
 const TripPlan = ({ tripPlanData = null }) => {
     const navigate = useNavigate();
     const [tripPlan, setTripPlan] = useState(tripPlanData);
-    const [activeTab, setActiveTab] = useState('itinerary'); // 'itinerary' | 'map' | 'food_stay' | 'ai_guide'
+    const [activeTab, setActiveTab] = useState('itinerary'); // 'itinerary' | 'map' | 'ai_guide'
     const [activeDayIndex, setActiveDayIndex] = useState(0);
     const [showAllDays, setShowAllDays] = useState(false);
     const [expandedActivities, setExpandedActivities] = useState({});
@@ -44,7 +42,7 @@ const TripPlan = ({ tripPlanData = null }) => {
     const [aiResponses, setAiResponses] = useState([
         {
             role: 'assistant',
-            text: 'Namaste! 🙏 I am your AI Travel Guide for your Eastern Uttar Pradesh journey. Ask me anything about timings, temple guidelines, food recommendations, or local secrets!'
+            text: 'Namaste! 🙏 I am your AI Travel Guide for your Eastern Uttar Pradesh journey. Ask me anything about tourist places, temple timings, waterfall trails, boat rides, or photography spots!'
         }
     ]);
     const [isAiLoading, setIsAiLoading] = useState(false);
@@ -194,7 +192,7 @@ const TripPlan = ({ tripPlanData = null }) => {
         );
     }
 
-    const { summary, itinerary, foodAndStay, mapRoute, aiGuideContext } = tripPlan;
+    const { summary, itinerary, mapRoute, aiGuideContext } = tripPlan;
     const currentDay = itinerary[activeDayIndex] || itinerary[0];
 
     return (
@@ -300,7 +298,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                             <span className="cost-amount">{summary.estimatedTotalCost.formatted}</span>
                         </div>
                         <span className="cost-breakdown-hint">
-                            Includes Stay ({summary.budget}), Dining, Sightseeing, & Regional Transit
+                            Includes Sightseeing Entry, Guided Sights, Boating & Regional Transit Across Eastern UP Circuits
                         </span>
                     </div>
                 </motion.section>
@@ -323,15 +321,6 @@ const TripPlan = ({ tripPlanData = null }) => {
                     >
                         <FaMapMarkedAlt />
                         <span>Map & Route</span>
-                    </button>
-
-                    <button
-                        type="button"
-                        className={`subnav-tab ${activeTab === 'food_stay' ? 'active' : ''}`}
-                        onClick={() => setActiveTab('food_stay')}
-                    >
-                        <FaUtensils />
-                        <span>Food & Stay</span>
                     </button>
 
                     <button
@@ -414,10 +403,10 @@ const TripPlan = ({ tripPlanData = null }) => {
                                     {/* Day Logistics Summary Bar */}
                                     <div className="day-quick-stats-row">
                                         <div className="quick-stat-item">
-                                            <FaHotel className="stat-icon-hotel" />
+                                            <FaCompass className="stat-icon-hotel" />
                                             <div>
-                                                <span className="stat-label">Stay</span>
-                                                <span className="stat-val">{dayObj.hotel.name}</span>
+                                                <span className="stat-label">Attractions</span>
+                                                <span className="stat-val">{dayObj.activities.length} Tourist Places</span>
                                             </div>
                                         </div>
                                         <div className="quick-stat-item">
@@ -594,32 +583,6 @@ const TripPlan = ({ tripPlanData = null }) => {
                                                                         );
                                                                     })()}
 
-                                                                    {/* Meal Indicator Box */}
-                                                                    {act.meal && (
-                                                                        <div className="indicator-box meal-box">
-                                                                            <div className="indicator-header">
-                                                                                <FaUtensils />
-                                                                                <span><strong>{act.meal.type} Specialty:</strong> {act.meal.recommendation}</span>
-                                                                            </div>
-                                                                            <span className="indicator-sub">
-                                                                                At {act.meal.place} (~₹{act.meal.estimatedCostPerPerson}/person)
-                                                                            </span>
-                                                                        </div>
-                                                                    )}
-
-                                                                    {/* Stay Indicator Box */}
-                                                                    {act.stay && (
-                                                                        <div className="indicator-box stay-box">
-                                                                            <div className="indicator-header">
-                                                                                <FaHotel />
-                                                                                <span><strong>{act.stay.type}:</strong> {act.stay.name}</span>
-                                                                            </div>
-                                                                            <span className="indicator-sub">
-                                                                                {act.stay.category} {act.stay.rating ? `• ⭐ ${act.stay.rating}` : ''} {act.stay.address ? `• ${act.stay.address}` : ''}
-                                                                            </span>
-                                                                        </div>
-                                                                    )}
-
                                                                     {/* Insider Tip Box */}
                                                                     {act.insiderTip && (
                                                                         <div className="act-insider-tip">
@@ -689,74 +652,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                 )}
 
                 {/* ============================================================ */}
-                {/* 5. TAB 3: FOOD & STAY */}
-                {/* ============================================================ */}
-                {activeTab === 'food_stay' && (
-                    <motion.div
-                        key="tab-food-stay"
-                        initial={{ opacity: 0, y: 15 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="food-stay-tab-content"
-                    >
-                        <div className="tab-header-box">
-                            <h2><FaHotel /> Accommodations & <FaUtensils /> Culinary Specialties</h2>
-                            <p>Handpicked for your <strong>{summary.budgetLabel}</strong> travel tier across your circuit</p>
-                        </div>
-
-                        {/* Stays Section */}
-                        <section className="food-stay-section">
-                            <h3 className="section-title"><FaHotel /> Recommended Stays by Destination</h3>
-                            <div className="stays-grid">
-                                {foodAndStay.stays.map((st) => (
-                                    <div key={st.cityId} className="stay-recommendation-card">
-                                        <div className="stay-card-top">
-                                            <span className="stay-city-badge">{st.city}</span>
-                                            <span className="stay-rating-badge">⭐ {st.recommendedHotel.rating}</span>
-                                        </div>
-                                        <h4 className="stay-hotel-name">{st.recommendedHotel.name}</h4>
-                                        <p className="stay-type-line">{st.recommendedHotel.type}</p>
-                                        <p className="stay-address-line"><FaMapPin /> {st.recommendedHotel.address}</p>
-
-                                        <div className="stay-amenities-row">
-                                            {st.recommendedHotel.amenities.map((am, i) => (
-                                                <span key={i} className="amenity-pill">✓ {am}</span>
-                                            ))}
-                                        </div>
-
-                                        <div className="stay-card-bottom">
-                                            <span className="stay-price">₹{st.recommendedHotel.pricePerNight.toLocaleString('en-IN')} <small>/ night</small></span>
-                                            <span className="stay-tier-pill">{foodAndStay.budgetTier} Pick</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-
-                        {/* Culinary Spots Section */}
-                        <section className="food-stay-section">
-                            <h3 className="section-title"><FaUtensils /> Iconic Culinary Trails & Local Specialties</h3>
-                            <div className="culinary-grid">
-                                {foodAndStay.foodSpots.map((spot, idx) => (
-                                    <div key={idx} className="culinary-card">
-                                        <div className="culinary-card-top">
-                                            <span className="culinary-city-pill">{spot.city.split(' ')[0]}</span>
-                                            <span className="culinary-meal-type">{spot.mealType}</span>
-                                        </div>
-                                        <h4 className="culinary-spot-name">{spot.name}</h4>
-                                        <p className="culinary-specialty"><strong>Must Try:</strong> {spot.specialty}</p>
-                                        <div className="culinary-cost-line">
-                                            <span>Est. ~₹{spot.avgCost} per person</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-                    </motion.div>
-                )}
-
-                {/* ============================================================ */}
-                {/* 6. TAB 4: AI TRAVEL GUIDE */}
+                {/* 4. TAB 3: AI TRAVEL GUIDE */}
                 {/* ============================================================ */}
                 {activeTab === 'ai_guide' && (
                     <motion.div
