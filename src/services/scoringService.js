@@ -1,12 +1,30 @@
 // scoringService.js - Multi-Factor Recommendation & Scoring Engine for Eastern UP
 
+// Helper for Google Images & Maps URL generation
+export const getGoogleImagesUrl = (placeName, cityName = 'Uttar Pradesh') => {
+    const query = `${placeName} ${cityName} tourist attraction real photos`;
+    return `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(query)}`;
+};
+
+export const getGoogleMapsPlaceUrl = (placeName, cityName = 'Uttar Pradesh') => {
+    const query = `${placeName}, ${cityName}, Uttar Pradesh`;
+    return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+};
+
 // Target 4 Cities of Uttar Pradesh
 export const UP_CITIES = [
     {
         id: 'banaras',
         name: 'Banaras (Varanasi)',
         tagline: 'Eternal Ghats, Sacred Temples & Classical Heritage',
-        image: 'god img/vn1.jpg',
+        image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+        images: [
+            'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1627894483216-2138af692e32?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80'
+        ],
+        googleImagesUrl: getGoogleImagesUrl('Varanasi Ghats and Temples', 'Banaras'),
         description: 'One of the oldest living cities in the world, famed for Kashi Vishwanath, Dashashwamedh Ganga Aarti, Sarnath, and vibrant Banarasi cuisine.',
         affinities: {
             spiritual: 98,
@@ -46,6 +64,14 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Witness high priests chanting Vedic hymns with multi-tiered brass oil lamps, synchronized chimes, and floating diyas reflecting on the sacred Ganges.',
                 insiderTip: 'Book a wooden rowboat 30 minutes in advance for an unobstructed view from the river.',
+                image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Dashashwamedh Ghat Ganga Aarti', 'Varanasi'),
                 tags: ['Ganga Aarti', 'Spiritual', 'Sacred Chants']
             },
             {
@@ -58,6 +84,14 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Visit the revered Jyotirlinga shrine of Lord Shiva through the grand marble corridor connecting directly to the holy river.',
                 insiderTip: 'Early morning Mangala Aarti passes offer peaceful access before crowds arrive.',
+                image: 'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Kashi Vishwanath Temple Corridor', 'Varanasi'),
                 tags: ['Jyotirlinga', 'Temple', 'Sacred Corridor']
             },
             {
@@ -70,6 +104,14 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Glide past 84 historic ghats as morning rays illuminate heritage palaces, listening to morning chants and temple bells.',
                 insiderTip: 'Watch Subah-e-Banaras classical music & yoga at Assi Ghat before boarding.',
+                image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1627894483216-2138af692e32?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Assi Ghat Sunrise Boat Cruise', 'Varanasi'),
                 tags: ['Sunrise Boat', 'Ghats', 'Photography']
             },
             {
@@ -82,6 +124,14 @@ export const UP_CITIES = [
                 duration: '2.5 Hours',
                 description: 'Explore Dhamek Stupa where Lord Buddha delivered his first sermon, and view the original 4-lion Ashoka Capital in the archaeological museum.',
                 insiderTip: 'The museum is closed on Fridays; hire a certified ASI guide for historical storytelling.',
+                image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1600100397608-f010f443a9f0?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Sarnath Dhamek Stupa Ashoka Pillar', 'Varanasi'),
                 tags: ['UNESCO Heritage', 'Buddhism', 'Ashoka Pillar']
             },
             {
@@ -94,6 +144,14 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Taste authentic Banarasi Malaiyo (winter foam sweet), piping hot Kachori-Jalebi at Ram Bhandar, Blue Lassi, and traditional Banarasi Paan.',
                 insiderTip: 'Visit Thatheri Bazaar to watch traditional master weavers make Banarasi Zari brocades.',
+                image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1601055283742-8b27e81b5553?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Banarasi Silk Weaving Street Food Chowk', 'Varanasi'),
                 tags: ['Banarasi Paan', 'Kachori', 'Blue Lassi', 'Silk Weaving']
             },
             {
@@ -106,6 +164,14 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: '18th-century sandstone fortress on eastern bank of Ganga, housing ancestral royal armor, antique clocks, and palanquins of the Kashi Naresh.',
                 insiderTip: 'Try the famous chilled Lassi right outside the fort gate after your tour.',
+                image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Ramnagar Fort Royal Palace', 'Varanasi'),
                 tags: ['Fortress', 'Royal Museum', 'Mughal Architecture']
             }
         ]
@@ -114,7 +180,14 @@ export const UP_CITIES = [
         id: 'allahabad',
         name: 'Allahabad (Prayagraj)',
         tagline: 'Sacred Triveni Sangam, Grand Forts & Cultural Legacy',
-        image: 'god img/ayodhya.jpg',
+        image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+        images: [
+            'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80'
+        ],
+        googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Allahabad Fort', 'Prayagraj'),
         description: 'The holiest confluence of Ganga, Yamuna and invisible Saraswati, steeped in Mughal and colonial history, literary culture, and monumental parks.',
         affinities: {
             spiritual: 95,
@@ -154,6 +227,14 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Take a boat to the exact meeting point where the greenish waters of Yamuna merge with the pale waters of Ganga and mystical Saraswati.',
                 insiderTip: 'Migratory Siberian seagulls flock here between October and March—carry bird grain for stunning photos.',
+                image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Ghats Boat Ride', 'Prayagraj'),
                 tags: ['Sangam', 'Holy Dip', 'Boat Cruise', 'Seagulls']
             },
             {
@@ -166,6 +247,14 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Grand 1583 AD fortress built by Emperor Akbar overlooking Sangam, sheltering the immortal banyan tree (Akshayavat) and Patalpuri underground shrine.',
                 insiderTip: 'Entry to Akshayavat is managed by the army; keep a government ID handy.',
+                image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Allahabad Akbar Fort Akshayavat', 'Prayagraj'),
                 tags: ['Akbar Fort', 'Akshayavat', 'Ancient Banyan']
             },
             {
@@ -178,6 +267,14 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Ancestral mansion of the Nehru-Gandhi family, showcasing historic rooms preserved as they were during India’s Freedom Movement and the Jawahar Planetarium.',
                 insiderTip: 'Buy tickets for the 30-minute sky show at the planetarium on the same premises.',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Anand Bhawan Planetarium', 'Prayagraj'),
                 tags: ['Freedom Movement', 'Colonial Mansion', 'Planetarium']
             },
             {
@@ -190,6 +287,14 @@ export const UP_CITIES = [
                 duration: '1 Hour',
                 description: 'Unique underground shrine housing a massive 20-foot subterranean reclining idol of Lord Hanuman, submerged by sacred Ganga waters during floods.',
                 insiderTip: 'Tuesdays and Saturdays have special vermilion (Sindoor) pujas.',
+                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Letey Hanuman Ji Bade Mandir', 'Prayagraj'),
                 tags: ['Reclining Hanuman', 'Rare Temple', 'Spiritual Energy']
             },
             {
@@ -202,6 +307,14 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Walled quadrilateral Mughal garden with elaborate sandstone mausoleums of Prince Khusrau, showcasing exquisite Persian calligraphy and stone jaalis.',
                 insiderTip: 'The surrounding guava orchards are world-famous for the sweet Allahabad Surkha pink guavas.',
+                image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Khusro Bagh Mughal Tombs', 'Prayagraj'),
                 tags: ['Mughal Tombs', 'Persian Art', 'Orchards']
             },
             {
@@ -214,6 +327,14 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Savor famous Hari Ram & Sons spicy samosas, Dehati ke Rasgulle, Netram rich kachori-thali, and creamy Rabri Kulfi in Loknath chowk.',
                 insiderTip: 'Loknath lane is best explored on foot or battery e-rickshaw.',
+                image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+                images: [
+                    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1601055283742-8b27e81b5553?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+                    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Netram Kachori Loknath Food', 'Prayagraj'),
                 tags: ['Dehati Rasgulla', 'Netram Kachori', 'Street Food']
             }
         ]
@@ -222,7 +343,16 @@ export const UP_CITIES = [
         id: 'mirzapur',
         name: 'Mirzapur',
         tagline: 'Cascading Waterfalls, Vindhyavasini Shaktipeeth & Hills',
-        image: 'waterfall.png',
+        image: '/mirzapur/wyndham-falls/wyndham-falls-1.jpg',
+        images: [
+            '/mirzapur/wyndham-falls/wyndham-falls-1.jpg',
+            '/mirzapur/vindhyavasini/vindhyavasini-1.jpg',
+            '/mirzapur/chunar-fort/chunar-fort-2.jpg',
+            '/mirzapur/tanda-falls/tanda-falls-1.jpg',
+            '/mirzapur/ashtabhuja/ashtabhuja-1.jpg',
+            '/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg'
+        ],
+        googleImagesUrl: getGoogleImagesUrl('Wyndham Falls Chunar Fort Vindhyachal', 'Mirzapur'),
         description: 'Nestled on the banks of Ganga and Vindhya hills, famous for magnificent waterfalls, Maa Vindhyavasini shrine, and the historic Chunar Fort.',
         affinities: {
             waterfalls: 96,
@@ -264,18 +394,34 @@ export const UP_CITIES = [
                 duration: '2.5 Hours',
                 description: 'Picturesque natural tiered waterfall nestled in rocky Vindhya crags, with natural stepping pools, forest trails, and scenic picnic viewpoints.',
                 insiderTip: 'Wear sports shoes with good grip on wet rocks; carry drinking water.',
+                image: '/mirzapur/wyndham-falls/wyndham-falls-1.jpg',
+                images: [
+                    '/mirzapur/wyndham-falls/wyndham-falls-1.jpg',
+                    '/mirzapur/wyndham-falls/wyndham-falls-2.jpg',
+                    '/mirzapur/wyndham-falls/wyndham-falls-3.jpg',
+                    '/mirzapur/wyndham-falls/wyndham-falls-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Wyndham Falls Mirzapur Waterfalls', 'Mirzapur'),
                 tags: ['Waterfall Hike', 'Scenic Gorge', 'Nature Photography']
             },
             {
                 id: 'm_sirsi',
-                title: 'Sirsi Dam & Waterfall Reservoir Viewpoint',
+                title: 'Lakhaniya Dari & Sirsi Waterfalls Gorge Trail',
                 category: 'waterfalls',
                 categoryLabel: 'Waterfalls & Scenic Nature',
                 icon: '🌊',
                 bestTime: 'Afternoon (1:00 PM – 3:30 PM)',
                 duration: '2 Hours',
-                description: 'Vast reservoir surrounded by green hills where overflowing waters create magnificent foaming cascades and a peaceful lake landscape.',
-                insiderTip: 'Local fishermen offer tranquil short boat rides near the dam shore.',
+                description: 'Magnificent valley gorge waterfalls surrounded by forested green hills where cascading mountain streams create foaming natural pools and scenic trails.',
+                insiderTip: 'Local forest guides are available near Ahraura to assist along the boulders.',
+                image: '/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg',
+                images: [
+                    '/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg',
+                    '/mirzapur/lakhaniya-dari/lakhaniya-dari-2.jpg',
+                    '/mirzapur/lakhaniya-dari/lakhaniya-dari-3.jpg',
+                    '/mirzapur/lakhaniya-dari/lakhaniya-dari-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Lakhaniya Dari Falls Mirzapur', 'Mirzapur'),
                 tags: ['Reservoir', 'Waterfall Cascade', 'Green Hills']
             },
             {
@@ -288,6 +434,14 @@ export const UP_CITIES = [
                 duration: '3 Hours',
                 description: 'Sacred 51 Shaktipeeth pilgrimage completing the holy triangle: Maa Vindhyavasini (Goddess of Wealth), Maa Kali Khoh (Cave temple), and Ashtabhuja Devi (Hill shrine).',
                 insiderTip: 'The newly built Vindhya Corridor offers smooth darshan and ropeway access to Ashtabhuja hill.',
+                image: '/mirzapur/vindhyavasini/vindhyavasini-1.jpg',
+                images: [
+                    '/mirzapur/vindhyavasini/vindhyavasini-1.jpg',
+                    '/mirzapur/vindhyavasini/vindhyavasini-2.jpg',
+                    '/mirzapur/ashtabhuja/ashtabhuja-1.jpg',
+                    '/mirzapur/kali-khoh/kali-khoh-1.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Maa Vindhyavasini Temple Ashtabhuja', 'Vindhyachal Mirzapur'),
                 tags: ['Shaktipeeth', 'Cave Shrine', 'Ropeway View']
             },
             {
@@ -300,6 +454,14 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Imposing 56 BC hilltop stronghold fought over by Sher Shah Suri, Humayun, and Warren Hastings, featuring the Sonwa Mandap, sun-dial, and 180° river views.',
                 insiderTip: 'Sunset view from the fort ramparts over the bending Ganga river is unforgettable.',
+                image: '/mirzapur/chunar-fort/chunar-fort-2.jpg',
+                images: [
+                    '/mirzapur/chunar-fort/chunar-fort-2.jpg',
+                    '/mirzapur/chunar-fort/chunar-fort-1.jpg',
+                    '/mirzapur/chunar-fort/chunar-fort-3.jpg',
+                    '/mirzapur/chunar-fort/chunar-fort-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Chunar Fort Ganga View', 'Mirzapur'),
                 tags: ['Ancient Fort', 'Sher Shah Suri', 'Ganga Panorama']
             },
             {
@@ -312,19 +474,35 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Tranquil waterfall with rocky natural steps surrounded by scrub forests, ideal for quiet bird watching and peaceful forest walks.',
                 insiderTip: 'Post-monsoon to early spring (Aug–Feb) has the highest water flow and lush green surroundings.',
+                image: '/mirzapur/tanda-falls/tanda-falls-1.jpg',
+                images: [
+                    '/mirzapur/tanda-falls/tanda-falls-1.jpg',
+                    '/mirzapur/tanda-falls/tanda-falls-2.jpg',
+                    '/mirzapur/tanda-falls/tanda-falls-3.jpg',
+                    '/mirzapur/tanda-falls/tanda-falls-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Tanda Falls Mirzapur', 'Mirzapur'),
                 tags: ['Forest Trail', 'Bird Watching', 'Natural Stepping Waterfall']
             },
             {
                 id: 'm_crafts',
-                title: 'Mirzapur Handcrafted Carpet & Brass Guild Tour',
+                title: 'Pakka Ghat, Ghanta Ghar & Mirzapur Crafts Tour',
                 category: 'ghats_culture',
-                categoryLabel: 'Culture & Crafts',
+                categoryLabel: 'Culture & Heritage',
                 icon: '🧶',
                 bestTime: 'Late Afternoon',
-                duration: '1.5 Hours',
-                description: 'Visit traditional hand-knotted Persian-style wool carpet looms and witness bell-metal brass utensil casting by hereditary artisan families.',
-                insiderTip: 'You can purchase authentic GI-tagged Mirzapur woolen dhurries directly from weaver cooperatives.',
-                tags: ['Handloom Carpets', 'Brass Artisans', 'GI Tag Heritage']
+                duration: '2 Hours',
+                description: 'Stroll along the historic sandstone Pakka Ghat on the Ganga, view the 1891 Victorian Ghanta Ghar, and visit traditional hand-knotted Persian wool carpet and brass artisan looms.',
+                insiderTip: 'Pakka Ghat evening aarti and sweet pedas near the riverfront are a must-try.',
+                image: '/mirzapur/pakka-ghat/pakka-ghat-2.jpg',
+                images: [
+                    '/mirzapur/pakka-ghat/pakka-ghat-2.jpg',
+                    '/mirzapur/pakka-ghat/pakka-ghat-1.jpg',
+                    '/mirzapur/ghanta-ghar/ghanta-ghar-1.jpg',
+                    '/mirzapur/lal-bhairav/lal-bhairav-2.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Mirzapur Pakka Ghat Ghanta Ghar Brass', 'Mirzapur'),
+                tags: ['Pakka Ghat', 'Ghanta Ghar', 'Handloom Carpets', 'Brass Artisans']
             }
         ]
     },
@@ -332,7 +510,16 @@ export const UP_CITIES = [
         id: 'sonbhadra',
         name: 'Sonbhadra',
         tagline: 'Fossil Parks, Prehistoric Cave Art, Forests & Giant Dams',
-        image: 'assets/varanasi/fort.jpg',
+        image: '/sonebhadra/fossils-park/fossils-park-1.jpg',
+        images: [
+            '/sonebhadra/fossils-park/fossils-park-1.jpg',
+            '/sonebhadra/vijaygarh-fort/vijaygarh-fort-1.jpg',
+            '/sonebhadra/mukkha-fall/mukkha-fall-1.jpg',
+            '/sonebhadra/rihand-dam/rihand-dam-1.jpg',
+            '/sonebhadra/agori-fort/agori-fort-1.jpg',
+            '/sonebhadra/dhandharoul-dam/dhandharoul-dam-1.jpg'
+        ],
+        googleImagesUrl: getGoogleImagesUrl('Salkhan Fossil Park Rihand Dam Mukha Falls', 'Sonbhadra'),
         description: 'India’s Energy Capital bordered by four states, boasting 1.4-billion-year-old fossils, lush tribal forests, Mukha falls, and Rihand Dam reservoir.',
         affinities: {
             forests_fossils: 96,
@@ -374,6 +561,14 @@ export const UP_CITIES = [
                 duration: '2.5 Hours',
                 description: 'Walk among giant circular fossilized stromatolites (cyanobacteria colonies) dating back 1.4 billion years—older than the Grand Canyon and Yellowstone fossils.',
                 insiderTip: 'Carry a camera with macro lens; the concentric ring patterns on the rock tree-trunks are mesmerizing.',
+                image: '/sonebhadra/fossils-park/fossils-park-1.jpg',
+                images: [
+                    '/sonebhadra/fossils-park/fossils-park-1.jpg',
+                    '/sonebhadra/fossils-park/fossils-park-2.jpg',
+                    '/sonebhadra/fossils-park/fossils-park-3.jpg',
+                    '/sonebhadra/fossils-park/fossils-park-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Salkhan Fossil Park Stromatolites', 'Sonbhadra'),
                 tags: ['1.4 Billion Yrs Old', 'Prehistoric Fossils', 'Geological Wonder']
             },
             {
@@ -386,6 +581,13 @@ export const UP_CITIES = [
                 duration: '2.5 Hours',
                 description: 'Discover hidden rock shelters adorned with Mesolithic red-ochre prehistoric paintings depicting hunting scenes, rhinos, sun symbols, and ancient tribal dancers.',
                 insiderTip: 'Hire a local forest guide from Robertsganj to navigate the rocky hill paths.',
+                image: '/sonebhadra/sun-eco-point/sun-eco-point-1.jpg',
+                images: [
+                    '/sonebhadra/sun-eco-point/sun-eco-point-1.jpg',
+                    '/sonebhadra/sun-eco-point/sun-eco-point-2.jpg',
+                    '/sonebhadra/sun-eco-point/sun-eco-point-3.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Panchmukhi Prehistoric Rock Art Caves', 'Sonbhadra'),
                 tags: ['Rock Art', 'Cave Shelters', 'Stone Age Paintings']
             },
             {
@@ -398,6 +600,14 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'A dramatic waterfall where the Belan river drops 100+ feet over sheer red sandstone escarpments into a secluded jungle canyon.',
                 insiderTip: 'Great spot for wilderness photography; avoid swimming during heavy water currents.',
+                image: '/sonebhadra/mukkha-fall/mukkha-fall-1.jpg',
+                images: [
+                    '/sonebhadra/mukkha-fall/mukkha-fall-1.jpg',
+                    '/sonebhadra/mukkha-fall/mukkha-fall-2.jpg',
+                    '/sonebhadra/mukkha-fall/mukkha-fall-3.jpg',
+                    '/sonebhadra/mukkha-fall/mukkha-fall-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Mukha Falls Belan River Canyon', 'Sonbhadra'),
                 tags: ['Canyon Waterfall', 'Jungle Valley', 'Wilderness']
             },
             {
@@ -410,6 +620,14 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'One of the largest artificial lakes in Asia, surrounded by forested hills and generating clean hydroelectric power.',
                 insiderTip: 'The sunset over the endless reservoir horizon looks like an inland sea.',
+                image: '/sonebhadra/rihand-dam/rihand-dam-1.jpg',
+                images: [
+                    '/sonebhadra/rihand-dam/rihand-dam-1.jpg',
+                    '/sonebhadra/rihand-dam/rihand-dam-2.jpg',
+                    '/sonebhadra/rihand-dam/rihand-dam-3.jpg',
+                    '/sonebhadra/rihand-dam/rihand-dam-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Rihand Dam Govind Ballabh Pant Sagar', 'Sonbhadra'),
                 tags: ['Mega Dam', 'Inland Sea', 'Sunset Panorama']
             },
             {
@@ -422,6 +640,14 @@ export const UP_CITIES = [
                 duration: '3.5 Hours',
                 description: 'Historic 5th-century mountain citadel set atop a 400-foot steep hill, famous for perpetual hilltop water ponds (Ram Sagar) and ancient rock inscriptions.',
                 insiderTip: 'Requires climbing ~800 stone steps; carry snacks and plenty of water for the trek.',
+                image: '/sonebhadra/vijaygarh-fort/vijaygarh-fort-1.jpg',
+                images: [
+                    '/sonebhadra/vijaygarh-fort/vijaygarh-fort-1.jpg',
+                    '/sonebhadra/vijaygarh-fort/vijaygarh-fort-2.jpg',
+                    '/sonebhadra/vijaygarh-fort/vijaygarh-fort-3.jpg',
+                    '/sonebhadra/vijaygarh-fort/vijaygarh-fort-4.jpg'
+                ],
+                googleImagesUrl: getGoogleImagesUrl('Vijaygarh Fort Mountain Citadel', 'Sonbhadra'),
                 tags: ['Hilltop Fort', 'Trekking', 'Ancient Inscriptions']
             }
         ]
@@ -621,8 +847,8 @@ export const evaluateUPDestinations = (formData) => {
  * 3. Food & Stay
  * 4. AI Travel Guide
  */
-export const generateTripPlan = (formData) => {
-    const ranked = evaluateUPDestinations(formData);
+export const generateTripPlan = (formData, customRanked = null) => {
+    const ranked = customRanked || evaluateUPDestinations(formData);
     const topCity = ranked[0];
     const totalDays = Math.max(1, Math.min(14, Number(formData.days) || 3));
     const people = Math.max(1, Number(formData.people) || 2);
@@ -655,19 +881,26 @@ export const generateTripPlan = (formData) => {
         banaras: {
             name: 'Banaras (Varanasi)',
             tagline: 'Eternal Ghats, Sacred Temples & Classical Heritage',
-            image: 'god img/vn1.jpg',
+            image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1627894483216-2138af692e32?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80'
+            ],
+            googleImagesUrl: getGoogleImagesUrl('Varanasi Ghats and Temples', 'Banaras'),
             coordinates: { lat: 25.3176, lng: 82.9739 },
             hotels: {
-                budget: { name: 'Kashi Heritage Guesthouse (Assi Ghat)', type: 'Homestay / Guesthouse', pricePerNight: 1200, address: 'Assi Ghat Road, Shivala, Varanasi', rating: 4.4, amenities: ['Free Wi-Fi', 'Rooftop River View', 'Satvik Breakfast'] },
-                moderate: { name: 'Hotel Surya Kaiser Palace (Cantt)', type: '3-Star Heritage Hotel', pricePerNight: 3200, address: 'The Mall Road, Cantonment, Varanasi', rating: 4.6, amenities: ['Pool & Spa', 'AC Deluxe Rooms', 'Multi-Cuisine Dining'] },
-                luxury: { name: 'BrijRama Palace / Taj Nadesar Palace', type: '5-Star Luxury Heritage Palace', pricePerNight: 9500, address: 'Darbhanga Ghat / Nadesar, Varanasi', rating: 4.9, amenities: ['Private River Chauffeur', 'Royal Dining', 'VIP Corridor Access'] }
+                budget: { name: 'Kashi Heritage Guesthouse (Assi Ghat)', type: 'Homestay / Guesthouse', pricePerNight: 1200, address: 'Assi Ghat Road, Shivala, Varanasi', rating: 4.4, amenities: ['Free Wi-Fi', 'Rooftop River View', 'Satvik Breakfast'], coordinates: { lat: 25.2890, lng: 83.0060 } },
+                moderate: { name: 'Hotel Surya Kaiser Palace (Cantt)', type: '3-Star Heritage Hotel', pricePerNight: 3200, address: 'The Mall Road, Cantonment, Varanasi', rating: 4.6, amenities: ['Pool & Spa', 'AC Deluxe Rooms', 'Multi-Cuisine Dining'], coordinates: { lat: 25.3340, lng: 82.9860 } },
+                luxury: { name: 'BrijRama Palace / Taj Nadesar Palace', type: '5-Star Luxury Heritage Palace', pricePerNight: 9500, address: 'Darbhanga Ghat / Nadesar, Varanasi', rating: 4.9, amenities: ['Private River Chauffeur', 'Royal Dining', 'VIP Corridor Access'], coordinates: { lat: 25.3045, lng: 83.0115 } }
             },
             culinarySpots: [
-                { name: 'Ram Bhandar (Thatheri Gali)', specialty: 'Authentic Poori-Bhaji & Jalebi with Hing Aloo', mealType: 'Breakfast', avgCost: 120 },
-                { name: 'Keshari Restaurant (Godowlia)', specialty: 'Classic Banarasi Pure Ghee Satvik Thali & Malai Kofta', mealType: 'Lunch', avgCost: 280 },
-                { name: 'Blue Lassi Shop (Manikarnika)', specialty: '30+ Varieties of Thick Cream Lassi in Clay Kulhads', mealType: 'Snack/Dessert', avgCost: 90 },
-                { name: 'Pizzeria Vaatika Cafe (Assi Ghat)', specialty: 'Apple Pie & Woodfired Thin-Crust Pizza by the Ganges', mealType: 'Dinner', avgCost: 450 },
-                { name: 'Keshav Tambool Bhandar', specialty: 'Legendary Royal Banarasi Meetha Paan with Gulkand & Silver Vark', mealType: 'Digestif', avgCost: 50 }
+                { name: 'Ram Bhandar (Thatheri Gali)', specialty: 'Authentic Poori-Bhaji & Jalebi with Hing Aloo', mealType: 'Breakfast', avgCost: 120, coordinates: { lat: 25.3135, lng: 83.0075 } },
+                { name: 'Keshari Restaurant (Godowlia)', specialty: 'Classic Banarasi Pure Ghee Satvik Thali & Malai Kofta', mealType: 'Lunch', avgCost: 280, coordinates: { lat: 25.3090, lng: 83.0065 } },
+                { name: 'Blue Lassi Shop (Manikarnika)', specialty: '30+ Varieties of Thick Cream Lassi in Clay Kulhads', mealType: 'Snack/Dessert', avgCost: 90, coordinates: { lat: 25.3110, lng: 83.0130 } },
+                { name: 'Pizzeria Vaatika Cafe (Assi Ghat)', specialty: 'Apple Pie & Woodfired Thin-Crust Pizza by the Ganges', mealType: 'Dinner', avgCost: 450, coordinates: { lat: 25.2885, lng: 83.0070 } },
+                { name: 'Keshav Tambool Bhandar', specialty: 'Legendary Royal Banarasi Meetha Paan with Gulkand & Silver Vark', mealType: 'Digestif', avgCost: 50, coordinates: { lat: 25.3075, lng: 83.0040 } }
             ],
             sights: [
                 {
@@ -684,7 +917,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '20 mins',
                     cost: 250,
-                    image: 'god img/vn1.jpg',
+                    image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1627894483216-2138af692e32?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Assi Ghat Sunrise Boat Cruise', 'Varanasi'),
                     coordinates: { lat: 25.2985, lng: 83.0076 },
                     insiderTip: 'Board by 5:45 AM to catch the pristine golden light reflecting across the river.',
                     tags: ['Sunrise Cruise', '84 Ghats', 'Photography']
@@ -703,7 +943,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '15 mins',
                     cost: 100,
-                    image: 'god img/vn.jpg',
+                    image: 'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Kashi Vishwanath Temple Corridor', 'Varanasi'),
                     coordinates: { lat: 25.3109, lng: 83.0107 },
                     insiderTip: 'Deposit electronic devices at the corridor locker gate for swift security clearance.',
                     tags: ['Jyotirlinga', 'Temple', 'Sacred Corridor']
@@ -722,7 +969,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '40 mins',
                     cost: 150,
-                    image: 'god img/vns4.webp',
+                    image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1600100397608-f010f443a9f0?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Sarnath Dhamek Stupa Ashoka Pillar', 'Varanasi'),
                     coordinates: { lat: 25.3811, lng: 83.0214 },
                     insiderTip: 'Hire a certified archaeological guide at the entrance for rich historical storytelling.',
                     tags: ['UNESCO Site', 'Buddhism', 'Ashoka Pillar']
@@ -741,7 +995,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '15 mins',
                     cost: 100,
-                    image: 'god img/vn3.jpg',
+                    image: 'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1583089892943-e02e5b017b6a?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Dashashwamedh Ghat Ganga Aarti', 'Varanasi'),
                     coordinates: { lat: 25.3076, lng: 83.0104 },
                     insiderTip: 'Reserve a wooden boat seat on the river 30 minutes in advance for an unobstructed viewpoint.',
                     tags: ['Ganga Aarti', 'Spiritual', 'Sacred Chants']
@@ -760,7 +1021,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '45 mins',
                     cost: 120,
-                    image: 'god img/vn1.jpg',
+                    image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Ramnagar Fort Royal Palace', 'Varanasi'),
                     coordinates: { lat: 25.2678, lng: 83.0264 },
                     insiderTip: 'Try the famous chilled rabri lassi right outside the fort main gate.',
                     tags: ['Royal Fort', 'Museum', 'Mughal Architecture']
@@ -779,7 +1047,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '—',
                     cost: 50,
-                    image: 'god img/vn.jpg',
+                    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1601055283742-8b27e81b5553?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Banarasi Silk Weaving Street Food Chowk', 'Varanasi'),
                     coordinates: { lat: 25.3120, lng: 83.0080 },
                     insiderTip: 'Buy directly from certified weaver cooperatives to ensure authentic pure silk zari work.',
                     tags: ['Silk Weaving', 'Handloom', 'Ancient Bazaars']
@@ -789,19 +1064,26 @@ export const generateTripPlan = (formData) => {
         allahabad: {
             name: 'Allahabad (Prayagraj)',
             tagline: 'Sacred Triveni Sangam, Grand Forts & Cultural Legacy',
-            image: 'god img/ayodhya.jpg',
+            image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80'
+            ],
+            googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Allahabad Fort', 'Prayagraj'),
             coordinates: { lat: 25.4358, lng: 81.8463 },
             hotels: {
-                budget: { name: 'Prayag Yatri Niwas (Civil Lines)', type: 'Budget Hotel / Guesthouse', pricePerNight: 1100, address: 'MG Marg, Civil Lines, Prayagraj', rating: 4.3, amenities: ['Free Wi-Fi', 'Clean AC Rooms', 'Travel Desk'] },
-                moderate: { name: 'Hotel Kanha Shyam / Grand Continental', type: '3-Star Deluxe Hotel', pricePerNight: 2900, address: 'Civil Lines, Prayagraj', rating: 4.5, amenities: ['Buffet Breakfast', 'Spacious AC Rooms', 'Ample Parking'] },
-                luxury: { name: 'The Legend Hotel / Heritage Kasmanda', type: '4-Star Premium Boutique', pricePerNight: 6500, address: 'Cantonment / Civil Lines, Prayagraj', rating: 4.8, amenities: ['Fine Dining', 'Chauffeur Service', 'Sangam Tour Specialist'] }
+                budget: { name: 'Prayag Yatri Niwas (Civil Lines)', type: 'Budget Hotel / Guesthouse', pricePerNight: 1100, address: 'MG Marg, Civil Lines, Prayagraj', rating: 4.3, amenities: ['Free Wi-Fi', 'Clean AC Rooms', 'Travel Desk'], coordinates: { lat: 25.4520, lng: 81.8340 } },
+                moderate: { name: 'Hotel Kanha Shyam / Grand Continental', type: '3-Star Deluxe Hotel', pricePerNight: 2900, address: 'Civil Lines, Prayagraj', rating: 4.5, amenities: ['Buffet Breakfast', 'Spacious AC Rooms', 'Ample Parking'], coordinates: { lat: 25.4545, lng: 81.8325 } },
+                luxury: { name: 'The Legend Hotel / Heritage Kasmanda', type: '4-Star Premium Boutique', pricePerNight: 6500, address: 'Cantonment / Civil Lines, Prayagraj', rating: 4.8, amenities: ['Fine Dining', 'Chauffeur Service', 'Sangam Tour Specialist'], coordinates: { lat: 25.4610, lng: 81.8410 } }
             },
             culinarySpots: [
-                { name: 'Netram Mulchand & Sons (Katra)', specialty: 'Pure Desi Ghee Kachori-Sabzi Thali with Jalebi', mealType: 'Breakfast', avgCost: 150 },
-                { name: 'Hari Ram & Sons (Loknath Chowk)', specialty: 'Crispy Spicy Samosas, Dalmoth & Gulab Jamun', mealType: 'Lunch/Snack', avgCost: 110 },
-                { name: 'Dehati ke Rasgulle (Civil Lines)', specialty: 'Mouth-melting Warm Black Rasgullas', mealType: 'Snack/Dessert', avgCost: 80 },
-                { name: 'El Chico Restaurant (Civil Lines)', specialty: 'Heritage Mughlai Biryani, Butter Paneer & Baked Alaska', mealType: 'Dinner', avgCost: 550 },
-                { name: 'Indian Coffee House (MG Marg)', specialty: 'Filter Coffee & Cold Coffee in a historic 1957 setting', mealType: 'Evening Refresher', avgCost: 120 }
+                { name: 'Netram Mulchand & Sons (Katra)', specialty: 'Pure Desi Ghee Kachori-Sabzi Thali with Jalebi', mealType: 'Breakfast', avgCost: 150, coordinates: { lat: 25.4630, lng: 81.8520 } },
+                { name: 'Hari Ram & Sons (Loknath Chowk)', specialty: 'Crispy Spicy Samosas, Dalmoth & Gulab Jamun', mealType: 'Lunch/Snack', avgCost: 110, coordinates: { lat: 25.4330, lng: 81.8370 } },
+                { name: 'Dehati ke Rasgulle (Civil Lines)', specialty: 'Mouth-melting Warm Black Rasgullas', mealType: 'Snack/Dessert', avgCost: 80, coordinates: { lat: 25.4500, lng: 81.8360 } },
+                { name: 'El Chico Restaurant (Civil Lines)', specialty: 'Heritage Mughlai Biryani, Butter Paneer & Baked Alaska', mealType: 'Dinner', avgCost: 550, coordinates: { lat: 25.4530, lng: 81.8350 } },
+                { name: 'Indian Coffee House (MG Marg)', specialty: 'Filter Coffee & Cold Coffee in a historic 1957 setting', mealType: 'Evening Refresher', avgCost: 120, coordinates: { lat: 25.4515, lng: 81.8355 } }
             ],
             sights: [
                 {
@@ -818,7 +1100,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '30 mins',
                     cost: 200,
-                    image: 'god img/ayodhya.jpg',
+                    image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Ghats Boat Ride', 'Prayagraj'),
                     coordinates: { lat: 25.4243, lng: 81.8845 },
                     insiderTip: 'From October to March, carry bird grain to feed thousands of migratory Siberian seagulls.',
                     tags: ['Holy Sangam', 'Boat Ride', 'Seagulls']
@@ -837,7 +1126,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '25 mins',
                     cost: 80,
-                    image: 'god img/ayodhya.jpg',
+                    image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Allahabad Akbar Fort Akshayavat', 'Prayagraj'),
                     coordinates: { lat: 25.4300, lng: 81.8760 },
                     insiderTip: 'Keep a government ID handy for entry into the fort army-managed precinct.',
                     tags: ['Akbar Fort', 'Akshayavat', 'Mughal Architecture']
@@ -856,7 +1152,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '25 mins',
                     cost: 50,
-                    image: 'god img/ayodhya.jpg',
+                    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Letey Hanuman Ji Bade Mandir', 'Prayagraj'),
                     coordinates: { lat: 25.4280, lng: 81.8790 },
                     insiderTip: 'Tuesday and Saturday mornings have vibrant vermilion (sindoor) pujas.',
                     tags: ['Reclining Hanuman', 'Rare Temple', 'Spiritual Energy']
@@ -875,7 +1178,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '15 mins',
                     cost: 120,
-                    image: 'god img/ayodhya.jpg',
+                    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Anand Bhawan Planetarium', 'Prayagraj'),
                     coordinates: { lat: 25.4594, lng: 81.8596 },
                     insiderTip: 'Book the 30-minute sky show at the Jawahar Planetarium upon arrival.',
                     tags: ['Freedom Movement', 'Mansion', 'Planetarium']
@@ -894,7 +1204,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '15 mins',
                     cost: 50,
-                    image: 'god img/ayodhya.jpg',
+                    image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Khusro Bagh Mughal Tombs', 'Prayagraj'),
                     coordinates: { lat: 25.4468, lng: 81.8252 },
                     insiderTip: 'Late afternoons provide the best lighting for photographing Persian stone jaalis.',
                     tags: ['Mughal Tombs', 'Persian Art', 'Guava Orchards']
@@ -904,18 +1221,25 @@ export const generateTripPlan = (formData) => {
         mirzapur: {
             name: 'Mirzapur',
             tagline: 'Cascading Waterfalls, Vindhyavasini Shaktipeeth & Hills',
-            image: 'waterfall.png',
+            image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+            images: [
+                'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80'
+            ],
+            googleImagesUrl: getGoogleImagesUrl('Wyndham Falls Chunar Fort Vindhyachal', 'Mirzapur'),
             coordinates: { lat: 25.1337, lng: 82.5644 },
             hotels: {
-                budget: { name: 'Vindhyachal Tourist Guesthouse', type: 'Budget Guesthouse', pricePerNight: 950, address: 'Temple Road, Vindhyachal, Mirzapur', rating: 4.2, amenities: ['Clean Rooms', 'Temple Proximity', 'Vegetarian Meals'] },
-                moderate: { name: 'The Galaxy Hotel / Vindhya Retreat', type: '3-Star Comfort Hotel', pricePerNight: 2400, address: 'Station Road / Vindhyachal Hills, Mirzapur', rating: 4.4, amenities: ['AC Deluxe Rooms', 'Nature Views', 'In-House Dining'] },
-                luxury: { name: 'Chunar Ganga Cliff Eco-Resort', type: 'Heritage Nature Resort', pricePerNight: 5200, address: 'Chunar Cliff View, Mirzapur', rating: 4.7, amenities: ['River Panorama', 'Private Waterfall Trek Guide', 'Organic Dining'] }
+                budget: { name: 'Vindhyachal Tourist Guesthouse', type: 'Budget Guesthouse', pricePerNight: 950, address: 'Temple Road, Vindhyachal, Mirzapur', rating: 4.2, amenities: ['Clean Rooms', 'Temple Proximity', 'Vegetarian Meals'], coordinates: { lat: 25.1630, lng: 82.5090 } },
+                moderate: { name: 'The Galaxy Hotel / Vindhya Retreat', type: '3-Star Comfort Hotel', pricePerNight: 2400, address: 'Station Road / Vindhyachal Hills, Mirzapur', rating: 4.4, amenities: ['AC Deluxe Rooms', 'Nature Views', 'In-House Dining'], coordinates: { lat: 25.1470, lng: 82.5710 } },
+                luxury: { name: 'Chunar Ganga Cliff Eco-Resort', type: 'Heritage Nature Resort', pricePerNight: 5200, address: 'Chunar Cliff View, Mirzapur', rating: 4.7, amenities: ['River Panorama', 'Private Waterfall Trek Guide', 'Organic Dining'], coordinates: { lat: 25.1240, lng: 82.8710 } }
             },
             culinarySpots: [
-                { name: 'Vindhyachal Mandir Chowk', specialty: 'Fresh Desi Ghee Pedas, Poori-Sabzi & Kheer', mealType: 'Breakfast', avgCost: 110 },
-                { name: 'Chunar Fort Road Dhaba', specialty: 'Authentic UP Litti Chokha with Desi Ghee & Green Chutney', mealType: 'Lunch', avgCost: 140 },
-                { name: 'Mirzapur Clock Tower Food Lane', specialty: 'Crispy Samosas, Jalebis & Rabri in Clay Cups', mealType: 'Snack/Dessert', avgCost: 75 },
-                { name: 'Vindhya Greens Restaurant', specialty: 'Dal Tadka, Shahi Paneer, Garlic Naan & Gulab Jamun', mealType: 'Dinner', avgCost: 350 }
+                { name: 'Vindhyachal Mandir Chowk', specialty: 'Fresh Desi Ghee Pedas, Poori-Sabzi & Kheer', mealType: 'Breakfast', avgCost: 110, coordinates: { lat: 25.1655, lng: 82.5150 } },
+                { name: 'Chunar Fort Road Dhaba', specialty: 'Authentic UP Litti Chokha with Desi Ghee & Green Chutney', mealType: 'Lunch', avgCost: 140, coordinates: { lat: 25.1290, lng: 82.8730 } },
+                { name: 'Mirzapur Clock Tower Food Lane', specialty: 'Crispy Samosas, Jalebis & Rabri in Clay Cups', mealType: 'Snack/Dessert', avgCost: 75, coordinates: { lat: 25.1510, lng: 82.5690 } },
+                { name: 'Vindhya Greens Restaurant', specialty: 'Dal Tadka, Shahi Paneer, Garlic Naan & Gulab Jamun', mealType: 'Dinner', avgCost: 350, coordinates: { lat: 25.1420, lng: 82.5650 } }
             ],
             sights: [
                 {
@@ -932,7 +1256,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '40 mins',
                     cost: 80,
-                    image: 'waterfall.png',
+                    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Wyndham Falls Mirzapur Waterfalls', 'Mirzapur'),
                     coordinates: { lat: 25.0744, lng: 82.5831 },
                     insiderTip: 'Wear sports shoes with firm rubber grip on wet rocks; carry drinking water.',
                     tags: ['Waterfall Trek', 'Natural Pools', 'Scenic Gorge']
@@ -951,7 +1282,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '1.2 hrs',
                     cost: 50,
-                    image: 'waterfall.png',
+                    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Sirsi Dam Waterfalls Mirzapur', 'Mirzapur'),
                     coordinates: { lat: 24.9650, lng: 82.6850 },
                     insiderTip: 'Great location for landscape photography during mid-day and early afternoon.',
                     tags: ['Dam Reservoir', 'Cascades', 'Green Hills']
@@ -970,7 +1308,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '25 mins',
                     cost: 150,
-                    image: 'god img/ayodhya.jpg',
+                    image: 'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Maa Vindhyavasini Temple Ashtabhuja', 'Vindhyachal Mirzapur'),
                     coordinates: { lat: 25.1667, lng: 82.5167 },
                     insiderTip: 'Use the newly built Vindhya Corridor for fast and smooth darshan without long queues.',
                     tags: ['Shaktipeeth', 'Ropeway', 'Hilltop Shrine']
@@ -989,7 +1334,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '35 mins',
                     travelTimeBus: '1 hr',
                     cost: 100,
-                    image: 'assets/varanasi/fort.jpg',
+                    image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Chunar Fort Ganga View', 'Mirzapur'),
                     coordinates: { lat: 25.1278, lng: 82.8767 },
                     insiderTip: 'Sunset over the curving Ganga from the fort ramparts is a photographer’s dream.',
                     tags: ['Sher Shah Suri', 'Cliff Fort', 'Ganga Panorama']
@@ -1008,7 +1360,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '35 mins',
                     cost: 50,
-                    image: 'waterfall.png',
+                    image: 'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Tanda Falls Mirzapur', 'Mirzapur'),
                     coordinates: { lat: 25.0920, lng: 82.5980 },
                     insiderTip: 'Carry a light pair of binoculars to spot kingfishers and painted storks.',
                     tags: ['Forest Walk', 'Bird Watching', 'Stepped Waterfall']
@@ -1027,7 +1386,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '15 mins',
                     cost: 50,
-                    image: 'god img/vn1.jpg',
+                    image: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80',
+                    images: [
+                        'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1601055283742-8b27e81b5553?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
+                        'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Mirzapur Handmade Woolen Carpet Brass', 'Mirzapur'),
                     coordinates: { lat: 25.1480, lng: 82.5720 },
                     insiderTip: 'GI-tagged Mirzapur woolen dhurries make authentic, lightweight take-home souvenirs.',
                     tags: ['GI Tag Heritage', 'Woolen Carpets', 'Brass Casting']
@@ -1037,18 +1403,27 @@ export const generateTripPlan = (formData) => {
         sonbhadra: {
             name: 'Sonbhadra',
             tagline: 'Fossil Parks, Prehistoric Cave Art, Forests & Giant Dams',
-            image: 'assets/varanasi/fort.jpg',
+            image: '/sonebhadra/fossils-park/fossils-park-1.jpg',
+            images: [
+                '/sonebhadra/fossils-park/fossils-park-1.jpg',
+                '/sonebhadra/vijaygarh-fort/vijaygarh-fort-1.jpg',
+                '/sonebhadra/mukkha-fall/mukkha-fall-1.jpg',
+                '/sonebhadra/rihand-dam/rihand-dam-1.jpg',
+                '/sonebhadra/agori-fort/agori-fort-1.jpg',
+                '/sonebhadra/dhandharoul-dam/dhandharoul-dam-1.jpg'
+            ],
+            googleImagesUrl: getGoogleImagesUrl('Salkhan Fossil Park Rihand Dam Mukha Falls', 'Sonbhadra'),
             coordinates: { lat: 24.6860, lng: 83.0640 },
             hotels: {
-                budget: { name: 'Forest Rest House / Robertsganj Inn', type: 'Eco Guesthouse', pricePerNight: 850, address: 'Robertsganj Market, Sonbhadra', rating: 4.1, amenities: ['Basic Clean Rooms', 'Homestyle Food', 'Forest Desk'] },
-                moderate: { name: 'Hotel Shivam / Renukoot Heights', type: 'Comfort Hotel', pricePerNight: 2200, address: 'Robertsganj / Renukoot Road, Sonbhadra', rating: 4.3, amenities: ['AC Deluxe Rooms', 'Restaurant', 'Guide Arrangement'] },
-                luxury: { name: 'Govind Sagar Lakefront Eco-Camp', type: 'Lakefront Nature Camp', pricePerNight: 4800, address: 'Rihand Dam Road, Sonbhadra', rating: 4.6, amenities: ['Lakefront Tents', 'Campfire & Stargazing', 'Geology Guide'] }
+                budget: { name: 'Forest Rest House / Robertsganj Inn', type: 'Eco Guesthouse', pricePerNight: 850, address: 'Robertsganj Market, Sonbhadra', rating: 4.1, amenities: ['Basic Clean Rooms', 'Homestyle Food', 'Forest Desk'], coordinates: { lat: 24.6920, lng: 83.0680 } },
+                moderate: { name: 'Hotel Shivam / Renukoot Heights', type: 'Comfort Hotel', pricePerNight: 2200, address: 'Robertsganj / Renukoot Road, Sonbhadra', rating: 4.3, amenities: ['AC Deluxe Rooms', 'Restaurant', 'Guide Arrangement'], coordinates: { lat: 24.6810, lng: 83.0590 } },
+                luxury: { name: 'Govind Sagar Lakefront Eco-Camp', type: 'Lakefront Nature Camp', pricePerNight: 4800, address: 'Rihand Dam Road, Sonbhadra', rating: 4.6, amenities: ['Lakefront Tents', 'Campfire & Stargazing', 'Geology Guide'], coordinates: { lat: 24.2150, lng: 83.0250 } }
             },
             culinarySpots: [
-                { name: 'Robertsganj Chowk Dhaba', specialty: 'Hot Poori-Sabzi, Fresh Curd & Jalebi', mealType: 'Breakfast', avgCost: 90 },
-                { name: 'Belan Valley Tribal Kitchen', specialty: 'Roasted Bhutta (Corn), Desi Aloo Chokha & Arhar Dal', mealType: 'Lunch', avgCost: 130 },
-                { name: 'Rihand Lakefront Eateries', specialty: 'Crispy Hot Samosas & Masala Chai at Sunset', mealType: 'Snack/Tea', avgCost: 60 },
-                { name: 'Son Valley Dining Hall', specialty: 'Local River Fish Curry or Paneer Butter Masala with Fresh Rotis', mealType: 'Dinner', avgCost: 320 }
+                { name: 'Robertsganj Chowk Dhaba', specialty: 'Hot Poori-Sabzi, Fresh Curd & Jalebi', mealType: 'Breakfast', avgCost: 90, coordinates: { lat: 24.6880, lng: 83.0660 } },
+                { name: 'Belan Valley Tribal Kitchen', specialty: 'Roasted Bhutta (Corn), Desi Aloo Chokha & Arhar Dal', mealType: 'Lunch', avgCost: 130, coordinates: { lat: 24.6150, lng: 83.0450 } },
+                { name: 'Rihand Lakefront Eateries', specialty: 'Crispy Hot Samosas & Masala Chai at Sunset', mealType: 'Snack/Tea', avgCost: 60, coordinates: { lat: 24.2100, lng: 83.0290 } },
+                { name: 'Son Valley Dining Hall', specialty: 'Local River Fish Curry or Paneer Butter Masala with Fresh Rotis', mealType: 'Dinner', avgCost: 320, coordinates: { lat: 24.6830, lng: 83.0620 } }
             ],
             sights: [
                 {
@@ -1065,7 +1440,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '40 mins',
                     cost: 80,
-                    image: 'god img/vn1.jpg',
+                    image: '/sonebhadra/fossils-park/fossils-park-1.jpg',
+                    images: [
+                        '/sonebhadra/fossils-park/fossils-park-1.jpg',
+                        '/sonebhadra/fossils-park/fossils-park-2.jpg',
+                        '/sonebhadra/fossils-park/fossils-park-3.jpg',
+                        '/sonebhadra/fossils-park/fossils-park-4.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Salkhan Fossil Park Stromatolites', 'Sonbhadra'),
                     coordinates: { lat: 24.5886, lng: 83.0886 },
                     insiderTip: 'Carry a camera with a macro mode to capture the intricate concentric rings on the petrified tree trunks.',
                     tags: ['1.4 Billion Yrs Old', 'Geological Wonder', 'Fossil Forest']
@@ -1084,7 +1466,13 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '50 mins',
                     cost: 50,
-                    image: 'god img/vn.jpg',
+                    image: '/sonebhadra/sun-eco-point/sun-eco-point-1.jpg',
+                    images: [
+                        '/sonebhadra/sun-eco-point/sun-eco-point-1.jpg',
+                        '/sonebhadra/sun-eco-point/sun-eco-point-2.jpg',
+                        '/sonebhadra/sun-eco-point/sun-eco-point-3.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Panchmukhi Prehistoric Rock Art Caves', 'Sonbhadra'),
                     coordinates: { lat: 24.6200, lng: 83.0500 },
                     insiderTip: 'Hire a knowledgeable local forest guide in Robertsganj to easily spot hidden cave crevices.',
                     tags: ['Prehistoric Art', 'Cave Shelters', 'Stone Age Paintings']
@@ -1103,7 +1491,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '1.3 hrs',
                     cost: 60,
-                    image: 'waterfall.png',
+                    image: '/sonebhadra/mukkha-fall/mukkha-fall-1.jpg',
+                    images: [
+                        '/sonebhadra/mukkha-fall/mukkha-fall-1.jpg',
+                        '/sonebhadra/mukkha-fall/mukkha-fall-2.jpg',
+                        '/sonebhadra/mukkha-fall/mukkha-fall-3.jpg',
+                        '/sonebhadra/mukkha-fall/mukkha-fall-4.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Mukha Falls Belan River Canyon', 'Sonbhadra'),
                     coordinates: { lat: 24.5500, lng: 83.1500 },
                     insiderTip: 'Spectacular wilderness photo opportunities; remain on marked viewing perimeters.',
                     tags: ['Canyon Waterfall', 'Jungle Valley', 'Wilderness']
@@ -1122,7 +1517,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '1.8 hrs',
                     cost: 50,
-                    image: 'waterfall.png',
+                    image: '/sonebhadra/rihand-dam/rihand-dam-1.jpg',
+                    images: [
+                        '/sonebhadra/rihand-dam/rihand-dam-1.jpg',
+                        '/sonebhadra/rihand-dam/rihand-dam-2.jpg',
+                        '/sonebhadra/rihand-dam/rihand-dam-3.jpg',
+                        '/sonebhadra/rihand-dam/rihand-dam-4.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Rihand Dam Govind Ballabh Pant Sagar', 'Sonbhadra'),
                     coordinates: { lat: 24.2000, lng: 83.0300 },
                     insiderTip: 'Sunset over the vast reservoir gives the illusion of being at an endless seaside shore.',
                     tags: ['Mega Dam', 'Inland Sea', 'Sunset Panorama']
@@ -1141,7 +1543,14 @@ export const generateTripPlan = (formData) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '1 hr',
                     cost: 60,
-                    image: 'assets/varanasi/fort.jpg',
+                    image: '/sonebhadra/vijaygarh-fort/vijaygarh-fort-1.jpg',
+                    images: [
+                        '/sonebhadra/vijaygarh-fort/vijaygarh-fort-1.jpg',
+                        '/sonebhadra/vijaygarh-fort/vijaygarh-fort-2.jpg',
+                        '/sonebhadra/vijaygarh-fort/vijaygarh-fort-3.jpg',
+                        '/sonebhadra/vijaygarh-fort/vijaygarh-fort-4.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Vijaygarh Fort Mountain Citadel', 'Sonbhadra'),
                     coordinates: { lat: 24.5800, lng: 83.2200 },
                     insiderTip: 'Requires climbing ~750 stone steps; start early in the morning with ample drinking water.',
                     tags: ['Hilltop Fort', 'Trek', 'Ancient Inscriptions']
@@ -1289,7 +1698,10 @@ export const generateTripPlan = (formData) => {
             stay: null,
             estimatedCost: Math.round(breakfastSpot.avgCost * mealMultiplier * people),
             image: cityData.image,
-            coordinates: cityData.coordinates,
+            images: cityData.images || [cityData.image],
+            googleImagesUrl: getGoogleImagesUrl(breakfastSpot.name, cityData.name),
+            googleMapsUrl: getGoogleMapsPlaceUrl(breakfastSpot.name, cityData.name),
+            coordinates: breakfastSpot.coordinates || cityData.coordinates,
             insiderTip: 'Pair with piping hot masala chai served in an authentic earthen kulhad.',
             tags: ['Breakfast', 'Local Flavors', 'Morning Start'],
             isUserPreferenceMatch: userInterests.includes('culinary') || userInterests.includes('ghats_culture'),
@@ -1320,11 +1732,15 @@ export const generateTripPlan = (formData) => {
                     type: 'Hotel Check-in & Fresh up',
                     name: hotelInfo.name,
                     category: hotelInfo.type,
-                    estimatedCost: hotelInfo.pricePerNight
+                    estimatedCost: hotelInfo.pricePerNight,
+                    coordinates: hotelInfo.coordinates || cityData.coordinates
                 },
                 estimatedCost: Math.round(transitInfo.costPerPerson * people),
                 image: cityData.image,
-                coordinates: cityData.coordinates,
+                images: cityData.images || [cityData.image],
+                googleImagesUrl: getGoogleImagesUrl(`${cityData.name} Highway and Hotels`, cityData.name),
+                googleMapsUrl: getGoogleMapsPlaceUrl(hotelInfo.name, cityData.name),
+                coordinates: hotelInfo.coordinates || cityData.coordinates,
                 insiderTip: 'Keep ID cards ready for swift hotel check-in upon arrival.',
                 tags: ['Transit', 'Scenic Drive', 'Intercity'],
                 isUserPreferenceMatch: false,
@@ -1356,6 +1772,9 @@ export const generateTripPlan = (formData) => {
             stay: null,
             estimatedCost: Math.round(morningSight.cost * activityMultiplier * people),
             image: morningSight.image || cityData.image,
+            images: morningSight.images || (cityData.images || [cityData.image]),
+            googleImagesUrl: morningSight.googleImagesUrl || getGoogleImagesUrl(morningSight.place, cityData.name),
+            googleMapsUrl: getGoogleMapsPlaceUrl(morningSight.place, cityData.name),
             coordinates: morningSight.coordinates || cityData.coordinates,
             insiderTip: morningSight.insiderTip,
             tags: morningSight.tags,
@@ -1385,12 +1804,16 @@ export const generateTripPlan = (formData) => {
                 type: 'Lunch',
                 place: lunchSpot.name,
                 recommendation: lunchSpot.specialty,
-                estimatedCostPerPerson: Math.round(lunchSpot.avgCost * mealMultiplier)
+                estimatedCostPerPerson: Math.round(lunchSpot.avgCost * mealMultiplier),
+                coordinates: lunchSpot.coordinates || cityData.coordinates
             },
             stay: null,
             estimatedCost: Math.round(lunchSpot.avgCost * mealMultiplier * people),
             image: cityData.image,
-            coordinates: cityData.coordinates,
+            images: cityData.images || [cityData.image],
+            googleImagesUrl: getGoogleImagesUrl(lunchSpot.name, cityData.name),
+            googleMapsUrl: getGoogleMapsPlaceUrl(lunchSpot.name, cityData.name),
+            coordinates: lunchSpot.coordinates || cityData.coordinates,
             insiderTip: 'Try the house special Thali with seasonal curries and crisp hot breads.',
             tags: ['Lunch', 'Traditional Thali', 'Culinary Delight'],
             isUserPreferenceMatch: userInterests.includes('culinary'),
@@ -1419,6 +1842,9 @@ export const generateTripPlan = (formData) => {
             stay: null,
             estimatedCost: Math.round(afternoonSight.cost * activityMultiplier * people),
             image: afternoonSight.image || cityData.image,
+            images: afternoonSight.images || (cityData.images || [cityData.image]),
+            googleImagesUrl: afternoonSight.googleImagesUrl || getGoogleImagesUrl(afternoonSight.place, cityData.name),
+            googleMapsUrl: getGoogleMapsPlaceUrl(afternoonSight.place, cityData.name),
             coordinates: afternoonSight.coordinates || cityData.coordinates,
             insiderTip: afternoonSight.insiderTip,
             tags: afternoonSight.tags,
@@ -1448,11 +1874,15 @@ export const generateTripPlan = (formData) => {
                 type: 'Evening Snack',
                 place: snackSpot.name,
                 recommendation: snackSpot.specialty,
-                estimatedCostPerPerson: Math.round(snackSpot.avgCost * mealMultiplier)
+                estimatedCostPerPerson: Math.round(snackSpot.avgCost * mealMultiplier),
+                coordinates: snackSpot.coordinates || cityData.coordinates
             },
             stay: null,
             estimatedCost: Math.round(eveningSight.cost * activityMultiplier * people) + Math.round(snackSpot.avgCost * mealMultiplier * people),
             image: eveningSight.image || cityData.image,
+            images: eveningSight.images || (cityData.images || [cityData.image]),
+            googleImagesUrl: eveningSight.googleImagesUrl || getGoogleImagesUrl(eveningSight.place, cityData.name),
+            googleMapsUrl: getGoogleMapsPlaceUrl(eveningSight.place, cityData.name),
             coordinates: eveningSight.coordinates || cityData.coordinates,
             insiderTip: eveningSight.insiderTip,
             tags: eveningSight.tags,
@@ -1482,7 +1912,8 @@ export const generateTripPlan = (formData) => {
                 type: 'Dinner',
                 place: dinnerSpot.name,
                 recommendation: dinnerSpot.specialty,
-                estimatedCostPerPerson: Math.round(dinnerSpot.avgCost * mealMultiplier)
+                estimatedCostPerPerson: Math.round(dinnerSpot.avgCost * mealMultiplier),
+                coordinates: dinnerSpot.coordinates || cityData.coordinates
             },
             stay: {
                 type: 'Overnight Stay',
@@ -1491,11 +1922,15 @@ export const generateTripPlan = (formData) => {
                 address: hotelInfo.address,
                 rating: hotelInfo.rating,
                 amenities: hotelInfo.amenities,
-                estimatedCost: hotelInfo.pricePerNight
+                estimatedCost: hotelInfo.pricePerNight,
+                coordinates: hotelInfo.coordinates || cityData.coordinates
             },
             estimatedCost: Math.round(dinnerSpot.avgCost * mealMultiplier * people) + hotelInfo.pricePerNight,
             image: cityData.image,
-            coordinates: cityData.coordinates,
+            images: cityData.images || [cityData.image],
+            googleImagesUrl: getGoogleImagesUrl(hotelInfo.name, cityData.name),
+            googleMapsUrl: getGoogleMapsPlaceUrl(hotelInfo.name, cityData.name),
+            coordinates: hotelInfo.coordinates || cityData.coordinates,
             insiderTip: 'Inquire with hotel reception for next morning’s recommended departure slot.',
             tags: ['Dinner', 'Overnight Stay', 'Rest'],
             isUserPreferenceMatch: false,
@@ -1514,6 +1949,7 @@ export const generateTripPlan = (formData) => {
             theme: morningSight.categoryLabel,
             hotel: hotelInfo,
             activities,
+            schedule: activities,
             daySummary: {
                 totalDistance: isTransitDay ? `${transitInfo.distanceKm + 25} km (including intercity)` : '28–35 km intra-city',
                 totalTravelTime: isTransitDay ? `${transitInfo.duration} transit + 1 hr local` : '1.5 hrs local transit',
@@ -1613,15 +2049,20 @@ export const generateTripPlan = (formData) => {
             travelersLabel: `${people} Traveler${people > 1 ? 's' : ''}`,
             groupType: formData.groupType || 'couple',
             groupTypeLabel: groupLabels[formData.groupType] || 'Travelers',
+            duration: totalDays,
             durationDays: totalDays,
             durationLabel: `${totalDays} Day${totalDays > 1 ? 's' : ''} Circuit`,
             budget: budgetTier,
+            budgetTier: budgetTier,
+            budgetPerPerson: Math.round(cumulativeCost / people),
             budgetLabel: budgetLabels[budgetTier] || 'Comfortable',
             transport: transportType,
             transportLabel: transportLabels[transportType] || 'Private Cab',
             pickupLocation: pickupLoc,
             interests: userInterests,
             interestLabels,
+            routeCircuit: routeCircuitNames,
+            routeDisplay: routeCircuitString,
             recommendedDestinations: routeCircuitNames,
             routeCircuitString,
             estimatedTotalCost: {
@@ -1631,10 +2072,17 @@ export const generateTripPlan = (formData) => {
                 formatted: `₹${(Math.round(cumulativeCost * 0.85)).toLocaleString('en-IN')} – ₹${(Math.round(cumulativeCost * 1.15)).toLocaleString('en-IN')}`
             }
         },
+        destinations: routeCircuitNames,
         rankedDestinations: ranked,
         itinerary: itineraryDays,
-        foodAndStay,
-        mapRoute,
+        foodAndStay: {
+            ...foodAndStay,
+            foods: foodAndStay.foodSpots
+        },
+        mapRoute: {
+            ...mapRoute,
+            stops: mapRoute.circuitWaypoints
+        },
         aiGuideContext
     };
 

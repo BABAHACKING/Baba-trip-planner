@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Mirzapur - Waterfalls, Temples & Ancient Forts | India Tourist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <style>
+        /* ========== Mirzapur District Dark-Theme Cards ========== */
+        .mirzapur-page {
+            background-color: #1A1C1A;
+            color: #E0E7DF;
+        }
+
+        .mirzapur-page header {
+            background-color: #1A1C1A;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .mirzapur-page .nav-links a {
+            color: #E0E7DF;
+        }
+
+        .mirzapur-page .nav-links a:hover {
+            color: #E89A5D;
+        }
+
+        /* Hero Banner */
+        .mirzapur-hero {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+        }
+
+        .mirzapur-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.55);
+        }
+
+        .mirzapur-hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 50px 40px;
+            background: linear-gradient(to top, rgba(26, 28, 26, 0.95), transparent);
+            text-align: center;
+        }
+
+        .mirzapur-hero-overlay .hero-tag {
+            color: #E89A5D;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .mirzapur-hero-overlay h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #FDFCF8;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .mirzapur-hero-overlay p {
+            font-size: 1.2rem;
+            color: #A0AFA5;
+        }
+
+        /* About Box */
+        .mirzapur-about {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 30px 35px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border-left: 4px solid #E89A5D;
+        }
+
+        .mirzapur-about h2 {
+            font-size: 1.8rem;
+            color: #FDFCF8;
+            margin-bottom: 15px;
+        }
+
+        .mirzapur-about p {
+            color: #A0AFA5;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+
+        /* Section Title */
+        .places-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px 60px 20px;
+        }
+
+        .places-section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .places-section-header h2 {
+            font-size: 2.2rem;
+            color: #FDFCF8;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .places-section-header p {
+            color: #A0AFA5;
+            font-size: 1.05rem;
+        }
+
+        /* Place Cards Grid */
+        .place-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .place-cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .place-card {
+            background: #2C352D;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            padding-bottom: 12px;
+        }
+
+        .place-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .place-card-image {
+            position: relative;
+            width: 100%;
+            height: 330px;
+            overflow: hidden;
+            padding: 12px 12px 0 12px;
+            border-radius: 16px 16px 0 0;
+        }
+
+        .place-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.35s ease;
+            display: block;
+        }
+
+        .place-card-image:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.45);
+        }
+
+        /* Hover Text Overlay - Hidden by default, appears ONLY when mouse hovers on image */
+        .place-card-overlay {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: 12px;
+            bottom: 0;
+            border-radius: 12px;
+            padding: 22px 20px;
+            background: linear-gradient(to top, rgba(14, 18, 14, 0.96) 0%, rgba(20, 26, 20, 0.82) 58%, rgba(0, 0, 0, 0.2) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(18px);
+            transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), visibility 0.35s ease;
+            backdrop-filter: blur(2px);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        /* Visible ONLY when mouse hovers over the image */
+        .place-card-image:hover .place-card-overlay {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .place-card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #FDFCF8;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .place-card-location {
+            font-size: 0.86rem;
+            color: #E89A5D;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .place-card-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 5px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            width: fit-content;
+        }
+
+        .badge-religious {
+            background: rgba(232, 154, 93, 0.25);
+            color: #E89A5D;
+            border: 1px solid rgba(232, 154, 93, 0.4);
+        }
+
+        .badge-historical {
+            background: rgba(198, 169, 105, 0.25);
+            color: #E5C37A;
+            border: 1px solid rgba(198, 169, 105, 0.4);
+        }
+
+        .badge-nature {
+            background: rgba(89, 126, 82, 0.3);
+            color: #8FD883;
+            border: 1px solid rgba(89, 126, 82, 0.45);
+        }
+
+        .badge-adventure {
+            background: rgba(78, 164, 212, 0.25);
+            color: #72D2F5;
+            border: 1px solid rgba(78, 164, 212, 0.4);
+        }
+
+        .badge-cultural {
+            background: rgba(186, 104, 200, 0.25);
+            color: #E1BEE7;
+            border: 1px solid rgba(186, 104, 200, 0.4);
+        }
+
+        .badge-scenic {
+            background: rgba(255, 183, 77, 0.25);
+            color: #FFB74D;
+            border: 1px solid rgba(255, 183, 77, 0.4);
+        }
+
+        .badge-ghat {
+            background: rgba(255, 138, 101, 0.25);
+            color: #FFAB91;
+            border: 1px solid rgba(255, 138, 101, 0.4);
+        }
+
+        .badge-tower {
+            background: rgba(144, 202, 249, 0.25);
+            color: #BBDEFB;
+            border: 1px solid rgba(144, 202, 249, 0.4);
+        }
+
+        .place-card-desc {
+            font-size: 0.9rem;
+            color: #E0E7DF;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Place Photo Thumbnails Gallery Strip */
+        .place-thumbnails {
+            display: flex;
+            gap: 6px;
+            padding: 10px 14px 0 14px;
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .place-thumbnails::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .place-thumbnails::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        .place-thumb {
+            width: 48px;
+            height: 48px;
+            border-radius: 6px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.65;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .place-thumb:hover, .place-thumb.active {
+            opacity: 1;
+            border-color: #E89A5D;
+            transform: scale(1.06);
+        }
+
+        .photo-count-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: #A0AFA5;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin-left: 8px;
+            font-weight: 500;
+        }
+
+        .place-card-desc {
+            font-size: 0.92rem;
+            color: #A0AFA5;
+            line-height: 1.5;
+        }
+
+        /* Quick Facts Strip */
+        .quick-facts {
+            max-width: 1100px;
+            margin: 0 auto 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            padding: 0 20px;
+        }
+
+        .fact-card {
+            background: #2C352D;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .fact-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .fact-label {
+            font-size: 0.85rem;
+            color: #A0AFA5;
+            margin-bottom: 4px;
+        }
+
+        .fact-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #FDFCF8;
+        }
+
+        /* CTA Bar */
+        .mirzapur-cta {
+            text-align: center;
+            padding: 40px 20px 60px 20px;
+        }
+
+        .mirzapur-cta a {
+            display: inline-block;
+            padding: 16px 40px;
+            background: linear-gradient(135deg, #597E52, #4A6B44);
+            color: #FDFCF8;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(89, 126, 82, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .mirzapur-cta a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(89, 126, 82, 0.6);
+        }
+
+        /* Back Button Styles */
+        .back-nav-container {
+            max-width: 1200px;
+            margin: 15px auto 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #FDFCF8;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 10px 22px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(10px);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .back-btn:hover {
+            background: #E89A5D;
+            color: #1A1C1A;
+            border-color: #E89A5D;
+            transform: translateX(-4px);
+            box-shadow: 0 4px 15px rgba(232, 154, 93, 0.4);
+        }
+
+        .floating-back-btn {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            z-index: 999;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #2C352D;
+            color: #FDFCF8;
+            border: 1.5px solid #597E52;
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.25s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .floating-back-btn:hover {
+            background: #597E52;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(89, 126, 82, 0.6);
+        }
+    </style>
+</head>
+
+<body class="mirzapur-page">
+
+    <header>
+        <div class="logo">India Tourist</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="/profile">My Profile</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Back Button to return 1 step -->
+    <div class="back-nav-container">
+        <button onclick="goBack()" class="back-btn" title="Return 1 step back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>← Return 1 Step Back</span>
+        </button>
+    </div>
+
+    <!-- Floating Back Button for Quick Access -->
+    <button onclick="goBack()" class="floating-back-btn" title="Return 1 step back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>← Back</span>
+    </button>
+
+    <!-- Hero Banner -->
+    <section class="mirzapur-hero">
+        <img src="/mirzapur/wyndham-falls/wyndham-falls-1.jpg"
+            alt="Mirzapur Vindhya Hills & Waterfalls">
+        <div class="mirzapur-hero-overlay">
+            <div class="hero-tag">Uttar Pradesh • Eastern UP Circuit</div>
+            <h1>Mirzapur</h1>
+            <p>Cascading Waterfalls, Sacred Shaktipeeths & Ancient Vindhya Hills</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <div class="mirzapur-about">
+        <h2>About Mirzapur</h2>
+        <p>
+            Nestled along the banks of the holy Ganges and cradled by the ancient Vindhya mountain range, Mirzapur is a
+            hidden gem of Eastern Uttar Pradesh. The district is famous for the sacred Maa Vindhyavasini Shaktipeeth —
+            one of the 51 holy shrines of Goddess Shakti — drawing millions of devotees every year.
+        </p>
+        <p>
+            Beyond its spiritual significance, Mirzapur is a paradise for nature lovers, boasting magnificent waterfalls
+            like Wyndham Falls and Tanda Falls, the imposing Chunar Fort dating back to 56 BC, and world-renowned
+            handcrafted carpets and brass artifacts. It's the perfect blend of devotion, adventure, and cultural heritage.
+        </p>
+    </div>
+
+    <!-- Quick Facts -->
+    <div class="quick-facts">
+        <div class="fact-card">
+            <div class="fact-icon">📍</div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">Eastern UP, India</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🏔️</div>
+            <div class="fact-label">Terrain</div>
+            <div class="fact-value">Vindhya Hills & Ganga Plains</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🌡️</div>
+            <div class="fact-label">Best Season</div>
+            <div class="fact-value">Oct – Mar (Post-Monsoon)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🚗</div>
+            <div class="fact-label">From Varanasi</div>
+            <div class="fact-value">~90 km (2 hrs drive)</div>
+        </div>
+    </div>
+
+    <!-- Place Cards Section -->
+    <section class="places-section">
+        <div class="places-section-header">
+            <h2>Top Places to Explore in Mirzapur</h2>
+            <p>Sacred temples, stunning waterfalls, ancient forts & vibrant culture</p>
+        </div>
+
+        <div class="place-cards-grid">
+
+            <!-- Card 1: Vindhyavasini Temple -->
+            <div class="place-card" id="card-vindhyavasini">
+                <div class="place-card-image">
+                    <img id="card-vindhyavasini-main-img" src="/mirzapur/vindhyavasini/vindhyavasini-1.jpg"
+                        alt="Vindhyavasini Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Vindhyavasini Temple
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vindhyachal, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Religious Place</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Famous 51 Shaktipeeth pilgrimage destination. Millions of devotees visit for auspicious darshan of Maa Vindhyavasini along the revered sacred Trikona Parikrama circuit.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/vindhyavasini/vindhyavasini-1.jpg" alt="Vindhyavasini 1" class="place-thumb active" onclick="switchCardImage('card-vindhyavasini', this.src, this)">
+                    <img src="/mirzapur/vindhyavasini/vindhyavasini-2.jpg" alt="Vindhyavasini 2" class="place-thumb" onclick="switchCardImage('card-vindhyavasini', this.src, this)">
+                    <img src="/mirzapur/vindhyavasini/vindhyavasini-3.jpg" alt="Vindhyavasini 3" class="place-thumb" onclick="switchCardImage('card-vindhyavasini', this.src, this)">
+                    <img src="/mirzapur/vindhyavasini/vindhyavasini-4.jpg" alt="Vindhyavasini 4" class="place-thumb" onclick="switchCardImage('card-vindhyavasini', this.src, this)">
+                    <img src="/mirzapur/vindhyavasini/vindhyavasini-5.jpg" alt="Vindhyavasini 5" class="place-thumb" onclick="switchCardImage('card-vindhyavasini', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 2: Chunar Fort -->
+            <div class="place-card" id="card-chunar">
+                <div class="place-card-image">
+                    <img id="card-chunar-main-img" src="/mirzapur/chunar-fort/chunar-fort-2.jpg"
+                        alt="Chunar Fort" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Chunar Fort
+                            <span class="photo-count-pill">📷 8 Photos</span>
+                        </div>
+                        <div class="place-card-location">Chunar, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Historical Place</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Historic fort near the Ganga River dating back to 56 BC. Famous for Sonwa Mandap, Warren Hastings bungalow, ancient sundial, and breathtaking panoramic river ramparts.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-2.jpg" alt="Chunar Fort 2" class="place-thumb active" onclick="switchCardImage('card-chunar', this.src, this)">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-1.jpg" alt="Chunar Fort 1" class="place-thumb" onclick="switchCardImage('card-chunar', this.src, this)">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-3.jpg" alt="Chunar Fort 3" class="place-thumb" onclick="switchCardImage('card-chunar', this.src, this)">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-4.jpg" alt="Chunar Fort 4" class="place-thumb" onclick="switchCardImage('card-chunar', this.src, this)">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-5.jpg" alt="Chunar Fort 5" class="place-thumb" onclick="switchCardImage('card-chunar', this.src, this)">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-6.jpg" alt="Chunar Fort 6" class="place-thumb" onclick="switchCardImage('card-chunar', this.src, this)">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-7.jpg" alt="Chunar Fort 7" class="place-thumb" onclick="switchCardImage('card-chunar', this.src, this)">
+                    <img src="/mirzapur/chunar-fort/chunar-fort-8.jpg" alt="Chunar Fort 8" class="place-thumb" onclick="switchCardImage('card-chunar', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 3: Tanda Falls -->
+            <div class="place-card" id="card-tanda">
+                <div class="place-card-image">
+                    <img id="card-tanda-main-img" src="/mirzapur/tanda-falls/tanda-falls-1.jpg"
+                        alt="Tanda Falls" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Tanda Falls
+                            <span class="photo-count-pill">📷 7 Photos</span>
+                        </div>
+                        <div class="place-card-location">Tanda, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-nature">Natural Waterfall</span>
+                        </div>
+                        <p class="place-card-desc">
+                            A tranquil multi-tiered waterfall surrounded by scrub forests and rocky natural steps. Perfect for bird watching, peaceful forest walks, and nature photography.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/tanda-falls/tanda-falls-1.jpg" alt="Tanda Falls 1" class="place-thumb active" onclick="switchCardImage('card-tanda', this.src, this)">
+                    <img src="/mirzapur/tanda-falls/tanda-falls-2.jpg" alt="Tanda Falls 2" class="place-thumb" onclick="switchCardImage('card-tanda', this.src, this)">
+                    <img src="/mirzapur/tanda-falls/tanda-falls-3.jpg" alt="Tanda Falls 3" class="place-thumb" onclick="switchCardImage('card-tanda', this.src, this)">
+                    <img src="/mirzapur/tanda-falls/tanda-falls-4.jpg" alt="Tanda Falls 4" class="place-thumb" onclick="switchCardImage('card-tanda', this.src, this)">
+                    <img src="/mirzapur/tanda-falls/tanda-falls-5.jpg" alt="Tanda Falls 5" class="place-thumb" onclick="switchCardImage('card-tanda', this.src, this)">
+                    <img src="/mirzapur/tanda-falls/tanda-falls-6.jpg" alt="Tanda Falls 6" class="place-thumb" onclick="switchCardImage('card-tanda', this.src, this)">
+                    <img src="/mirzapur/tanda-falls/tanda-falls-7.jpg" alt="Tanda Falls 7" class="place-thumb" onclick="switchCardImage('card-tanda', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 4: Ashtabhuja Temple -->
+            <div class="place-card" id="card-ashtabhuja">
+                <div class="place-card-image">
+                    <img id="card-ashtabhuja-main-img" src="/mirzapur/ashtabhuja/ashtabhuja-1.jpg"
+                        alt="Ashtabhuja Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Ashtabhuja Temple
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vindhyachal Hills, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Religious Place</span>
+                        </div>
+                        <p class="place-card-desc">
+                            A revered hilltop shrine dedicated to the eight-armed form of Goddess Durga (Ashtabhuja Devi), accessible by stairs or ropeway with sweeping Vindhya valley views.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/ashtabhuja/ashtabhuja-1.jpg" alt="Ashtabhuja 1" class="place-thumb active" onclick="switchCardImage('card-ashtabhuja', this.src, this)">
+                    <img src="/mirzapur/ashtabhuja/ashtabhuja-2.jpg" alt="Ashtabhuja 2" class="place-thumb" onclick="switchCardImage('card-ashtabhuja', this.src, this)">
+                    <img src="/mirzapur/ashtabhuja/ashtabhuja-3.jpg" alt="Ashtabhuja 3" class="place-thumb" onclick="switchCardImage('card-ashtabhuja', this.src, this)">
+                    <img src="/mirzapur/ashtabhuja/ashtabhuja-4.jpg" alt="Ashtabhuja 4" class="place-thumb" onclick="switchCardImage('card-ashtabhuja', this.src, this)">
+                    <img src="/mirzapur/ashtabhuja/ashtabhuja-5.jpg" alt="Ashtabhuja 5" class="place-thumb" onclick="switchCardImage('card-ashtabhuja', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 5: Wyndham Falls -->
+            <div class="place-card" id="card-wyndham">
+                <div class="place-card-image">
+                    <img id="card-wyndham-main-img" src="/mirzapur/wyndham-falls/wyndham-falls-1.jpg"
+                        alt="Wyndham Falls" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Vindham Falls (Wyndham Falls)
+                            <span class="photo-count-pill">📷 6 Photos</span>
+                        </div>
+                        <div class="place-card-location">Wyndham, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-adventure">Adventure & Nature</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Picturesque natural tiered waterfall nestled in rocky Vindhya crags, with natural stepping pools, forest trails, and scenic picnic viewpoints.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/wyndham-falls/wyndham-falls-1.jpg" alt="Wyndham 1" class="place-thumb active" onclick="switchCardImage('card-wyndham', this.src, this)">
+                    <img src="/mirzapur/wyndham-falls/wyndham-falls-2.jpg" alt="Wyndham 2" class="place-thumb" onclick="switchCardImage('card-wyndham', this.src, this)">
+                    <img src="/mirzapur/wyndham-falls/wyndham-falls-3.jpg" alt="Wyndham 3" class="place-thumb" onclick="switchCardImage('card-wyndham', this.src, this)">
+                    <img src="/mirzapur/wyndham-falls/wyndham-falls-4.jpg" alt="Wyndham 4" class="place-thumb" onclick="switchCardImage('card-wyndham', this.src, this)">
+                    <img src="/mirzapur/wyndham-falls/wyndham-falls-5.jpg" alt="Wyndham 5" class="place-thumb" onclick="switchCardImage('card-wyndham', this.src, this)">
+                    <img src="/mirzapur/wyndham-falls/wyndham-falls-6.jpg" alt="Wyndham 6" class="place-thumb" onclick="switchCardImage('card-wyndham', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 6: Lakhaniya Dari Waterfall -->
+            <div class="place-card" id="card-lakhaniya">
+                <div class="place-card-image">
+                    <img id="card-lakhaniya-main-img" src="/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg"
+                        alt="Lakhaniya Dari Waterfall" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Lakhaniya Dari Waterfall
+                            <span class="photo-count-pill">📷 6 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ahraura, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-nature">Adventure & Trekking</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Spectacular deep gorge waterfall hidden within lush green mountain terrain, offering a popular trekking adventure through scenic boulder-strewn canyon trails.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg" alt="Lakhaniya 1" class="place-thumb active" onclick="switchCardImage('card-lakhaniya', this.src, this)">
+                    <img src="/mirzapur/lakhaniya-dari/lakhaniya-dari-2.jpg" alt="Lakhaniya 2" class="place-thumb" onclick="switchCardImage('card-lakhaniya', this.src, this)">
+                    <img src="/mirzapur/lakhaniya-dari/lakhaniya-dari-3.jpg" alt="Lakhaniya 3" class="place-thumb" onclick="switchCardImage('card-lakhaniya', this.src, this)">
+                    <img src="/mirzapur/lakhaniya-dari/lakhaniya-dari-4.jpg" alt="Lakhaniya 4" class="place-thumb" onclick="switchCardImage('card-lakhaniya', this.src, this)">
+                    <img src="/mirzapur/lakhaniya-dari/lakhaniya-dari-5.jpg" alt="Lakhaniya 5" class="place-thumb" onclick="switchCardImage('card-lakhaniya', this.src, this)">
+                    <img src="/mirzapur/lakhaniya-dari/lakhaniya-dari-6.jpg" alt="Lakhaniya 6" class="place-thumb" onclick="switchCardImage('card-lakhaniya', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 7: Maa Kali Khoh Cave Temple -->
+            <div class="place-card" id="card-kali-khoh">
+                <div class="place-card-image">
+                    <img id="card-kali-khoh-main-img" src="/mirzapur/kali-khoh/kali-khoh-1.jpg"
+                        alt="Kali Khoh Cave Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Maa Kali Khoh Cave Temple
+                            <span class="photo-count-pill">📷 4 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vindhyachal, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Cave Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            An ancient cave temple dedicated to Goddess Kali, located inside a narrow rocky gorge in the Vindhya hills. The second vital point of the sacred Trikona Parikrama.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/kali-khoh/kali-khoh-1.jpg" alt="Kali Khoh 1" class="place-thumb active" onclick="switchCardImage('card-kali-khoh', this.src, this)">
+                    <img src="/mirzapur/kali-khoh/kali-khoh-2.jpg" alt="Kali Khoh 2" class="place-thumb" onclick="switchCardImage('card-kali-khoh', this.src, this)">
+                    <img src="/mirzapur/kali-khoh/kali-khoh-3.jpg" alt="Kali Khoh 3" class="place-thumb" onclick="switchCardImage('card-kali-khoh', this.src, this)">
+                    <img src="/mirzapur/kali-khoh/kali-khoh-4.jpg" alt="Kali Khoh 4" class="place-thumb" onclick="switchCardImage('card-kali-khoh', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 8: Pakka Ghat -->
+            <div class="place-card" id="card-pakka-ghat">
+                <div class="place-card-image">
+                    <img id="card-pakka-ghat-main-img" src="/mirzapur/pakka-ghat/pakka-ghat-2.jpg"
+                        alt="Pakka Ghat" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Pakka Ghat
+                            <span class="photo-count-pill">📷 6 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ganga Riverfront, Mirzapur</div>
+                        <div>
+                            <span class="place-card-badge badge-ghat">Ghats & Culture</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Historic carved stone ghat on the sacred Ganga River. Famed for its ornate sandstone pavilions (chhatris), holy dips, evening aarti, and tranquil boat cruises.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/pakka-ghat/pakka-ghat-2.jpg" alt="Pakka Ghat 2" class="place-thumb active" onclick="switchCardImage('card-pakka-ghat', this.src, this)">
+                    <img src="/mirzapur/pakka-ghat/pakka-ghat-1.jpg" alt="Pakka Ghat 1" class="place-thumb" onclick="switchCardImage('card-pakka-ghat', this.src, this)">
+                    <img src="/mirzapur/pakka-ghat/pakka-ghat-3.jpg" alt="Pakka Ghat 3" class="place-thumb" onclick="switchCardImage('card-pakka-ghat', this.src, this)">
+                    <img src="/mirzapur/pakka-ghat/pakka-ghat-4.jpg" alt="Pakka Ghat 4" class="place-thumb" onclick="switchCardImage('card-pakka-ghat', this.src, this)">
+                    <img src="/mirzapur/pakka-ghat/pakka-ghat-5.jpg" alt="Pakka Ghat 5" class="place-thumb" onclick="switchCardImage('card-pakka-ghat', this.src, this)">
+                    <img src="/mirzapur/pakka-ghat/pakka-ghat-6.jpg" alt="Pakka Ghat 6" class="place-thumb" onclick="switchCardImage('card-pakka-ghat', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 9: Ghanta Ghar (Clock Tower) -->
+            <div class="place-card" id="card-ghanta-ghar">
+                <div class="place-card-image">
+                    <img id="card-ghanta-ghar-main-img" src="/mirzapur/ghanta-ghar/ghanta-ghar-1.jpg"
+                        alt="Ghanta Ghar (Clock Tower)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Ghanta Ghar (Clock Tower)
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Municipal Square, Mirzapur City</div>
+                        <div>
+                            <span class="place-card-badge badge-tower">Heritage Landmark</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Iconic Victorian-Gothic stone clock tower erected in 1891 with exquisite stone carvings. The crowning landmark at the vibrant civic and commercial heart of Mirzapur.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/ghanta-ghar/ghanta-ghar-1.jpg" alt="Ghanta Ghar 1" class="place-thumb active" onclick="switchCardImage('card-ghanta-ghar', this.src, this)">
+                    <img src="/mirzapur/ghanta-ghar/ghanta-ghar-2.jpg" alt="Ghanta Ghar 2" class="place-thumb" onclick="switchCardImage('card-ghanta-ghar', this.src, this)">
+                    <img src="/mirzapur/ghanta-ghar/ghanta-ghar-3.jpg" alt="Ghanta Ghar 3" class="place-thumb" onclick="switchCardImage('card-ghanta-ghar', this.src, this)">
+                    <img src="/mirzapur/ghanta-ghar/ghanta-ghar-4.jpg" alt="Ghanta Ghar 4" class="place-thumb" onclick="switchCardImage('card-ghanta-ghar', this.src, this)">
+                    <img src="/mirzapur/ghanta-ghar/ghanta-ghar-5.jpg" alt="Ghanta Ghar 5" class="place-thumb" onclick="switchCardImage('card-ghanta-ghar', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 10: Lal Bhairav Temple -->
+            <div class="place-card" id="card-lal-bhairav">
+                <div class="place-card-image">
+                    <img id="card-lal-bhairav-main-img" src="/mirzapur/lal-bhairav/lal-bhairav-2.jpg"
+                        alt="Lal Bhairav Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Lal Bhairav Temple
+                            <span class="photo-count-pill">📷 3 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vindhyachal, Mirzapur, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Revered temple of Lord Bhairav (Kotwal of Vindhyachal), traditionally visited by pilgrims to seek protection and blessings to complete the holy pilgrimage.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mirzapur/lal-bhairav/lal-bhairav-2.jpg" alt="Lal Bhairav 2" class="place-thumb active" onclick="switchCardImage('card-lal-bhairav', this.src, this)">
+                    <img src="/mirzapur/lal-bhairav/lal-bhairav-1.jpg" alt="Lal Bhairav 1" class="place-thumb" onclick="switchCardImage('card-lal-bhairav', this.src, this)">
+                    <img src="/mirzapur/lal-bhairav/lal-bhairav-3.jpg" alt="Lal Bhairav 3" class="place-thumb" onclick="switchCardImage('card-lal-bhairav', this.src, this)">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="mirzapur-cta">
+        <a href="/wizard">🗺️ Plan Your Mirzapur Trip with AI Route Planner</a>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="home.html">Hotels Booking</a></li>
+                        <li><a href="home.html">Flight Tickets</a></li>
+                        <li><a href="home.html">Train Booking</a></li>
+                        <li><a href="home.html">Cab Booking</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="packages.html">Holiday Packages</a></li>
+                        <li><a href="home.html">Travel Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About India Tourist</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">About Us</a></li>
+                        <li><a href="home.html">Our Team</a></li>
+                        <li><a href="home.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="home.html">Testimonials</a></li>
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">Terms & Conditions</a></li>
+                        <li><a href="home.html">Sitemap</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Top Pilgrimage Places</h3>
+                    <ul class="footer-links">
+                        <li><a href="varanasi.html">Varanasi Tour</a></li>
+                        <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Package</a></li>
+                        <li><a href="mirzapur.html">Mirzapur Waterfalls</a></li>
+                        <li><a href="mathura.html">Mathura Vrindavan</a></li>
+                        <li><a href="home.html">Ujjain Mahakal</a></li>
+                        <li><a href="home.html">Haridwar Rishikesh</a></li>
+                        <li><a href="home.html">Amritsar Golden Temple</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Packages</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Golden Triangle Tour</a></li>
+                        <li><a href="packages.html">Rajasthan Package</a></li>
+                        <li><a href="packages.html">Kerala Tour</a></li>
+                        <li><a href="packages.html">Himachal Package</a></li>
+                        <li><a href="packages.html">Goa Beach Holiday</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal Tour</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage Walk</a></li>
+                        <li><a href="packages.html">North India Circuit</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://facebook.com" class="social-icon" target="_blank" title="Facebook">
+                            <span>f</span>
+                        </a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" title="Twitter">
+                            <span>𝕏</span>
+                        </a>
+                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon"
+                            target="_blank" title="Instagram">
+                            <span>📷</span>
+                        </a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" title="YouTube">
+                            <span>▶</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank"
+                            title="LinkedIn">
+                            <span>in</span>
+                        </a>
+                    </div>
+                    <button class="live-chat-button">💬 Live Chat</button>
+                    <button class="callback-button">📞 Get a Callback</button>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        © 2026 India Tourist. All Rights Reserved.
+                    </div>
+                    <ul class="footer-bottom-links">
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">User Agreement</a></li>
+                        <li><a href="contact.html">Payment Security</a></li>
+                        <li><a href="home.html">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function goBack() {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = "home.html";
+            }
+        }
+
+        function switchCardImage(cardId, newSrc, thumbBtn) {
+            const mainImg = document.getElementById(cardId + '-main-img');
+            if (mainImg) {
+                mainImg.style.opacity = '0.35';
+                mainImg.style.transition = 'opacity 0.2s ease';
+                setTimeout(() => {
+                    mainImg.src = newSrc;
+                    mainImg.style.opacity = '1';
+                }, 150);
+            }
+            if (thumbBtn && thumbBtn.parentElement) {
+                const thumbs = thumbBtn.parentElement.querySelectorAll('.place-thumb');
+                thumbs.forEach(t => t.classList.remove('active'));
+                thumbBtn.classList.add('active');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

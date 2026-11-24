@@ -198,7 +198,7 @@
 
         // Location Data
         const stateData = {
-            "Uttar Pradesh": ["Agra", "Varanasi", "Lucknow", "Prayagraj", "Mathura", "Ayodhya"],
+            "Uttar Pradesh": ["Agra", "Varanasi", "Lucknow", "Prayagraj", "Mathura", "Ayodhya", "Mirzapur", "Sonbhadra"],
             "Madhya Pradesh": ["Ujjain", "Indore", "Bhopal", "Gwalior", "Khajuraho"],
             "Rajasthan": ["Jaipur", "Udaipur", "Jodhpur", "Jaisalmer", "Pushkar"],
             "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"]
@@ -246,6 +246,10 @@
                     window.location.href = "mathura.html";
                 } else if (district === "Ayodhya") {
                     window.location.href = "ayodhya.html";
+                } else if (district === "Mirzapur") {
+                    window.location.href = "mirzapur.html";
+                } else if (district === "Sonbhadra" || district === "Sonebhadra") {
+                    window.location.href = "sonebhadra.html";
                 } else {
                     alert(`Searching for best places in ${district}, ${state}...`);
                 }

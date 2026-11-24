@@ -13,7 +13,8 @@ import {
     FaWallet,
     FaCar,
     FaCheckCircle,
-    FaStar
+    FaStar,
+    FaGoogle
 } from 'react-icons/fa';
 import {
     getStoredUserProfile,
@@ -26,6 +27,7 @@ const UserProfile = () => {
     const navigate = useNavigate();
     const [profile, setProfile] = useState(null);
     const [history, setHistory] = useState([]);
+    const [destPhotoIndex, setDestPhotoIndex] = useState({});
 
     useEffect(() => {
         const active = getStoredUserProfile();
@@ -166,45 +168,93 @@ const UserProfile = () => {
                             </div>
 
                             <div className="destinations-grid">
-                                {profile.rankedDestinations.map((dest, idx) => (
-                                    <div key={dest.id} className="destination-match-card" style={{ borderColor: idx === 0 ? '#597E52' : 'rgba(89,126,82,0.15)' }}>
-                                        <div className="dest-card-image-wrap">
-                                            <img src={dest.image} alt={dest.name} onError={(e) => { e.target.src = 'god img/vn1.jpg'; }} />
-                                            <div className="dest-match-float-badge" style={{ color: idx === 0 ? '#2E7D32' : '#597E52' }}>
-                                                <FaStar /> #{idx + 1} • {dest.scores.final}% Match
-                                            </div>
-                                            <div className="dest-state-float-badge">
-                                                Uttar Pradesh
-                                            </div>
-                                        </div>
-                                        <div className="dest-card-body">
-                                            <div className="dest-card-header">
-                                                <h3>{dest.name}</h3>
-                                                {idx === 0 && (
-                                                    <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#2E7D32', background: '#E8F5E9', padding: '3px 8px', borderRadius: '100px' }}>
-                                                        Best Choice
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <p className="dest-tagline">"{dest.tagline}"</p>
+                                {profile.rankedDestinations.map((dest, idx) => {
+                                    const destImages = (dest.images && dest.images.length > 0)
+                                        ? dest.images
+                                        : (dest.image ? [dest.image] : []);
+                                    const activeImgIdx = destPhotoIndex[dest.id] || 0;
+                                    const currentImg = destImages[activeImgIdx] || dest.image;
 
-                                            <div className="dest-synergies-list">
-                                                {dest.matchReasons.map((r, rIdx) => (
-                                                    <div key={rIdx} className="synergy-item">
-                                                        <FaCheckCircle /> {r}
+                                    return (
+                                        <div key={dest.id} className="destination-match-card" style={{ borderColor: idx === 0 ? '#597E52' : 'rgba(89,126,82,0.15)' }}>
+                                            <div className="dest-card-image-wrap">
+                                                <img
+                                                    src={currentImg}
+                                                    alt={`${dest.name} - Photo ${activeImgIdx + 1}`}
+                                                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80'; }}
+                                                />
+                                                <div className="dest-match-float-badge" style={{ color: idx === 0 ? '#2E7D32' : '#597E52' }}>
+                                                    <FaStar /> #{idx + 1} • {dest.scores.final}% Match
+                                                </div>
+                                                <div className="dest-state-float-badge">
+                                                    📸 {destImages.length} Real Photos
+                                                </div>
+                                            </div>
+
+                                            {/* 4 Thumbnails Strip for Destination */}
+                                            {destImages.length > 1 && (
+                                                <div className="dest-thumbs-strip">
+                                                    {destImages.map((imgSrc, iIdx) => (
+                                                        <button
+                                                            key={iIdx}
+                                                            type="button"
+                                                            className={`dest-thumb-btn ${activeImgIdx === iIdx ? 'active' : ''}`}
+                                                            onClick={() => setDestPhotoIndex(prev => ({ ...prev, [dest.id]: iIdx }))}
+                                                            title={`View photo ${iIdx + 1} of ${dest.name}`}
+                                                        >
+                                                            <img
+                                                                src={imgSrc}
+                                                                alt={`${dest.name} thumb ${iIdx + 1}`}
+                                                                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80'; }}
+                                                            />
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            )}
+
+                                            <div className="dest-card-body">
+                                                <div className="dest-card-header">
+                                                    <div>
+                                                        <h3>{dest.name}</h3>
+                                                        <span className="dest-state-sub">Uttar Pradesh</span>
                                                     </div>
-                                                ))}
-                                            </div>
+                                                    <div className="dest-header-actions">
+                                                        {idx === 0 && (
+                                                            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#2E7D32', background: '#E8F5E9', padding: '3px 8px', borderRadius: '100px' }}>
+                                                                Best Choice
+                                                            </span>
+                                                        )}
+                                                        <a
+                                                            href={dest.googleImagesUrl || `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(dest.name + ' Uttar Pradesh')}`}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="dest-google-img-link"
+                                                            title={`Search real live Google Images of ${dest.name}`}
+                                                        >
+                                                            <FaGoogle /> Real Photos ↗
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <p className="dest-tagline">"{dest.tagline}"</p>
 
-                                            <div className="dest-highlights-title">Top Attractions:</div>
-                                            <div className="dest-highlights-tags">
-                                                {dest.highlights.slice(0, 3).map((h, hIdx) => (
-                                                    <span key={hIdx} className="highlight-tag">{h}</span>
-                                                ))}
+                                                <div className="dest-synergies-list">
+                                                    {dest.matchReasons.map((r, rIdx) => (
+                                                        <div key={rIdx} className="synergy-item">
+                                                            <FaCheckCircle /> {r}
+                                                        </div>
+                                                    ))}
+                                                </div>
+
+                                                <div className="dest-highlights-title">Top Attractions:</div>
+                                                <div className="dest-highlights-tags">
+                                                    {dest.highlights.slice(0, 3).map((h, hIdx) => (
+                                                        <span key={hIdx} className="highlight-tag">{h}</span>
+                                                    ))}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         </section>
 

@@ -20,13 +20,16 @@ import {
     FaRoute,
     FaCompressAlt,
     FaExpandAlt,
-    FaCompass
+    FaCompass,
+    FaGoogle,
+    FaDirections
 } from 'react-icons/fa';
 import {
     getStoredTripPlan,
     getStoredUserProfile,
     generateTripPlan
 } from './services/scoringService';
+import TripMap from './TripMap';
 import './TripPlan.css';
 
 const TripPlan = ({ tripPlanData = null }) => {
@@ -36,6 +39,7 @@ const TripPlan = ({ tripPlanData = null }) => {
     const [activeDayIndex, setActiveDayIndex] = useState(0);
     const [showAllDays, setShowAllDays] = useState(false);
     const [expandedActivities, setExpandedActivities] = useState({});
+    const [focusedPlaceOnMap, setFocusedPlaceOnMap] = useState(null);
     const [aiQuery, setAiQuery] = useState('');
     const [aiResponses, setAiResponses] = useState([
         {
@@ -44,6 +48,31 @@ const TripPlan = ({ tripPlanData = null }) => {
         }
     ]);
     const [isAiLoading, setIsAiLoading] = useState(false);
+    const [isLoadingPlan, setIsLoadingPlan] = useState(true);
+    const [selectedPhotoIndex, setSelectedPhotoIndex] = useState({});
+    const [lightboxData, setLightboxData] = useState(null);
+
+    // Keyboard navigation for Lightbox
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (!lightboxData || !lightboxData.isOpen) return;
+            if (e.key === 'Escape') {
+                setLightboxData(null);
+            } else if (e.key === 'ArrowLeft') {
+                setLightboxData(prev => ({
+                    ...prev,
+                    activeIndex: (prev.activeIndex - 1 + prev.images.length) % prev.images.length
+                }));
+            } else if (e.key === 'ArrowRight') {
+                setLightboxData(prev => ({
+                    ...prev,
+                    activeIndex: (prev.activeIndex + 1) % prev.images.length
+                }));
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [lightboxData]);
 
     useEffect(() => {
         if (!tripPlan) {
@@ -58,6 +87,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                 }
             }
         }
+        setIsLoadingPlan(false);
     }, [tripPlan]);
 
     // Expand all activities by default on day switch
@@ -89,9 +119,20 @@ const TripPlan = ({ tripPlanData = null }) => {
         setExpandedActivities(next);
     };
 
-    const handleViewOnMap = () => {
+    const handleViewOnMap = (placeName = null, dayNumber = 1) => {
         setActiveTab('map');
-        window.scrollTo({ top: 350, behavior: 'smooth' });
+        if (dayNumber && dayNumber >= 1) {
+            setActiveDayIndex(dayNumber - 1);
+        }
+        setFocusedPlaceOnMap(placeName);
+        setTimeout(() => {
+            const mapElem = document.getElementById('trip-map-section');
+            if (mapElem) {
+                mapElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.scrollTo({ top: 380, behavior: 'smooth' });
+            }
+        }, 80);
     };
 
     const handleAskAiGuide = (placeName) => {
@@ -131,13 +172,23 @@ const TripPlan = ({ tripPlanData = null }) => {
     };
 
     if (!tripPlan) {
+        if (isLoadingPlan) {
+            return (
+                <div className="trip-plan-loading">
+                    <div className="trip-plan-spinner">🌿</div>
+                    <h2>Loading Your Personalized Trip Plan...</h2>
+                    <p>Curating your day-by-day itinerary, stay, meals & transit route ✨</p>
+                </div>
+            );
+        }
+
         return (
             <div className="trip-plan-loading">
-                <div className="trip-plan-spinner">🌿</div>
-                <h2>Loading Your Personalized Trip Plan...</h2>
-                <p>Curating your day-by-day itinerary, stay, meals & transit route ✨</p>
+                <div className="trip-plan-spinner">🧭</div>
+                <h2>No active trip plan found.</h2>
+                <p>Answer a few quick travel preferences to generate your personalized itinerary.</p>
                 <button onClick={() => navigate('/wizard')} className="trip-plan-btn primary" style={{ marginTop: '16px' }}>
-                    <FaCompass /> Start Trip Planner
+                    <FaCompass /> Plan a New Trip
                 </button>
             </div>
         );
@@ -156,6 +207,15 @@ const TripPlan = ({ tripPlanData = null }) => {
                     </Link>
                 </div>
                 <div className="nav-actions">
+                    <button
+                        type="button"
+                        onClick={() => navigate(-1)}
+                        className="trip-plan-nav-btn secondary"
+                        title="Return 1 step back"
+                        style={{ cursor: 'pointer', border: 'none' }}
+                    >
+                        ← Return 1 Step
+                    </button>
                     <Link to="/wizard" className="trip-plan-nav-btn secondary">
                         <FaRedo /> Edit Questionnaire
                     </Link>
@@ -398,7 +458,19 @@ const TripPlan = ({ tripPlanData = null }) => {
                                                                 </div>
                                                                 <h3 className="act-title">{act.activity}</h3>
                                                                 <div className="act-location-line">
-                                                                    <FaMapPin /> {act.place} • {act.destination.split(' ')[0]}
+                                                                    <span className="act-loc-text">
+                                                                        <FaMapPin /> {act.place} • {act.destination.split(' ')[0]}
+                                                                    </span>
+                                                                    <a
+                                                                        href={act.googleImagesUrl || `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(act.place + ' ' + act.destination + ' Uttar Pradesh')}`}
+                                                                        target="_blank"
+                                                                        rel="noopener noreferrer"
+                                                                        className="act-google-img-link"
+                                                                        onClick={(e) => e.stopPropagation()}
+                                                                        title={`View real live Google Images of ${act.place}`}
+                                                                    >
+                                                                        <FaGoogle /> Real Google Images ↗
+                                                                    </a>
                                                                 </div>
                                                             </div>
 
@@ -430,38 +502,97 @@ const TripPlan = ({ tripPlanData = null }) => {
 
                                                                     <p className="act-description">{act.description}</p>
 
-                                                                    {/* Place Image & Meta Grid */}
-                                                                    <div className="act-visual-meta-grid">
-                                                                        {act.image && (
-                                                                            <div className="act-image-wrap">
-                                                                                <img
-                                                                                    src={act.image}
-                                                                                    alt={act.place}
-                                                                                    onError={(e) => { e.target.src = 'god img/vn1.jpg'; }}
-                                                                                />
-                                                                                <span className="act-image-caption">{act.place}</span>
-                                                                            </div>
-                                                                        )}
+                                                                    {/* Multi-Photo Real Gallery & Meta Grid */}
+                                                                    {(() => {
+                                                                        const actImages = (act.images && act.images.length > 0)
+                                                                            ? act.images
+                                                                            : (act.image ? [act.image] : []);
+                                                                        const activePhotoIdx = selectedPhotoIndex[act.id] || 0;
+                                                                        const currentPhoto = actImages[activePhotoIdx] || act.image || 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
 
-                                                                        <div className="act-meta-details-col">
-                                                                            <div className="meta-pill-item">
-                                                                                <span className="meta-label">⏱️ Duration:</span>
-                                                                                <span className="meta-val">{act.estimatedDuration}</span>
+                                                                        return (
+                                                                            <div className="act-visual-meta-grid">
+                                                                                {actImages.length > 0 && (
+                                                                                    <div className="place-photo-gallery-card">
+                                                                                        <div
+                                                                                            className="gallery-main-preview"
+                                                                                            onClick={() => setLightboxData({
+                                                                                                isOpen: true,
+                                                                                                images: actImages,
+                                                                                                activeIndex: activePhotoIdx,
+                                                                                                placeName: act.place,
+                                                                                                destination: act.destination,
+                                                                                                googleImagesUrl: act.googleImagesUrl || `https://www.google.com/search?tbm=isch&q=${encodeURIComponent(act.place + ' ' + act.destination + ' Uttar Pradesh')}`
+                                                                                            })}
+                                                                                            title="Click to open Fullscreen High-Res Photo Gallery"
+                                                                                        >
+                                                                                            <img
+                                                                                                src={currentPhoto}
+                                                                                                alt={`${act.place} - Real Photo ${activePhotoIdx + 1}`}
+                                                                                                onError={(e) => {
+                                                                                                    e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                                                                                }}
+                                                                                            />
+                                                                                            <div className="gallery-badge-overlay">
+                                                                                                <span className="gallery-count-badge">📸 {actImages.length} Real Photos</span>
+                                                                                                <span className="gallery-expand-hint">Click to enlarge ⛶</span>
+                                                                                            </div>
+                                                                                            <span className="act-image-caption">
+                                                                                                {act.place} • Photo {activePhotoIdx + 1} of {actImages.length}
+                                                                                            </span>
+                                                                                        </div>
+
+                                                                                        {actImages.length > 1 && (
+                                                                                            <div className="place-gallery-thumbs">
+                                                                                                {actImages.map((imgSrc, imgIdx) => (
+                                                                                                    <button
+                                                                                                        key={imgIdx}
+                                                                                                        type="button"
+                                                                                                        className={`place-thumb-btn ${activePhotoIdx === imgIdx ? 'active' : ''}`}
+                                                                                                        onClick={(e) => {
+                                                                                                            e.stopPropagation();
+                                                                                                            setSelectedPhotoIndex(prev => ({
+                                                                                                                ...prev,
+                                                                                                                [act.id]: imgIdx
+                                                                                                            }));
+                                                                                                        }}
+                                                                                                        title={`Switch to photo ${imgIdx + 1} of ${act.place}`}
+                                                                                                    >
+                                                                                                        <img
+                                                                                                            src={imgSrc}
+                                                                                                            alt={`${act.place} thumbnail ${imgIdx + 1}`}
+                                                                                                            onError={(e) => {
+                                                                                                                e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                                                                                            }}
+                                                                                                        />
+                                                                                                    </button>
+                                                                                                ))}
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </div>
+                                                                                )}
+
+                                                                                <div className="act-meta-details-col">
+                                                                                    <div className="meta-pill-item">
+                                                                                        <span className="meta-label">⏱️ Duration:</span>
+                                                                                        <span className="meta-val">{act.estimatedDuration}</span>
+                                                                                    </div>
+                                                                                    <div className="meta-pill-item">
+                                                                                        <span className="meta-label">📍 Distance:</span>
+                                                                                        <span className="meta-val">{act.distance}</span>
+                                                                                    </div>
+                                                                                    <div className="meta-pill-item">
+                                                                                        <span className="meta-label">🚗 Transit Time:</span>
+                                                                                        <span className="meta-val">{act.travelTime}</span>
+                                                                                    </div>
+                                                                                    <div className="meta-pill-item">
+                                                                                        <span className="meta-label">🪙 Est. Cost:</span>
+                                                                                        <span className="meta-val">₹{act.estimatedCost.toLocaleString('en-IN')} (for {summary.travelers})</span>
+                                                                                    </div>
+                                                                                </div>
                                                                             </div>
-                                                                            <div className="meta-pill-item">
-                                                                                <span className="meta-label">📍 Distance:</span>
-                                                                                <span className="meta-val">{act.distance}</span>
-                                                                            </div>
-                                                                            <div className="meta-pill-item">
-                                                                                <span className="meta-label">🚗 Transit Time:</span>
-                                                                                <span className="meta-val">{act.travelTime}</span>
-                                                                            </div>
-                                                                            <div className="meta-pill-item">
-                                                                                <span className="meta-label">🪙 Est. Cost:</span>
-                                                                                <span className="meta-val">₹{act.estimatedCost.toLocaleString('en-IN')} (for {summary.travelers})</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                        );
+                                                                    })()}
 
                                                                     {/* Meal Indicator Box */}
                                                                     {act.meal && (
@@ -502,10 +633,19 @@ const TripPlan = ({ tripPlanData = null }) => {
                                                                         <button
                                                                             type="button"
                                                                             className="act-btn map-btn"
-                                                                            onClick={() => handleViewOnMap(act.place)}
+                                                                            onClick={() => handleViewOnMap(act.place, dayObj.day)}
                                                                         >
                                                                             <FaMapMarkedAlt /> View on Map
                                                                         </button>
+                                                                        <a
+                                                                            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(act.place + ', Uttar Pradesh')}`}
+                                                                            target="_blank"
+                                                                            rel="noopener noreferrer"
+                                                                            className="act-btn gmaps-btn"
+                                                                            title="Open location on Google Maps"
+                                                                        >
+                                                                            <FaGoogle /> Google Maps ↗
+                                                                        </a>
                                                                         <button
                                                                             type="button"
                                                                             className="act-btn ai-btn"
@@ -539,61 +679,12 @@ const TripPlan = ({ tripPlanData = null }) => {
                         transition={{ duration: 0.3 }}
                         className="map-tab-content"
                     >
-                        <div className="tab-header-box">
-                            <h2><FaMapMarkedAlt /> Geographic Route & Circuit Map</h2>
-                            <p>Starting from <strong>{mapRoute.startingLocation}</strong> • Circuit Route: <strong>{summary.routeCircuitString}</strong></p>
-                        </div>
-
-                        {/* Interactive Circuit Waypoints Flow */}
-                        <div className="map-waypoints-flow">
-                            {mapRoute.circuitWaypoints.map((wp) => (
-                                <div key={wp.cityId} className="waypoint-card">
-                                    <div className="waypoint-step-badge">Stop #{wp.step}</div>
-                                    <div className="waypoint-img-wrap">
-                                        <img src={wp.image} alt={wp.city} onError={(e) => { e.target.src = 'god img/vn1.jpg'; }} />
-                                    </div>
-                                    <div className="waypoint-info">
-                                        <h3>{wp.city}</h3>
-                                        <p className="wp-tagline">"{wp.tagline}"</p>
-                                        <div className="wp-coords">
-                                            GPS: {wp.coordinates.lat.toFixed(4)}° N, {wp.coordinates.lng.toFixed(4)}° E
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Route Simulation SVG Graphic */}
-                        <div className="route-map-panel">
-                            <div className="map-panel-header">
-                                <span>🗺️ Circuit Transit Overview</span>
-                                <span>Est. Circuit Distance: ~{mapRoute.totalCircuitDistanceKm} km</span>
-                            </div>
-                            <div className="map-svg-container">
-                                <svg width="100%" height="280" viewBox="0 0 800 280">
-                                    <path
-                                        d="M 100,140 Q 250,50 400,140 T 700,140"
-                                        fill="none"
-                                        stroke="#597E52"
-                                        strokeWidth="4"
-                                        strokeDasharray="8,6"
-                                    />
-                                    {mapRoute.circuitWaypoints.map((wp, i) => {
-                                        const x = 100 + (i / Math.max(1, mapRoute.circuitWaypoints.length - 1)) * 600;
-                                        const y = 140 + Math.sin(i) * 30;
-                                        return (
-                                            <g key={i}>
-                                                <circle cx={x} cy={y} r="16" fill="#597E52" />
-                                                <circle cx={x} cy={y} r="10" fill="#FFFFFF" />
-                                                <text x={x} y={y - 25} textAnchor="middle" fill="#2C352D" fontWeight="bold" fontSize="14">
-                                                    {wp.city.split(' ')[0]}
-                                                </text>
-                                            </g>
-                                        );
-                                    })}
-                                </svg>
-                            </div>
-                        </div>
+                        <TripMap
+                            tripPlan={tripPlan}
+                            initialDayIndex={activeDayIndex}
+                            focusedPlace={focusedPlaceOnMap}
+                            onResetFocus={() => setFocusedPlaceOnMap(null)}
+                        />
                     </motion.div>
                 )}
 
@@ -742,6 +833,102 @@ const TripPlan = ({ tripPlanData = null }) => {
                     </motion.div>
                 )}
             </main>
+
+            {/* ============================================================ */}
+            {/* FULLSCREEN REAL PHOTO LIGHTBOX MODAL */}
+            {/* ============================================================ */}
+            {lightboxData && lightboxData.isOpen && (
+                <div className="trip-lightbox-overlay" onClick={() => setLightboxData(null)}>
+                    <div className="trip-lightbox-content" onClick={(e) => e.stopPropagation()}>
+                        <div className="lightbox-header">
+                            <div className="lightbox-title-group">
+                                <span className="lightbox-count-badge">
+                                    📸 Photo {lightboxData.activeIndex + 1} of {lightboxData.images.length}
+                                </span>
+                                <h3>{lightboxData.placeName}</h3>
+                                <span className="lightbox-dest-name">{lightboxData.destination}</span>
+                            </div>
+                            <div className="lightbox-header-actions">
+                                {lightboxData.googleImagesUrl && (
+                                    <a
+                                        href={lightboxData.googleImagesUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="lightbox-google-btn"
+                                        title={`Search live Google Images for ${lightboxData.placeName}`}
+                                    >
+                                        <FaGoogle /> Real Google Images ↗
+                                    </a>
+                                )}
+                                <button
+                                    type="button"
+                                    className="lightbox-close-btn"
+                                    onClick={() => setLightboxData(null)}
+                                    aria-label="Close Lightbox"
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="lightbox-main-stage">
+                            <button
+                                type="button"
+                                className="lightbox-nav-arrow prev"
+                                onClick={() => setLightboxData(prev => ({
+                                    ...prev,
+                                    activeIndex: (prev.activeIndex - 1 + prev.images.length) % prev.images.length
+                                }))}
+                                aria-label="Previous photo"
+                            >
+                                ‹
+                            </button>
+
+                            <div className="lightbox-image-wrapper">
+                                <img
+                                    src={lightboxData.images[lightboxData.activeIndex]}
+                                    alt={`${lightboxData.placeName} photo ${lightboxData.activeIndex + 1}`}
+                                    onError={(e) => {
+                                        e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=1200&q=80';
+                                    }}
+                                />
+                            </div>
+
+                            <button
+                                type="button"
+                                className="lightbox-nav-arrow next"
+                                onClick={() => setLightboxData(prev => ({
+                                    ...prev,
+                                    activeIndex: (prev.activeIndex + 1) % prev.images.length
+                                }))}
+                                aria-label="Next photo"
+                            >
+                                ›
+                            </button>
+                        </div>
+
+                        <div className="lightbox-thumbs-strip">
+                            {lightboxData.images.map((thumbUrl, tIdx) => (
+                                <button
+                                    key={tIdx}
+                                    type="button"
+                                    className={`lightbox-thumb-item ${lightboxData.activeIndex === tIdx ? 'active' : ''}`}
+                                    onClick={() => setLightboxData(prev => ({ ...prev, activeIndex: tIdx }))}
+                                    title={`View photo ${tIdx + 1}`}
+                                >
+                                    <img
+                                        src={thumbUrl}
+                                        alt={`Thumbnail ${tIdx + 1}`}
+                                        onError={(e) => {
+                                            e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                        }}
+                                    />
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

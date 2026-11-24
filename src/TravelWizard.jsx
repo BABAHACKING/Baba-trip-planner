@@ -505,8 +505,29 @@ const TravelWizard = () => {
                                 gap: '6px'
                             }}
                         >
-                            <FaCalendarAlt /> Full Trip Plan Page
+                            <FaCalendarAlt /> View My Personalized Trip Plan
                         </Link>
+                        <button
+                            onClick={() => {
+                                setShowResults(false);
+                                setStep(totalSteps);
+                            }}
+                            style={{
+                                background: 'rgba(89, 126, 82, 0.12)',
+                                color: '#597E52',
+                                border: 'none',
+                                padding: '8px 18px',
+                                borderRadius: '100px',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px'
+                            }}
+                            title="Return 1 step back to edit your questionnaire"
+                        >
+                            ← Back (Return 1 Step)
+                        </button>
                         <button
                             onClick={() => {
                                 setShowResults(false);
@@ -1462,18 +1483,23 @@ const TravelWizard = () => {
 
             {/* Navigation Buttons */}
             <div className="wizard-navigation">
-                {step > 1 && (
-                    <motion.button
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="nav-btn back-btn"
-                        onClick={handleBack}
-                    >
-                        ← Back
-                    </motion.button>
-                )}
+                <motion.button
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="nav-btn back-btn"
+                    onClick={step > 1 ? handleBack : () => {
+                        if (window.history.length > 1) {
+                            navigate(-1);
+                        } else {
+                            window.location.href = '/home.html';
+                        }
+                    }}
+                    title="Return 1 step back"
+                >
+                    ← Back
+                </motion.button>
                 <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
