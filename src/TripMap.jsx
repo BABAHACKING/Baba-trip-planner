@@ -297,7 +297,7 @@ const TripMap = ({ tripPlan, initialDayIndex = 0, focusedPlace = null, onResetFo
             const photoCount = (loc.images && loc.images.length) || (loc.image ? 4 : 0);
             const popupPhotoBanner = loc.image ? `
                 <div class="popup-photo-banner">
-                    <img src="${loc.image}" alt="${loc.place}" onerror="this.src='https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80'" />
+                    <img src="${loc.image}" alt="${loc.place}" onerror="this.src='/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg'" />
                     <span class="popup-photo-badge">📸 ${photoCount} Real Photos</span>
                 </div>
             ` : '';
@@ -651,7 +651,7 @@ const TripMap = ({ tripPlan, initialDayIndex = 0, focusedPlace = null, onResetFo
                 const modalImages = (selectedPlaceModal.images && selectedPlaceModal.images.length > 0)
                     ? selectedPlaceModal.images
                     : (selectedPlaceModal.image ? [selectedPlaceModal.image] : []);
-                const currentModalPhoto = modalImages[modalPhotoIndex] || selectedPlaceModal.image || 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                const currentModalPhoto = modalImages[modalPhotoIndex] || selectedPlaceModal.image || '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
 
                 return (
                     <div className="place-details-modal-overlay" onClick={() => setSelectedPlaceModal(null)}>
@@ -680,7 +680,7 @@ const TripMap = ({ tripPlan, initialDayIndex = 0, focusedPlace = null, onResetFo
                                             src={currentModalPhoto}
                                             alt={`${selectedPlaceModal.place} photo ${modalPhotoIndex + 1}`}
                                             onError={(e) => {
-                                                e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                                e.target.src = '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
                                             }}
                                         />
                                         <span className="modal-photo-badge">
@@ -700,7 +700,7 @@ const TripMap = ({ tripPlan, initialDayIndex = 0, focusedPlace = null, onResetFo
                                                         src={mImg}
                                                         alt={`Thumb ${mIdx + 1}`}
                                                         onError={(e) => {
-                                                            e.target.src = 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80';
+                                                            e.target.src = '/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg';
                                                         }}
                                                     />
                                                 </button>

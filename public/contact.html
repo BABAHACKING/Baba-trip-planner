@@ -378,23 +378,47 @@
     </div>
 
     <script>
-        // Form submission handling
-        document.getElementById('contactForm').addEventListener('submit', function (e) {
+        // Form submission handling via Express backend (/api/contact)
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const destination = document.getElementById('destination').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const origText = submitBtn ? submitBtn.textContent : 'Send Message';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+            }
 
-            // Simulate form submission
-            alert(`Thank you for contacting us, ${firstName} ${lastName}!\n\nWe have received your message about "${subject}".\n\nOur team will get back to you at ${email} within 24 hours.\n\nHave a great day!`);
+            const payload = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                destination: document.getElementById('destination').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
 
-            // Reset form
-            this.reset();
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (!res.ok) {
+                    throw new Error(data.error || 'Could not send message.');
+                }
+                alert(`Thank you for contacting us, ${payload.firstName} ${payload.lastName}!\n\nYour message ("${payload.subject}") has been saved (Ref: ${data.inquiryId}).`);
+                this.reset();
+            } catch (err) {
+                alert(`Could not submit inquiry: ${err.message}`);
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = origText;
+                }
+            }
         });
     </script>
 

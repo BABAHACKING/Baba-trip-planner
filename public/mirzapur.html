@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/district-guide.css">
     <style>
         /* ========== Mirzapur District Dark-Theme Cards ========== */
         .mirzapur-page {
@@ -964,32 +965,8 @@
         </div>
     </footer>
 
-    <script>
-        function goBack() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = "home.html";
-            }
-        }
-
-        function switchCardImage(cardId, newSrc, thumbBtn) {
-            const mainImg = document.getElementById(cardId + '-main-img');
-            if (mainImg) {
-                mainImg.style.opacity = '0.35';
-                mainImg.style.transition = 'opacity 0.2s ease';
-                setTimeout(() => {
-                    mainImg.src = newSrc;
-                    mainImg.style.opacity = '1';
-                }, 150);
-            }
-            if (thumbBtn && thumbBtn.parentElement) {
-                const thumbs = thumbBtn.parentElement.querySelectorAll('.place-thumb');
-                thumbs.forEach(t => t.classList.remove('active'));
-                thumbBtn.classList.add('active');
-            }
-        }
-    </script>
+    <script src="js/places-catalog.js"></script>
+    <script src="js/district-guide.js"></script>
 
 </body>
 

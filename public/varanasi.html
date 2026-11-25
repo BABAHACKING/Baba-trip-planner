@@ -4,24 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The 16 best places to explore in Varanasi in 2025 - India Tourist</title>
+    <title>Explore Varanasi - Kashi Vishwanath, Sacred Ghats &amp; Sarnath | India Tourist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/district-guide.css">
 </head>
 
-<body class="dark-theme">
+<body class="district-page">
 
     <header>
         <div class="logo">India Tourist</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="/profile">My Profile</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="packages.html">Packages</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -46,154 +50,542 @@
         <span>← Back</span>
     </button>
 
-    <!-- Blog Hero Section -->
-    <div class="blog-hero">
-        <img src="./god img/vn1.jpg" alt="Varanasi Main Ghat">
-        <div class="blog-hero-overlay">
-            <div class="blog-category">Varanasi, Travel Guide</div>
-            <h1>The 16 best places to explore in Varanasi in 2025</h1>
+    <!-- Hero Banner -->
+    <section class="district-hero-banner">
+        <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple7.jpg" alt="Varanasi (Banaras) Heritage & Landmarks">
+        <div class="district-hero-overlay">
+            <div class="hero-tag">Uttar Pradesh • Eternal City of Light</div>
+            <h1>Varanasi (Banaras)</h1>
+            <p>Sacred Jyotirlinga, 84 Ancient Ganga Ghats, Sarnath &amp; Timeless Heritage</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <div class="district-about">
+        <h2>About Varanasi</h2>
+        <p>
+            Varanasi — revered eternally as Kashi and Banaras — stands along a crescent curve of the sacred Ganga as one of the world’s oldest continuously inhabited cities and the spiritual crown jewel of India.
+        </p>
+        <p>
+            From early morning sunrise cruises connecting Assi Ghat and Manikarnika Ghat to the grand marble Kashi Vishwanath Corridor, evening fire rituals at Dashashwamedh Ghat, Buddhist stupas at neighboring Sarnath, and royal riverside heritage at Ramnagar Fort, every lane in Kashi feels alive with devotion, classical music, and craft.
+        </p>
+    </div>
+
+    <!-- Quick Facts -->
+    <div class="quick-facts">
+        <div class="fact-card">
+            <div class="fact-icon">📍</div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">Eastern UP, India</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🪔</div>
+            <div class="fact-label">Sacred Highlight</div>
+            <div class="fact-value">84 Ganga Ghats &amp; Vishwanath</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🌡️</div>
+            <div class="fact-label">Best Season</div>
+            <div class="fact-value">Oct – Mar (Dev Deepawali)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">✈️</div>
+            <div class="fact-label">Gateway</div>
+            <div class="fact-value">LBS Intl. Airport &amp; VNS Cantt</div>
         </div>
     </div>
 
-    <div class="blog-container">
-        <!-- Main Content -->
-        <main class="blog-content">
-            <div class="blog-post-meta">
-                Blog written by India Tourist Team | Updated on December 2025
+    <!-- Place Cards Section -->
+    <section class="places-section">
+        <div class="places-section-header">
+            <h2>Top Places to Explore in Varanasi</h2>
+            <p>Sacred Jyotirlinga, riverfront ghats, Buddhist stupas &amp; historic temples</p>
+        </div>
+
+        <div class="place-cards-grid">
+
+            <!-- Card 1: Shri Kashi Vishwanath Temple &amp; Corridor -->
+            <div class="place-card" id="card-shri-kasi-vishwanath">
+                <div class="place-card-image">
+                    <img id="card-shri-kasi-vishwanath-main-img" src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple7.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Kashi Vishwanath Temple &amp; Corridor
+                            <span class="photo-count-pill">📷 8 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vishwanath Gali, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">12 Jyotirlinga Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Supreme sanctuary of Lord Shiva adorned with gold-plated spires and connected via the grand stone Vishwanath Dham Corridor directly down to the holy Ganga riverfront.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple7.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple1.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple2.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple3.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple4.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple5.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                    <img src="/varansi/shri%20kasi%20vishwanath/Shri%20Kashi%20Vishwanath%20Temple6.jpg" alt="Shri Kashi Vishwanath Temple &amp; Corridor 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kasi-vishwanath', this.src, this)">
+                </div>
             </div>
 
-            <p class="blog-intro">
-                Touring Varanasi enables you to access India's beating core while sharing similar comfort to the
-                familiar shelter of a family grandfather’s residence. The ancient city holds the respected Kashi
-                Vishwanath Temple which also goes by the names Kashi and Banaras. History has passed Varanasi as
-                the river bends in a holy horseshoe shape while the city continues to be the central destination for
-                spirituality.
-            </p>
+            <!-- Card 2: Dashashwamedh Ghat -->
+            <div class="place-card" id="card-dashashwamedh-ghat">
+                <div class="place-card-image">
+                    <img id="card-dashashwamedh-ghat-main-img" src="/varansi/Dashashwamedh%20Ghat/Dashashwamedh%20Ghat.jpg" alt="Dashashwamedh Ghat" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Dashashwamedh Ghat
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ganga Riverfront, Central Kashi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-ghat">Grand Ganga Aarti</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Varanasi’s most vibrant historic ghat steeped in Puranic lore, coming alive every dusk with the synchronized brass-lamp fire rituals, Vedic chants, and floating diyas of Ganga Aarti.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Dashashwamedh%20Ghat/Dashashwamedh%20Ghat.jpg" alt="Dashashwamedh Ghat 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-dashashwamedh-ghat', this.src, this)">
+                    <img src="/varansi/Dashashwamedh%20Ghat/Dashashwamedh%20Ghat1.jpg" alt="Dashashwamedh Ghat 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashashwamedh-ghat', this.src, this)">
+                    <img src="/varansi/Dashashwamedh%20Ghat/Dashashwamedh%20Ghat2.jpg" alt="Dashashwamedh Ghat 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashashwamedh-ghat', this.src, this)">
+                    <img src="/varansi/Dashashwamedh%20Ghat/Dashashwamedh%20Ghat3.jpg" alt="Dashashwamedh Ghat 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashashwamedh-ghat', this.src, this)">
+                    <img src="/varansi/Dashashwamedh%20Ghat/Dashashwamedh%20Ghat4.jpg" alt="Dashashwamedh Ghat 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashashwamedh-ghat', this.src, this)">
+                </div>
+            </div>
 
-            <div class="about-section"
-                style="background: rgba(255,255,255,0.03); padding: 30px; border-radius: 15px; margin: 30px 0; border-left: 4px solid var(--primary-orange);">
-                <h2 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--white);">About Varanasi</h2>
-                <p style="margin-bottom: 15px;">
-                    Varanasi, also known as Kashi (City of Life) and Benares, is one of the oldest continuously
-                    inhabited cities in the world.
-                    Situated on the banks of the Ganges in Uttar Pradesh, it is the holiest of the seven sacred cities
-                    (Sapta Puri) in Hinduism and Jainism.
-                </p>
+            <!-- Card 3: Assi Ghat -->
+            <div class="place-card" id="card-assi-ghat-varanasi">
+                <div class="place-card-image">
+                    <img id="card-assi-ghat-varanasi-main-img" src="/varansi/Assi%20Ghat%20Varanasi/Assi%20Ghat%20Varanasi.jpg" alt="Assi Ghat" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Assi Ghat
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Southern Ghat Belt, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-ghat">Sunrise &amp; Culture</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Beloved southern riverfront ghat where Assi meets Ganga, celebrated for Subah-e-Banaras classical dawn music, yoga, sunrise boat launches, and relaxed riverside cafes.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Assi%20Ghat%20Varanasi/Assi%20Ghat%20Varanasi.jpg" alt="Assi Ghat 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-assi-ghat-varanasi', this.src, this)">
+                    <img src="/varansi/Assi%20Ghat%20Varanasi/Assi%20Ghat%20Varanasi1.jpg" alt="Assi Ghat 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-assi-ghat-varanasi', this.src, this)">
+                    <img src="/varansi/Assi%20Ghat%20Varanasi/Assi%20Ghat%20Varanasi2.jpg" alt="Assi Ghat 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-assi-ghat-varanasi', this.src, this)">
+                    <img src="/varansi/Assi%20Ghat%20Varanasi/Assi%20Ghat%20Varanasi3.jpg" alt="Assi Ghat 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-assi-ghat-varanasi', this.src, this)">
+                    <img src="/varansi/Assi%20Ghat%20Varanasi/Assi%20Ghat%20Varanasi4.jpg" alt="Assi Ghat 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-assi-ghat-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 4: Manikarnika Ghat -->
+            <div class="place-card" id="card-manikarnika-ghat">
+                <div class="place-card-image">
+                    <img id="card-manikarnika-ghat-main-img" src="/varansi/Manikarnika%20Ghat/Manikarnika%20Ghat4.jpg" alt="Manikarnika Ghat" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Manikarnika Ghat
+                            <span class="photo-count-pill">📷 4 Photos</span>
+                        </div>
+                        <div class="place-card-location">Old Kashi Riverfront, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-ghat">Eternal Sacred Ghat</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Ancient sacred Mahashamshana ghat revered in Hindu cosmology as the gateway to moksha, flanked by historic stone shrines and centuries-old riverside architecture.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Manikarnika%20Ghat/Manikarnika%20Ghat4.jpg" alt="Manikarnika Ghat 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-manikarnika-ghat', this.src, this)">
+                    <img src="/varansi/Manikarnika%20Ghat/Manikarnika%20Ghat.jpg" alt="Manikarnika Ghat 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-manikarnika-ghat', this.src, this)">
+                    <img src="/varansi/Manikarnika%20Ghat/Manikarnika%20Ghat1.jpg" alt="Manikarnika Ghat 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-manikarnika-ghat', this.src, this)">
+                    <img src="/varansi/Manikarnika%20Ghat/Manikarnika%20Ghat2.jpg" alt="Manikarnika Ghat 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-manikarnika-ghat', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 5: Dhamek Stupa, Sarnath -->
+            <div class="place-card" id="card-dhamek-stupa-sarnath-varanasi">
+                <div class="place-card-image">
+                    <img id="card-dhamek-stupa-sarnath-varanasi-main-img" src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)3.jpg" alt="Dhamek Stupa, Sarnath" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Dhamek Stupa, Sarnath
+                            <span class="photo-count-pill">📷 14 Photos</span>
+                        </div>
+                        <div class="place-card-location">Sarnath (10 km NE of Varanasi), UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Buddhist Heritage</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Towering 43-meter Gupta-era cylindrical brick and stone stupa marking the sacred Deer Park site where Gautama Buddha preached His very first Dharma sermon.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)3.jpg" alt="Dhamek Stupa, Sarnath 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/2.jpg" alt="Dhamek Stupa, Sarnath 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/25.jpg" alt="Dhamek Stupa, Sarnath 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi).jpg" alt="Dhamek Stupa, Sarnath 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)1.jpg" alt="Dhamek Stupa, Sarnath 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)2.jpg" alt="Dhamek Stupa, Sarnath 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)4.jpg" alt="Dhamek Stupa, Sarnath 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)5.jpg" alt="Dhamek Stupa, Sarnath 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)6.jpg" alt="Dhamek Stupa, Sarnath 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)7.jpg" alt="Dhamek Stupa, Sarnath 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/Dhamek%20Stupa%20Sarnath,%20(Varanasi)8.jpg" alt="Dhamek Stupa, Sarnath 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/hgj.jpg" alt="Dhamek Stupa, Sarnath 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/unnamed.jpg" alt="Dhamek Stupa, Sarnath 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                    <img src="/varansi/Dhamek%20Stupa%20Sarnath,%20(Varanasi)/unnamed1.jpg" alt="Dhamek Stupa, Sarnath 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dhamek-stupa-sarnath-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 6: Ramnagar Fort -->
+            <div class="place-card" id="card-ramnagar-fort">
+                <div class="place-card-image">
+                    <img id="card-ramnagar-fort-main-img" src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort.jpg" alt="Ramnagar Fort" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Ramnagar Fort
+                            <span class="photo-count-pill">📷 15 Photos</span>
+                        </div>
+                        <div class="place-card-location">Eastern Bank of Ganga, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Royal Fort &amp; Museum</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Mid-18th-century Chunar-sandstone citadel built by Kashi Naresh Raja Balwant Singh overlooking the river, housing vintage royal cars, palanquins, weaponry, and an astronomical clock.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort.jpg" alt="Ramnagar Fort 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort1.jpg" alt="Ramnagar Fort 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort2.jpg" alt="Ramnagar Fort 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort3.jpg" alt="Ramnagar Fort 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort4.jpg" alt="Ramnagar Fort 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort5.jpg" alt="Ramnagar Fort 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort6.jpg" alt="Ramnagar Fort 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort7.jpg" alt="Ramnagar Fort 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort8.jpg" alt="Ramnagar Fort 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort9.jpg" alt="Ramnagar Fort 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort10.jpg" alt="Ramnagar Fort 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort11.jpg" alt="Ramnagar Fort 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort12.jpg" alt="Ramnagar Fort 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort13.jpg" alt="Ramnagar Fort 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                    <img src="/varansi/Ramnagar%20Fort/Ramnagar%20Fort14.jpg" alt="Ramnagar Fort 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramnagar-fort', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 7: Shri Sankat Mochan Hanuman Temple -->
+            <div class="place-card" id="card-shri-sankat-mochan-hanuman-temple-varanasi">
+                <div class="place-card-image">
+                    <img id="card-shri-sankat-mochan-hanuman-temple-varanasi-main-img" src="/varansi/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)3.jpg" alt="Shri Sankat Mochan Hanuman Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Sankat Mochan Hanuman Temple
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Lanka, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Venerated temple established by Goswami Tulsidas in the 16th century along Assi stream, cherished for peaceful darshan, monkeys, and famous besan laddoo prasad.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)3.jpg" alt="Shri Sankat Mochan Hanuman Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-shri-sankat-mochan-hanuman-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi).jpg" alt="Shri Sankat Mochan Hanuman Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-sankat-mochan-hanuman-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)1.jpg" alt="Shri Sankat Mochan Hanuman Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-sankat-mochan-hanuman-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)2.jpg" alt="Shri Sankat Mochan Hanuman Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-sankat-mochan-hanuman-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)/Shri%20Sankat%20Mochan%20Hanuman%20Temple,%20(Varanasi)4.jpg" alt="Shri Sankat Mochan Hanuman Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-sankat-mochan-hanuman-temple-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 8: Shree Durga Mata Mandir (Durgakund) -->
+            <div class="place-card" id="card-shree-durga-mata-mandir-durgakund-varanasi">
+                <div class="place-card-image">
+                    <img id="card-shree-durga-mata-mandir-durgakund-varanasi-main-img" src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi4.jpg" alt="Shree Durga Mata Mandir (Durgakund)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shree Durga Mata Mandir (Durgakund)
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Durgakund, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Nagara Red Temple</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Striking 18th-century red-ochre multi-tiered Nagara shrine beside the stepped Durga Kund tank, holding deep spiritual reverence across Navratri and Shravan festivals.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi4.jpg" alt="Shree Durga Mata Mandir (Durgakund) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/4.jpg" alt="Shree Durga Mata Mandir (Durgakund) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi.jpg" alt="Shree Durga Mata Mandir (Durgakund) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi1.jpg" alt="Shree Durga Mata Mandir (Durgakund) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi2.jpg" alt="Shree Durga Mata Mandir (Durgakund) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi3.jpg" alt="Shree Durga Mata Mandir (Durgakund) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi5.jpg" alt="Shree Durga Mata Mandir (Durgakund) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi6.jpg" alt="Shree Durga Mata Mandir (Durgakund) 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                    <img src="/varansi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi/Shree%20Durga%20Mata%20Mandir%20Durgakund%20Varanasi7.jpg" alt="Shree Durga Mata Mandir (Durgakund) 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shree-durga-mata-mandir-durgakund-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 9: Shri Satyanarayan Tulsi Manas Temple -->
+            <div class="place-card" id="card-shri-satyanarayan-tulsi-manas-temple-varanasi">
+                <div class="place-card-image">
+                    <img id="card-shri-satyanarayan-tulsi-manas-temple-varanasi-main-img" src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)2.jpg" alt="Shri Satyanarayan Tulsi Manas Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Satyanarayan Tulsi Manas Temple
+                            <span class="photo-count-pill">📷 8 Photos</span>
+                        </div>
+                        <div class="place-card-location">Durgakund Road, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Marble Heritage Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Gleaming white marble temple constructed at the historic spot where Goswami Tulsidas composed the Ramcharitmanas, featuring the epic’s verses engraved all across its walls.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)2.jpg" alt="Shri Satyanarayan Tulsi Manas Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/5Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)5.jpg" alt="Shri Satyanarayan Tulsi Manas Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi).jpg" alt="Shri Satyanarayan Tulsi Manas Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)1.jpg" alt="Shri Satyanarayan Tulsi Manas Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)3.jpg" alt="Shri Satyanarayan Tulsi Manas Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)6.jpg" alt="Shri Satyanarayan Tulsi Manas Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)7.jpg" alt="Shri Satyanarayan Tulsi Manas Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Satyanarayan%20Tulsi%20Manas%20Temple,%20(Varanasi)/unnamed4.jpg" alt="Shri Satyanarayan Tulsi Manas Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-satyanarayan-tulsi-manas-temple-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 10: New Vishwanath Temple (BHU Birla Mandir) -->
+            <div class="place-card" id="card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi">
+                <div class="place-card-image">
+                    <img id="card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi-main-img" src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)2.jpg" alt="New Vishwanath Temple (BHU Birla Mandir)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            New Vishwanath Temple (BHU Birla Mandir)
+                            <span class="photo-count-pill">📷 8 Photos</span>
+                        </div>
+                        <div class="place-card-location">Banaras Hindu University Campus, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Marble Campus Spire</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Soaring 250-foot marble Shiva temple planned by Pt. Madan Mohan Malaviya inside leafy BHU lawns, showcasing serene halls inscribed with Bhagavad Gita teachings.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)2.jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi).jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)1.jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)3.jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)4.jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)5.jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)6.jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)/Shri%20Kashi%20Vishwanath%20Ji%20Temple,%20BHU%20Campus%20(Varanasi)7.jpg" alt="New Vishwanath Temple (BHU Birla Mandir) 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-kashi-vishwanath-ji-temple-bhu-campus-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 11: Bharat Kala Bhavan Museum (BHU) -->
+            <div class="place-card" id="card-bharat-kala-bhavan-museum-bhu-varanasi">
+                <div class="place-card-image">
+                    <img id="card-bharat-kala-bhavan-museum-bhu-varanasi-main-img" src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)6.jpg" alt="Bharat Kala Bhavan Museum (BHU)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Bharat Kala Bhavan Museum (BHU)
+                            <span class="photo-count-pill">📷 7 Photos</span>
+                        </div>
+                        <div class="place-card-location">Banaras Hindu University, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Art &amp; Archaeology Museum</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Distinguished university museum founded with Rai Krishnadasa preserving over 100,000 Banarasi textiles, Mughal and Rajasthani miniature paintings, and ancient Gangetic sculptures.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)6.jpg" alt="Bharat Kala Bhavan Museum (BHU) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-bharat-kala-bhavan-museum-bhu-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi).jpg" alt="Bharat Kala Bhavan Museum (BHU) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-kala-bhavan-museum-bhu-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)1.jpg" alt="Bharat Kala Bhavan Museum (BHU) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-kala-bhavan-museum-bhu-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)2.jpg" alt="Bharat Kala Bhavan Museum (BHU) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-kala-bhavan-museum-bhu-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)4.jpg" alt="Bharat Kala Bhavan Museum (BHU) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-kala-bhavan-museum-bhu-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)5.jpg" alt="Bharat Kala Bhavan Museum (BHU) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-kala-bhavan-museum-bhu-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)/Bharat%20Kala%20Bhavan%20Museum,%20(BHU%20Varanasi)7.jpg" alt="Bharat Kala Bhavan Museum (BHU) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-kala-bhavan-museum-bhu-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 12: Bharat Mata Mandir (MGKVP) -->
+            <div class="place-card" id="card-bharat-mata-mandir-mgkvp-varanasi">
+                <div class="place-card-image">
+                    <img id="card-bharat-mata-mandir-mgkvp-varanasi-main-img" src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)4.jpg" alt="Bharat Mata Mandir (MGKVP)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Bharat Mata Mandir (MGKVP)
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vidyapith Road, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">National Heritage Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Unique temple inaugurated by Mahatma Gandhi in 1936 dedicated to Mother India, featuring an intricate three-dimensional undivided map of India carved from pure Makrana marble.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)4.jpg" alt="Bharat Mata Mandir (MGKVP) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi).jpg" alt="Bharat Mata Mandir (MGKVP) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)1.jpg" alt="Bharat Mata Mandir (MGKVP) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)2.jpg" alt="Bharat Mata Mandir (MGKVP) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)3.jpg" alt="Bharat Mata Mandir (MGKVP) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)5.jpg" alt="Bharat Mata Mandir (MGKVP) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)6.jpg" alt="Bharat Mata Mandir (MGKVP) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)7.jpg" alt="Bharat Mata Mandir (MGKVP) 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                    <img src="/varansi/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)/Bharat%20Mata%20Mandir%20MGKVP%20(Varanasi)8.jpg" alt="Bharat Mata Mandir (MGKVP) 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bharat-mata-mandir-mgkvp-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 13: Nepali Temple (Kathwala Mandir) -->
+            <div class="place-card" id="card-nepali-temple">
+                <div class="place-card-image">
+                    <img id="card-nepali-temple-main-img" src="/varansi/Nepali%20Temple/Nepali%20Temple2.jpg" alt="Nepali Temple (Kathwala Mandir)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Nepali Temple (Kathwala Mandir)
+                            <span class="photo-count-pill">📷 6 Photos</span>
+                        </div>
+                        <div class="place-card-location">Lalita Ghat, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-tower">Pagoda Wood Heritage</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Revered 19th-century Kathmandu-style pagoda shrine crafted from carved Himalayan teak and terracotta overlooking Lalita Ghat.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Nepali%20Temple/Nepali%20Temple2.jpg" alt="Nepali Temple (Kathwala Mandir) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-nepali-temple', this.src, this)">
+                    <img src="/varansi/Nepali%20Temple/Nepali%20Temple.jpg" alt="Nepali Temple (Kathwala Mandir) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nepali-temple', this.src, this)">
+                    <img src="/varansi/Nepali%20Temple/Nepali%20Temple1.jpg" alt="Nepali Temple (Kathwala Mandir) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nepali-temple', this.src, this)">
+                    <img src="/varansi/Nepali%20Temple/Nepali%20Temple3.jpg" alt="Nepali Temple (Kathwala Mandir) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nepali-temple', this.src, this)">
+                    <img src="/varansi/Nepali%20Temple/Nepali%20Temple4.jpg" alt="Nepali Temple (Kathwala Mandir) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nepali-temple', this.src, this)">
+                    <img src="/varansi/Nepali%20Temple/Nepali%20Temple5.jpg" alt="Nepali Temple (Kathwala Mandir) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nepali-temple', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 14: Shri Batuk Bhairav Temple -->
+            <div class="place-card" id="card-shri-batuk-bhairav-temple-varanasi">
+                <div class="place-card-image">
+                    <img id="card-shri-batuk-bhairav-temple-varanasi-main-img" src="/varansi/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)3.jpg" alt="Shri Batuk Bhairav Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Batuk Bhairav Temple
+                            <span class="photo-count-pill">📷 4 Photos</span>
+                        </div>
+                        <div class="place-card-location">Kamachha, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Ancient Kashi Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Revered ancient Tantric shrine dedicated to the youthful form of Lord Bhairav (protector of Kashi), tucked amid quiet historic residential lanes of Kamachha.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)3.jpg" alt="Shri Batuk Bhairav Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-shri-batuk-bhairav-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi).jpg" alt="Shri Batuk Bhairav Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-batuk-bhairav-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)1.jpg" alt="Shri Batuk Bhairav Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-batuk-bhairav-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)/Shri%20Batuk%20Bhairav%20Temple,%20(Varanasi)4.jpg" alt="Shri Batuk Bhairav Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shri-batuk-bhairav-temple-varanasi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 15: Tibetan Temple (Sarnath) -->
+            <div class="place-card" id="card-tibetan-temple-varanasi">
+                <div class="place-card-image">
+                    <img id="card-tibetan-temple-varanasi-main-img" src="/varansi/Tibetan%20Temple,%20(Varanasi)/Tibetan%20Temple,%20(Varanasi)3.jpg" alt="Tibetan Temple (Sarnath)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Tibetan Temple (Sarnath)
+                            <span class="photo-count-pill">📷 4 Photos</span>
+                        </div>
+                        <div class="place-card-location">Sarnath, Varanasi, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Buddhist Monastery</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Colorful Himalayan-style monastery and courtyard gardens near Dhamek Stupa embellished with vivid thangka murals, prayer wheels, and tranquil meditation halls.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/varansi/Tibetan%20Temple,%20(Varanasi)/Tibetan%20Temple,%20(Varanasi)3.jpg" alt="Tibetan Temple (Sarnath) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-tibetan-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Tibetan%20Temple,%20(Varanasi)/Tibetan%20Temple,%20(Varanasi).jpg" alt="Tibetan Temple (Sarnath) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-tibetan-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Tibetan%20Temple,%20(Varanasi)/Tibetan%20Temple,%20(Varanasi)1.jpg" alt="Tibetan Temple (Sarnath) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-tibetan-temple-varanasi', this.src, this)">
+                    <img src="/varansi/Tibetan%20Temple,%20(Varanasi)/Tibetan%20Temple,%20(Varanasi)2.jpg" alt="Tibetan Temple (Sarnath) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-tibetan-temple-varanasi', this.src, this)">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Travel Info Section -->
+    <section class="travel-info-section">
+        <div class="travel-info-grid">
+            <div class="info-card">
+                <h3>🚗 How to Reach Varanasi (Banaras)</h3>
                 <p>
-                    For centuries, this city has been the ultimate pilgrimage spot for Hindus, who believe that dying in
-                    Varanasi brings salvation/moksha.
-                    It is a city of temples, music, art, and the famous Banarasi silk sarees.
+                    <strong>By Air:</strong> Lal Bahadur Shastri International Airport (VNS) in Babatpur lies 25 km northwest of the ghats.<br><strong>By Train:</strong> Connected across India via Varanasi Cantt (BSB), Banaras (BSBS) & Pt. Deen Dayal Upadhyaya Jn.<br><strong>By Road:</strong> Seamless links via NH-19 to Prayagraj (~2.5 hrs) and Mirzapur (~2 hrs).
                 </p>
             </div>
-
-            <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 30px 0;">
-
-            <!-- 1. Kashi Vishwanath -->
-            <div class="listicle-item">
-                <h2>1. Kashi Vishwanath Temple</h2>
-                <img src="./god img/vn3.jpg" alt="Kashi Vishwanath Temple">
-                <p>One of the most famous Hindu temples dedicated to Lord Shiva. It is located on the western bank of
-                    the holy river Ganges, and is one of the twelve Jyotirlingas, the holiest of Shiva temples. The
-                    temple has been referred to in Hindu scriptures for a very long time as a central part of worship in
-                    the Shaiva philosophy.</p>
-            </div>
-
-            <!-- 2. Dashashwamedh Ghat -->
-            <div class="listicle-item">
-                <h2>2. Dashashwamedh Ghat</h2>
-                <img src="./god img/mahalkaleshwar-temple-night.jpg" alt="Dashashwamedh Ghat Aarti">
-                <p>Dashashwamedh Ghat is the main ghat in Varanasi on the Ganga River. It is located close to Vishwanath
-                    Temple and is probably the most spectacular ghat. Two Hindu legends are associated with it:
-                    according to one, Lord Brahma created it to welcome Lord Shiva. Every evening, the famous Ganga
-                    Aarti takes place here, a visual spectacle of fire and devotion.</p>
-            </div>
-
-            <!-- 3. Assi Ghat -->
-            <div class="listicle-item">
-                <h2>3. Assi Ghat</h2>
-                <img src="./god img/vn.jpg" alt="Assi Ghat">
-                <p>Assi Ghat is the southernmost ghat in Varanasi. To most visitors to Varanasi, it is known for being a
-                    place where long-term foreign students, researchers, and tourists live. It is one of the ghats often
-                    visited for recreation and during festivals. It marks the confluence of the River Assi and the
-                    Ganges.</p>
-            </div>
-
-            <!-- 4. Sarnath -->
-            <div class="listicle-item">
-                <h2>4. Sarnath</h2>
-                <img src="./god img/vns4.webp" alt="Sarnath Stupa">
-                <p>Sarnath is a place located 10 kilometres north-east of Varanasi near the confluence of the Ganges and
-                    the Varuna rivers in Uttar Pradesh, India. The deer park in Sarnath is where Gautama Buddha first
-                    taught the Dharma, and where the Buddhist Sangha came into existence through the enlightenment of
-                    Kondanna.</p>
-            </div>
-
-        </main>
-
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-widget">
-                <h3>Best Travel Packages</h3>
-                <div style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
-                    <div
-                        style="width: 80px; height: 50px; background: linear-gradient(45deg, #c6a87c, #aa8e64); border-radius: 5px;">
-                    </div>
-                    <div>
-                        <div style="font-weight:600; font-size: 0.95rem; color: #fff;">Premium Kashi Tour</div>
-                        <div style="font-size: 0.8rem; color: #aaa;">3 Days / 2 Nights</div>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <div
-                        style="width: 80px; height: 50px; background: linear-gradient(45deg, #444, #222); border-radius: 5px;">
-                    </div>
-                    <div>
-                        <div style="font-weight:600; font-size: 0.95rem; color: #fff;">Ganges Boat Ride</div>
-                        <div style="font-size: 0.8rem; color: #aaa;">Sunrise Special</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sidebar-widget">
-                <h3>Explore Nearby</h3>
-                <ul style="list-style: none;">
-                    <li
-                        style="margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
-                        <a href="agra.html"
-                            style="color: var(--text-muted); text-decoration: none; display: flex; justify-content: space-between;">
-                            <span>Agra</span> <span>&#10095;</span>
-                        </a>
-                    </li>
-                    <li
-                        style="margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
-                        <a href="ayodhya.html"
-                            style="color: var(--text-muted); text-decoration: none; display: flex; justify-content: space-between;">
-                            <span>Ayodhya</span> <span>&#10095;</span>
-                        </a>
-                    </li>
-                    <li
-                        style="margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 8px;">
-                        <a href="prayagraj.html"
-                            style="color: var(--text-muted); text-decoration: none; display: flex; justify-content: space-between;">
-                            <span>Prayagraj</span> <span>&#10095;</span>
-                        </a>
-                    </li>
-                    <li style="margin-bottom: 0;">
-                        <a href="mathura.html"
-                            style="color: var(--text-muted); text-decoration: none; display: flex; justify-content: space-between;">
-                            <span>Mathura</span> <span>&#10095;</span>
-                        </a>
-                    </li>
+            <div class="info-card">
+                <h3>🍲 Local Flavors &amp; Specialties</h3>
+                <p>Experience unmistakable Banarasi culinary treasures through old lanes:</p>
+                <ul>
+                    <li><strong>Kachori-Sabzi & Tamatar Chaat:</strong> Crisp morning kachoris and spicy earthen-kulhad Tamatar Chaat topped with namakpara around Dashashwamedh.</li>
+                    <li><strong>Malaiyyo (Winter Magic):</strong> Ethereal saffron-and-pistachio morning milk froth sold only in cool winter mornings in Chowk.</li>
+                    <li><strong>Blue Lassi & Banarasi Paan:</strong> Creamy seasonal fruit lassis near Manikarnika lane and fragrant sweet Banarasi paan.</li>
                 </ul>
             </div>
-        </aside>
+            <div class="info-card">
+                <h3>✨ Insider Travel Tips</h3>
+                <ul>
+                    <li><strong>Sunrise Boat & Aarti:</strong> Take a dawn wooden boat from Assi Ghat to Manikarnika, then return at 6:00 PM for Dashashwamedh Ganga Aarti.</li>
+                    <li><strong>Sarnath Half-Day:</strong> Plan an unhurried afternoon at Sarnath for Dhamek Stupa, Tibetan Temple, and the Ashoka Lion Capital museum.</li>
+                    <li><strong>Temple Comfort:</strong> Leave bags and electronics inside hotel lockers or clock-rooms prior to Kashi Vishwanath darshan.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="district-cta">
+        <a href="/wizard">🗺️ Plan Your Varanasi Trip with AI Route Planner</a>
     </div>
 
     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
-                <!-- Column 1: Our Services -->
                 <div class="footer-column">
                     <h3>Our Services</h3>
                     <ul class="footer-links">
@@ -208,7 +600,6 @@
                     </ul>
                 </div>
 
-                <!-- Column 2: About India Tourist -->
                 <div class="footer-column">
                     <h3>About India Tourist</h3>
                     <ul class="footer-links">
@@ -218,27 +609,25 @@
                         <li><a href="contact.html">Contact Us</a></li>
                         <li><a href="home.html">Testimonials</a></li>
                         <li><a href="home.html">Privacy Policy</a></li>
-                        <li><a href="home.html">Terms & Conditions</a></li>
+                        <li><a href="home.html">Terms &amp; Conditions</a></li>
                         <li><a href="home.html">Sitemap</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 3: Top Pilgrimage Places -->
                 <div class="footer-column">
-                    <h3>Top Pilgrimage Places</h3>
+                    <h3>UP District Guides</h3>
                     <ul class="footer-links">
                         <li><a href="varanasi.html">Varanasi Tour</a></li>
                         <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
-                        <li><a href="prayagraj.html">Prayagraj Package</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Guide</a></li>
                         <li><a href="mathura.html">Mathura Vrindavan</a></li>
-                        <li><a href="home.html">Ujjain Mahakal</a></li>
-                        <li><a href="home.html">Haridwar Rishikesh</a></li>
-                        <li><a href="home.html">Amritsar Golden Temple</a></li>
-                        <li><a href="home.html">Shirdi Sai Baba</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage</a></li>
+                        <li><a href="mirzapur.html">Mirzapur Waterfalls</a></li>
+                        <li><a href="sonebhadra.html">Sonebhadra Wonders</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 4: Popular Packages -->
                 <div class="footer-column">
                     <h3>Popular Packages</h3>
                     <ul class="footer-links">
@@ -253,44 +642,30 @@
                     </ul>
                 </div>
 
-                <!-- Column 5: Follow Us -->
                 <div class="footer-column">
                     <h3>Follow Us</h3>
                     <ul class="footer-links">
-                        <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-                        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-                        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                        <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></li>
                     </ul>
                     <div class="social-links">
-                        <a href="https://facebook.com" class="social-icon" target="_blank" title="Facebook">
-                            <span>f</span>
-                        </a>
-                        <a href="https://twitter.com" class="social-icon" target="_blank" title="Twitter">
-                            <span>𝕏</span>
-                        </a>
-                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon"
-                            target="_blank" title="Instagram">
-                            <span>📷</span>
-                        </a>
-                        <a href="https://youtube.com" class="social-icon" target="_blank" title="YouTube">
-                            <span>▶</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank"
-                            title="LinkedIn">
-                            <span>in</span>
-                        </a>
+                        <a href="https://facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook"><span>f</span></a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter"><span>𝕏</span></a>
+                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram"><span>📷</span></a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube"><span>▶</span></a>
+                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span>in</span></a>
                     </div>
                     <button class="live-chat-button">💬 Live Chat</button>
                     <button class="callback-button">📞 Get a Callback</button>
                 </div>
             </div>
 
-            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <div class="copyright">
-                        © 2024 India Tourist. All Rights Reserved.
+                        © 2026 India Tourist. All Rights Reserved.
                     </div>
                     <ul class="footer-bottom-links">
                         <li><a href="home.html">Privacy Policy</a></li>
@@ -303,15 +678,8 @@
         </div>
     </footer>
 
-    <script>
-        function goBack() {
-            if (window.history.length > 1) {
-                window.history.back();
-            } else {
-                window.location.href = "home.html";
-            }
-        }
-    </script>
+    <script src="js/places-catalog.js"></script>
+    <script src="js/district-guide.js"></script>
 
 </body>
 

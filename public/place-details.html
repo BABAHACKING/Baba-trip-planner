@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location Guide | India Tourist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/district-guide.css">
+</head>
+
+<body class="district-page">
+
+    <header>
+        <div class="logo">India Tourist</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="/profile">My Profile</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="packages.html">Packages</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Top Back Button -->
+    <div class="back-nav-container">
+        <button id="detail-back-btn" onclick="goBackToDistrict()" class="back-btn" title="Back to district">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span id="detail-back-label">← Back to District</span>
+        </button>
+    </div>
+
+    <!-- Floating Back Button -->
+    <button onclick="goBackToDistrict()" class="floating-back-btn" title="Return 1 step back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>← Back</span>
+    </button>
+
+    <main class="place-detail-container" id="place-detail-root">
+        <div class="detail-breadcrumb">
+            <a href="home.html">Home</a>
+            <span>›</span>
+            <a id="crumb-city-link" href="home.html">Uttar Pradesh</a>
+            <span>›</span>
+            <span id="crumb-place-name">Loading location...</span>
+        </div>
+
+        <section class="detail-header-card">
+            <div class="detail-title-row">
+                <div class="detail-title-block">
+                    <span id="detail-badge" class="place-card-badge badge-religious">Tourist Attraction</span>
+                    <h1 id="detail-title">Loading Location Guide...</h1>
+                    <div id="detail-location" class="detail-location-line">📍 Uttar Pradesh, India</div>
+                </div>
+                <div class="detail-cta-row">
+                    <button type="button" id="detail-start-trip-btn" class="detail-primary-btn">
+                        🚀 Start My Trip
+                    </button>
+                    <a id="detail-google-map-btn" href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="detail-map-btn">
+                        📍 Open in Google Maps ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- Interactive Real Photo Gallery Stage -->
+            <div class="detail-gallery-stage">
+                <img id="detail-main-photo" src="/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg" alt="Location photograph">
+                <button type="button" class="detail-gallery-nav detail-gallery-prev" onclick="stepDetailPhoto(-1)" aria-label="Previous photo">‹</button>
+                <button type="button" class="detail-gallery-nav detail-gallery-next" onclick="stepDetailPhoto(1)" aria-label="Next photo">›</button>
+                <div id="detail-photo-counter" class="detail-photo-counter">📷 Photo 1 of 1</div>
+            </div>
+
+            <div id="detail-thumbs-row" class="detail-thumbs-row"></div>
+        </section>
+
+        <!-- Overview & History -->
+        <section class="detail-about-card">
+            <h2 id="detail-overview-heading">Overview &amp; Significance</h2>
+            <div id="detail-overview-paragraphs"></div>
+        </section>
+
+        <!-- Complete Visitor Information Grid -->
+        <section class="detail-specs-grid">
+            <div class="detail-spec-card">
+                <h3>🕒 Timings &amp; Hours</h3>
+                <p id="detail-timings">—</p>
+            </div>
+            <div class="detail-spec-card">
+                <h3>🎟️ Entry Fee &amp; Passes</h3>
+                <p id="detail-entry-fee">—</p>
+            </div>
+            <div class="detail-spec-card">
+                <h3>⏱️ Recommended Duration</h3>
+                <p id="detail-duration">—</p>
+            </div>
+            <div class="detail-spec-card">
+                <h3>🌤️ Best Time to Visit</h3>
+                <p id="detail-best-time">—</p>
+            </div>
+            <div class="detail-spec-card">
+                <h3>🚗 How to Reach</h3>
+                <p id="detail-how-to-reach">—</p>
+            </div>
+            <div class="detail-spec-card">
+                <h3>🙏 Visitor Guidelines &amp; Tips</h3>
+                <p id="detail-etiquette">—</p>
+            </div>
+        </section>
+
+        <!-- Two-Column Highlights + Google Maps Directions Card -->
+        <section class="detail-two-col">
+            <div class="detail-highlights-box">
+                <h3>✨ Key Highlights &amp; What Not to Miss</h3>
+                <ul id="detail-highlights-list" class="detail-highlights-list"></ul>
+                <div class="detail-insider-tip">
+                    <strong>💡 Insider Travel Tip:</strong> <span id="detail-insider-tip-text"></span>
+                </div>
+            </div>
+
+            <div class="detail-map-panel">
+                <div>
+                    <h3>🗺️ Google Map &amp; Directions</h3>
+                    <p style="color: #A0AFA5; font-size: 0.92rem; line-height: 1.6; margin: 0;">
+                        Launch turn-by-turn navigation, street views, nearby landmarks, and live travel times directly in Google Maps.
+                    </p>
+                </div>
+                <div class="detail-map-preview-box">
+                    <div class="detail-map-pin-icon">📍</div>
+                    <div id="map-panel-place-name" style="font-weight: 700; color: #FDFCF8; font-size: 1.05rem;">Location Pin</div>
+                    <div id="map-panel-address" style="color: #A0AFA5; font-size: 0.85rem; margin-top: 4px;">Uttar Pradesh, India</div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <a id="map-panel-google-link" href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="detail-map-btn" style="justify-content: center;">
+                        📍 View Location on Google Maps ↗
+                    </a>
+                    <button type="button" id="map-panel-start-trip" class="detail-primary-btn" style="justify-content: center;">
+                        🚀 Start My Trip Including This Stop
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nearby Attractions in Same District -->
+        <section class="detail-nearby-section">
+            <h2 id="detail-nearby-heading">More Places to Explore Nearby</h2>
+            <div id="detail-nearby-grid" class="detail-nearby-grid"></div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="home.html">Hotels Booking</a></li>
+                        <li><a href="home.html">Flight Tickets</a></li>
+                        <li><a href="home.html">Train Booking</a></li>
+                        <li><a href="home.html">Cab Booking</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>UP District Guides</h3>
+                    <ul class="footer-links">
+                        <li><a href="varanasi.html">Varanasi Guide</a></li>
+                        <li><a href="ayodhya.html">Ayodhya Guide</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Guide</a></li>
+                        <li><a href="mathura.html">Mathura Guide</a></li>
+                        <li><a href="lucknow.html">Lucknow Guide</a></li>
+                        <li><a href="mirzapur.html">Mirzapur Guide</a></li>
+                        <li><a href="sonebhadra.html">Sonebhadra Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Plan With AI</h3>
+                    <ul class="footer-links">
+                        <li><a href="/home.html?openWizard=true">Step-by-Step Trip Planner</a></li>
+                        <li><a href="/plan">View Active Itinerary</a></li>
+                        <li><a href="/profile">My Traveler Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">© 2026 India Tourist. All Rights Reserved.</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/places-catalog.js"></script>
+    <script>
+        var currentDetailCity = "mirzapur";
+        var currentDetailDistrictPage = "home.html";
+        var currentDetailImages = [];
+        var currentDetailPhotoIdx = 0;
+
+        function goBackToDistrict() {
+            if (document.referrer && document.referrer.indexOf(window.location.host) !== -1 && window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = currentDetailDistrictPage || "home.html";
+            }
+        }
+
+        function setDetailPhoto(index) {
+            if (!currentDetailImages.length) return;
+            currentDetailPhotoIdx = (index + currentDetailImages.length) % currentDetailImages.length;
+            var mainImg = document.getElementById("detail-main-photo");
+            if (mainImg) {
+                mainImg.style.opacity = "0.35";
+                setTimeout(function () {
+                    mainImg.src = encodeURI(currentDetailImages[currentDetailPhotoIdx]);
+                    mainImg.style.opacity = "1";
+                }, 120);
+            }
+            var counter = document.getElementById("detail-photo-counter");
+            if (counter) {
+                counter.textContent = "📷 Photo " + (currentDetailPhotoIdx + 1) + " of " + currentDetailImages.length;
+            }
+            var thumbs = document.querySelectorAll(".detail-thumb-item");
+            thumbs.forEach(function (t, i) {
+                if (i === currentDetailPhotoIdx) t.classList.add("active");
+                else t.classList.remove("active");
+            });
+        }
+
+        function stepDetailPhoto(delta) {
+            setDetailPhoto(currentDetailPhotoIdx + delta);
+        }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "ArrowLeft") stepDetailPhoto(-1);
+            if (e.key === "ArrowRight") stepDetailPhoto(1);
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var params = new URLSearchParams(window.location.search);
+            var city = (params.get("city") || "mirzapur").toLowerCase();
+            var id = params.get("id") || "";
+
+            var cityCatalog = (window.PLACES_CATALOG && window.PLACES_CATALOG[city]) || null;
+            if (!cityCatalog) {
+                city = "mirzapur";
+                cityCatalog = window.PLACES_CATALOG["mirzapur"];
+            }
+            var place = cityCatalog[id] || Object.values(cityCatalog)[0];
+            currentDetailCity = city;
+            currentDetailDistrictPage = place.districtPage || (city + ".html");
+            currentDetailImages = place.images || [];
+
+            document.title = place.name + " (" + place.cityLabel + ") - Complete Visitor Guide | India Tourist";
+
+            document.getElementById("detail-back-label").textContent = "← Back to " + place.cityLabel;
+            var crumbCity = document.getElementById("crumb-city-link");
+            crumbCity.textContent = place.cityLabel;
+            crumbCity.href = currentDetailDistrictPage;
+            document.getElementById("crumb-place-name").textContent = place.name;
+
+            var badgeEl = document.getElementById("detail-badge");
+            badgeEl.className = "place-card-badge " + (place.badgeClass || "badge-religious");
+            badgeEl.textContent = place.badgeText || "Attraction";
+
+            document.getElementById("detail-title").textContent = place.name;
+            document.getElementById("detail-location").textContent = "📍 " + place.location;
+            document.getElementById("detail-overview-heading").textContent = "About " + place.name;
+
+            var mapUrl = window.getGoogleMapsSearchUrl(place, place.cityLabel);
+            document.getElementById("detail-google-map-btn").href = mapUrl;
+            document.getElementById("map-panel-google-link").href = mapUrl;
+            document.getElementById("map-panel-place-name").textContent = place.name;
+            document.getElementById("map-panel-address").textContent = place.location;
+
+            function onStartTrip() {
+                window.startTripFromPlace(city, place.id);
+            }
+            document.getElementById("detail-start-trip-btn").onclick = onStartTrip;
+            document.getElementById("map-panel-start-trip").onclick = onStartTrip;
+
+            // Gallery render
+            var thumbsRow = document.getElementById("detail-thumbs-row");
+            thumbsRow.innerHTML = "";
+            currentDetailImages.forEach(function (src, idx) {
+                var img = document.createElement("img");
+                img.src = encodeURI(src);
+                img.alt = place.name + " photo " + (idx + 1);
+                img.className = "detail-thumb-item" + (idx === 0 ? " active" : "");
+                img.onclick = function () { setDetailPhoto(idx); };
+                thumbsRow.appendChild(img);
+            });
+            setDetailPhoto(0);
+
+            // Overview paragraphs
+            var overviewWrap = document.getElementById("detail-overview-paragraphs");
+            overviewWrap.innerHTML = "";
+            (place.overview || []).forEach(function (para) {
+                var p = document.createElement("p");
+                p.textContent = para;
+                overviewWrap.appendChild(p);
+            });
+
+            // Visitor Specs
+            document.getElementById("detail-timings").textContent = place.timings;
+            document.getElementById("detail-entry-fee").textContent = place.entryFee;
+            document.getElementById("detail-duration").textContent = place.duration;
+            document.getElementById("detail-best-time").textContent = place.bestTime;
+            document.getElementById("detail-how-to-reach").textContent = place.howToReach;
+            document.getElementById("detail-etiquette").textContent = place.etiquette;
+
+            // Highlights & Insider Tip
+            var hlList = document.getElementById("detail-highlights-list");
+            hlList.innerHTML = "";
+            (place.highlights || []).forEach(function (h) {
+                var li = document.createElement("li");
+                li.textContent = h;
+                hlList.appendChild(li);
+            });
+            document.getElementById("detail-insider-tip-text").textContent = place.insiderTip;
+
+            // Nearby Attractions (3 other attractions in same district)
+            document.getElementById("detail-nearby-heading").textContent = "More Places to Explore in " + place.cityLabel;
+            var others = Object.values(cityCatalog).filter(function (item) {
+                return item.id !== place.id;
+            }).slice(0, 3);
+
+            var nearbyGrid = document.getElementById("detail-nearby-grid");
+            nearbyGrid.innerHTML = "";
+            others.forEach(function (n) {
+                var a = document.createElement("a");
+                a.className = "nearby-card";
+                a.href = window.getPlaceDetailsUrl(city, n.id);
+                var cover = (n.images && n.images[0]) ? encodeURI(n.images[0]) : "/varansi/Dashashwamedh Ghat/Dashashwamedh Ghat.jpg";
+                a.innerHTML =
+                    '<img src="' + cover + '" alt="' + n.name.replace(/"/g, "&quot;") + '" loading="lazy">' +
+                    '<div class="nearby-card-body">' +
+                        '<h4>' + n.name + '</h4>' +
+                        '<p>📍 ' + n.location + '</p>' +
+                    '</div>';
+                nearbyGrid.appendChild(a);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

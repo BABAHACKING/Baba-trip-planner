@@ -4,98 +4,847 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Mathura - India Tourist</title>
+    <title>Explore Mathura &amp; Vrindavan - Birthplace of Lord Krishna | India Tourist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/district-guide.css">
 </head>
 
-<body>
+<body class="district-page">
 
     <header>
         <div class="logo">India Tourist</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="/profile">My Profile</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="packages.html">Packages</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="district-hero" style="background-image: url('./god img/vn3.jpg');">
-        <div class="district-hero-content">
-            <h1>Mathura</h1>
-            <p>The Birthplace of Lord Krishna</p>
+    <!-- Back Button to return 1 step -->
+    <div class="back-nav-container">
+        <button onclick="goBack()" class="back-btn" title="Return 1 step back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>← Return 1 Step Back</span>
+        </button>
+    </div>
+
+    <!-- Floating Back Button for Quick Access -->
+    <button onclick="goBack()" class="floating-back-btn" title="Return 1 step back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>← Back</span>
+    </button>
+
+    <!-- Hero Banner -->
+    <section class="district-hero-banner">
+        <img src="/mathura/prem-mandir/prem-mandir-1.jpg" alt="Mathura &amp; Vrindavan Heritage & Landmarks">
+        <div class="district-hero-overlay">
+            <div class="hero-tag">Uttar Pradesh • Sacred Braj Bhoomi</div>
+            <h1>Mathura &amp; Vrindavan</h1>
+            <p>Divine Birthplace of Lord Krishna, Marble Shrines &amp; Yamuna Ghats</p>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="discover-section">
-        <div class="section-header">
-            <h2>About Mathura</h2>
-            <p style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                Mathura is a sacred city in Uttar Pradesh, believed to be the birthplace of Lord Krishna.
-                It is dotted with temples and is a major pilgrimage center for Hindus, especially during Janmashtami.
-            </p>
+    <div class="district-about">
+        <h2>About Mathura &amp; Vrindavan</h2>
+        <p>
+            Mathura and twin holy town Vrindavan form the spiritual heart of Braj Bhoomi along the sacred Yamuna River, revered across the world as the birthplace and childhood playground of Lord Krishna.
+        </p>
+        <p>
+            From the ancient Garbha Griha sanctum at Shri Krishna Janmasthan and riverside Vishram Ghat to illuminated white marble Prem Mandir, ecstatic kirtans at Banke Bihari and ISKCON Vrindavan, sacred groves of Nidhivan, and Govardhan’s Kusum Sarovar, Braj immerses every visitor in timeless bhakti.
+        </p>
+    </div>
+
+    <!-- Quick Facts -->
+    <div class="quick-facts">
+        <div class="fact-card">
+            <div class="fact-icon">📍</div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">Western UP (Braj Bhoomi)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🦚</div>
+            <div class="fact-label">Sacred Highlight</div>
+            <div class="fact-value">Shri Krishna Janmasthan</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🎨</div>
+            <div class="fact-label">Best Season</div>
+            <div class="fact-value">Aug–Mar (Janmashtami &amp; Holi)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🚗</div>
+            <div class="fact-label">From Agra / Delhi</div>
+            <div class="fact-value">~58 km Agra / ~160 km Delhi</div>
+        </div>
+    </div>
+
+    <!-- Place Cards Section -->
+    <section class="places-section">
+        <div class="places-section-header">
+            <h2>Top Places to Explore in Mathura &amp; Vrindavan</h2>
+            <p>Sacred Krishna temples, Yamuna river ghats, Braj kunjs &amp; archaeological treasures</p>
         </div>
 
-        <div class="section-header">
-            <h2>Top Attractions</h2>
-            <p>Temples and Ghats in Mathura</p>
-        </div>
+        <div class="place-cards-grid">
 
-        <div class="cards-container">
-
-            <!-- Krishna Janmabhoomi -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/vn3.jpg" alt="Krishna Janmabhoomi">
+            <!-- Card 1: Shri Krishna Janmasthan Temple Complex -->
+            <div class="place-card" id="card-krishna-janmasthan">
+                <div class="place-card-image">
+                    <img id="card-krishna-janmasthan-main-img" src="/mathura/krishna-janmasthan/krishna-janmasthan-1.jpg" alt="Shri Krishna Janmasthan Temple Complex" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Krishna Janmasthan Temple Complex
+                            <span class="photo-count-pill">📷 12 Photos</span>
+                        </div>
+                        <div class="place-card-location">Deeg Gate, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Birthplace</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Holiest shrine in Mathura built around the historic Garbha Griha prison cell believed to be Lord Krishna’s birthplace, alongside the majestic Bhagavata Bhawan temple.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Krishna Janmabhoomi</h3>
-                    <p>The temple complex built around the prison cell where Krishna was born.</p>
+                <div class="place-thumbnails">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-1.jpg" alt="Shri Krishna Janmasthan Temple Complex 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-2.jpg" alt="Shri Krishna Janmasthan Temple Complex 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-3.jpg" alt="Shri Krishna Janmasthan Temple Complex 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-4.jpg" alt="Shri Krishna Janmasthan Temple Complex 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-5.jpg" alt="Shri Krishna Janmasthan Temple Complex 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-6.jpg" alt="Shri Krishna Janmasthan Temple Complex 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-7.jpg" alt="Shri Krishna Janmasthan Temple Complex 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-8.jpg" alt="Shri Krishna Janmasthan Temple Complex 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-9.jpg" alt="Shri Krishna Janmasthan Temple Complex 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-10.jpg" alt="Shri Krishna Janmasthan Temple Complex 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-11.jpg" alt="Shri Krishna Janmasthan Temple Complex 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
+                    <img src="/mathura/krishna-janmasthan/krishna-janmasthan-12.jpg" alt="Shri Krishna Janmasthan Temple Complex 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-krishna-janmasthan', this.src, this)">
                 </div>
             </div>
 
-            <!-- Dwarkadhish Temple -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/mahakal.jpg" alt="Dwarkadhish Temple">
+            <!-- Card 2: Prem Mandir, Vrindavan -->
+            <div class="place-card" id="card-prem-mandir">
+                <div class="place-card-image">
+                    <img id="card-prem-mandir-main-img" src="/mathura/prem-mandir/prem-mandir-1.jpg" alt="Prem Mandir, Vrindavan" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Prem Mandir, Vrindavan
+                            <span class="photo-count-pill">📷 17 Photos</span>
+                        </div>
+                        <div class="place-card-location">Chhatikara Road, Vrindavan, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">White Marble Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Spectacular 54-acre white Italian-marble temple carved with intricate Krishna Leela panels, illuminated each evening in glowing colors beside choreographed musical fountains.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Dwarkadhish Temple</h3>
-                    <p>One of the oldest and largest temples in Mathura.</p>
+                <div class="place-thumbnails">
+                    <img src="/mathura/prem-mandir/prem-mandir-1.jpg" alt="Prem Mandir, Vrindavan 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-2.jpg" alt="Prem Mandir, Vrindavan 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-3.jpg" alt="Prem Mandir, Vrindavan 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-4.jpg" alt="Prem Mandir, Vrindavan 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-5.jpg" alt="Prem Mandir, Vrindavan 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-6.jpg" alt="Prem Mandir, Vrindavan 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-7.jpg" alt="Prem Mandir, Vrindavan 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-8.jpg" alt="Prem Mandir, Vrindavan 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-9.jpg" alt="Prem Mandir, Vrindavan 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-10.jpg" alt="Prem Mandir, Vrindavan 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-11.png" alt="Prem Mandir, Vrindavan 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-12.jpg" alt="Prem Mandir, Vrindavan 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-13.jpg" alt="Prem Mandir, Vrindavan 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-14.jpg" alt="Prem Mandir, Vrindavan 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-15.jpg" alt="Prem Mandir, Vrindavan 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-16.jpg" alt="Prem Mandir, Vrindavan 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
+                    <img src="/mathura/prem-mandir/prem-mandir-17.jpg" alt="Prem Mandir, Vrindavan 17" class="place-thumb" loading="lazy" onclick="switchCardImage('card-prem-mandir', this.src, this)">
                 </div>
             </div>
 
-            <!-- Vishram Ghat -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/vn.jpg" alt="Vishram Ghat">
+            <!-- Card 3: Shri Banke Bihari Mandir -->
+            <div class="place-card" id="card-banke-bihari-mandir">
+                <div class="place-card-image">
+                    <img id="card-banke-bihari-mandir-main-img" src="/mathura/banke-bihari-mandir/banke-bihari-mandir-2.jpg" alt="Shri Banke Bihari Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Banke Bihari Mandir
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Bihari Pura, Vrindavan, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Temple</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Beloved 1864 shrine established by Swami Haridas’s lineage where thousands gather daily for ecstatic glimpses of Thakur Banke Bihari Ji’s tribhanga idol.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Vishram Ghat</h3>
-                    <p>A bath and worship on the banks of the river Yamuna.</p>
+                <div class="place-thumbnails">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-2.jpg" alt="Shri Banke Bihari Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-1.jpg" alt="Shri Banke Bihari Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-3.jpg" alt="Shri Banke Bihari Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-4.jpg" alt="Shri Banke Bihari Mandir 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-5.jpg" alt="Shri Banke Bihari Mandir 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-6.png" alt="Shri Banke Bihari Mandir 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-7.png" alt="Shri Banke Bihari Mandir 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-8.jpg" alt="Shri Banke Bihari Mandir 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
+                    <img src="/mathura/banke-bihari-mandir/banke-bihari-mandir-9.jpg" alt="Shri Banke Bihari Mandir 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-banke-bihari-mandir', this.src, this)">
                 </div>
             </div>
 
-            <!-- Govardhan Hill -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./ch1.jpg" alt="Govardhan Hill">
+            <!-- Card 4: Sri Krishna Balaram Mandir (ISKCON) -->
+            <div class="place-card" id="card-iskcon-vrindavan">
+                <div class="place-card-image">
+                    <img id="card-iskcon-vrindavan-main-img" src="/mathura/iskcon-vrindavan/iskcon-vrindavan-2.jpg" alt="Sri Krishna Balaram Mandir (ISKCON)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Sri Krishna Balaram Mandir (ISKCON)
+                            <span class="photo-count-pill">📷 14 Photos</span>
+                        </div>
+                        <div class="place-card-location">Raman Reti, Vrindavan, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Spiritual Sanctuary</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Iconic pure white-marble complex in Raman Reti founded by Srila Prabhupada, globally celebrated for non-stop uplifting Hare Krishna kirtan and devotional beauty.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Govardhan Hill</h3>
-                    <p>A sacred site associated with the legends of Lord Krishna.</p>
+                <div class="place-thumbnails">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-2.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-1.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-3.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-4.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-5.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-6.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-7.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-8.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-9.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-10.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-11.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-12.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-13.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                    <img src="/mathura/iskcon-vrindavan/iskcon-vrindavan-14.jpg" alt="Sri Krishna Balaram Mandir (ISKCON) 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-iskcon-vrindavan', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 5: Shri Dwarkadhish Temple -->
+            <div class="place-card" id="card-dwarkadhish-temple">
+                <div class="place-card-image">
+                    <img id="card-dwarkadhish-temple-main-img" src="/mathura/dwarkadhish-temple/dwarkadhish-temple-2.png" alt="Shri Dwarkadhish Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Dwarkadhish Temple
+                            <span class="photo-count-pill">📷 14 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vishram Ghat Precinct, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Historic Haveli Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Grand 1814 riverfront temple renowned for elaborate Rajasthani stone carvings, painted ceilings, and colorful Hindola swings during Shravan and Janmashtami.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-2.png" alt="Shri Dwarkadhish Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-1.jpg" alt="Shri Dwarkadhish Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-3.jpg" alt="Shri Dwarkadhish Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-4.jpg" alt="Shri Dwarkadhish Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-5.jpg" alt="Shri Dwarkadhish Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-6.jpg" alt="Shri Dwarkadhish Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-7.jpg" alt="Shri Dwarkadhish Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-8.jpg" alt="Shri Dwarkadhish Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-9.jpg" alt="Shri Dwarkadhish Temple 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-10.jpg" alt="Shri Dwarkadhish Temple 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-11.jpg" alt="Shri Dwarkadhish Temple 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-12.jpg" alt="Shri Dwarkadhish Temple 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-13.jpg" alt="Shri Dwarkadhish Temple 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                    <img src="/mathura/dwarkadhish-temple/dwarkadhish-temple-14.jpg" alt="Shri Dwarkadhish Temple 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dwarkadhish-temple', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 6: Vishram Ghat -->
+            <div class="place-card" id="card-vishram-ghat">
+                <div class="place-card-image">
+                    <img id="card-vishram-ghat-main-img" src="/mathura/vishram-ghat/vishram-ghat-1.jpg" alt="Vishram Ghat" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Vishram Ghat
+                            <span class="photo-count-pill">📷 7 Photos</span>
+                        </div>
+                        <div class="place-card-location">Yamuna Riverfront, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-ghat">Sacred Yamuna Ghat</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Principal holy ghat of Mathura where Lord Krishna rested after defeating Kansa; illuminated nightly with hundreds of floating earthen lamps during evening Yamuna Aarti.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/vishram-ghat/vishram-ghat-1.jpg" alt="Vishram Ghat 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-vishram-ghat', this.src, this)">
+                    <img src="/mathura/vishram-ghat/vishram-ghat-2.jpg" alt="Vishram Ghat 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-vishram-ghat', this.src, this)">
+                    <img src="/mathura/vishram-ghat/vishram-ghat-3.jpg" alt="Vishram Ghat 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-vishram-ghat', this.src, this)">
+                    <img src="/mathura/vishram-ghat/vishram-ghat-4.jpg" alt="Vishram Ghat 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-vishram-ghat', this.src, this)">
+                    <img src="/mathura/vishram-ghat/vishram-ghat-5.jpg" alt="Vishram Ghat 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-vishram-ghat', this.src, this)">
+                    <img src="/mathura/vishram-ghat/vishram-ghat-6.jpg" alt="Vishram Ghat 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-vishram-ghat', this.src, this)">
+                    <img src="/mathura/vishram-ghat/vishram-ghat-7.jpg" alt="Vishram Ghat 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-vishram-ghat', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 7: Nidhivan, Vrindavan -->
+            <div class="place-card" id="card-nidhivan-vrindavan">
+                <div class="place-card-image">
+                    <img id="card-nidhivan-vrindavan-main-img" src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-2.jpg" alt="Nidhivan, Vrindavan" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Nidhivan, Vrindavan
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Near Banke Bihari, Vrindavan, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-nature">Mystic Sacred Grove</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Enigmatic lush grove of intertwined holy tulsi trees and Rang Mahal shrine wrapped in timeless Braj devotion and the nocturnal Raas Leela legends.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-2.jpg" alt="Nidhivan, Vrindavan 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-1.jpg" alt="Nidhivan, Vrindavan 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-3.jpg" alt="Nidhivan, Vrindavan 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-4.jpg" alt="Nidhivan, Vrindavan 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-5.jpg" alt="Nidhivan, Vrindavan 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-6.jpg" alt="Nidhivan, Vrindavan 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-7.jpg" alt="Nidhivan, Vrindavan 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-8.jpg" alt="Nidhivan, Vrindavan 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-9.jpg" alt="Nidhivan, Vrindavan 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-10.jpg" alt="Nidhivan, Vrindavan 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-11.png" alt="Nidhivan, Vrindavan 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-12.jpg" alt="Nidhivan, Vrindavan 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                    <img src="/mathura/nidhivan-vrindavan/nidhivan-vrindavan-13.jpg" alt="Nidhivan, Vrindavan 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nidhivan-vrindavan', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 8: Kusum Sarovar, Govardhan -->
+            <div class="place-card" id="card-kusum-sarovar">
+                <div class="place-card-image">
+                    <img id="card-kusum-sarovar-main-img" src="/mathura/kusum-sarovar/kusum-sarovar-1.jpg" alt="Kusum Sarovar, Govardhan" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Kusum Sarovar, Govardhan
+                            <span class="photo-count-pill">📷 12 Photos</span>
+                        </div>
+                        <div class="place-card-location">Govardhan Parikrama Road, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Heritage Step Tank</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Monumental 450-foot sandstone reservoir framed by ornate 18th-century Jat memorial chhatris whose serene arches mirror clearly into emerald sacred waters.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-1.jpg" alt="Kusum Sarovar, Govardhan 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-2.jpg" alt="Kusum Sarovar, Govardhan 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-3.jpg" alt="Kusum Sarovar, Govardhan 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-4.jpg" alt="Kusum Sarovar, Govardhan 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-5.jpg" alt="Kusum Sarovar, Govardhan 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-6.jpg" alt="Kusum Sarovar, Govardhan 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-7.jpg" alt="Kusum Sarovar, Govardhan 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-8.jpg" alt="Kusum Sarovar, Govardhan 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-9.jpg" alt="Kusum Sarovar, Govardhan 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-10.jpg" alt="Kusum Sarovar, Govardhan 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-11.jpg" alt="Kusum Sarovar, Govardhan 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                    <img src="/mathura/kusum-sarovar/kusum-sarovar-12.jpg" alt="Kusum Sarovar, Govardhan 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kusum-sarovar', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 9: Shri Radha Rani Temple, Barsana -->
+            <div class="place-card" id="card-radha-rani-barsana">
+                <div class="place-card-image">
+                    <img id="card-radha-rani-barsana-main-img" src="/mathura/radha-rani-barsana/radha-rani-barsana-1.jpg" alt="Shri Radha Rani Temple, Barsana" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Radha Rani Temple, Barsana
+                            <span class="photo-count-pill">📷 10 Photos</span>
+                        </div>
+                        <div class="place-card-location">Bhanugarh Hill, Barsana, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Hilltop Shaktipeeth</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Palatial red-and-white sandstone temple crowning Brahmachal Hill at Srimati Radharani’s birthplace, famous globally for Barsana’s joyous Lathmar Holi.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-1.jpg" alt="Shri Radha Rani Temple, Barsana 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-2.jpg" alt="Shri Radha Rani Temple, Barsana 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-3.jpg" alt="Shri Radha Rani Temple, Barsana 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-4.jpg" alt="Shri Radha Rani Temple, Barsana 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-5.jpg" alt="Shri Radha Rani Temple, Barsana 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-6.jpg" alt="Shri Radha Rani Temple, Barsana 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-7.jpg" alt="Shri Radha Rani Temple, Barsana 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-8.jpg" alt="Shri Radha Rani Temple, Barsana 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-9.jpg" alt="Shri Radha Rani Temple, Barsana 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                    <img src="/mathura/radha-rani-barsana/radha-rani-barsana-10.jpg" alt="Shri Radha Rani Temple, Barsana 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-rani-barsana', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 10: Shri Radha Raman Temple -->
+            <div class="place-card" id="card-radha-raman-temple">
+                <div class="place-card-image">
+                    <img id="card-radha-raman-temple-main-img" src="/mathura/radha-raman-temple/radha-raman-temple-1.jpg" alt="Shri Radha Raman Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Radha Raman Temple
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Panchayati Chauraha, Vrindavan, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">1542 Heritage Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            One of Vrindavan’s ancient Sapta Devalayas established by Gopala Bhatta Goswami enshrining the self-manifested Saligram murti of Radha Raman Lal.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-1.jpg" alt="Shri Radha Raman Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-2.jpg" alt="Shri Radha Raman Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-3.jpg" alt="Shri Radha Raman Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-4.jpg" alt="Shri Radha Raman Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-5.jpg" alt="Shri Radha Raman Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-6.jpg" alt="Shri Radha Raman Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-7.jpg" alt="Shri Radha Raman Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-8.jpg" alt="Shri Radha Raman Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                    <img src="/mathura/radha-raman-temple/radha-raman-temple-9.jpg" alt="Shri Radha Raman Temple 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radha-raman-temple', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 11: Shri Radhavallabh Lal Ji Temple -->
+            <div class="place-card" id="card-radhavallabh-temple">
+                <div class="place-card-image">
+                    <img id="card-radhavallabh-temple-main-img" src="/mathura/radhavallabh-temple/radhavallabh-temple-1.jpg" alt="Shri Radhavallabh Lal Ji Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Radhavallabh Lal Ji Temple
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Gotam Nagar, Vrindavan, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Ancient Sandstone Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Historic Vrindavan shrine founded by Hith Harivansh Mahaprabhu renowned for ornate sandstone craftsmanship, morning Mangal Aarti, and rich Braj bhajan traditions.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-1.jpg" alt="Shri Radhavallabh Lal Ji Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-2.jpg" alt="Shri Radhavallabh Lal Ji Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-3.jpg" alt="Shri Radhavallabh Lal Ji Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-4.jpg" alt="Shri Radhavallabh Lal Ji Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-5.jpg" alt="Shri Radhavallabh Lal Ji Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-6.jpg" alt="Shri Radhavallabh Lal Ji Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-7.jpg" alt="Shri Radhavallabh Lal Ji Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-8.jpg" alt="Shri Radhavallabh Lal Ji Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                    <img src="/mathura/radhavallabh-temple/radhavallabh-temple-9.jpg" alt="Shri Radhavallabh Lal Ji Temple 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-radhavallabh-temple', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 12: Mathura Birla Mandir (Gita Mandir) -->
+            <div class="place-card" id="card-birla-mandir">
+                <div class="place-card-image">
+                    <img id="card-birla-mandir-main-img" src="/mathura/birla-mandir/birla-mandir-5.jpg" alt="Mathura Birla Mandir (Gita Mandir)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Mathura Birla Mandir (Gita Mandir)
+                            <span class="photo-count-pill">📷 14 Photos</span>
+                        </div>
+                        <div class="place-card-location">Mathura–Vrindavan Road, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Gita Stambh Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Graceful red-sandstone Lakshmi Narayan temple featuring manicured gardens and the Gita Stambh pillar engraved completely with all 18 chapters of the Bhagavad Gita.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/birla-mandir/birla-mandir-5.jpg" alt="Mathura Birla Mandir (Gita Mandir) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-1.jpg" alt="Mathura Birla Mandir (Gita Mandir) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-2.jpg" alt="Mathura Birla Mandir (Gita Mandir) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-3.jpg" alt="Mathura Birla Mandir (Gita Mandir) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-4.jpg" alt="Mathura Birla Mandir (Gita Mandir) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-6.jpg" alt="Mathura Birla Mandir (Gita Mandir) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-7.jpg" alt="Mathura Birla Mandir (Gita Mandir) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-8.jpg" alt="Mathura Birla Mandir (Gita Mandir) 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-9.jpg" alt="Mathura Birla Mandir (Gita Mandir) 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-10.jpg" alt="Mathura Birla Mandir (Gita Mandir) 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-11.jpg" alt="Mathura Birla Mandir (Gita Mandir) 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-12.jpg" alt="Mathura Birla Mandir (Gita Mandir) 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-13.jpg" alt="Mathura Birla Mandir (Gita Mandir) 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                    <img src="/mathura/birla-mandir/birla-mandir-14.jpg" alt="Mathura Birla Mandir (Gita Mandir) 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-birla-mandir', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 13: Government Museum, Mathura -->
+            <div class="place-card" id="card-government-museum">
+                <div class="place-card-image">
+                    <img id="card-government-museum-main-img" src="/mathura/government-museum/government-museum-1.jpg" alt="Government Museum, Mathura" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Government Museum, Mathura
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Dampier Nagar, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Archaeological Museum</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Founded in 1874, showcasing India’s premier collection of Kushana, Shunga &amp; Gupta red-sandstone sculptures from the celebrated ancient Mathura School of Art.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/government-museum/government-museum-1.jpg" alt="Government Museum, Mathura 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-2.jpg" alt="Government Museum, Mathura 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-3.jpg" alt="Government Museum, Mathura 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-4.jpg" alt="Government Museum, Mathura 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-5.jpg" alt="Government Museum, Mathura 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-6.jpg" alt="Government Museum, Mathura 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-7.jpg" alt="Government Museum, Mathura 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-8.jpg" alt="Government Museum, Mathura 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-9.jpg" alt="Government Museum, Mathura 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-10.jpg" alt="Government Museum, Mathura 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-11.jpg" alt="Government Museum, Mathura 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-12.jpg" alt="Government Museum, Mathura 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                    <img src="/mathura/government-museum/government-museum-13.jpg" alt="Government Museum, Mathura 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-government-museum', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 14: Kans Quila -->
+            <div class="place-card" id="card-kans-quila">
+                <div class="place-card-image">
+                    <img id="card-kans-quila-main-img" src="/mathura/kans-quila/kans-quila-2.jpg" alt="Kans Quila" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Kans Quila
+                            <span class="photo-count-pill">📷 12 Photos</span>
+                        </div>
+                        <div class="place-card-location">Yamuna Northern Bank, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Ancient River Fort</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Atmospheric historic fortress perched above the Yamuna River traditionally linked to Kansa’s citadel and later fortified by Raja Man Singh of Amber and Maharaja Sawai Jai Singh.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/kans-quila/kans-quila-2.jpg" alt="Kans Quila 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-1.jpg" alt="Kans Quila 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-3.jpg" alt="Kans Quila 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-4.jpg" alt="Kans Quila 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-5.jpg" alt="Kans Quila 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-6.jpg" alt="Kans Quila 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-7.jpg" alt="Kans Quila 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-8.jpg" alt="Kans Quila 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-9.jpg" alt="Kans Quila 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-10.jpg" alt="Kans Quila 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-11.jpg" alt="Kans Quila 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                    <img src="/mathura/kans-quila/kans-quila-12.jpg" alt="Kans Quila 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kans-quila', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 15: Baba Jai Guru Dev Ji Mandir -->
+            <div class="place-card" id="card-jai-gurudev-mandir">
+                <div class="place-card-image">
+                    <img id="card-jai-gurudev-mandir-main-img" src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-1.jpg" alt="Baba Jai Guru Dev Ji Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Baba Jai Guru Dev Ji Mandir
+                            <span class="photo-count-pill">📷 12 Photos</span>
+                        </div>
+                        <div class="place-card-location">NH-19 Agra–Delhi Highway, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-tower">White Marble Dome</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Striking pure white marble memorial temple featuring symmetrical domes, delicate carvings, and wide landscaped lawns along the highway south of Mathura.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-1.jpg" alt="Baba Jai Guru Dev Ji Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-2.jpg" alt="Baba Jai Guru Dev Ji Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-3.jpg" alt="Baba Jai Guru Dev Ji Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-4.jpg" alt="Baba Jai Guru Dev Ji Mandir 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-5.jpg" alt="Baba Jai Guru Dev Ji Mandir 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-6.jpg" alt="Baba Jai Guru Dev Ji Mandir 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-7.jpg" alt="Baba Jai Guru Dev Ji Mandir 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-8.jpg" alt="Baba Jai Guru Dev Ji Mandir 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-9.jpg" alt="Baba Jai Guru Dev Ji Mandir 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-10.jpg" alt="Baba Jai Guru Dev Ji Mandir 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-11.jpg" alt="Baba Jai Guru Dev Ji Mandir 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                    <img src="/mathura/jai-gurudev-mandir/jai-gurudev-mandir-12.jpg" alt="Baba Jai Guru Dev Ji Mandir 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-jai-gurudev-mandir', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 16: Shri Bhuteshwar Mahadev Ji Mandir -->
+            <div class="place-card" id="card-bhuteshwar-mahadev">
+                <div class="place-card-image">
+                    <img id="card-bhuteshwar-mahadev-main-img" src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-1.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Bhuteshwar Mahadev Ji Mandir
+                            <span class="photo-count-pill">📷 10 Photos</span>
+                        </div>
+                        <div class="place-card-location">Bhuteshwar, Mathura, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Kotwal Shiva Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Venerated ancient temple dedicated to Lord Shiva as one of Mathura’s four sacred guardian Kotwals, sheltering the subterranean Patal Devi cave shrine.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-1.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-2.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-3.png" alt="Shri Bhuteshwar Mahadev Ji Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-4.png" alt="Shri Bhuteshwar Mahadev Ji Mandir 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-5.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-6.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-7.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-8.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-9.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                    <img src="/mathura/bhuteshwar-mahadev/bhuteshwar-mahadev-10.jpg" alt="Shri Bhuteshwar Mahadev Ji Mandir 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bhuteshwar-mahadev', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 17: Shri Dauji Maharaj Temple -->
+            <div class="place-card" id="card-dauji-maharaj-temple">
+                <div class="place-card-image">
+                    <img id="card-dauji-maharaj-temple-main-img" src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-1.jpg" alt="Shri Dauji Maharaj Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Dauji Maharaj Temple
+                            <span class="photo-count-pill">📷 10 Photos</span>
+                        </div>
+                        <div class="place-card-location">Baldeo, Mathura District, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Lord Balarama Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Historic shrine enshrining a colossal black stone idol of Lord Balarama (Dauji) with Revati Mata, celebrated for exuberant post-Holi Huranga festivities.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-1.jpg" alt="Shri Dauji Maharaj Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-2.jpg" alt="Shri Dauji Maharaj Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-3.jpg" alt="Shri Dauji Maharaj Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-4.jpg" alt="Shri Dauji Maharaj Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-5.jpg" alt="Shri Dauji Maharaj Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-6.jpg" alt="Shri Dauji Maharaj Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-7.jpg" alt="Shri Dauji Maharaj Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-8.jpg" alt="Shri Dauji Maharaj Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-9.jpg" alt="Shri Dauji Maharaj Temple 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                    <img src="/mathura/dauji-maharaj-temple/dauji-maharaj-temple-10.jpg" alt="Shri Dauji Maharaj Temple 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dauji-maharaj-temple', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 18: Shri Raman Bihariji Mandir -->
+            <div class="place-card" id="card-raman-bihariji-mandir">
+                <div class="place-card-image">
+                    <img id="card-raman-bihariji-mandir-main-img" src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-1.jpg" alt="Shri Raman Bihariji Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Raman Bihariji Mandir
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Mathura, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Devotional Temple</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Serene devotional landmark adorned with traditional Braj stone arches and vibrant sanctum décor inviting quiet darshan and soulful evening kirtans.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-1.jpg" alt="Shri Raman Bihariji Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-2.jpg" alt="Shri Raman Bihariji Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-3.jpg" alt="Shri Raman Bihariji Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-4.jpg" alt="Shri Raman Bihariji Mandir 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-5.jpg" alt="Shri Raman Bihariji Mandir 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-6.jpg" alt="Shri Raman Bihariji Mandir 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-7.jpg" alt="Shri Raman Bihariji Mandir 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-8.jpg" alt="Shri Raman Bihariji Mandir 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-9.jpg" alt="Shri Raman Bihariji Mandir 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-10.jpg" alt="Shri Raman Bihariji Mandir 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-11.jpg" alt="Shri Raman Bihariji Mandir 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-12.jpg" alt="Shri Raman Bihariji Mandir 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
+                    <img src="/mathura/raman-bihariji-mandir/raman-bihariji-mandir-13.jpg" alt="Shri Raman Bihariji Mandir 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raman-bihariji-mandir', this.src, this)">
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- Travel Info Section -->
+    <section class="travel-info-section">
+        <div class="travel-info-grid">
+            <div class="info-card">
+                <h3>🚗 How to Reach Mathura &amp; Vrindavan</h3>
+                <p>
+                    <strong>By Air:</strong> Nearest major airports are Agra (~60 km) and IGI New Delhi (~165 km via Yamuna Expressway).<br><strong>By Train:</strong> Mathura Junction (MTJ) is one of North India’s busiest rail hubs connecting Delhi, Mumbai, Agra, Jaipur & Varanasi.<br><strong>By Road:</strong> Fast access via the 6-lane Yamuna Expressway & NH-19.
+                </p>
+            </div>
+            <div class="info-card">
+                <h3>🍲 Local Flavors &amp; Specialties</h3>
+                <p>Taste authentic Mathura sattvik prasadam and Braj dairy specialties:</p>
+                <ul>
+                    <li><strong>Mathura Peda:</strong> Iconic caramelized milk-khoya fudge flavored gently with cardamom — sold fresh around Dwarkadhish & Vishram Ghat.</li>
+                    <li><strong>Dubki Wale Aloo & Bedai:</strong> Piping hot crispy bedai puris served with tangy spiced potato curry at Brijwasi & Holi Gate.</li>
+                    <li><strong>Kullhad Lassi & Rabri:</strong> Thick creamy curd topped with malai and saffron served in earthy clay cups.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>✨ Insider Travel Tips</h3>
+                <ul>
+                    <li><strong>Night Lighting:</strong> Visit Prem Mandir after dusk (6:30 PM onward) to witness its color-shifting lighting and musical fountain show.</li>
+                    <li><strong>Ghat Aarti:</strong> Reach Vishram Ghat before sunset for serene Yamuna boat rides and lamp aarti.</li>
+                    <li><strong>Nidhivan Timings:</strong> Remember Nidhivan gates close strictly by dusk after Sandhya Aarti.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="district-cta">
+        <a href="/wizard">🗺️ Plan Your Mathura-Vrindavan Trip with AI Route Planner</a>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="home.html">Hotels Booking</a></li>
+                        <li><a href="home.html">Flight Tickets</a></li>
+                        <li><a href="home.html">Train Booking</a></li>
+                        <li><a href="home.html">Cab Booking</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="packages.html">Holiday Packages</a></li>
+                        <li><a href="home.html">Travel Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About India Tourist</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">About Us</a></li>
+                        <li><a href="home.html">Our Team</a></li>
+                        <li><a href="home.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="home.html">Testimonials</a></li>
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">Terms &amp; Conditions</a></li>
+                        <li><a href="home.html">Sitemap</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>UP District Guides</h3>
+                    <ul class="footer-links">
+                        <li><a href="varanasi.html">Varanasi Tour</a></li>
+                        <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Guide</a></li>
+                        <li><a href="mathura.html">Mathura Vrindavan</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage</a></li>
+                        <li><a href="mirzapur.html">Mirzapur Waterfalls</a></li>
+                        <li><a href="sonebhadra.html">Sonebhadra Wonders</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Packages</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Golden Triangle Tour</a></li>
+                        <li><a href="packages.html">Rajasthan Package</a></li>
+                        <li><a href="packages.html">Kerala Tour</a></li>
+                        <li><a href="packages.html">Himachal Package</a></li>
+                        <li><a href="packages.html">Goa Beach Holiday</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal Tour</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage Walk</a></li>
+                        <li><a href="packages.html">North India Circuit</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook"><span>f</span></a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter"><span>𝕏</span></a>
+                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram"><span>📷</span></a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube"><span>▶</span></a>
+                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span>in</span></a>
+                    </div>
+                    <button class="live-chat-button">💬 Live Chat</button>
+                    <button class="callback-button">📞 Get a Callback</button>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        © 2026 India Tourist. All Rights Reserved.
+                    </div>
+                    <ul class="footer-bottom-links">
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">User Agreement</a></li>
+                        <li><a href="contact.html">Payment Security</a></li>
+                        <li><a href="home.html">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/places-catalog.js"></script>
+    <script src="js/district-guide.js"></script>
 
 </body>
 

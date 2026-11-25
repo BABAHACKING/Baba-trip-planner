@@ -4,99 +4,446 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Prayagraj - India Tourist</title>
+    <title>Explore Prayagraj - Sangam City, Akbar Fort &amp; Sacred Shaktipeeths | India Tourist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/district-guide.css">
 </head>
 
-<body>
+<body class="district-page">
 
     <header>
         <div class="logo">India Tourist</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="/profile">My Profile</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="packages.html">Packages</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="district-hero" style="background-image: url('./god img/vn.jpg');">
-        <div class="district-hero-content">
+    <!-- Back Button to return 1 step -->
+    <div class="back-nav-container">
+        <button onclick="goBack()" class="back-btn" title="Return 1 step back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>← Return 1 Step Back</span>
+        </button>
+    </div>
+
+    <!-- Floating Back Button for Quick Access -->
+    <button onclick="goBack()" class="floating-back-btn" title="Return 1 step back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>← Back</span>
+    </button>
+
+    <!-- Hero Banner -->
+    <section class="district-hero-banner">
+        <img src="/prayagraj/akbar-fort/akbar-fort-6.jpg" alt="Prayagraj Heritage & Landmarks">
+        <div class="district-hero-overlay">
+            <div class="hero-tag">Uttar Pradesh • Sacred Sangam City</div>
             <h1>Prayagraj</h1>
-            <p>The City of Offerings & Sangam</p>
+            <p>Triveni Sangam Confluence, Royal Mughal Heritage &amp; Ancient Shrines</p>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="discover-section">
-        <div class="section-header">
-            <h2>About Prayagraj</h2>
-            <p style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                Prayagraj, formerly known as Allahabad, is a city of immense historical and religious importance.
-                It is most famous for the Triveni Sangam, the meeting point of three rivers - the Ganges,
-                the Yamuna, and the invisible Saraswati, and for hosting the Maha Kumbh Mela.
-            </p>
+    <div class="district-about">
+        <h2>About Prayagraj</h2>
+        <p>
+            Prayagraj, historically renowned as Prayag and Allahabad, stands among India’s most sacred and historically rich cities at the Triveni Sangam — the mystical confluence of the Ganga, Yamuna, and invisible Saraswati rivers.
+        </p>
+        <p>
+            From the 16th-century sandstone ramparts of Akbar Fort and the subterranean Bade Hanuman Ji shrine to the Siddha Alop Shankari Shaktipeeth, Mughal-era Khusro Bagh, and the historic Anand Bhawan Museum, Prayagraj weaves timeless spirituality with India’s modern freedom story.
+        </p>
+    </div>
+
+    <!-- Quick Facts -->
+    <div class="quick-facts">
+        <div class="fact-card">
+            <div class="fact-icon">📍</div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">Eastern UP, India</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🌊</div>
+            <div class="fact-label">Sacred Highlight</div>
+            <div class="fact-value">Triveni Sangam Confluence</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🌡️</div>
+            <div class="fact-label">Best Season</div>
+            <div class="fact-value">Oct – Mar (Magh &amp; Kumbh)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🚗</div>
+            <div class="fact-label">From Varanasi</div>
+            <div class="fact-value">~120 km (2.5 hrs drive)</div>
+        </div>
+    </div>
+
+    <!-- Place Cards Section -->
+    <section class="places-section">
+        <div class="places-section-header">
+            <h2>Top Places to Explore in Prayagraj</h2>
+            <p>Sacred shrines, royal forts, freedom-movement heritage &amp; lush colonial parks</p>
         </div>
 
-        <div class="section-header">
-            <h2>Top Attractions</h2>
-            <p>Must-visit places in the holy city</p>
-        </div>
+        <div class="place-cards-grid">
 
-        <div class="cards-container">
-
-            <!-- Triveni Sangam -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/vn1.jpg" alt="Triveni Sangam">
+            <!-- Card 1: Akbar Fort (Allahabad Fort) -->
+            <div class="place-card" id="card-akbar-fort">
+                <div class="place-card-image">
+                    <img id="card-akbar-fort-main-img" src="/prayagraj/akbar-fort/akbar-fort-6.jpg" alt="Akbar Fort (Allahabad Fort)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Akbar Fort (Allahabad Fort)
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Near Triveni Sangam, Prayagraj, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Historical Fort</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Grand 1583 AD red-sandstone fortress commissioned by Emperor Akbar overlooking the Yamuna–Ganga confluence, sheltering Patalpuri Temple, the sacred Akshayavat tree, and Ashoka Pillar heritage.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Triveni Sangam</h3>
-                    <p>The holy confluence of Ganga, Yamuna, and Saraswati rivers.</p>
+                <div class="place-thumbnails">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-6.jpg" alt="Akbar Fort (Allahabad Fort) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-1.jpg" alt="Akbar Fort (Allahabad Fort) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-2.jpg" alt="Akbar Fort (Allahabad Fort) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-3.jpg" alt="Akbar Fort (Allahabad Fort) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-4.jpg" alt="Akbar Fort (Allahabad Fort) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-5.jpg" alt="Akbar Fort (Allahabad Fort) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-7.jpg" alt="Akbar Fort (Allahabad Fort) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-8.jpg" alt="Akbar Fort (Allahabad Fort) 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
+                    <img src="/prayagraj/akbar-fort/akbar-fort-9.jpg" alt="Akbar Fort (Allahabad Fort) 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-akbar-fort', this.src, this)">
                 </div>
             </div>
 
-            <!-- Allahabad Fort -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./ch2.jpg" alt="Allahabad Fort">
+            <!-- Card 2: Shri Bade Hanuman Ji Mandir -->
+            <div class="place-card" id="card-bade-hanuman-mandir">
+                <div class="place-card-image">
+                    <img id="card-bade-hanuman-mandir-main-img" src="/prayagraj/bade-hanuman-mandir/bade-hanuman-mandir-3.jpg" alt="Shri Bade Hanuman Ji Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Bade Hanuman Ji Mandir
+                            <span class="photo-count-pill">📷 4 Photos</span>
+                        </div>
+                        <div class="place-card-location">Sangam Bandh Road, Prayagraj, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Unique subterranean temple close to Triveni Sangam enshrining a colossal 20-foot reclining idol of Lord Hanuman, miraculously touched each monsoon by the rising waters of Mother Ganga.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Allahabad Fort</h3>
-                    <p>A magnificent fort built by Emperor Akbar on the banks of the Yamuna.</p>
+                <div class="place-thumbnails">
+                    <img src="/prayagraj/bade-hanuman-mandir/bade-hanuman-mandir-3.jpg" alt="Shri Bade Hanuman Ji Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-bade-hanuman-mandir', this.src, this)">
+                    <img src="/prayagraj/bade-hanuman-mandir/bade-hanuman-mandir-1.jpg" alt="Shri Bade Hanuman Ji Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bade-hanuman-mandir', this.src, this)">
+                    <img src="/prayagraj/bade-hanuman-mandir/bade-hanuman-mandir-2.jpg" alt="Shri Bade Hanuman Ji Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bade-hanuman-mandir', this.src, this)">
+                    <img src="/prayagraj/bade-hanuman-mandir/bade-hanuman-mandir-4.jpg" alt="Shri Bade Hanuman Ji Mandir 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bade-hanuman-mandir', this.src, this)">
                 </div>
             </div>
 
-            <!-- Bade Hanuman Ji -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/mahakal.jpg" alt="Bade Hanuman Ji">
+            <!-- Card 3: Alop Shankari Devi Shakti Peeth -->
+            <div class="place-card" id="card-alop-shankari-temple">
+                <div class="place-card-image">
+                    <img id="card-alop-shankari-temple-main-img" src="/prayagraj/alop-shankari-temple/alop-shankari-temple-1.jpg" alt="Alop Shankari Devi Shakti Peeth" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Alop Shankari Devi Shakti Peeth
+                            <span class="photo-count-pill">📷 1 Photo</span>
+                        </div>
+                        <div class="place-card-location">Alopibagh, Prayagraj, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Shaktipeeth</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Ancient Siddha Shaktipeeth where devotees revere a sacred wooden swing (dolika) suspended above a holy kund rather than an idol, commemorating where Maa Sati’s hand vanished (&quot;alop&quot;).
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Bade Hanuman Ji</h3>
-                    <p>A unique temple featuring a reclining statue of Lord Hanuman.</p>
+                <div class="place-thumbnails">
+                    <img src="/prayagraj/alop-shankari-temple/alop-shankari-temple-1.jpg" alt="Alop Shankari Devi Shakti Peeth 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-alop-shankari-temple', this.src, this)">
                 </div>
             </div>
 
-            <!-- Anand Bhavan -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./ch1.jpg" alt="Anand Bhavan">
+            <!-- Card 4: Anand Bhawan Museum -->
+            <div class="place-card" id="card-anand-bhawan-museum">
+                <div class="place-card-image">
+                    <img id="card-anand-bhawan-museum-main-img" src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-5.jpg" alt="Anand Bhawan Museum" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Anand Bhawan Museum
+                            <span class="photo-count-pill">📷 8 Photos</span>
+                        </div>
+                        <div class="place-card-location">Tagore Town, Prayagraj, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Heritage Mansion</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Historic ancestral residence of the Nehru family turned national museum showcasing preserved living quarters, letters, and pivotal memorabilia of India’s independence struggle.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Anand Bhavan</h3>
-                    <p>The historic ancestral home of the Nehru-Gandhi family.</p>
+                <div class="place-thumbnails">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-5.jpg" alt="Anand Bhawan Museum 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-1.jpg" alt="Anand Bhawan Museum 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-2.jpg" alt="Anand Bhawan Museum 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-3.jpg" alt="Anand Bhawan Museum 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-4.jpg" alt="Anand Bhawan Museum 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-6.jpg" alt="Anand Bhawan Museum 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-7.jpg" alt="Anand Bhawan Museum 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                    <img src="/prayagraj/anand-bhawan-museum/anand-bhawan-museum-8.jpg" alt="Anand Bhawan Museum 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-anand-bhawan-museum', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 5: Khusro Bagh -->
+            <div class="place-card" id="card-khusro-bagh">
+                <div class="place-card-image">
+                    <img id="card-khusro-bagh-main-img" src="/prayagraj/khusro-bagh/khusro-bagh-2.jpg" alt="Khusro Bagh" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Khusro Bagh
+                            <span class="photo-count-pill">📷 10 Photos</span>
+                        </div>
+                        <div class="place-card-location">Lukerganj (Near Prayagraj Jn), UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Mughal Garden &amp; Tombs</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Peaceful 40-acre walled Mughal Charbagh garden housing the intricately carved 17th-century sandstone mausoleums of Prince Khusrau, Sultan Begum, and Shah Begum amidst guava orchards.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-2.jpg" alt="Khusro Bagh 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-1.jpg" alt="Khusro Bagh 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-3.jpg" alt="Khusro Bagh 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-4.jpg" alt="Khusro Bagh 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-5.jpg" alt="Khusro Bagh 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-6.jpg" alt="Khusro Bagh 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-7.jpg" alt="Khusro Bagh 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-8.jpg" alt="Khusro Bagh 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-9.jpg" alt="Khusro Bagh 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                    <img src="/prayagraj/khusro-bagh/khusro-bagh-10.jpg" alt="Khusro Bagh 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-khusro-bagh', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 6: Allahabad Museum -->
+            <div class="place-card" id="card-allahabad-museum">
+                <div class="place-card-image">
+                    <img id="card-allahabad-museum-main-img" src="/prayagraj/allahabad-museum/allahabad-museum-5.jpg" alt="Allahabad Museum" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Allahabad Museum
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Chandrashekhar Azad Park, Prayagraj, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">National Museum</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Premier national museum housing rare Kushana and Gupta sculptures from Kaushambi, Harappan relics, Pahari miniatures, Nicholas Roerich canvases, and freedom-movement archives.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-5.jpg" alt="Allahabad Museum 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-1.jpg" alt="Allahabad Museum 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-2.png" alt="Allahabad Museum 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-3.jpg" alt="Allahabad Museum 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-4.jpg" alt="Allahabad Museum 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-6.jpg" alt="Allahabad Museum 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-7.jpg" alt="Allahabad Museum 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-8.jpg" alt="Allahabad Museum 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                    <img src="/prayagraj/allahabad-museum/allahabad-museum-9.jpg" alt="Allahabad Museum 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-allahabad-museum', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 7: Chandrashekhar Azad Park -->
+            <div class="place-card" id="card-azad-park">
+                <div class="place-card-image">
+                    <img id="card-azad-park-main-img" src="/prayagraj/azad-park/azad-park-5.jpg" alt="Chandrashekhar Azad Park" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Chandrashekhar Azad Park
+                            <span class="photo-count-pill">📷 10 Photos</span>
+                        </div>
+                        <div class="place-card-location">Civil Lines / George Town, Prayagraj, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-nature">Heritage Park</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Sprawling 133-acre historic green landmark (formerly Alfred Park) honoring revolutionary Chandrashekhar Azad’s supreme sacrifice, dotted with Victoria Memorial canopy and Victorian library halls.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/prayagraj/azad-park/azad-park-5.jpg" alt="Chandrashekhar Azad Park 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-1.jpg" alt="Chandrashekhar Azad Park 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-2.jpg" alt="Chandrashekhar Azad Park 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-3.jpg" alt="Chandrashekhar Azad Park 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-4.jpg" alt="Chandrashekhar Azad Park 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-6.jpg" alt="Chandrashekhar Azad Park 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-7.jpg" alt="Chandrashekhar Azad Park 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-8.jpg" alt="Chandrashekhar Azad Park 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-9.jpg" alt="Chandrashekhar Azad Park 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
+                    <img src="/prayagraj/azad-park/azad-park-10.jpg" alt="Chandrashekhar Azad Park 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-azad-park', this.src, this)">
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- Travel Info Section -->
+    <section class="travel-info-section">
+        <div class="travel-info-grid">
+            <div class="info-card">
+                <h3>🚗 How to Reach Prayagraj</h3>
+                <p>
+                    <strong>By Air:</strong> Prayagraj Airport (IXD) in Bamrauli connects directly to Delhi, Mumbai, Bengaluru & Lucknow.<br><strong>By Train:</strong> Major railway junction (Prayagraj Jn / PRYJ) with superfast & Vande Bharat Express connectivity.<br><strong>By Road:</strong> Seamless four-lane highways via NH-19 to Varanasi (~2.5 hrs) and Mirzapur (~2 hrs).
+                </p>
+            </div>
+            <div class="info-card">
+                <h3>🍲 Local Flavors &amp; Specialties</h3>
+                <p>Savor iconic Prayagraj street delicacies and heritage classics:</p>
+                <ul>
+                    <li><strong>Netram Kachori-Sabzi:</strong> Crispy desi-ghee kachoris paired with spiced potato curry, pumpkin & hot jalebi in Katra.</li>
+                    <li><strong>Dehati ke Rasgulle:</strong> Legendary melt-in-the-mouth warm black & white rasgullas around Civil Lines.</li>
+                    <li><strong>Allahabad Surkha Guava:</strong> World-famous crimson-fleshed sweet guavas harvested from Khusro Bagh belt orchards.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>✨ Insider Travel Tips</h3>
+                <ul>
+                    <li><strong>Sangam Precinct:</strong> Combine Akbar Fort, Bade Hanuman Ji, and the Triveni Sangam riverfront in one relaxed morning.</li>
+                    <li><strong>Cultural Double-Bill:</strong> Pair Anand Bhawan Museum with neighboring Jawahar Planetarium sky shows.</li>
+                    <li><strong>Evening Walk:</strong> Explore Khusro Bagh’s red sandstone tombs near golden hour and enjoy Loknath lane chaat.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="district-cta">
+        <a href="/wizard">🗺️ Plan Your Prayagraj Trip with AI Route Planner</a>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="home.html">Hotels Booking</a></li>
+                        <li><a href="home.html">Flight Tickets</a></li>
+                        <li><a href="home.html">Train Booking</a></li>
+                        <li><a href="home.html">Cab Booking</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="packages.html">Holiday Packages</a></li>
+                        <li><a href="home.html">Travel Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About India Tourist</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">About Us</a></li>
+                        <li><a href="home.html">Our Team</a></li>
+                        <li><a href="home.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="home.html">Testimonials</a></li>
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">Terms &amp; Conditions</a></li>
+                        <li><a href="home.html">Sitemap</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>UP District Guides</h3>
+                    <ul class="footer-links">
+                        <li><a href="varanasi.html">Varanasi Tour</a></li>
+                        <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Guide</a></li>
+                        <li><a href="mathura.html">Mathura Vrindavan</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage</a></li>
+                        <li><a href="mirzapur.html">Mirzapur Waterfalls</a></li>
+                        <li><a href="sonebhadra.html">Sonebhadra Wonders</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Packages</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Golden Triangle Tour</a></li>
+                        <li><a href="packages.html">Rajasthan Package</a></li>
+                        <li><a href="packages.html">Kerala Tour</a></li>
+                        <li><a href="packages.html">Himachal Package</a></li>
+                        <li><a href="packages.html">Goa Beach Holiday</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal Tour</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage Walk</a></li>
+                        <li><a href="packages.html">North India Circuit</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook"><span>f</span></a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter"><span>𝕏</span></a>
+                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram"><span>📷</span></a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube"><span>▶</span></a>
+                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span>in</span></a>
+                    </div>
+                    <button class="live-chat-button">💬 Live Chat</button>
+                    <button class="callback-button">📞 Get a Callback</button>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        © 2026 India Tourist. All Rights Reserved.
+                    </div>
+                    <ul class="footer-bottom-links">
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">User Agreement</a></li>
+                        <li><a href="contact.html">Payment Security</a></li>
+                        <li><a href="home.html">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/places-catalog.js"></script>
+    <script src="js/district-guide.js"></script>
 
 </body>
 

@@ -25,7 +25,8 @@ import {
 import {
     getStoredTripPlan,
     getStoredUserProfile,
-    generateTripPlan
+    generateTripPlan,
+    buildAndSaveUserProfile
 } from './services/scoringService';
 import TripMap from './TripMap';
 import './TripPlan.css';
@@ -80,8 +81,28 @@ const TripPlan = ({ tripPlanData = null }) => {
             } else {
                 const storedProfile = getStoredUserProfile();
                 if (storedProfile && storedProfile.formData) {
-                    const generated = generateTripPlan(storedProfile.formData);
+                    let activeProf = storedProfile;
+                    if (!activeProf.topDestination || !activeProf.rankedDestinations || !activeProf.tripPlan) {
+                        try {
+                            activeProf = buildAndSaveUserProfile(storedProfile.formData);
+                        } catch (e) {
+                            console.error('Error rebuilding profile:', e);
+                        }
+                    }
+                    const generated = activeProf.tripPlan || generateTripPlan(storedProfile.formData);
                     setTripPlan(generated);
+                } else {
+                    // Safe default fallback for Eastern UP 7-day circuit
+                    const defaultPlan = generateTripPlan({
+                        people: 2,
+                        groupType: 'couple',
+                        landscapes: ['waterfalls', 'spiritual'],
+                        budget: 'budget',
+                        transport: 'cab',
+                        days: 7,
+                        pickupLocation: 'Varanasi'
+                    });
+                    setTripPlan(defaultPlan);
                 }
             }
         }
@@ -175,7 +196,7 @@ const TripPlan = ({ tripPlanData = null }) => {
                 <div className="trip-plan-loading">
                     <div className="trip-plan-spinner">🌿</div>
                     <h2>Loading Your Personalized Trip Plan...</h2>
-                    <p>Curating your day-by-day itinerary, stay, meals & transit route ✨</p>
+                    <p>Curating your day-by-day sightseeing itinerary & tourist attractions ✨</p>
                 </div>
             );
         }

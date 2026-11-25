@@ -4,105 +4,600 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Ayodhya - India Tourist</title>
+    <title>Explore Ayodhya - Shri Ram Janmabhoomi, Saryu Ghat &amp; Heritage | India Tourist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/district-guide.css">
 </head>
 
-<body>
+<body class="district-page">
 
     <header>
         <div class="logo">India Tourist</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="/profile">My Profile</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="packages.html">Packages</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="district-hero" style="background-image: url('./god img/vn3.jpg');">
-        <div class="district-hero-content">
+    <!-- Back Button to return 1 step -->
+    <div class="back-nav-container">
+        <button onclick="goBack()" class="back-btn" title="Return 1 step back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>← Return 1 Step Back</span>
+        </button>
+    </div>
+
+    <!-- Floating Back Button for Quick Access -->
+    <button onclick="goBack()" class="floating-back-btn" title="Return 1 step back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>← Back</span>
+    </button>
+
+    <!-- Hero Banner -->
+    <section class="district-hero-banner">
+        <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-1.jpg" alt="Ayodhya Heritage & Landmarks">
+        <div class="district-hero-overlay">
+            <div class="hero-tag">Uttar Pradesh • Sacred Dham of Lord Rama</div>
             <h1>Ayodhya</h1>
-            <p>The Land of Lord Rama</p>
+            <p>Grand Shri Ram Janmabhoomi Temple, Holy Saryu Ghats &amp; Ramayana Heritage</p>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="discover-section">
-        <div class="section-header">
-            <h2>About Ayodhya</h2>
-            <p style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                Ayodhya is an ancient city located on the banks of the Sarayu River. It is the setting of the
-                ancient Hindu epic Ramayana and is famously known as the birthplace of Lord Rama.
-            </p>
+    <div class="district-about">
+        <h2>About Ayodhya</h2>
+        <p>
+            Ayodhya, shimmering on the right bank of the sacred Saryu River, stands among India’s seven holiest Mokshadayini cities (Sapta Puri) and is globally celebrated as the eternal birthplace of Maryada Purushottam Shri Rama.
+        </p>
+        <p>
+            Anchored by the monumental pink-sandstone Shri Ram Janmabhoomi Mandir, hilltop Hanuman Garhi, royal Kanak Bhawan and Dashrath Mahal, glowing Deepotsav steps along Ram Ki Paidi, and tranquil Guptar Ghat, Ayodhya blends living Ramayana devotion with Awadh’s rich cultural legacy.
+        </p>
+    </div>
+
+    <!-- Quick Facts -->
+    <div class="quick-facts">
+        <div class="fact-card">
+            <div class="fact-icon">📍</div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">Awadh Region, UP, India</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🛕</div>
+            <div class="fact-label">Sacred Center</div>
+            <div class="fact-value">Shri Ram Janmabhoomi</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🪔</div>
+            <div class="fact-label">Best Season</div>
+            <div class="fact-value">Oct – Mar (Deepotsav &amp; Ram Navami)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🚗</div>
+            <div class="fact-label">From Lucknow / Varanasi</div>
+            <div class="fact-value">~135 km LKO / ~215 km VNS</div>
+        </div>
+    </div>
+
+    <!-- Place Cards Section -->
+    <section class="places-section">
+        <div class="places-section-header">
+            <h2>Top Places to Explore in Ayodhya</h2>
+            <p>Sacred Ramayana shrines, serene Saryu ghats, ancient palaces &amp; museums</p>
         </div>
 
-        <div class="section-header">
-            <h2>Top Attractions</h2>
-            <p>Holy sites in Ayodhya</p>
-        </div>
+        <div class="place-cards-grid">
 
-        <div class="cards-container">
-
-            <!-- Ram Mandir -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/vn1.jpg" alt="Ram Mandir">
+            <!-- Card 1: Shree Ram Janmabhoomi Temple -->
+            <div class="place-card" id="card-ram-janmabhoomi">
+                <div class="place-card-image">
+                    <img id="card-ram-janmabhoomi-main-img" src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-1.jpg" alt="Shree Ram Janmabhoomi Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shree Ram Janmabhoomi Temple
+                            <span class="photo-count-pill">📷 11 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ramkot, Ayodhya Dham, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Supreme Sacred Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Monumental Nagara-style three-story temple built in intricately sculpted pink Bansi Paharpur sandstone, enshrining Shri Ram Lalla at the sacred birthplace of Lord Rama.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Ram Mandir</h3>
-                    <p>The grand Hindu temple built at the sacred site of Ram Janmabhoomi.</p>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-1.jpg" alt="Shree Ram Janmabhoomi Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-2.jpg" alt="Shree Ram Janmabhoomi Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-3.jpg" alt="Shree Ram Janmabhoomi Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-4.jpg" alt="Shree Ram Janmabhoomi Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-5.jpg" alt="Shree Ram Janmabhoomi Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-6.jpg" alt="Shree Ram Janmabhoomi Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-7.jpg" alt="Shree Ram Janmabhoomi Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-8.jpg" alt="Shree Ram Janmabhoomi Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-9.jpg" alt="Shree Ram Janmabhoomi Temple 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-10.jpg" alt="Shree Ram Janmabhoomi Temple 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
+                    <img src="/ayodhya/ram-janmabhoomi/ram-janmabhoomi-11.jpg" alt="Shree Ram Janmabhoomi Temple 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-janmabhoomi', this.src, this)">
                 </div>
             </div>
 
-            <!-- Hanuman Garhi -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/mahakal.jpg" alt="Hanuman Garhi">
+            <!-- Card 2: Shri Hanuman Garhi Mandir -->
+            <div class="place-card" id="card-hanuman-garhi">
+                <div class="place-card-image">
+                    <img id="card-hanuman-garhi-main-img" src="/ayodhya/hanuman-garhi/hanuman-garhi-2.jpg" alt="Shri Hanuman Garhi Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Hanuman Garhi Mandir
+                            <span class="photo-count-pill">📷 6 Photos</span>
+                        </div>
+                        <div class="place-card-location">Sai Nagar / Bhakti Path, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Hilltop Fort Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Grand 10th-century four-sided fort temple perched atop a 76-step mound overlooking Ayodhya; tradition holds devotees first seek Lord Hanuman’s blessings before Ram Darshan.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Hanuman Garhi</h3>
-                    <p>A 10th-century temple dedicated to Lord Hanuman.</p>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/hanuman-garhi/hanuman-garhi-2.jpg" alt="Shri Hanuman Garhi Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-hanuman-garhi', this.src, this)">
+                    <img src="/ayodhya/hanuman-garhi/hanuman-garhi-1.jpg" alt="Shri Hanuman Garhi Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hanuman-garhi', this.src, this)">
+                    <img src="/ayodhya/hanuman-garhi/hanuman-garhi-3.jpg" alt="Shri Hanuman Garhi Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hanuman-garhi', this.src, this)">
+                    <img src="/ayodhya/hanuman-garhi/hanuman-garhi-4.jpg" alt="Shri Hanuman Garhi Mandir 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hanuman-garhi', this.src, this)">
+                    <img src="/ayodhya/hanuman-garhi/hanuman-garhi-5.png" alt="Shri Hanuman Garhi Mandir 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hanuman-garhi', this.src, this)">
+                    <img src="/ayodhya/hanuman-garhi/hanuman-garhi-6.jpg" alt="Shri Hanuman Garhi Mandir 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hanuman-garhi', this.src, this)">
                 </div>
             </div>
 
-            <!-- Kanak Bhawan -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./ch2.jpg" alt="Kanak Bhawan">
+            <!-- Card 3: Kanak Bhawan -->
+            <div class="place-card" id="card-kanak-bhawan">
+                <div class="place-card-image">
+                    <img id="card-kanak-bhawan-main-img" src="/ayodhya/kanak-bhawan/kanak-bhawan-2.jpg" alt="Kanak Bhawan" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Kanak Bhawan
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Tulsi Nagar, Ayodhya Dham, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Royal Palace Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Resplendent &quot;House of Gold&quot; traditionally gifted by Queen Kaikeyi to Devi Sita after marriage, celebrated for golden-crowned idols of Shri Ram and Mata Janaki inside palace courtyards.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Kanak Bhawan</h3>
-                    <p>This temple is believed to have been gifted to Sita by Kaikeyi.</p>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-2.jpg" alt="Kanak Bhawan 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-1.jpg" alt="Kanak Bhawan 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-3.jpg" alt="Kanak Bhawan 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-4.jpg" alt="Kanak Bhawan 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-5.jpg" alt="Kanak Bhawan 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-6.jpg" alt="Kanak Bhawan 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-7.jpg" alt="Kanak Bhawan 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-8.jpg" alt="Kanak Bhawan 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-9.jpg" alt="Kanak Bhawan 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-10.jpg" alt="Kanak Bhawan 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-11.jpg" alt="Kanak Bhawan 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-12.jpg" alt="Kanak Bhawan 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
+                    <img src="/ayodhya/kanak-bhawan/kanak-bhawan-13.jpg" alt="Kanak Bhawan 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-kanak-bhawan', this.src, this)">
                 </div>
             </div>
 
-            <!-- Sarayu Ghat -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/vn.jpg" alt="Sarayu Ghat">
+            <!-- Card 4: Saryu Ghat &amp; Ram Ki Paidi -->
+            <div class="place-card" id="card-saryu-ghat">
+                <div class="place-card-image">
+                    <img id="card-saryu-ghat-main-img" src="/ayodhya/saryu-ghat/saryu-ghat-1.jpg" alt="Saryu Ghat &amp; Ram Ki Paidi" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Saryu Ghat &amp; Ram Ki Paidi
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Naya Ghat, Saryu Riverfront, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-ghat">Sacred Riverfront</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Expansive terraced stone embankments flowing beside the holy Saryu River, illuminated every evening for grand Saryu Aarti and famous globally for record-breaking Diwali Deepotsav.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Sarayu Ghat</h3>
-                    <p>Take a holy dip in the Sarayu river, which flows through Ayodhya.</p>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/saryu-ghat/saryu-ghat-1.jpg" alt="Saryu Ghat &amp; Ram Ki Paidi 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-saryu-ghat', this.src, this)">
+                    <img src="/ayodhya/saryu-ghat/saryu-ghat-2.jpg" alt="Saryu Ghat &amp; Ram Ki Paidi 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-saryu-ghat', this.src, this)">
+                    <img src="/ayodhya/saryu-ghat/saryu-ghat-3.jpg" alt="Saryu Ghat &amp; Ram Ki Paidi 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-saryu-ghat', this.src, this)">
+                    <img src="/ayodhya/saryu-ghat/saryu-ghat-4.jpg" alt="Saryu Ghat &amp; Ram Ki Paidi 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-saryu-ghat', this.src, this)">
+                    <img src="/ayodhya/saryu-ghat/saryu-ghat-5.jpg" alt="Saryu Ghat &amp; Ram Ki Paidi 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-saryu-ghat', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 5: Dashrath Mahal -->
+            <div class="place-card" id="card-dashrath-mahal">
+                <div class="place-card-image">
+                    <img id="card-dashrath-mahal-main-img" src="/ayodhya/dashrath-mahal/dashrath-mahal-1.jpg" alt="Dashrath Mahal" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Dashrath Mahal
+                            <span class="photo-count-pill">📷 7 Photos</span>
+                        </div>
+                        <div class="place-card-location">Bada Asthan, Ramkot, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Ancient Royal Palace</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Revered palace complex commemorating the grand court of Emperor Dashrath where Lord Rama spent His joyful childhood years, echoing all day with devotional bhajans.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/dashrath-mahal/dashrath-mahal-1.jpg" alt="Dashrath Mahal 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-dashrath-mahal', this.src, this)">
+                    <img src="/ayodhya/dashrath-mahal/dashrath-mahal-2.jpg" alt="Dashrath Mahal 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashrath-mahal', this.src, this)">
+                    <img src="/ayodhya/dashrath-mahal/dashrath-mahal-3.jpg" alt="Dashrath Mahal 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashrath-mahal', this.src, this)">
+                    <img src="/ayodhya/dashrath-mahal/dashrath-mahal-4.jpg" alt="Dashrath Mahal 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashrath-mahal', this.src, this)">
+                    <img src="/ayodhya/dashrath-mahal/dashrath-mahal-5.jpg" alt="Dashrath Mahal 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashrath-mahal', this.src, this)">
+                    <img src="/ayodhya/dashrath-mahal/dashrath-mahal-6.jpg" alt="Dashrath Mahal 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashrath-mahal', this.src, this)">
+                    <img src="/ayodhya/dashrath-mahal/dashrath-mahal-7.jpg" alt="Dashrath Mahal 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dashrath-mahal', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 6: Guptar Ghat -->
+            <div class="place-card" id="card-guptar-ghat">
+                <div class="place-card-image">
+                    <img id="card-guptar-ghat-main-img" src="/ayodhya/guptar-ghat/guptar-ghat-4.jpg" alt="Guptar Ghat" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Guptar Ghat
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Faizabad Cantonment, Saryu Banks, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-ghat">Peaceful River Ghat</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Tranquil, shady stone ghat along a wide bend of the Saryu River revered as the sacred spot where Lord Rama completed His earthly sojourn and entered Jal Samadhi.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-4.jpg" alt="Guptar Ghat 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-1.jpg" alt="Guptar Ghat 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-2.jpg" alt="Guptar Ghat 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-3.jpg" alt="Guptar Ghat 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-5.jpg" alt="Guptar Ghat 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-6.jpg" alt="Guptar Ghat 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-7.webp" alt="Guptar Ghat 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-8.jpg" alt="Guptar Ghat 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                    <img src="/ayodhya/guptar-ghat/guptar-ghat-9.jpg" alt="Guptar Ghat 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-guptar-ghat', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 7: Shri Nageshwar Nath Mandir -->
+            <div class="place-card" id="card-nageshwar-nath-mandir">
+                <div class="place-card-image">
+                    <img id="card-nageshwar-nath-mandir-main-img" src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-1.jpg" alt="Shri Nageshwar Nath Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Nageshwar Nath Mandir
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ram Ki Paidi, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Ancient Shiva Temple</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Venerable Shiva shrine situated right beside Ram Ki Paidi, traditionally believed to have been founded by Kush, son of Lord Rama, and thronged during Maha Shivratri.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-1.jpg" alt="Shri Nageshwar Nath Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-2.jpg" alt="Shri Nageshwar Nath Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-3.jpg" alt="Shri Nageshwar Nath Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-4.jpg" alt="Shri Nageshwar Nath Mandir 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-5.jpg" alt="Shri Nageshwar Nath Mandir 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-6.jpg" alt="Shri Nageshwar Nath Mandir 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-7.jpg" alt="Shri Nageshwar Nath Mandir 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-8.png" alt="Shri Nageshwar Nath Mandir 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                    <img src="/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-9.jpg" alt="Shri Nageshwar Nath Mandir 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-nageshwar-nath-mandir', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 8: Mani Parvat Temple -->
+            <div class="place-card" id="card-mani-parvat">
+                <div class="place-card-image">
+                    <img id="card-mani-parvat-main-img" src="/ayodhya/mani-parvat/mani-parvat-1.jpg" alt="Mani Parvat Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Mani Parvat Temple
+                            <span class="photo-count-pill">📷 11 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vidya Kund Area, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-scenic">Sacred Hilltop View</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Historic 65-foot sacred mound steeped in Ramayana and Buddhist antiquity, offering sweeping vistas across Ayodhya’s spires and linked to Hanuman’s flight carrying the Sanjeevani hill.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-1.jpg" alt="Mani Parvat Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-2.jpg" alt="Mani Parvat Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-3.jpg" alt="Mani Parvat Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-4.jpg" alt="Mani Parvat Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-5.jpg" alt="Mani Parvat Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-6.jpg" alt="Mani Parvat Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-7.jpg" alt="Mani Parvat Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-8.jpg" alt="Mani Parvat Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-9.jpg" alt="Mani Parvat Temple 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-10.jpg" alt="Mani Parvat Temple 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                    <img src="/ayodhya/mani-parvat/mani-parvat-11.jpg" alt="Mani Parvat Temple 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mani-parvat', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 9: Ram Katha Park -->
+            <div class="place-card" id="card-ram-katha-park">
+                <div class="place-card-image">
+                    <img id="card-ram-katha-park-main-img" src="/ayodhya/ram-katha-park/ram-katha-park-1.jpg" alt="Ram Katha Park" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Ram Katha Park
+                            <span class="photo-count-pill">📷 9 Photos</span>
+                        </div>
+                        <div class="place-card-location">Naya Ghat, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Cultural Amphitheater</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Beautifully landscaped riverside amphitheater and garden hosting traditional Ramleela enactments, devotional festivals, classical concerts, and Deepotsav cultural events.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-1.jpg" alt="Ram Katha Park 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-2.jpg" alt="Ram Katha Park 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-3.jpg" alt="Ram Katha Park 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-4.jpg" alt="Ram Katha Park 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-5.jpg" alt="Ram Katha Park 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-6.jpg" alt="Ram Katha Park 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-7.jpg" alt="Ram Katha Park 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-8.jpg" alt="Ram Katha Park 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                    <img src="/ayodhya/ram-katha-park/ram-katha-park-9.jpg" alt="Ram Katha Park 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ram-katha-park', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 10: Imambada Gulab Bari -->
+            <div class="place-card" id="card-gulab-bari">
+                <div class="place-card-image">
+                    <img id="card-gulab-bari-main-img" src="/ayodhya/gulab-bari/gulab-bari-1.jpg" alt="Imambada Gulab Bari" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Imambada Gulab Bari
+                            <span class="photo-count-pill">📷 7 Photos</span>
+                        </div>
+                        <div class="place-card-location">Vaidehi Nagar, Ayodhya (Faizabad), UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Awadhi Heritage Tomb</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Graceful 18th-century garden mausoleum of Nawab Shuja-ud-Daula set amid historic rose gardens, arched lakhori-brick gateways, and tranquil fountains.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/gulab-bari/gulab-bari-1.jpg" alt="Imambada Gulab Bari 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-gulab-bari', this.src, this)">
+                    <img src="/ayodhya/gulab-bari/gulab-bari-2.jpg" alt="Imambada Gulab Bari 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gulab-bari', this.src, this)">
+                    <img src="/ayodhya/gulab-bari/gulab-bari-3.jpg" alt="Imambada Gulab Bari 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gulab-bari', this.src, this)">
+                    <img src="/ayodhya/gulab-bari/gulab-bari-4.jpg" alt="Imambada Gulab Bari 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gulab-bari', this.src, this)">
+                    <img src="/ayodhya/gulab-bari/gulab-bari-5.jpg" alt="Imambada Gulab Bari 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gulab-bari', this.src, this)">
+                    <img src="/ayodhya/gulab-bari/gulab-bari-6.jpg" alt="Imambada Gulab Bari 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gulab-bari', this.src, this)">
+                    <img src="/ayodhya/gulab-bari/gulab-bari-7.jpg" alt="Imambada Gulab Bari 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gulab-bari', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 11: Raj Dwar Mandir -->
+            <div class="place-card" id="card-raj-dwar-mandir">
+                <div class="place-card-image">
+                    <img id="card-raj-dwar-mandir-main-img" src="/ayodhya/raj-dwar-mandir/raj-dwar-mandir-1.jpg" alt="Raj Dwar Mandir" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Raj Dwar Mandir
+                            <span class="photo-count-pill">📷 3 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ramkot Heritage Precinct, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Historic Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Distinctive elevated temple structure standing near the ancient royal gateway zone of Ramkot, admired for its serene courtyards and skyline views.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/raj-dwar-mandir/raj-dwar-mandir-1.jpg" alt="Raj Dwar Mandir 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-raj-dwar-mandir', this.src, this)">
+                    <img src="/ayodhya/raj-dwar-mandir/raj-dwar-mandir-2.jpg" alt="Raj Dwar Mandir 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raj-dwar-mandir', this.src, this)">
+                    <img src="/ayodhya/raj-dwar-mandir/raj-dwar-mandir-3.webp" alt="Raj Dwar Mandir 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-raj-dwar-mandir', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 12: Durlabh Darshan Kendra -->
+            <div class="place-card" id="card-durlabh-darshan-kendra">
+                <div class="place-card-image">
+                    <img id="card-durlabh-darshan-kendra-main-img" src="/ayodhya/durlabh-darshan-kendra/durlabh-darshan-kendra-1.jpg" alt="Durlabh Darshan Kendra" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Durlabh Darshan Kendra
+                            <span class="photo-count-pill">📷 6 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ayodhya Dham, Uttar Pradesh</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Heritage Exhibit</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Devotional museum and storytelling gallery bringing timeless episodes from Tulsidas’s Ramcharitmanas to life through detailed sculptural dioramas and murals.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/durlabh-darshan-kendra/durlabh-darshan-kendra-1.jpg" alt="Durlabh Darshan Kendra 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-durlabh-darshan-kendra', this.src, this)">
+                    <img src="/ayodhya/durlabh-darshan-kendra/durlabh-darshan-kendra-2.jpg" alt="Durlabh Darshan Kendra 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-durlabh-darshan-kendra', this.src, this)">
+                    <img src="/ayodhya/durlabh-darshan-kendra/durlabh-darshan-kendra-3.jpg" alt="Durlabh Darshan Kendra 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-durlabh-darshan-kendra', this.src, this)">
+                    <img src="/ayodhya/durlabh-darshan-kendra/durlabh-darshan-kendra-4.jpg" alt="Durlabh Darshan Kendra 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-durlabh-darshan-kendra', this.src, this)">
+                    <img src="/ayodhya/durlabh-darshan-kendra/durlabh-darshan-kendra-5.jpg" alt="Durlabh Darshan Kendra 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-durlabh-darshan-kendra', this.src, this)">
+                    <img src="/ayodhya/durlabh-darshan-kendra/durlabh-darshan-kendra-6.jpg" alt="Durlabh Darshan Kendra 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-durlabh-darshan-kendra', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 13: Sunil’s Ramayan Wax Museum -->
+            <div class="place-card" id="card-ramayan-wax-museum">
+                <div class="place-card-image">
+                    <img id="card-ramayan-wax-museum-main-img" src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-2.jpg" alt="Sunil’s Ramayan Wax Museum" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Sunil’s Ramayan Wax Museum
+                            <span class="photo-count-pill">📷 14 Photos</span>
+                        </div>
+                        <div class="place-card-location">Chaudah Kosi Parikrama Marg, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Cultural Wax Museum</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Striking Dravidian-gopuram-styled museum housing dozens of life-size wax tableaux recreating iconic scenes and characters from the epic Ramayana.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-2.jpg" alt="Sunil’s Ramayan Wax Museum 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-1.jpg" alt="Sunil’s Ramayan Wax Museum 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-3.jpg" alt="Sunil’s Ramayan Wax Museum 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-4.jpg" alt="Sunil’s Ramayan Wax Museum 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-5.jpg" alt="Sunil’s Ramayan Wax Museum 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-6.jpg" alt="Sunil’s Ramayan Wax Museum 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-7.jpg" alt="Sunil’s Ramayan Wax Museum 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-8.jpg" alt="Sunil’s Ramayan Wax Museum 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-9.jpg" alt="Sunil’s Ramayan Wax Museum 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-10.jpg" alt="Sunil’s Ramayan Wax Museum 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-11.jpg" alt="Sunil’s Ramayan Wax Museum 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-12.jpg" alt="Sunil’s Ramayan Wax Museum 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-13.jpg" alt="Sunil’s Ramayan Wax Museum 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                    <img src="/ayodhya/ramayan-wax-museum/ramayan-wax-museum-14.jpg" alt="Sunil’s Ramayan Wax Museum 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramayan-wax-museum', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 14: Valmiki Bhawan -->
+            <div class="place-card" id="card-valmiki-bhawan">
+                <div class="place-card-image">
+                    <img id="card-valmiki-bhawan-main-img" src="/ayodhya/valmiki-bhawan/valmiki-bhawan-2.jpg" alt="Valmiki Bhawan" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Valmiki Bhawan
+                            <span class="photo-count-pill">📷 8 Photos</span>
+                        </div>
+                        <div class="place-card-location">Chhoti Chhavni / Ramkot, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Sacred Literary Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Peaceful marble-inlaid spiritual hall honoring Adi Kavi Maharishi Valmiki, featuring complete Valmiki Ramayana shlokas carved beautifully across luminous stone walls.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-2.jpg" alt="Valmiki Bhawan 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-1.jpg" alt="Valmiki Bhawan 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-3.jpg" alt="Valmiki Bhawan 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-4.jpg" alt="Valmiki Bhawan 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-5.jpg" alt="Valmiki Bhawan 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-6.jpg" alt="Valmiki Bhawan 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-7.jpg" alt="Valmiki Bhawan 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                    <img src="/ayodhya/valmiki-bhawan/valmiki-bhawan-8.jpg" alt="Valmiki Bhawan 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-valmiki-bhawan', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 15: Gurudwara Nazarbagh (Brahmkund) -->
+            <div class="place-card" id="card-gurudwara-nazarbag">
+                <div class="place-card-image">
+                    <img id="card-gurudwara-nazarbag-main-img" src="/ayodhya/gurudwara-nazarbag/gurudwara-nazarbag-2.jpg" alt="Gurudwara Nazarbagh (Brahmkund)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Gurudwara Nazarbagh (Brahmkund)
+                            <span class="photo-count-pill">📷 5 Photos</span>
+                        </div>
+                        <div class="place-card-location">Nazarbagh, Ayodhya, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Historic Sikh Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Sacred Sikh Gurudwara commemorating the historic spiritual visits of Guru Nanak Dev Ji, Guru Tegh Bahadur Ji, and Guru Gobind Singh Ji to Ayodhya.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/ayodhya/gurudwara-nazarbag/gurudwara-nazarbag-2.jpg" alt="Gurudwara Nazarbagh (Brahmkund) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-gurudwara-nazarbag', this.src, this)">
+                    <img src="/ayodhya/gurudwara-nazarbag/gurudwara-nazarbag-1.jpg" alt="Gurudwara Nazarbagh (Brahmkund) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gurudwara-nazarbag', this.src, this)">
+                    <img src="/ayodhya/gurudwara-nazarbag/gurudwara-nazarbag-3.jpg" alt="Gurudwara Nazarbagh (Brahmkund) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gurudwara-nazarbag', this.src, this)">
+                    <img src="/ayodhya/gurudwara-nazarbag/gurudwara-nazarbag-4.jpg" alt="Gurudwara Nazarbagh (Brahmkund) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gurudwara-nazarbag', this.src, this)">
+                    <img src="/ayodhya/gurudwara-nazarbag/gurudwara-nazarbag-5.png" alt="Gurudwara Nazarbagh (Brahmkund) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gurudwara-nazarbag', this.src, this)">
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- Travel Info Section -->
+    <section class="travel-info-section">
+        <div class="travel-info-grid">
+            <div class="info-card">
+                <h3>🚗 How to Reach Ayodhya</h3>
+                <p>
+                    <strong>By Air:</strong> Maharishi Valmiki International Airport (AYJ) connects Ayodhya directly with Delhi, Mumbai, Bengaluru & Ahmedabad.<br><strong>By Train:</strong> Newly redeveloped Ayodhya Dham Junction (AY) offers Vande Bharat & Amrit Bharat Express connectivity.<br><strong>By Road:</strong> ~2.5 hrs east of Lucknow along smooth NH-27 highway.
+                </p>
+            </div>
+            <div class="info-card">
+                <h3>🍲 Local Flavors &amp; Specialties</h3>
+                <p>Enjoy traditional sattvik Awadhi sweets and Ayodhya local treats:</p>
+                <ul>
+                    <li><strong>Hanuman Garhi Besan Ladoo:</strong> Pure desi-ghee aromatic laddoos offered fresh outside the grand steps of Hanuman Garhi.</li>
+                    <li><strong>Ram Ki Paidi Rabri & Khurma:</strong> Slow-reduced creamy saffron rabri, crisp jalebi, and sweet khurma around Naya Ghat.</li>
+                    <li><strong>Guptar Ghat Chana Chaat:</strong> Light afternoon snacks and refreshing masala shikanji by the serene Saryu banks.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>✨ Insider Travel Tips</h3>
+                <ul>
+                    <li><strong>Darshan Sequence:</strong> Follow classic tradition by visiting Hanuman Garhi first before walking along Bhakti Path toward Shri Ram Janmabhoomi.</li>
+                    <li><strong>Evening Saryu Aarti:</strong> Arrive at Ram Ki Paidi / Saryu Ghat by 5:30 PM to capture illuminated ghats and devotional evening chants.</li>
+                    <li><strong>Lockers & Dress:</strong> Phone/bag lockers are available along Janmabhoomi Path for smooth temple entry.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="district-cta">
+        <a href="/wizard">🗺️ Plan Your Ayodhya Trip with AI Route Planner</a>
+    </div>
 
     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-grid">
-                <!-- Column 1: Our Services -->
                 <div class="footer-column">
                     <h3>Our Services</h3>
                     <ul class="footer-links">
@@ -117,7 +612,6 @@
                     </ul>
                 </div>
 
-                <!-- Column 2: About India Tourist -->
                 <div class="footer-column">
                     <h3>About India Tourist</h3>
                     <ul class="footer-links">
@@ -127,27 +621,25 @@
                         <li><a href="contact.html">Contact Us</a></li>
                         <li><a href="home.html">Testimonials</a></li>
                         <li><a href="home.html">Privacy Policy</a></li>
-                        <li><a href="home.html">Terms & Conditions</a></li>
+                        <li><a href="home.html">Terms &amp; Conditions</a></li>
                         <li><a href="home.html">Sitemap</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 3: Top Pilgrimage Places -->
                 <div class="footer-column">
-                    <h3>Top Pilgrimage Places</h3>
+                    <h3>UP District Guides</h3>
                     <ul class="footer-links">
                         <li><a href="varanasi.html">Varanasi Tour</a></li>
                         <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
-                        <li><a href="prayagraj.html">Prayagraj Package</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Guide</a></li>
                         <li><a href="mathura.html">Mathura Vrindavan</a></li>
-                        <li><a href="home.html">Ujjain Mahakal</a></li>
-                        <li><a href="home.html">Haridwar Rishikesh</a></li>
-                        <li><a href="home.html">Amritsar Golden Temple</a></li>
-                        <li><a href="home.html">Shirdi Sai Baba</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage</a></li>
+                        <li><a href="mirzapur.html">Mirzapur Waterfalls</a></li>
+                        <li><a href="sonebhadra.html">Sonebhadra Wonders</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal</a></li>
                     </ul>
                 </div>
 
-                <!-- Column 4: Popular Packages -->
                 <div class="footer-column">
                     <h3>Popular Packages</h3>
                     <ul class="footer-links">
@@ -162,44 +654,30 @@
                     </ul>
                 </div>
 
-                <!-- Column 5: Follow Us -->
                 <div class="footer-column">
                     <h3>Follow Us</h3>
                     <ul class="footer-links">
-                        <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
-                        <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
-                        <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
-                        <li><a href="https://youtube.com" target="_blank">YouTube</a></li>
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></li>
                     </ul>
                     <div class="social-links">
-                        <a href="https://facebook.com" class="social-icon" target="_blank" title="Facebook">
-                            <span>f</span>
-                        </a>
-                        <a href="https://twitter.com" class="social-icon" target="_blank" title="Twitter">
-                            <span>𝕏</span>
-                        </a>
-                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon"
-                            target="_blank" title="Instagram">
-                            <span>📷</span>
-                        </a>
-                        <a href="https://youtube.com" class="social-icon" target="_blank" title="YouTube">
-                            <span>▶</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank"
-                            title="LinkedIn">
-                            <span>in</span>
-                        </a>
+                        <a href="https://facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook"><span>f</span></a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter"><span>𝕏</span></a>
+                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram"><span>📷</span></a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube"><span>▶</span></a>
+                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span>in</span></a>
                     </div>
                     <button class="live-chat-button">💬 Live Chat</button>
                     <button class="callback-button">📞 Get a Callback</button>
                 </div>
             </div>
 
-            <!-- Footer Bottom -->
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
                     <div class="copyright">
-                        © 2024 India Tourist. All Rights Reserved.
+                        © 2026 India Tourist. All Rights Reserved.
                     </div>
                     <ul class="footer-bottom-links">
                         <li><a href="home.html">Privacy Policy</a></li>
@@ -211,6 +689,9 @@
             </div>
         </div>
     </footer>
+
+    <script src="js/places-catalog.js"></script>
+    <script src="js/district-guide.js"></script>
 
 </body>
 

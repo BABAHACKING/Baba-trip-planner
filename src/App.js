@@ -22,7 +22,7 @@ function App() {
                     </div>
                 }>
                     <Routes>
-                        <Route path="/wizard" element={<TravelWizard />} />
+                        <Route path="/wizard" element={<RedirectToWizardModal />} />
                         <Route path="/trip-plan" element={<TripPlan />} />
                         <Route path="/plan" element={<TripPlan />} />
                         <Route path="/profile" element={<UserProfile />} />
@@ -35,6 +35,14 @@ function App() {
             </div>
         </Router>
     );
+}
+
+// Redirect to home.html with popup wizard trigger
+function RedirectToWizardModal() {
+    useEffect(() => {
+        window.location.href = '/home.html?openWizard=true';
+    }, []);
+    return <div>Opening trip planner... 🧭</div>;
 }
 
 // Component to redirect to home.html

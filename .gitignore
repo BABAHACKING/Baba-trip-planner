@@ -27,6 +27,11 @@ yarn-error.log*
 *.swp
 *.swo
 
-# NOTE: .env is NOT ignored because it contains critical port configuration (PORT=3005)
-# This file should be committed to ensure the project runs on the correct port
+# Express local JSON database files
+server/data/*.json
+
+# Local environment variables (keep secrets private; copy .env.example to .env)
+.env
+.env.local
+.env.*.local
 

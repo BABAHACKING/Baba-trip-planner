@@ -4,99 +4,905 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Lucknow - India Tourist</title>
+    <title>Explore Lucknow - Imambaras, Rumi Darwaza &amp; Nawabi Heritage | India Tourist</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/district-guide.css">
 </head>
 
-<body>
+<body class="district-page">
 
     <header>
         <div class="logo">India Tourist</div>
         <nav>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
+                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="/profile">My Profile</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="packages.html">Packages</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="district-hero" style="background-image: url('./ch2.jpg');">
-        <div class="district-hero-content">
+    <!-- Back Button to return 1 step -->
+    <div class="back-nav-container">
+        <button onclick="goBack()" class="back-btn" title="Return 1 step back">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span>← Return 1 Step Back</span>
+        </button>
+    </div>
+
+    <!-- Floating Back Button for Quick Access -->
+    <button onclick="goBack()" class="floating-back-btn" title="Return 1 step back">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>← Back</span>
+    </button>
+
+    <!-- Hero Banner -->
+    <section class="district-hero-banner">
+        <img src="/lucknow/bara-imambara/bara-imambara-1.jpg" alt="Lucknow Heritage & Landmarks">
+        <div class="district-hero-overlay">
+            <div class="hero-tag">Uttar Pradesh • City of Nawabs</div>
             <h1>Lucknow</h1>
-            <p>The City of Nawabs</p>
+            <p>Monumental Awadhi Architecture, Royal Imambaras &amp; Cultural Tehzeeb</p>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="discover-section">
-        <div class="section-header">
-            <h2>About Lucknow</h2>
-            <p style="max-width: 800px; margin: 0 auto; line-height: 1.6;">
-                Lucknow, the capital of Uttar Pradesh, is known for its multiculturism, art, cuisine, dance,
-                and music. It is affectionately known as the Golden City of the East and is famous for its Adab and
-                Tehzeeb.
-            </p>
+    <div class="district-about">
+        <h2>About Lucknow</h2>
+        <p>
+            Lucknow, the vibrant capital of Uttar Pradesh along the Gomti River, celebrates centuries of refined Awadhi tehzeeb, intricate Chikankari embroidery, classical Kathak and music, and world-renowned culinary craftsmanship.
+        </p>
+        <p>
+            From the astonishing pillarless vaults of Bara Imambara and towering Rumi Darwaza to European-fusion wonders like La Martiniere College, atmospheric 1857 heritage at The Residency, and sprawling green waterfronts like Janeshwar Mishra Park, Lucknow rewards every traveler.
+        </p>
+    </div>
+
+    <!-- Quick Facts -->
+    <div class="quick-facts">
+        <div class="fact-card">
+            <div class="fact-icon">📍</div>
+            <div class="fact-label">Location</div>
+            <div class="fact-value">Central UP (State Capital)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🕌</div>
+            <div class="fact-label">Architecture</div>
+            <div class="fact-value">Awadhi &amp; Indo-European</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🌡️</div>
+            <div class="fact-label">Best Season</div>
+            <div class="fact-value">Oct – Mar (Pleasant Winters)</div>
+        </div>
+        <div class="fact-card">
+            <div class="fact-icon">🚆</div>
+            <div class="fact-label">Connectivity</div>
+            <div class="fact-value">Major Rail &amp; Intl. Airport</div>
+        </div>
+    </div>
+
+    <!-- Place Cards Section -->
+    <section class="places-section">
+        <div class="places-section-header">
+            <h2>Top Places to Explore in Lucknow</h2>
+            <p>Grand Imambaras, colonial landmarks, riverside parks &amp; iconic bazaars</p>
         </div>
 
-        <div class="section-header">
-            <h2>Top Attractions</h2>
-            <p>Heritage sites and parks in Lucknow</p>
-        </div>
+        <div class="place-cards-grid">
 
-        <div class="cards-container">
-
-            <!-- Bara Imambara -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./ch2.jpg" alt="Bara Imambara">
+            <!-- Card 1: Bara Imambara &amp; Bhool Bhulaiya -->
+            <div class="place-card" id="card-bara-imambara">
+                <div class="place-card-image">
+                    <img id="card-bara-imambara-main-img" src="/lucknow/bara-imambara/bara-imambara-1.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Bara Imambara &amp; Bhool Bhulaiya
+                            <span class="photo-count-pill">📷 16 Photos</span>
+                        </div>
+                        <div class="place-card-location">Hussainabad, Old Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Heritage Monument</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Built in 1784 by Nawab Asaf-ud-Daula, home to the world’s largest unsupported arched hall alongside the mysterious 1,000-passage Bhool Bhulaiya labyrinth and Shahi Baoli stepwell.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Bara Imambara</h3>
-                    <p>A historical complex famous for its labyrinth, Bhool Bhulaiya.</p>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/bara-imambara/bara-imambara-1.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-2.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-3.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-4.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-5.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-6.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-7.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-8.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-9.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-10.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-11.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-12.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-13.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-14.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-15.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
+                    <img src="/lucknow/bara-imambara/bara-imambara-16.jpg" alt="Bara Imambara &amp; Bhool Bhulaiya 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-bara-imambara', this.src, this)">
                 </div>
             </div>
 
-            <!-- Rumi Darwaza -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./ch1.jpg" alt="Rumi Darwaza">
+            <!-- Card 2: Rumi Darwaza -->
+            <div class="place-card" id="card-rumi-darwaza">
+                <div class="place-card-image">
+                    <img id="card-rumi-darwaza-main-img" src="/lucknow/rumi-darwaza/rumi-darwaza-1.jpg" alt="Rumi Darwaza" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Rumi Darwaza
+                            <span class="photo-count-pill">📷 16 Photos</span>
+                        </div>
+                        <div class="place-card-location">Hussainabad Heritage Zone, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-tower">Iconic Gateway</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Towering 60-foot signature gateway of Lucknow constructed in 1784 in ornate Awadhi style crowned by an octagonal floral chhatri overlooking Old Lucknow.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Rumi Darwaza</h3>
-                    <p>An imposing gateway which is considered a fine example of Awadhi architecture.</p>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-1.jpg" alt="Rumi Darwaza 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-2.jpg" alt="Rumi Darwaza 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-3.jpg" alt="Rumi Darwaza 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-4.jpg" alt="Rumi Darwaza 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-5.jpg" alt="Rumi Darwaza 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-6.jpg" alt="Rumi Darwaza 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-7.jpg" alt="Rumi Darwaza 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-8.jpg" alt="Rumi Darwaza 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-9.jpg" alt="Rumi Darwaza 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-10.jpg" alt="Rumi Darwaza 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-11.jpg" alt="Rumi Darwaza 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-12.jpg" alt="Rumi Darwaza 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-13.jpg" alt="Rumi Darwaza 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-14.jpg" alt="Rumi Darwaza 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-15.jpg" alt="Rumi Darwaza 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
+                    <img src="/lucknow/rumi-darwaza/rumi-darwaza-16.png" alt="Rumi Darwaza 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-rumi-darwaza', this.src, this)">
                 </div>
             </div>
 
-            <!-- Ambedkar Park -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/vn1.jpg" alt="Ambedkar Park">
+            <!-- Card 3: Chota Imambada -->
+            <div class="place-card" id="card-chota-imambada">
+                <div class="place-card-image">
+                    <img id="card-chota-imambada-main-img" src="/lucknow/chota-imambada/chota-imambada-2.jpg" alt="Chota Imambada" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Chota Imambada
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Hussainabad, Old Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Palace of Lights</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Gilded-dome monument built by Nawab Muhammad Ali Shah in 1838, famed for dazzling Belgian crystal chandeliers, Persian calligraphy, and intricate ceremonial tazias.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Ambedkar Park</h3>
-                    <p>A public park and memorial dedicated to Bhimrao Ambedkar.</p>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/chota-imambada/chota-imambada-2.jpg" alt="Chota Imambada 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-1.jpg" alt="Chota Imambada 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-3.jpg" alt="Chota Imambada 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-4.jpg" alt="Chota Imambada 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-5.jpg" alt="Chota Imambada 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-6.jpg" alt="Chota Imambada 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-7.jpg" alt="Chota Imambada 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-8.jpg" alt="Chota Imambada 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-9.jpg" alt="Chota Imambada 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-10.jpg" alt="Chota Imambada 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-11.jpg" alt="Chota Imambada 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-12.jpg" alt="Chota Imambada 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
+                    <img src="/lucknow/chota-imambada/chota-imambada-13.jpg" alt="Chota Imambada 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-chota-imambada', this.src, this)">
                 </div>
             </div>
 
-            <!-- Hazratganj -->
-            <div class="card">
-                <div class="card-image">
-                    <img src="./god img/vn3.jpg" alt="Hazratganj">
+            <!-- Card 4: The Residency, Lucknow -->
+            <div class="place-card" id="card-the-residency">
+                <div class="place-card-image">
+                    <img id="card-the-residency-main-img" src="/lucknow/the-residency/the-residency-1.jpg" alt="The Residency, Lucknow" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            The Residency, Lucknow
+                            <span class="photo-count-pill">📷 17 Photos</span>
+                        </div>
+                        <div class="place-card-location">Mahatma Gandhi Marg, Qaisar Bagh, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">1857 Heritage Ruins</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Tranquil red-brick complex preserved amid sprawling lawns as a protected national monument recounting the dramatic 1857 Siege of Lucknow.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <h3>Hazratganj</h3>
-                    <p>The downtown shopping district of Lucknow, the heart of the city.</p>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/the-residency/the-residency-1.jpg" alt="The Residency, Lucknow 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-2.jpg" alt="The Residency, Lucknow 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-3.jpg" alt="The Residency, Lucknow 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-4.jpg" alt="The Residency, Lucknow 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-5.jpg" alt="The Residency, Lucknow 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-6.jpg" alt="The Residency, Lucknow 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-7.jpg" alt="The Residency, Lucknow 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-8.jpg" alt="The Residency, Lucknow 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-9.jpg" alt="The Residency, Lucknow 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-10.jpg" alt="The Residency, Lucknow 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-11.jpg" alt="The Residency, Lucknow 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-12.jpg" alt="The Residency, Lucknow 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-13.jpg" alt="The Residency, Lucknow 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-14.jpg" alt="The Residency, Lucknow 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-15.jpg" alt="The Residency, Lucknow 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-16.jpg" alt="The Residency, Lucknow 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                    <img src="/lucknow/the-residency/the-residency-17.jpg" alt="The Residency, Lucknow 17" class="place-thumb" loading="lazy" onclick="switchCardImage('card-the-residency', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 5: Dr. B. R. Ambedkar Memorial Park -->
+            <div class="place-card" id="card-ambedkar-memorial">
+                <div class="place-card-image">
+                    <img id="card-ambedkar-memorial-main-img" src="/lucknow/ambedkar-memorial/ambedkar-memorial-3.jpg" alt="Dr. B. R. Ambedkar Memorial Park" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Dr. B. R. Ambedkar Memorial Park
+                            <span class="photo-count-pill">📷 18 Photos</span>
+                        </div>
+                        <div class="place-card-location">Gomti Nagar, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Monumental Complex</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Grand 107-acre public memorial built in shimmering pink Chunar sandstone, featuring monumental stupa domes, 62 life-size stone elephants, and bronze galleries.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-3.jpg" alt="Dr. B. R. Ambedkar Memorial Park 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-1.jpg" alt="Dr. B. R. Ambedkar Memorial Park 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-2.jpg" alt="Dr. B. R. Ambedkar Memorial Park 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-4.jpg" alt="Dr. B. R. Ambedkar Memorial Park 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-5.jpg" alt="Dr. B. R. Ambedkar Memorial Park 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-6.jpg" alt="Dr. B. R. Ambedkar Memorial Park 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-7.jpg" alt="Dr. B. R. Ambedkar Memorial Park 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-8.png" alt="Dr. B. R. Ambedkar Memorial Park 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-9.jpg" alt="Dr. B. R. Ambedkar Memorial Park 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-10.jpg" alt="Dr. B. R. Ambedkar Memorial Park 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-11.jpg" alt="Dr. B. R. Ambedkar Memorial Park 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-12.jpg" alt="Dr. B. R. Ambedkar Memorial Park 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-13.jpg" alt="Dr. B. R. Ambedkar Memorial Park 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-14.jpg" alt="Dr. B. R. Ambedkar Memorial Park 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-15.jpg" alt="Dr. B. R. Ambedkar Memorial Park 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-16.jpg" alt="Dr. B. R. Ambedkar Memorial Park 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-17.jpg" alt="Dr. B. R. Ambedkar Memorial Park 17" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                    <img src="/lucknow/ambedkar-memorial/ambedkar-memorial-18.jpg" alt="Dr. B. R. Ambedkar Memorial Park 18" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ambedkar-memorial', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 6: La Martiniere College (Constantia) -->
+            <div class="place-card" id="card-la-martiniere-college">
+                <div class="place-card-image">
+                    <img id="card-la-martiniere-college-main-img" src="/lucknow/la-martiniere-college/la-martiniere-college-1.jpg" alt="La Martiniere College (Constantia)" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            La Martiniere College (Constantia)
+                            <span class="photo-count-pill">📷 17 Photos</span>
+                        </div>
+                        <div class="place-card-location">La Martiniere Road, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Grand Architecture</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Magnificent late-18th-century European-Nawabi palace estate founded by Major General Claude Martin beside the Gomti River, famed for Roman statues and fluted towers.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-1.jpg" alt="La Martiniere College (Constantia) 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-2.jpg" alt="La Martiniere College (Constantia) 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-3.jpg" alt="La Martiniere College (Constantia) 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-4.jpg" alt="La Martiniere College (Constantia) 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-5.jpg" alt="La Martiniere College (Constantia) 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-6.jpg" alt="La Martiniere College (Constantia) 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-7.jpg" alt="La Martiniere College (Constantia) 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-8.jpg" alt="La Martiniere College (Constantia) 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-9.jpg" alt="La Martiniere College (Constantia) 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-10.jpg" alt="La Martiniere College (Constantia) 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-11.jpg" alt="La Martiniere College (Constantia) 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-12.jpg" alt="La Martiniere College (Constantia) 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-13.jpg" alt="La Martiniere College (Constantia) 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-14.jpg" alt="La Martiniere College (Constantia) 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-15.jpg" alt="La Martiniere College (Constantia) 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-16.jpg" alt="La Martiniere College (Constantia) 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                    <img src="/lucknow/la-martiniere-college/la-martiniere-college-17.jpg" alt="La Martiniere College (Constantia) 17" class="place-thumb" loading="lazy" onclick="switchCardImage('card-la-martiniere-college', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 7: Dilkusha Kothi -->
+            <div class="place-card" id="card-dilkusha-kothi">
+                <div class="place-card-image">
+                    <img id="card-dilkusha-kothi-main-img" src="/lucknow/dilkusha-kothi/dilkusha-kothi-1.jpg" alt="Dilkusha Kothi" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Dilkusha Kothi
+                            <span class="photo-count-pill">📷 16 Photos</span>
+                        </div>
+                        <div class="place-card-location">Cantonment Road, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Heritage Ruins</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Picturesque 18th-century English-baroque country house and royal Nawabi hunting retreat surrounded by peaceful flower gardens and octagonal corner towers.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-1.jpg" alt="Dilkusha Kothi 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-2.jpg" alt="Dilkusha Kothi 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-3.jpg" alt="Dilkusha Kothi 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-4.jpg" alt="Dilkusha Kothi 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-5.jpg" alt="Dilkusha Kothi 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-6.jpg" alt="Dilkusha Kothi 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-7.jpg" alt="Dilkusha Kothi 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-8.png" alt="Dilkusha Kothi 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-9.jpg" alt="Dilkusha Kothi 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-10.jpg" alt="Dilkusha Kothi 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-11.jpg" alt="Dilkusha Kothi 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-12.jpg" alt="Dilkusha Kothi 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-13.jpg" alt="Dilkusha Kothi 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-14.jpg" alt="Dilkusha Kothi 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-15.jpg" alt="Dilkusha Kothi 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                    <img src="/lucknow/dilkusha-kothi/dilkusha-kothi-16.jpg" alt="Dilkusha Kothi 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-dilkusha-kothi', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 8: Shah Najaf Imambara -->
+            <div class="place-card" id="card-shah-najaf-imambara">
+                <div class="place-card-image">
+                    <img id="card-shah-najaf-imambara-main-img" src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-1.jpg" alt="Shah Najaf Imambara" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shah Najaf Imambara
+                            <span class="photo-count-pill">📷 15 Photos</span>
+                        </div>
+                        <div class="place-card-location">Rana Pratap Marg, Hazratganj, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-historical">Mausoleum Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Distinguished white-domed Awadhi mausoleum inspired by Najaf, housing the serene resting place of Nawab Ghazi-ud-Din Haidar and his begums amid manicured lawns.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-1.jpg" alt="Shah Najaf Imambara 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-2.jpg" alt="Shah Najaf Imambara 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-3.jpg" alt="Shah Najaf Imambara 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-4.jpg" alt="Shah Najaf Imambara 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-5.jpg" alt="Shah Najaf Imambara 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-6.jpg" alt="Shah Najaf Imambara 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-7.jpg" alt="Shah Najaf Imambara 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-8.jpg" alt="Shah Najaf Imambara 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-9.jpg" alt="Shah Najaf Imambara 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-10.jpg" alt="Shah Najaf Imambara 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-11.jpg" alt="Shah Najaf Imambara 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-12.jpg" alt="Shah Najaf Imambara 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-13.png" alt="Shah Najaf Imambara 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-14.jpg" alt="Shah Najaf Imambara 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                    <img src="/lucknow/shah-najaf-imambara/shah-najaf-imambara-15.jpg" alt="Shah Najaf Imambara 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-shah-najaf-imambara', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 9: Sikandar Bagh -->
+            <div class="place-card" id="card-sikandar-bagh">
+                <div class="place-card-image">
+                    <img id="card-sikandar-bagh-main-img" src="/lucknow/sikandar-bagh/sikandar-bagh-1.jpg" alt="Sikandar Bagh" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Sikandar Bagh
+                            <span class="photo-count-pill">📷 16 Photos</span>
+                        </div>
+                        <div class="place-card-location">Ashok Marg, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-nature">Heritage Garden</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Historic walled villa and summer garden developed by Nawab Wajid Ali Shah featuring carved gateway arches inside the National Botanical Research Institute campus.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-1.jpg" alt="Sikandar Bagh 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-2.jpg" alt="Sikandar Bagh 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-3.jpg" alt="Sikandar Bagh 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-4.jpg" alt="Sikandar Bagh 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-5.jpg" alt="Sikandar Bagh 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-6.jpg" alt="Sikandar Bagh 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-7.jpg" alt="Sikandar Bagh 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-8.jpg" alt="Sikandar Bagh 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-9.jpg" alt="Sikandar Bagh 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-10.jpg" alt="Sikandar Bagh 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-11.jpg" alt="Sikandar Bagh 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-12.jpg" alt="Sikandar Bagh 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-13.jpg" alt="Sikandar Bagh 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-14.jpg" alt="Sikandar Bagh 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-15.jpg" alt="Sikandar Bagh 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                    <img src="/lucknow/sikandar-bagh/sikandar-bagh-16.jpg" alt="Sikandar Bagh 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-sikandar-bagh', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 10: Hazratganj Market Boulevard -->
+            <div class="place-card" id="card-hazratganj">
+                <div class="place-card-image">
+                    <img id="card-hazratganj-main-img" src="/lucknow/hazratganj/hazratganj-1.jpg" alt="Hazratganj Market Boulevard" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Hazratganj Market Boulevard
+                            <span class="photo-count-pill">📷 19 Photos</span>
+                        </div>
+                        <div class="place-card-location">Central Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Culture &amp; Shopping</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Lucknow’s timeless Victorian-arcaded heart built for leisurely evening &quot;Ganjing&quot; walks through heritage bookshops, Chikankari emporiums, theaters, and legendary chaat spots.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/hazratganj/hazratganj-1.jpg" alt="Hazratganj Market Boulevard 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-2.jpg" alt="Hazratganj Market Boulevard 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-3.jpg" alt="Hazratganj Market Boulevard 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-4.jpg" alt="Hazratganj Market Boulevard 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-5.jpg" alt="Hazratganj Market Boulevard 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-6.jpg" alt="Hazratganj Market Boulevard 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-7.jpg" alt="Hazratganj Market Boulevard 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-8.jpg" alt="Hazratganj Market Boulevard 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-9.jpg" alt="Hazratganj Market Boulevard 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-10.jpg" alt="Hazratganj Market Boulevard 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-11.jpg" alt="Hazratganj Market Boulevard 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-12.jpg" alt="Hazratganj Market Boulevard 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-13.jpg" alt="Hazratganj Market Boulevard 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-14.jpg" alt="Hazratganj Market Boulevard 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-15.jpg" alt="Hazratganj Market Boulevard 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-16.jpg" alt="Hazratganj Market Boulevard 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-17.jpg" alt="Hazratganj Market Boulevard 17" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-18.jpg" alt="Hazratganj Market Boulevard 18" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                    <img src="/lucknow/hazratganj/hazratganj-19.jpg" alt="Hazratganj Market Boulevard 19" class="place-thumb" loading="lazy" onclick="switchCardImage('card-hazratganj', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 11: Gomti Riverfront Park -->
+            <div class="place-card" id="card-gomti-riverfront-park">
+                <div class="place-card-image">
+                    <img id="card-gomti-riverfront-park-main-img" src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-1.jpg" alt="Gomti Riverfront Park" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Gomti Riverfront Park
+                            <span class="photo-count-pill">📷 15 Photos</span>
+                        </div>
+                        <div class="place-card-location">Gomti Nagar, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-scenic">Riverfront Promenade</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Scenic landscaped promenade stretching along the Gomti River featuring amphitheaters, jogging and cycling tracks, illuminated bridges, and musical fountain evenings.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-1.jpg" alt="Gomti Riverfront Park 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-2.jpg" alt="Gomti Riverfront Park 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-3.jpg" alt="Gomti Riverfront Park 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-4.jpg" alt="Gomti Riverfront Park 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-5.jpg" alt="Gomti Riverfront Park 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-6.jpg" alt="Gomti Riverfront Park 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-7.jpg" alt="Gomti Riverfront Park 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-8.jpg" alt="Gomti Riverfront Park 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-9.webp" alt="Gomti Riverfront Park 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-10.jpg" alt="Gomti Riverfront Park 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-11.jpg" alt="Gomti Riverfront Park 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-12.jpg" alt="Gomti Riverfront Park 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-13.jpg" alt="Gomti Riverfront Park 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-14.jpg" alt="Gomti Riverfront Park 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                    <img src="/lucknow/gomti-riverfront-park/gomti-riverfront-park-15.jpg" alt="Gomti Riverfront Park 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-gomti-riverfront-park', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 12: Janeshwar Mishra Park -->
+            <div class="place-card" id="card-janeshwar-mishra-park">
+                <div class="place-card-image">
+                    <img id="card-janeshwar-mishra-park-main-img" src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-1.jpg" alt="Janeshwar Mishra Park" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Janeshwar Mishra Park
+                            <span class="photo-count-pill">📷 15 Photos</span>
+                        </div>
+                        <div class="place-card-location">Gomti Nagar Extension, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-nature">Urban Eco Park</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Vast 376-acre green sanctuary inspired by London’s Hyde Park boasting twin scenic lakes, Venetian gondola boats, cycle trails, and lush botanical expanses.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-1.jpg" alt="Janeshwar Mishra Park 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-2.png" alt="Janeshwar Mishra Park 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-3.jpg" alt="Janeshwar Mishra Park 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-4.png" alt="Janeshwar Mishra Park 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-5.jpg" alt="Janeshwar Mishra Park 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-6.jpg" alt="Janeshwar Mishra Park 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-7.jpg" alt="Janeshwar Mishra Park 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-8.jpg" alt="Janeshwar Mishra Park 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-9.jpg" alt="Janeshwar Mishra Park 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-10.jpg" alt="Janeshwar Mishra Park 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-11.jpg" alt="Janeshwar Mishra Park 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-12.jpg" alt="Janeshwar Mishra Park 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-13.jpg" alt="Janeshwar Mishra Park 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-14.jpg" alt="Janeshwar Mishra Park 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                    <img src="/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-15.jpg" alt="Janeshwar Mishra Park 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-janeshwar-mishra-park', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 13: Shri Mankameshwar Temple -->
+            <div class="place-card" id="card-mankameshwar-temple">
+                <div class="place-card-image">
+                    <img id="card-mankameshwar-temple-main-img" src="/lucknow/mankameshwar-temple/mankameshwar-temple-3.jpg" alt="Shri Mankameshwar Temple" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Shri Mankameshwar Temple
+                            <span class="photo-count-pill">📷 8 Photos</span>
+                        </div>
+                        <div class="place-card-location">Daliganj / Gomti Banks, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Ancient Shiva Shrine</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Venerable riverside temple dedicated to Lord Shiva along the southern bank of the Gomti, celebrated across Lucknow as a fulfillment shrine during Shivratri and Sawan.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-3.jpg" alt="Shri Mankameshwar Temple 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-1.jpg" alt="Shri Mankameshwar Temple 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-2.jpg" alt="Shri Mankameshwar Temple 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-4.jpg" alt="Shri Mankameshwar Temple 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-5.jpg" alt="Shri Mankameshwar Temple 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-6.jpg" alt="Shri Mankameshwar Temple 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-7.jpg" alt="Shri Mankameshwar Temple 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                    <img src="/lucknow/mankameshwar-temple/mankameshwar-temple-8.jpg" alt="Shri Mankameshwar Temple 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-mankameshwar-temple', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 14: Sri Ramakrishna Math -->
+            <div class="place-card" id="card-ramakrishna-math">
+                <div class="place-card-image">
+                    <img id="card-ramakrishna-math-main-img" src="/lucknow/ramakrishna-math/ramakrishna-math-1.jpg" alt="Sri Ramakrishna Math" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Sri Ramakrishna Math
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Nirala Nagar, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-religious">Spiritual Sanctuary</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Harmonious pink-sandstone universal temple blending traditional Indian architectural domes with peaceful meditation halls, prayer shrines, and serene courtyard gardens.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-1.jpg" alt="Sri Ramakrishna Math 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-2.jpg" alt="Sri Ramakrishna Math 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-3.jpg" alt="Sri Ramakrishna Math 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-4.jpg" alt="Sri Ramakrishna Math 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-5.jpg" alt="Sri Ramakrishna Math 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-6.jpg" alt="Sri Ramakrishna Math 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-7.jpg" alt="Sri Ramakrishna Math 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-8.jpg" alt="Sri Ramakrishna Math 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-9.jpg" alt="Sri Ramakrishna Math 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-10.jpg" alt="Sri Ramakrishna Math 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-11.jpg" alt="Sri Ramakrishna Math 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-12.jpg" alt="Sri Ramakrishna Math 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                    <img src="/lucknow/ramakrishna-math/ramakrishna-math-13.jpg" alt="Sri Ramakrishna Math 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-ramakrishna-math', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 15: Nawab Wajid Ali Shah Zoological Garden -->
+            <div class="place-card" id="card-lucknow-zoo">
+                <div class="place-card-image">
+                    <img id="card-lucknow-zoo-main-img" src="/lucknow/lucknow-zoo/lucknow-zoo-1.jpg" alt="Nawab Wajid Ali Shah Zoological Garden" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Nawab Wajid Ali Shah Zoological Garden
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Narahi, Hazratganj, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-adventure">Wildlife &amp; Heritage Zoo</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Centuries-old 71-acre wildlife sanctuary housing white tigers, swamp deer, reptiles, State Museum exhibits, and a nostalgic miniature Bal Rail toy train.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-1.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-2.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-3.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-4.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-5.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-6.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-7.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-8.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-9.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-10.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-11.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-12.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                    <img src="/lucknow/lucknow-zoo/lucknow-zoo-13.jpg" alt="Nawab Wajid Ali Shah Zoological Garden 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-lucknow-zoo', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 16: University of Lucknow -->
+            <div class="place-card" id="card-university-of-lucknow">
+                <div class="place-card-image">
+                    <img id="card-university-of-lucknow-main-img" src="/lucknow/university-of-lucknow/university-of-lucknow-2.jpg" alt="University of Lucknow" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            University of Lucknow
+                            <span class="photo-count-pill">📷 13 Photos</span>
+                        </div>
+                        <div class="place-card-location">Babuganj, Hasanganj, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Heritage Campus</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Distinguished 1920 Indo-Saracenic academic landmark admired for its stately domed red-sandstone convocation buildings, clock-tower facades, and tree-lined quadrangles.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-2.jpg" alt="University of Lucknow 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-1.jpg" alt="University of Lucknow 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-3.jpg" alt="University of Lucknow 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-4.jpg" alt="University of Lucknow 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-5.jpg" alt="University of Lucknow 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-6.jpg" alt="University of Lucknow 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-7.jpg" alt="University of Lucknow 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-8.jpg" alt="University of Lucknow 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-9.jpg" alt="University of Lucknow 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-10.jpg" alt="University of Lucknow 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-11.jpg" alt="University of Lucknow 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-12.jpg" alt="University of Lucknow 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                    <img src="/lucknow/university-of-lucknow/university-of-lucknow-13.jpg" alt="University of Lucknow 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-university-of-lucknow', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 17: Phoenix Palassio -->
+            <div class="place-card" id="card-phoenix-palassio">
+                <div class="place-card-image">
+                    <img id="card-phoenix-palassio-main-img" src="/lucknow/phoenix-palassio/phoenix-palassio-1.jpg" alt="Phoenix Palassio" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Phoenix Palassio
+                            <span class="photo-count-pill">📷 17 Photos</span>
+                        </div>
+                        <div class="place-card-location">Amar Shaheed Path, Gomti Nagar, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-scenic">Modern Architectural Hub</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Opulent European-inspired lifestyle palace known for soaring vaulted galleries, grand chandelier halls, dramatic outdoor fountains, and world dining experiences.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-1.jpg" alt="Phoenix Palassio 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-2.jpg" alt="Phoenix Palassio 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-3.jpg" alt="Phoenix Palassio 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-4.jpg" alt="Phoenix Palassio 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-5.jpg" alt="Phoenix Palassio 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-6.jpg" alt="Phoenix Palassio 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-7.jpg" alt="Phoenix Palassio 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-8.jpg" alt="Phoenix Palassio 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-9.jpg" alt="Phoenix Palassio 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-10.jpg" alt="Phoenix Palassio 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-11.jpg" alt="Phoenix Palassio 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-12.jpg" alt="Phoenix Palassio 12" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-13.jpg" alt="Phoenix Palassio 13" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-14.jpg" alt="Phoenix Palassio 14" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-15.jpg" alt="Phoenix Palassio 15" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-16.jpg" alt="Phoenix Palassio 16" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                    <img src="/lucknow/phoenix-palassio/phoenix-palassio-17.jpg" alt="Phoenix Palassio 17" class="place-thumb" loading="lazy" onclick="switchCardImage('card-phoenix-palassio', this.src, this)">
+                </div>
+            </div>
+
+            <!-- Card 18: Fun Republic Mall -->
+            <div class="place-card" id="card-fun-republic-mall">
+                <div class="place-card-image">
+                    <img id="card-fun-republic-mall-main-img" src="/lucknow/fun-republic-mall/fun-republic-mall-2.jpg" alt="Fun Republic Mall" loading="lazy">
+                    <div class="place-card-overlay">
+                        <div class="place-card-title">
+                            Fun Republic Mall
+                            <span class="photo-count-pill">📷 11 Photos</span>
+                        </div>
+                        <div class="place-card-location">Gomti Nagar, Lucknow, UP</div>
+                        <div>
+                            <span class="place-card-badge badge-cultural">Leisure &amp; Dining</span>
+                        </div>
+                        <p class="place-card-desc">
+                            Popular entertainment complex in Gomti Nagar offering cinema screens, family dining lounges, shopping avenues, and lively evening ambience.
+                        </p>
+                    </div>
+                </div>
+                <div class="place-thumbnails">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-2.jpg" alt="Fun Republic Mall 1" class="place-thumb active" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-1.jpg" alt="Fun Republic Mall 2" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-3.jpg" alt="Fun Republic Mall 3" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-4.jpg" alt="Fun Republic Mall 4" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-5.jpg" alt="Fun Republic Mall 5" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-6.jpg" alt="Fun Republic Mall 6" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-7.jpg" alt="Fun Republic Mall 7" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-8.jpg" alt="Fun Republic Mall 8" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-9.jpg" alt="Fun Republic Mall 9" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-10.jpg" alt="Fun Republic Mall 10" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
+                    <img src="/lucknow/fun-republic-mall/fun-republic-mall-11.jpg" alt="Fun Republic Mall 11" class="place-thumb" loading="lazy" onclick="switchCardImage('card-fun-republic-mall', this.src, this)">
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- Travel Info Section -->
+    <section class="travel-info-section">
+        <div class="travel-info-grid">
+            <div class="info-card">
+                <h3>🚗 How to Reach Lucknow</h3>
+                <p>
+                    <strong>By Air:</strong> Chaudhary Charan Singh International Airport (LKO) connects Lucknow across India and the Gulf.<br><strong>By Train:</strong> Lucknow Charbagh (LKO) & Lucknow Junction (LJN) are major rail hubs served by Shatabdi, Tejas & Vande Bharat.<br><strong>By Road:</strong> Connected via Agra–Lucknow Expressway and Purvanchal Expressway.
+                </p>
+            </div>
+            <div class="info-card">
+                <h3>🍲 Local Flavors &amp; Specialties</h3>
+                <p>Experience legendary Awadhi royal cuisine and Chowk street treasures:</p>
+                <ul>
+                    <li><strong>Tunday Kababi & Galouti:</strong> Melt-in-the-mouth slow-spiced heritage kebabs served hot with flaky ulte tawe ka paratha.</li>
+                    <li><strong>Tokri Chaat & Makhan Malai:</strong> Crisp potato basket chaat in Hazratganj and airy winter saffron-milk foam in Chowk.</li>
+                    <li><strong>Idris & Rahim Kulcha-Nihari:</strong> Classic slow-simmered Awadhi Awadh spices, biryanis, and sweet shahi tukda.</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h3>✨ Insider Travel Tips</h3>
+                <ul>
+                    <li><strong>Old City Heritage Walk:</strong> Start early at Bara Imambara, Rumi Darwaza, Clock Tower & Chota Imambada — all within a single heritage corridor.</li>
+                    <li><strong>Ganjing Evening:</strong> Stroll historic Hazratganj in the evening for Chikankari boutiques, vintage architecture, and cafes.</li>
+                    <li><strong>Gomti Nagar Sunset:</strong> Pair Ambedkar Memorial’s sandstone glow at sunset with Gomti Riverfront musical fountains.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="district-cta">
+        <a href="/wizard">🗺️ Plan Your Lucknow Trip with AI Route Planner</a>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Tour Packages</a></li>
+                        <li><a href="home.html">Hotels Booking</a></li>
+                        <li><a href="home.html">Flight Tickets</a></li>
+                        <li><a href="home.html">Train Booking</a></li>
+                        <li><a href="home.html">Cab Booking</a></li>
+                        <li><a href="gallery.html">Photo Gallery</a></li>
+                        <li><a href="packages.html">Holiday Packages</a></li>
+                        <li><a href="home.html">Travel Guide</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>About India Tourist</h3>
+                    <ul class="footer-links">
+                        <li><a href="home.html">About Us</a></li>
+                        <li><a href="home.html">Our Team</a></li>
+                        <li><a href="home.html">Careers</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="home.html">Testimonials</a></li>
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">Terms &amp; Conditions</a></li>
+                        <li><a href="home.html">Sitemap</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>UP District Guides</h3>
+                    <ul class="footer-links">
+                        <li><a href="varanasi.html">Varanasi Tour</a></li>
+                        <li><a href="ayodhya.html">Ayodhya Darshan</a></li>
+                        <li><a href="prayagraj.html">Prayagraj Guide</a></li>
+                        <li><a href="mathura.html">Mathura Vrindavan</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage</a></li>
+                        <li><a href="mirzapur.html">Mirzapur Waterfalls</a></li>
+                        <li><a href="sonebhadra.html">Sonebhadra Wonders</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Popular Packages</h3>
+                    <ul class="footer-links">
+                        <li><a href="packages.html">Golden Triangle Tour</a></li>
+                        <li><a href="packages.html">Rajasthan Package</a></li>
+                        <li><a href="packages.html">Kerala Tour</a></li>
+                        <li><a href="packages.html">Himachal Package</a></li>
+                        <li><a href="packages.html">Goa Beach Holiday</a></li>
+                        <li><a href="agra.html">Agra Taj Mahal Tour</a></li>
+                        <li><a href="lucknow.html">Lucknow Heritage Walk</a></li>
+                        <li><a href="packages.html">North India Circuit</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+                        <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+                    </ul>
+                    <div class="social-links">
+                        <a href="https://facebook.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Facebook"><span>f</span></a>
+                        <a href="https://twitter.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter"><span>𝕏</span></a>
+                        <a href="https://www.instagram.com/r_vi_s1?igsh=MWJ3bGpzdmw2YjZhZg==" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram"><span>📷</span></a>
+                        <a href="https://youtube.com" class="social-icon" target="_blank" rel="noopener noreferrer" title="YouTube"><span>▶</span></a>
+                        <a href="https://www.linkedin.com/in/ravi-sonkar-4156822ba" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><span>in</span></a>
+                    </div>
+                    <button class="live-chat-button">💬 Live Chat</button>
+                    <button class="callback-button">📞 Get a Callback</button>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="copyright">
+                        © 2026 India Tourist. All Rights Reserved.
+                    </div>
+                    <ul class="footer-bottom-links">
+                        <li><a href="home.html">Privacy Policy</a></li>
+                        <li><a href="home.html">User Agreement</a></li>
+                        <li><a href="contact.html">Payment Security</a></li>
+                        <li><a href="home.html">Customer Support</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/places-catalog.js"></script>
+    <script src="js/district-guide.js"></script>
 
 </body>
 

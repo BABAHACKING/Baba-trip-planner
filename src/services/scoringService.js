@@ -176,12 +176,12 @@ export const UP_CITIES = [
         id: 'allahabad',
         name: 'Allahabad (Prayagraj)',
         tagline: 'Sacred Triveni Sangam, Grand Forts & Cultural Legacy',
-        image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+        image: '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
         images: [
-            'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80'
+            '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
+            '/allahabad/allahabad-fort/allahabad-fort-1.jpg',
+            '/allahabad/anand-bhawan/anand-bhawan-1.jpg',
+            '/allahabad/khusro-bagh/khusro-bagh-1.jpg'
         ],
         googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Allahabad Fort', 'Prayagraj'),
         description: 'The holiest confluence of Ganga, Yamuna and invisible Saraswati, steeped in Mughal and colonial history, literary culture, and monumental parks.',
@@ -223,12 +223,12 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Take a boat to the exact meeting point where the greenish waters of Yamuna merge with the pale waters of Ganga and mystical Saraswati.',
                 insiderTip: 'Migratory Siberian seagulls flock here between October and March—carry bird grain for stunning photos.',
-                image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                image: '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
                 images: [
-                    'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80'
+                    '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
+                    '/allahabad/triveni-sangam/triveni-sangam-2.jpg',
+                    '/allahabad/triveni-sangam/triveni-sangam-3.jpg',
+                    '/allahabad/triveni-sangam/triveni-sangam-4.jpg'
                 ],
                 googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Ghats Boat Ride', 'Prayagraj'),
                 tags: ['Sangam', 'Holy Dip', 'Boat Cruise', 'Seagulls']
@@ -243,12 +243,11 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Grand 1583 AD fortress built by Emperor Akbar overlooking Sangam, sheltering the immortal banyan tree (Akshayavat) and Patalpuri underground shrine.',
                 insiderTip: 'Entry to Akshayavat is managed by the army; keep a government ID handy.',
-                image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                image: '/allahabad/allahabad-fort/allahabad-fort-1.jpg',
                 images: [
-                    'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80'
+                    '/allahabad/allahabad-fort/allahabad-fort-1.jpg',
+                    '/allahabad/allahabad-fort/allahabad-fort-2.jpg',
+                    '/allahabad/allahabad-fort/allahabad-fort-3.jpg'
                 ],
                 googleImagesUrl: getGoogleImagesUrl('Allahabad Akbar Fort Akshayavat', 'Prayagraj'),
                 tags: ['Akbar Fort', 'Akshayavat', 'Ancient Banyan']
@@ -263,12 +262,12 @@ export const UP_CITIES = [
                 duration: '2 Hours',
                 description: 'Ancestral mansion of the Nehru-Gandhi family, showcasing historic rooms preserved as they were during India’s Freedom Movement and the Jawahar Planetarium.',
                 insiderTip: 'Buy tickets for the 30-minute sky show at the planetarium on the same premises.',
-                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                image: '/allahabad/anand-bhawan/anand-bhawan-1.jpg',
                 images: [
-                    'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
+                    '/allahabad/anand-bhawan/anand-bhawan-1.jpg',
+                    '/allahabad/anand-bhawan/anand-bhawan-2.jpg',
+                    '/allahabad/anand-bhawan/anand-bhawan-3.jpg',
+                    '/allahabad/anand-bhawan/anand-bhawan-4.jpg'
                 ],
                 googleImagesUrl: getGoogleImagesUrl('Anand Bhawan Planetarium', 'Prayagraj'),
                 tags: ['Freedom Movement', 'Colonial Mansion', 'Planetarium']
@@ -283,12 +282,11 @@ export const UP_CITIES = [
                 duration: '1 Hour',
                 description: 'Unique underground shrine housing a massive 20-foot subterranean reclining idol of Lord Hanuman, submerged by sacred Ganga waters during floods.',
                 insiderTip: 'Tuesdays and Saturdays have special vermilion (Sindoor) pujas.',
-                image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                image: '/allahabad/bade-hanuman/bade-hanuman-1.jpg',
                 images: [
-                    'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80'
+                    '/allahabad/bade-hanuman/bade-hanuman-1.jpg',
+                    '/allahabad/bade-hanuman/bade-hanuman-2.jpg',
+                    '/allahabad/bade-hanuman/bade-hanuman-3.jpg'
                 ],
                 googleImagesUrl: getGoogleImagesUrl('Letey Hanuman Ji Bade Mandir', 'Prayagraj'),
                 tags: ['Reclining Hanuman', 'Rare Temple', 'Spiritual Energy']
@@ -303,12 +301,12 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Walled quadrilateral Mughal garden with elaborate sandstone mausoleums of Prince Khusrau, showcasing exquisite Persian calligraphy and stone jaalis.',
                 insiderTip: 'The surrounding guava orchards are world-famous for the sweet Allahabad Surkha pink guavas.',
-                image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                image: '/allahabad/khusro-bagh/khusro-bagh-1.jpg',
                 images: [
-                    'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80'
+                    '/allahabad/khusro-bagh/khusro-bagh-1.jpg',
+                    '/allahabad/khusro-bagh/khusro-bagh-2.jpg',
+                    '/allahabad/khusro-bagh/khusro-bagh-3.jpg',
+                    '/allahabad/khusro-bagh/khusro-bagh-4.jpg'
                 ],
                 googleImagesUrl: getGoogleImagesUrl('Khusro Bagh Mughal Tombs', 'Prayagraj'),
                 tags: ['Mughal Tombs', 'Persian Art', 'Orchards']
@@ -323,12 +321,12 @@ export const UP_CITIES = [
                 duration: '1.5 Hours',
                 description: 'Savor famous Hari Ram & Sons spicy samosas, Dehati ke Rasgulle, Netram rich kachori-thali, and creamy Rabri Kulfi in Loknath chowk.',
                 insiderTip: 'Loknath lane is best explored on foot or battery e-rickshaw.',
-                image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
+                image: '/allahabad/civil-lines/civil-lines-1.jpg',
                 images: [
-                    'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1601055283742-8b27e81b5553?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
-                    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80'
+                    '/allahabad/civil-lines/civil-lines-1.jpg',
+                    '/allahabad/civil-lines/civil-lines-2.jpg',
+                    '/allahabad/civil-lines/civil-lines-3.jpg',
+                    '/allahabad/civil-lines/civil-lines-4.jpg'
                 ],
                 googleImagesUrl: getGoogleImagesUrl('Netram Kachori Loknath Food', 'Prayagraj'),
                 tags: ['Dehati Rasgulla', 'Netram Kachori', 'Street Food']
@@ -742,45 +740,46 @@ export const evaluateUPDestinations = (formData) => {
         // 2. Calculate Budget Match (0 - 100) -> Weight: 20%
         const budgetScore = city.budgetFit[budgetTier] || 85;
 
-        // 3. Calculate Distance / Proximity Match (0 - 100) -> Weight: 15%
+        // 3. Calculate Distance / Proximity Match (0 - 100) -> Weight: 25%
         let distanceScore = 80;
         if (pickupLoc.includes('varanasi') || pickupLoc.includes('banaras') || pickupLoc.includes('kashi')) {
-            if (city.id === 'banaras') distanceScore = 98;
-            else if (city.id === 'mirzapur') distanceScore = 92;
-            else if (city.id === 'allahabad') distanceScore = 84;
-            else if (city.id === 'sonbhadra') distanceScore = 78;
+            if (city.id === 'banaras') distanceScore = 100;
+            else if (city.id === 'mirzapur') distanceScore = 86;
+            else if (city.id === 'allahabad') distanceScore = 78;
+            else if (city.id === 'sonbhadra') distanceScore = 70;
         } else if (pickupLoc.includes('allahabad') || pickupLoc.includes('prayagraj')) {
-            if (city.id === 'allahabad') distanceScore = 98;
-            else if (city.id === 'mirzapur') distanceScore = 90;
-            else if (city.id === 'banaras') distanceScore = 84;
-            else if (city.id === 'sonbhadra') distanceScore = 72;
+            if (city.id === 'allahabad') distanceScore = 100;
+            else if (city.id === 'mirzapur') distanceScore = 86;
+            else if (city.id === 'banaras') distanceScore = 78;
+            else if (city.id === 'sonbhadra') distanceScore = 68;
         } else if (pickupLoc.includes('mirzapur')) {
-            if (city.id === 'mirzapur') distanceScore = 98;
-            else if (city.id === 'banaras') distanceScore = 94;
-            else if (city.id === 'allahabad') distanceScore = 90;
-            else if (city.id === 'sonbhadra') distanceScore = 88;
-        } else if (pickupLoc.includes('sonbhadra') || pickupLoc.includes('robertsganj')) {
-            if (city.id === 'sonbhadra') distanceScore = 98;
-            else if (city.id === 'mirzapur') distanceScore = 88;
-            else if (city.id === 'banaras') distanceScore = 80;
-            else if (city.id === 'allahabad') distanceScore = 72;
-        } else if (pickupLoc.includes('lucknow')) {
-            if (city.id === 'allahabad') distanceScore = 92;
-            else if (city.id === 'banaras') distanceScore = 84;
-            else if (city.id === 'mirzapur') distanceScore = 80;
-            else if (city.id === 'sonbhadra') distanceScore = 72;
-        } else if (pickupLoc.includes('delhi')) {
-            if (city.id === 'allahabad') distanceScore = 90;
+            if (city.id === 'mirzapur') distanceScore = 100;
             else if (city.id === 'banaras') distanceScore = 88;
+            else if (city.id === 'sonbhadra') distanceScore = 84;
+            else if (city.id === 'allahabad') distanceScore = 78;
+        } else if (pickupLoc.includes('sonbhadra') || pickupLoc.includes('robertsganj')) {
+            if (city.id === 'sonbhadra') distanceScore = 100;
+            else if (city.id === 'mirzapur') distanceScore = 88;
+            else if (city.id === 'banaras') distanceScore = 76;
+            else if (city.id === 'allahabad') distanceScore = 68;
+        } else if (pickupLoc.includes('lucknow')) {
+            if (city.id === 'allahabad') distanceScore = 96;
+            else if (city.id === 'banaras') distanceScore = 88;
+            else if (city.id === 'mirzapur') distanceScore = 80;
+            else if (city.id === 'sonbhadra') distanceScore = 70;
+        } else if (pickupLoc.includes('delhi')) {
+            if (city.id === 'allahabad') distanceScore = 92;
+            else if (city.id === 'banaras') distanceScore = 90;
             else if (city.id === 'mirzapur') distanceScore = 82;
-            else if (city.id === 'sonbhadra') distanceScore = 76;
+            else if (city.id === 'sonbhadra') distanceScore = 74;
         } else {
-            if (city.id === 'banaras' || city.id === 'allahabad') distanceScore = 88;
-            else if (city.id === 'mirzapur') distanceScore = 84;
-            else if (city.id === 'sonbhadra') distanceScore = 80;
+            if (city.id === 'banaras') distanceScore = 96;
+            else if (city.id === 'mirzapur') distanceScore = 86;
+            else if (city.id === 'allahabad') distanceScore = 80;
+            else if (city.id === 'sonbhadra') distanceScore = 72;
         }
 
-        // 4. Calculate Trip Duration Match (0 - 100) -> Weight: 15%
+        // 4. Calculate Trip Duration Match (0 - 100) -> Weight: 10%
         let durationScore = 85;
         const [minDays, maxDays] = city.idealDaysRange;
         if (tripDays >= minDays && tripDays <= maxDays) {
@@ -794,11 +793,11 @@ export const evaluateUPDestinations = (formData) => {
         // 5. Calculate Transport Match (0 - 100) -> Weight: 10%
         const transportScore = city.transportFit[transportType] || 90;
 
-        // Apply Exact Weighted Formula
-        const weightedInterest = interestScore * 0.40;
+        // Apply Exact Weighted Formula: Proximity receives 25% weight so pickup location is respected
+        const weightedInterest = interestScore * 0.35;
         const weightedBudget = budgetScore * 0.20;
-        const weightedDistance = distanceScore * 0.15;
-        const weightedDuration = durationScore * 0.15;
+        const weightedDistance = distanceScore * 0.25;
+        const weightedDuration = durationScore * 0.10;
         const weightedTransport = transportScore * 0.10;
 
         const finalScore = Math.round(
@@ -852,7 +851,6 @@ export const evaluateUPDestinations = (formData) => {
  */
 export const generateTripPlan = (formData, customRanked = null) => {
     const ranked = customRanked || evaluateUPDestinations(formData);
-    const topCity = ranked[0];
     const totalDays = Math.max(1, Math.min(14, Number(formData.days) || 3));
     const people = Math.max(1, Number(formData.people) || 2);
     const budgetTier = formData.budget || 'moderate';
@@ -860,26 +858,20 @@ export const generateTripPlan = (formData, customRanked = null) => {
     const userInterests = formData.landscapes || ['spiritual'];
     const pickupLoc = formData.pickupLocation || 'Varanasi';
 
-    // 1. Determine Circuit Route across top destinations based on totalDays
-    let circuitCities = [];
-    if (totalDays === 1) {
-        circuitCities = [topCity];
-    } else if (totalDays === 2) {
-        circuitCities = [topCity, ranked[1] || topCity];
-    } else if (totalDays <= 4) {
-        circuitCities = [topCity, ranked[1] || topCity, ranked[2] || topCity];
-    } else {
-        circuitCities = [topCity, ranked[1], ranked[2], ranked[3] || ranked[0]].filter(Boolean);
-    }
+    // Helper to check category interest matches
+    const isInterestMatch = (category) => {
+        if (!userInterests || userInterests.length === 0 || userInterests.includes('all')) return true;
+        return userInterests.some(choice => {
+            if (choice === 'waterfalls') return category === 'waterfalls';
+            if (choice === 'spiritual') return category === 'spiritual' || category === 'ghats_culture';
+            if (choice === 'heritage' || choice === 'forts') return category === 'heritage';
+            if (choice === 'forests_fossils') return category === 'forests_fossils';
+            if (choice === 'adventure') return category === 'adventure';
+            return category === choice;
+        });
+    };
 
-    // Deduplicate while preserving order, ensuring we have at least 1 city
-    const uniqueCircuit = Array.from(new Set(circuitCities.map(c => c.id)))
-        .map(id => ranked.find(c => c.id === id));
-
-    const routeCircuitNames = uniqueCircuit.map(c => c.name.split(' ')[0]);
-    const routeCircuitString = routeCircuitNames.join(' → ');
-
-    // 2. City Details & Place Master Catalog
+    // 1. City Details & Place Master Catalog
     const DESTINATION_MASTER = {
         banaras: {
             name: 'Banaras (Varanasi)',
@@ -1117,18 +1109,242 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     coordinates: { lat: 25.3120, lng: 83.0080 },
                     insiderTip: 'Buy directly from certified weaver cooperatives to ensure authentic pure silk zari work.',
                     tags: ['Silk Weaving', 'Handloom', 'Ancient Bazaars']
+                },
+                {
+                    id: 'b_kashi_bhu',
+                    place: 'Shri Kashi Vishwanath Ji Temple (BHU Campus)',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'New Vishwanath Temple (VT) Darshan & BHU Campus Stroll',
+                    description: 'Magnificent 250-foot white marble spire temple built by the Birla family inside the lush Banaras Hindu University campus, featuring Bhagavad Gita verses engraved on marble walls.',
+                    duration: '1.5 hrs',
+                    distFromBase: '7 km',
+                    travelTimeCab: '20 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '30 mins',
+                    cost: 50,
+                    image: '/varansi/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi).jpg',
+                    images: [
+                        '/varansi/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi).jpg',
+                        '/varansi/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)1.jpg',
+                        '/varansi/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)2.jpg',
+                        '/varansi/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)/Shri Kashi Vishwanath Ji Temple, BHU Campus (Varanasi)3.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('New Vishwanath Temple BHU', 'Varanasi'),
+                    coordinates: { lat: 25.2677, lng: 82.9913 },
+                    insiderTip: 'Walk through the green BHU campus lawns in the early morning for peaceful contemplation.',
+                    tags: ['Birla Temple', 'BHU Campus', 'Marble Architecture']
+                },
+                {
+                    id: 'b_tulsi_manas',
+                    place: 'Shri Satyanarayan Tulsi Manas Temple',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Tulsi Manas White Marble Temple & Ramcharitmanas Inscriptions',
+                    description: 'Historic white marble shrine built at the sacred site where saint Goswami Tulsidas composed the Ramcharitmanas, with entire verses sculpted on gleaming marble walls.',
+                    duration: '1 hr',
+                    distFromBase: '3.2 km',
+                    travelTimeCab: '12 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 40,
+                    image: '/varansi/Shri Satyanarayan Tulsi Manas Temple, (Varanasi)/Shri Satyanarayan Tulsi Manas Temple, (Varanasi).jpg',
+                    images: [
+                        '/varansi/Shri Satyanarayan Tulsi Manas Temple, (Varanasi)/Shri Satyanarayan Tulsi Manas Temple, (Varanasi).jpg',
+                        '/varansi/Shri Satyanarayan Tulsi Manas Temple, (Varanasi)/Shri Satyanarayan Tulsi Manas Temple, (Varanasi)1.jpg',
+                        '/varansi/Shri Satyanarayan Tulsi Manas Temple, (Varanasi)/Shri Satyanarayan Tulsi Manas Temple, (Varanasi)2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Tulsi Manas Temple Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.2850, lng: 82.9990 },
+                    insiderTip: 'Check the mechanical puppet exhibits on the upper floor illustrating scenes from the Ramayana.',
+                    tags: ['Tulsidas', 'Ramcharitmanas', 'White Marble']
+                },
+                {
+                    id: 'b_batuk_bhairav',
+                    place: 'Shri Batuk Bhairav Temple',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Batuk Bhairav Child Deity Darshan & Sacred Blessings',
+                    description: 'Ancient tantric pilgrimage temple dedicated to Lord Bhairav in his youthful Batuk form, revered by devotees seeking protection from negative obstacles.',
+                    duration: '1 hr',
+                    distFromBase: '4 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 40,
+                    image: '/varansi/Shri Batuk Bhairav Temple, (Varanasi)/Shri Batuk Bhairav Temple, (Varanasi).jpg',
+                    images: [
+                        '/varansi/Shri Batuk Bhairav Temple, (Varanasi)/Shri Batuk Bhairav Temple, (Varanasi).jpg',
+                        '/varansi/Shri Batuk Bhairav Temple, (Varanasi)/Shri Batuk Bhairav Temple, (Varanasi)1.jpg',
+                        '/varansi/Shri Batuk Bhairav Temple, (Varanasi)/Shri Batuk Bhairav Temple, (Varanasi)3.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Batuk Bhairav Temple Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.2950, lng: 82.9970 },
+                    insiderTip: 'Special morning aartis here are spiritually energizing and less crowded.',
+                    tags: ['Batuk Bhairav', 'Spiritual Protection', 'Ancient Temple']
+                },
+                {
+                    id: 'b_bharat_kala',
+                    place: 'Bharat Kala Bhavan Museum (BHU)',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & History',
+                    icon: '🏛️',
+                    activity: 'Bharat Kala Bhavan Mughal Miniatures & Archaeological Treasures Tour',
+                    description: 'World-renowned university museum showcasing exquisite collections of Indian miniature paintings, ancient Chola bronzes, medieval textiles, and archaeological artifacts.',
+                    duration: '2 hrs',
+                    distFromBase: '6.5 km',
+                    travelTimeCab: '18 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '30 mins',
+                    cost: 80,
+                    image: '/varansi/Bharat Kala Bhavan Museum, (BHU Varanasi)/Bharat Kala Bhavan Museum, (BHU Varanasi).jpg',
+                    images: [
+                        '/varansi/Bharat Kala Bhavan Museum, (BHU Varanasi)/Bharat Kala Bhavan Museum, (BHU Varanasi).jpg',
+                        '/varansi/Bharat Kala Bhavan Museum, (BHU Varanasi)/Bharat Kala Bhavan Museum, (BHU Varanasi)1.jpg',
+                        '/varansi/Bharat Kala Bhavan Museum, (BHU Varanasi)/Bharat Kala Bhavan Museum, (BHU Varanasi)2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Bharat Kala Bhavan Museum Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.2660, lng: 82.9920 },
+                    insiderTip: 'The miniature painting gallery features rare Mughal, Rajasthani, and Pahari masterworks.',
+                    tags: ['Art Museum', 'Mughal Miniatures', 'Archaeological Artifacts']
+                },
+                {
+                    id: 'b_bharat_mata',
+                    place: 'Bharat Mata Mandir MGKVP',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & History',
+                    icon: '🏛️',
+                    activity: 'Bharat Mata Relief Marble Map of Undivided India Exhibition',
+                    description: 'Unique national monument inaugurated by Mahatma Gandhi in 1936, housing a relief map of undivided India carved out of pristine Makrana marble showing detailed topographic elevations.',
+                    duration: '1 hr',
+                    distFromBase: '2.5 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 40,
+                    image: '/varansi/Bharat Mata Mandir MGKVP (Varanasi)/Bharat Mata Mandir MGKVP (Varanasi).jpg',
+                    images: [
+                        '/varansi/Bharat Mata Mandir MGKVP (Varanasi)/Bharat Mata Mandir MGKVP (Varanasi).jpg',
+                        '/varansi/Bharat Mata Mandir MGKVP (Varanasi)/Bharat Mata Mandir MGKVP (Varanasi)1.jpg',
+                        '/varansi/Bharat Mata Mandir MGKVP (Varanasi)/Bharat Mata Mandir MGKVP (Varanasi)2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Bharat Mata Mandir Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.3175, lng: 82.9890 },
+                    insiderTip: 'Observe the precise mountain peaks, river valleys, and ocean depths carved on the marble floor.',
+                    tags: ['Mahatma Gandhi', 'Marble Map', 'Freedom Movement']
+                },
+                {
+                    id: 'b_nepali_temple',
+                    place: 'Nepali Temple (Kathwala Wooden Temple)',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & History',
+                    icon: '🏛️',
+                    activity: 'Nepali Kathwala Temple Hand-Carved Terracotta & Woodwork Walk',
+                    description: '19th-century pagoda-style wooden temple built by the King of Nepal on Lalita Ghat, famed for its intricate Himalayan wood carvings reminiscent of Kathmandu’s Pashupatinath.',
+                    duration: '1 hr',
+                    distFromBase: '1.8 km',
+                    travelTimeCab: 'Walking/Ghat Walk',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '—',
+                    cost: 40,
+                    image: '/varansi/Nepali Temple/Nepali Temple.jpg',
+                    images: [
+                        '/varansi/Nepali Temple/Nepali Temple.jpg',
+                        '/varansi/Nepali Temple/Nepali Temple1.jpg',
+                        '/varansi/Nepali Temple/Nepali Temple2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Nepali Temple Lalita Ghat Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.3095, lng: 83.0125 },
+                    insiderTip: 'Sit on the riverfront terrace for one of the most serene views of the morning Ganges.',
+                    tags: ['Pagoda Temple', 'Himalayan Woodwork', 'Lalita Ghat']
+                },
+                {
+                    id: 'b_tibetan_temple',
+                    place: 'Tibetan Buddhist Temple (Sarnath)',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & History',
+                    icon: '🏛️',
+                    activity: 'Tibetan Temple Tibetan Frescoes & Golden Shakyamuni Darshan',
+                    description: 'Colorful Tibetan monastery in Sarnath featuring traditional Tibetan Buddhist prayer wheels, vibrant thangka wall paintings, and a grand golden statue of Shakyamuni Buddha.',
+                    duration: '1 hr',
+                    distFromBase: '10.8 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '40 mins',
+                    cost: 50,
+                    image: '/varansi/Tibetan Temple, (Varanasi)/Tibetan Temple, (Varanasi).jpg',
+                    images: [
+                        '/varansi/Tibetan Temple, (Varanasi)/Tibetan Temple, (Varanasi).jpg',
+                        '/varansi/Tibetan Temple, (Varanasi)/Tibetan Temple, (Varanasi)1.jpg',
+                        '/varansi/Tibetan Temple, (Varanasi)/Tibetan Temple, (Varanasi)2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Tibetan Temple Sarnath Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.3780, lng: 83.0230 },
+                    insiderTip: 'Spin the prayer wheels along the outer perimeter while circumambulating the main prayer hall.',
+                    tags: ['Tibetan Monastery', 'Thangka Art', 'Buddhist Peace']
+                },
+                {
+                    id: 'b_sankatmochan',
+                    place: 'Shri Sankat Mochan Hanuman Temple',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Sankat Mochan Temple Darshan & Besan Ladoo Prasad',
+                    description: 'Revered temple established by Goswami Tulsidas on the banks of the Assi River, renowned for its peaceful spiritual aura and evening aarti.',
+                    duration: '1.5 hrs',
+                    distFromBase: '3.5 km',
+                    travelTimeCab: '12 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 50,
+                    image: '/varansi/Shri Sankat Mochan Hanuman Temple, (Varanasi)/Shri Sankat Mochan Hanuman Temple, (Varanasi).jpg',
+                    images: [
+                        '/varansi/Shri Sankat Mochan Hanuman Temple, (Varanasi)/Shri Sankat Mochan Hanuman Temple, (Varanasi).jpg',
+                        '/varansi/Shri Sankat Mochan Hanuman Temple, (Varanasi)/Shri Sankat Mochan Hanuman Temple, (Varanasi)1.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Sankat Mochan Temple Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.2825, lng: 82.9980 },
+                    insiderTip: 'Taste the legendary warm besan ladoos offered as sacred prasad.',
+                    tags: ['Tulsidas Temple', 'Hanuman Darshan', 'Spiritual Energy']
+                },
+                {
+                    id: 'b_durgakund',
+                    place: 'Shree Durga Mata Mandir Durgakund',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Historic Red Stone Durga Kund Temple Darshan',
+                    description: 'Magnificent 18th-century red ochre Nagara-style temple dedicated to Goddess Durga, featuring an ancient holy water kund and multi-tiered carved shikhara.',
+                    duration: '1 hr',
+                    distFromBase: '3 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 50,
+                    image: '/varansi/Shree Durga Mata Mandir Durgakund Varanasi/Shree Durga Mata Mandir Durgakund Varanasi.jpg',
+                    images: [
+                        '/varansi/Shree Durga Mata Mandir Durgakund Varanasi/Shree Durga Mata Mandir Durgakund Varanasi.jpg',
+                        '/varansi/Shree Durga Mata Mandir Durgakund Varanasi/Shree Durga Mata Mandir Durgakund Varanasi1.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Durga Kund Temple Varanasi', 'Varanasi'),
+                    coordinates: { lat: 25.2880, lng: 82.9995 },
+                    insiderTip: 'Visit during morning chanting hours for an uplifting meditative experience.',
+                    tags: ['Nagara Architecture', 'Durga Shrine', 'Historic Kund']
                 }
             ]
         },
         allahabad: {
             name: 'Allahabad (Prayagraj)',
             tagline: 'Sacred Triveni Sangam, Grand Forts & Cultural Legacy',
-            image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+            image: '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
             images: [
-                'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
-                'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80'
+                '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
+                '/allahabad/allahabad-fort/allahabad-fort-1.jpg',
+                '/allahabad/anand-bhawan/anand-bhawan-1.jpg',
+                '/allahabad/khusro-bagh/khusro-bagh-1.jpg'
             ],
             googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Allahabad Fort', 'Prayagraj'),
             coordinates: { lat: 25.4358, lng: 81.8463 },
@@ -1159,12 +1375,12 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '30 mins',
                     cost: 200,
-                    image: 'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
+                    image: '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
                     images: [
-                        'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80'
+                        '/allahabad/triveni-sangam/triveni-sangam-1.jpg',
+                        '/allahabad/triveni-sangam/triveni-sangam-2.jpg',
+                        '/allahabad/triveni-sangam/triveni-sangam-3.jpg',
+                        '/allahabad/triveni-sangam/triveni-sangam-4.jpg'
                     ],
                     googleImagesUrl: getGoogleImagesUrl('Triveni Sangam Ghats Boat Ride', 'Prayagraj'),
                     coordinates: { lat: 25.4243, lng: 81.8845 },
@@ -1185,12 +1401,11 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '25 mins',
                     cost: 80,
-                    image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
+                    image: '/allahabad/allahabad-fort/allahabad-fort-1.jpg',
                     images: [
-                        'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80'
+                        '/allahabad/allahabad-fort/allahabad-fort-1.jpg',
+                        '/allahabad/allahabad-fort/allahabad-fort-2.jpg',
+                        '/allahabad/allahabad-fort/allahabad-fort-3.jpg'
                     ],
                     googleImagesUrl: getGoogleImagesUrl('Allahabad Akbar Fort Akshayavat', 'Prayagraj'),
                     coordinates: { lat: 25.4300, lng: 81.8760 },
@@ -1211,12 +1426,11 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '25 mins',
                     cost: 50,
-                    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                    image: '/allahabad/bade-hanuman/bade-hanuman-1.jpg',
                     images: [
-                        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1609766857041-ed402ea8069a?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1571536802807-30451e3955d8?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1599831104325-5e7c3b259740?auto=format&fit=crop&w=800&q=80'
+                        '/allahabad/bade-hanuman/bade-hanuman-1.jpg',
+                        '/allahabad/bade-hanuman/bade-hanuman-2.jpg',
+                        '/allahabad/bade-hanuman/bade-hanuman-3.jpg'
                     ],
                     googleImagesUrl: getGoogleImagesUrl('Letey Hanuman Ji Bade Mandir', 'Prayagraj'),
                     coordinates: { lat: 25.4280, lng: 81.8790 },
@@ -1237,12 +1451,12 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '15 mins',
                     cost: 120,
-                    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
+                    image: '/allahabad/anand-bhawan/anand-bhawan-1.jpg',
                     images: [
-                        'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80'
+                        '/allahabad/anand-bhawan/anand-bhawan-1.jpg',
+                        '/allahabad/anand-bhawan/anand-bhawan-2.jpg',
+                        '/allahabad/anand-bhawan/anand-bhawan-3.jpg',
+                        '/allahabad/anand-bhawan/anand-bhawan-4.jpg'
                     ],
                     googleImagesUrl: getGoogleImagesUrl('Anand Bhawan Planetarium', 'Prayagraj'),
                     coordinates: { lat: 25.4594, lng: 81.8596 },
@@ -1263,12 +1477,12 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '15 mins',
                     cost: 50,
-                    image: 'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
+                    image: '/allahabad/khusro-bagh/khusro-bagh-1.jpg',
                     images: [
-                        'https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=800&q=80',
-                        'https://images.unsplash.com/photo-1608889825205-eebdb9fc5806?auto=format&fit=crop&w=800&q=80'
+                        '/allahabad/khusro-bagh/khusro-bagh-1.jpg',
+                        '/allahabad/khusro-bagh/khusro-bagh-2.jpg',
+                        '/allahabad/khusro-bagh/khusro-bagh-3.jpg',
+                        '/allahabad/khusro-bagh/khusro-bagh-4.jpg'
                     ],
                     googleImagesUrl: getGoogleImagesUrl('Khusro Bagh Mughal Tombs', 'Prayagraj'),
                     coordinates: { lat: 25.4468, lng: 81.8252 },
@@ -1379,10 +1593,62 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     tags: ['Waterfall Trek', 'Natural Pools', 'Scenic Gorge']
                 },
                 {
-                    id: 'm_sirsi',
-                    place: 'Sirsi Dam & Lakhaniya Dari Valley',
+                    id: 'm_lakhaniya',
+                    place: 'Lakhaniya Dari Canyon Waterfall',
                     category: 'waterfalls',
-                    categoryLabel: 'Waterfalls & Nature',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
+                    icon: '🌊',
+                    activity: 'Lakhaniya Dari Canyon Trek & Deep Waterfall Plunge Pool',
+                    description: 'Grand natural waterfall hidden deep within a prehistoric sandstone boulder canyon, plunging into a clear turquoise natural pool surrounded by dense forest.',
+                    duration: '3 hrs',
+                    distFromBase: '35 km',
+                    travelTimeCab: '45 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '1 hr',
+                    cost: 80,
+                    image: '/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg',
+                    images: [
+                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg',
+                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-2.jpg',
+                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-3.jpg',
+                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-4.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Lakhaniya Dari Waterfall Mirzapur', 'Mirzapur'),
+                    coordinates: { lat: 25.0420, lng: 82.9150 },
+                    insiderTip: 'Carry trekking shoes and waterproof phone cases for boulder crossing.',
+                    tags: ['Canyon Waterfall', 'Boulder Trek', 'Forest Gorge']
+                },
+                {
+                    id: 'm_tanda',
+                    place: 'Tanda Falls & Forest Cascade',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
+                    icon: '🌊',
+                    activity: 'Tanda Falls Stepping Terraces & Scenic Forest Pool',
+                    description: 'Tranquil natural stepped waterfall surrounded by scrub forests and migratory birds, perfect for a refreshing afternoon stroll.',
+                    duration: '1.5 hrs',
+                    distFromBase: '12 km',
+                    travelTimeCab: '20 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '35 mins',
+                    cost: 50,
+                    image: '/mirzapur/tanda-falls/tanda-falls-1.jpg',
+                    images: [
+                        '/mirzapur/tanda-falls/tanda-falls-1.jpg',
+                        '/mirzapur/tanda-falls/tanda-falls-2.jpg',
+                        '/mirzapur/tanda-falls/tanda-falls-3.jpg',
+                        '/mirzapur/tanda-falls/tanda-falls-4.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Tanda Falls Mirzapur', 'Mirzapur'),
+                    coordinates: { lat: 25.0920, lng: 82.5980 },
+                    insiderTip: 'Carry a light pair of binoculars to spot kingfishers and painted storks.',
+                    tags: ['Forest Walk', 'Bird Watching', 'Stepped Waterfall']
+                },
+                {
+                    id: 'm_sirsi',
+                    place: 'Sirsi Dam Waterfall Cascades',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
                     icon: '🌊',
                     activity: 'Sirsi Dam Reservoir Lake & Foaming Water Cascades',
                     description: 'Sprawling water reservoir nestled in rolling green hills where overflow waters create dramatic foaming rapids and quiet scenic viewpoints.',
@@ -1392,12 +1658,10 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     travelTimeTrain: '—',
                     travelTimeBus: '1.2 hrs',
                     cost: 50,
-                    image: '/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg',
+                    image: '/mirzapur/wyndham-falls/wyndham-falls-2.jpg',
                     images: [
-                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-1.jpg',
-                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-2.jpg',
-                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-3.jpg',
-                        '/mirzapur/lakhaniya-dari/lakhaniya-dari-4.jpg'
+                        '/mirzapur/wyndham-falls/wyndham-falls-2.jpg',
+                        '/mirzapur/wyndham-falls/wyndham-falls-3.jpg'
                     ],
                     googleImagesUrl: getGoogleImagesUrl('Sirsi Dam Waterfalls Mirzapur', 'Mirzapur'),
                     coordinates: { lat: 24.9650, lng: 82.6850 },
@@ -1431,6 +1695,102 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     tags: ['Shaktipeeth', 'Ropeway', 'Hilltop Shrine']
                 },
                 {
+                    id: 'm_ashtabhuja',
+                    place: 'Ashtabhuja Devi Hilltop Temple & Ropeway',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Ashtabhuja Temple Darshan & Vindhya Panoramic Vista',
+                    description: 'Sacred hilltop shrine dedicated to Goddess Saraswati, accessed by a scenic hill ropeway offering breathtaking views of the Vindhya plateau and Ganga.',
+                    duration: '1.5 hrs',
+                    distFromBase: '9 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 80,
+                    image: '/mirzapur/ashtabhuja/ashtabhuja-1.jpg',
+                    images: [
+                        '/mirzapur/ashtabhuja/ashtabhuja-1.jpg',
+                        '/mirzapur/ashtabhuja/ashtabhuja-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Ashtabhuja Temple Mirzapur', 'Mirzapur'),
+                    coordinates: { lat: 25.1580, lng: 82.5080 },
+                    insiderTip: 'Take the ropeway for scenic views of the holy triangle.',
+                    tags: ['Hilltop Temple', 'Ropeway', 'Scenic Views']
+                },
+                {
+                    id: 'm_kalikhoh',
+                    place: 'Kali Khoh Cave Temple',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Kali Khoh Ancient Cave Shrine Pilgrimage',
+                    description: 'Mystic cave shrine nestled in the hill slope dedicated to Goddess Mahakali, completing the second corner of the Vindhyachal Trikon Parikrama.',
+                    duration: '1 hr',
+                    distFromBase: '8.5 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 50,
+                    image: '/mirzapur/kali-khoh/kali-khoh-1.jpg',
+                    images: [
+                        '/mirzapur/kali-khoh/kali-khoh-1.jpg',
+                        '/mirzapur/kali-khoh/kali-khoh-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Kali Khoh Temple Mirzapur', 'Mirzapur'),
+                    coordinates: { lat: 25.1610, lng: 82.5120 },
+                    insiderTip: 'Serene meditative atmosphere nestled inside natural rock formations.',
+                    tags: ['Cave Temple', 'Trikon Parikrama', 'Spiritual Shrine']
+                },
+                {
+                    id: 'm_lalbhairav',
+                    place: 'Lal Bhairav Mandir',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Lal Bhairav Protective Guardian Deity Darshan',
+                    description: 'Sacred guardian deity temple of the Vindhyachal pilgrimage, where devotees pay respects to seek spiritual blessings and protection.',
+                    duration: '45 mins',
+                    distFromBase: '7 km',
+                    travelTimeCab: '12 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '18 mins',
+                    cost: 40,
+                    image: '/mirzapur/lal-bhairav/lal-bhairav-1.jpg',
+                    images: [
+                        '/mirzapur/lal-bhairav/lal-bhairav-1.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Lal Bhairav Mandir Mirzapur', 'Mirzapur'),
+                    coordinates: { lat: 25.1550, lng: 82.5200 },
+                    insiderTip: 'Traditional stop after completing Maa Vindhyavasini darshan.',
+                    tags: ['Guardian Deity', 'Sacred Temple', 'Vindhyachal']
+                },
+                {
+                    id: 'm_pakkaghat',
+                    place: 'Pakka Ghat Historic Ganga Riverfront & Aarti',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🙏',
+                    activity: 'Pakka Ghat Sandstone Steps & Evening River Aarti',
+                    description: 'Mirzapur’s historic carved red sandstone riverfront ghat overlooking the wide Ganges, famous for serene evening breeze, boat rides, and deep tranquility.',
+                    duration: '1.5 hrs',
+                    distFromBase: '2 km',
+                    travelTimeCab: '8 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '12 mins',
+                    cost: 50,
+                    image: '/mirzapur/pakka-ghat/pakka-ghat-1.jpg',
+                    images: [
+                        '/mirzapur/pakka-ghat/pakka-ghat-1.jpg',
+                        '/mirzapur/pakka-ghat/pakka-ghat-2.jpg',
+                        '/mirzapur/pakka-ghat/pakka-ghat-3.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Pakka Ghat Mirzapur', 'Mirzapur'),
+                    coordinates: { lat: 25.1520, lng: 82.5680 },
+                    insiderTip: 'Peaceful alternative to Varanasi ghats with authentic local heritage architecture.',
+                    tags: ['Historic Ghat', 'Ganga Aarti', 'Sandstone Carvings']
+                },
+                {
                     id: 'm_chunar',
                     place: 'Chunar Fort on Ganga Cliff',
                     category: 'heritage',
@@ -1457,30 +1817,29 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     tags: ['Sher Shah Suri', 'Cliff Fort', 'Ganga Panorama']
                 },
                 {
-                    id: 'm_tanda',
-                    place: 'Tanda Falls & Forest Trail',
-                    category: 'adventure',
-                    categoryLabel: 'Adventure & Nature Treks',
-                    icon: '🧗',
-                    activity: 'Tanda Falls Stepping Terraces & Bird Watching Walk',
-                    description: 'Tranquil natural stepped waterfall surrounded by scrub forests and migratory birds, perfect for a refreshing afternoon stroll.',
-                    duration: '1.5 hrs',
-                    distFromBase: '12 km',
-                    travelTimeCab: '20 mins',
+                    id: 'm_ghanta',
+                    place: 'Ghanta Ghar Victorian Clock Tower & Bazaars',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & History',
+                    icon: '🏛️',
+                    activity: 'Mirzapur 1891 Victorian Red Sandstone Clock Tower Walk',
+                    description: 'Historic colonial clock tower built of finely carved Chunar sandstone, standing tall in the heart of Mirzapur’s historic brass and carpet market squares.',
+                    duration: '1 hr',
+                    distFromBase: '1 km',
+                    travelTimeCab: '5 mins',
                     travelTimeTrain: '—',
-                    travelTimeBus: '35 mins',
-                    cost: 50,
-                    image: '/mirzapur/tanda-falls/tanda-falls-1.jpg',
+                    travelTimeBus: '—',
+                    cost: 40,
+                    image: '/mirzapur/ghanta-ghar/ghanta-ghar-1.jpg',
                     images: [
-                        '/mirzapur/tanda-falls/tanda-falls-1.jpg',
-                        '/mirzapur/tanda-falls/tanda-falls-2.jpg',
-                        '/mirzapur/tanda-falls/tanda-falls-3.jpg',
-                        '/mirzapur/tanda-falls/tanda-falls-4.jpg'
+                        '/mirzapur/ghanta-ghar/ghanta-ghar-1.jpg',
+                        '/mirzapur/ghanta-ghar/ghanta-ghar-2.jpg',
+                        '/mirzapur/ghanta-ghar/ghanta-ghar-3.jpg'
                     ],
-                    googleImagesUrl: getGoogleImagesUrl('Tanda Falls Mirzapur', 'Mirzapur'),
-                    coordinates: { lat: 25.0920, lng: 82.5980 },
-                    insiderTip: 'Carry a light pair of binoculars to spot kingfishers and painted storks.',
-                    tags: ['Forest Walk', 'Bird Watching', 'Stepped Waterfall']
+                    googleImagesUrl: getGoogleImagesUrl('Ghanta Ghar Mirzapur Clock Tower', 'Mirzapur'),
+                    coordinates: { lat: 25.1510, lng: 82.5690 },
+                    insiderTip: 'Try the famous local jalebis and rabri in clay cups right next to the tower.',
+                    tags: ['Clock Tower', 'Sandstone Carvings', 'Heritage Market']
                 },
                 {
                     id: 'm_crafts',
@@ -1708,10 +2067,693 @@ export const generateTripPlan = (formData, customRanked = null) => {
                     coordinates: { lat: 24.5800, lng: 83.2200 },
                     insiderTip: 'Requires climbing ~750 stone steps; start early in the morning with ample drinking water.',
                     tags: ['Hilltop Fort', 'Trek', 'Ancient Inscriptions']
+                },
+                {
+                    id: 's_obra',
+                    place: 'Obra Dam Lake & Scenic Reservoir',
+                    category: 'adventure',
+                    categoryLabel: 'Scenic Views & Waterways',
+                    icon: '🏞️',
+                    activity: 'Obra Dam Vast Reservoir Overlook & Eco Trail',
+                    description: 'Expansive masonry gravity dam across the Rihand river, forming a sprawling water reservoir surrounded by quiet wooded shores and scenic sunset viewpoints.',
+                    duration: '2 hrs',
+                    distFromBase: '15 km',
+                    travelTimeCab: '20 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '30 mins',
+                    cost: 40,
+                    image: '/sonebhadra/obra-dam/obra-dam-1.jpg',
+                    images: [
+                        '/sonebhadra/obra-dam/obra-dam-1.jpg',
+                        '/sonebhadra/obra-dam/obra-dam-2.jpg',
+                        '/sonebhadra/obra-dam/obra-dam-3.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Obra Dam Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.4167, lng: 82.9833 },
+                    insiderTip: 'Very peaceful picnic atmosphere along the tranquil reservoir banks.',
+                    tags: ['Dam Reservoir', 'Eco Picnic', 'Water View']
+                },
+                {
+                    id: 's_vaishnodevi',
+                    place: 'Maa Vaishnodevi Mandir (Dala)',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Dala Vaishnodevi Hilltop Cave Darshan',
+                    description: 'Revered mountain cave temple modeled after Jammu’s holy Vaishno Devi shrine, nestled against rugged Vindhyan crags in Dala, complete with sacred cave passage.',
+                    duration: '1.5 hrs',
+                    distFromBase: '20 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '35 mins',
+                    cost: 40,
+                    image: '/sonebhadra/vaishnodevi-dala/vaishnodevi-dala-1.jpg',
+                    images: [
+                        '/sonebhadra/vaishnodevi-dala/vaishnodevi-dala-1.jpg',
+                        '/sonebhadra/vaishnodevi-dala/vaishnodevi-dala-2.jpg',
+                        '/sonebhadra/vaishnodevi-dala/vaishnodevi-dala-3.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Vaishnodevi Temple Dala Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.5300, lng: 83.0600 },
+                    insiderTip: 'Climbing up the cave steps offers wide vistas of the Dala quarry hills.',
+                    tags: ['Cave Temple', 'Vaishno Devi Replica', 'Spiritual Hill']
+                },
+                {
+                    id: 's_mangleshwar',
+                    place: 'Mangleshwar Mahadev Mandir',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Mangleshwar Ancient Shiva Lingam Darshan',
+                    description: 'Centuries-old stone Shiva temple nestled in tranquil rural surroundings, revered for wish-fulfilling Mahadev worship and annual Shivratri festivities.',
+                    duration: '1 hr',
+                    distFromBase: '12 km',
+                    travelTimeCab: '18 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 30,
+                    image: '/sonebhadra/mangleshwar-mahadev/mangleshwar-mahadev-1.jpg',
+                    images: [
+                        '/sonebhadra/mangleshwar-mahadev/mangleshwar-mahadev-1.jpg',
+                        '/sonebhadra/mangleshwar-mahadev/mangleshwar-mahadev-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Mangleshwar Mahadev Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.6400, lng: 83.0500 },
+                    insiderTip: 'Known for its peaceful rural setting away from urban commotion.',
+                    tags: ['Shiva Temple', 'Ancient Lingam', 'Serene Shrine']
+                },
+                {
+                    id: 's_sun_eco',
+                    place: 'Sun Eco Point & Churk Valley',
+                    category: 'adventure',
+                    categoryLabel: 'Scenic Views & Waterways',
+                    icon: '🌄',
+                    activity: 'Churk Valley Sun Eco Point Sunrise & Escarpment Overlook',
+                    description: 'Panoramic mountain ridge viewpoint near Churk, looking out across the vast Vindhyan valley gorges, sunrise vistas, and endemic forest flora.',
+                    duration: '1.5 hrs',
+                    distFromBase: '14 km',
+                    travelTimeCab: '20 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '30 mins',
+                    cost: 40,
+                    image: '/sonebhadra/sun-eco-point/sun-eco-point-1.jpg',
+                    images: [
+                        '/sonebhadra/sun-eco-point/sun-eco-point-1.jpg',
+                        '/sonebhadra/sun-eco-point/sun-eco-point-2.jpg',
+                        '/sonebhadra/sun-eco-point/sun-eco-point-3.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Sun Eco Point Churk Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.6200, lng: 83.0800 },
+                    insiderTip: 'Spectacular early morning sunrise views over the mist-covered Churk valley.',
+                    tags: ['Valley Overlook', 'Sunrise Point', 'Eco Tourism']
+                },
+                {
+                    id: 's_dhandharoul',
+                    place: 'Dhandharoul Dam Waterfall Cascades',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
+                    icon: '🌊',
+                    activity: 'Dhandharoul Dam Spillway Foaming Cascades & Picnic Overlook',
+                    description: 'Scenic masonry dam surrounded by rolling Vindhya hills where cascading spillway waters create rushing white-water rapids and refreshing pools.',
+                    duration: '2 hrs',
+                    distFromBase: '28 km',
+                    travelTimeCab: '35 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '50 mins',
+                    cost: 50,
+                    image: '/sonebhadra/dhandharoul-dam/dhandharoul-dam-1.jpg',
+                    images: [
+                        '/sonebhadra/dhandharoul-dam/dhandharoul-dam-1.jpg',
+                        '/sonebhadra/dhandharoul-dam/dhandharoul-dam-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Dhandharoul Dam Cascades Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.6830, lng: 83.0620 },
+                    insiderTip: 'Excellent sunset viewpoint over the vast water reservoir.',
+                    tags: ['Dam Cascades', 'Vindhya Hills', 'Scenic Reservoir']
+                },
+                {
+                    id: 's_dongia',
+                    place: 'Dongia Cascading Stream & Rock Plunge',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
+                    icon: '🌊',
+                    activity: 'Dongia Natural Rock Stream Hike & Waterfall Bath',
+                    description: 'Hidden ecological gem with cool forest stream cascades sliding over smooth bedrock shelves into natural wading basins.',
+                    duration: '2 hrs',
+                    distFromBase: '18 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '35 mins',
+                    cost: 40,
+                    image: '/sonebhadra/dongia-picnic-spot/dongia-picnic-spot-1.jpg',
+                    images: [
+                        '/sonebhadra/dongia-picnic-spot/dongia-picnic-spot-1.jpg',
+                        '/sonebhadra/dongia-picnic-spot/dongia-picnic-spot-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Dongia Picnic Spot Stream Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.6500, lng: 83.0800 },
+                    insiderTip: 'Very quiet and peaceful spot favored by nature lovers.',
+                    tags: ['Rock Stream', 'Cascades', 'Eco Picnic']
+                },
+                {
+                    id: 's_khanta',
+                    place: 'Khanta Forest Waterfall & Lagoon',
+                    category: 'waterfalls',
+                    categoryLabel: 'Waterfalls & Scenic Nature',
+                    icon: '🌊',
+                    activity: 'Khanta Forest Cascade Hike & Sandstone Lagoon',
+                    description: 'Secluded forest waterfall nestled in native sal woods, cascading into a serene rock basin surrounded by untouched wildlife habitat.',
+                    duration: '2 hrs',
+                    distFromBase: '32 km',
+                    travelTimeCab: '40 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '55 mins',
+                    cost: 50,
+                    image: '/sonebhadra/khanta-picnic-spot/khanta-picnic-spot-1.jpg',
+                    images: [
+                        '/sonebhadra/khanta-picnic-spot/khanta-picnic-spot-1.jpg',
+                        '/sonebhadra/khanta-picnic-spot/khanta-picnic-spot-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Khanta Waterfall Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.6300, lng: 83.0950 },
+                    insiderTip: 'Carry binoculars to spot Indian peacocks and paradise flycatchers.',
+                    tags: ['Secluded Waterfall', 'Sal Forest', 'Bird Watching']
+                },
+                {
+                    id: 's_agori',
+                    place: 'Agori Fort on Sone River Escarpment',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Ancient Forts',
+                    icon: '🏰',
+                    activity: 'Agori Fort Ancient Baland Dynasty River Citadel Exploration',
+                    description: 'Historic river citadel surrounded on three sides by the Rihand, Bijul, and Sone rivers, containing ancient carvings and stone defensive bastions.',
+                    duration: '2 hrs',
+                    distFromBase: '25 km',
+                    travelTimeCab: '35 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '50 mins',
+                    cost: 50,
+                    image: '/sonebhadra/agori-fort/agori-fort-1.jpg',
+                    images: [
+                        '/sonebhadra/agori-fort/agori-fort-1.jpg',
+                        '/sonebhadra/agori-fort/agori-fort-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Agori Fort Sone River Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.5200, lng: 83.0100 },
+                    insiderTip: 'Hire a wooden boat to view the fort walls rising dramatically above the river waters.',
+                    tags: ['River Citadel', 'Baland Dynasty', 'Historical Ruins']
+                },
+                {
+                    id: 's_jwalamukhi',
+                    place: 'Jwalamukhi Devi Shaktipeeth Mandir',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Jwalamukhi Shaktipeeth Darshan & Sacred Temple Homa',
+                    description: 'Ancient hill temple revered as the tongue of Sati, where sacred eternal fires have been worshipped for centuries by pilgrims seeking divine blessings.',
+                    duration: '1.5 hrs',
+                    distFromBase: '22 km',
+                    travelTimeCab: '30 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '45 mins',
+                    cost: 40,
+                    image: '/sonebhadra/jwalamukhi-temple/jwalamukhi-temple-1.jpg',
+                    images: [
+                        '/sonebhadra/jwalamukhi-temple/jwalamukhi-temple-1.jpg',
+                        '/sonebhadra/jwalamukhi-temple/jwalamukhi-temple-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Jwalamukhi Temple Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.5900, lng: 83.0400 },
+                    insiderTip: 'Atmospheric morning arati with continuous sacred chants and bells.',
+                    tags: ['Shaktipeeth', 'Eternal Flame', 'Sacred Darshan']
+                },
+                {
+                    id: 's_renukeshwar',
+                    place: 'Renukeshwar Mahadev Mandir',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Renukeshwar Shiva Temple Darshan & Lake Vista',
+                    description: 'Prominent Shiva shrine situated along the scenic shores of the lake in Renukoot, known for its grand entrance gateway, carved shrines, and peaceful lawns.',
+                    duration: '1.5 hrs',
+                    distFromBase: '60 km',
+                    travelTimeCab: '1.1 hrs',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '1.5 hrs',
+                    cost: 40,
+                    image: '/sonebhadra/renukeshwar-mahadev/renukeshwar-mahadev-1.jpg',
+                    images: [
+                        '/sonebhadra/renukeshwar-mahadev/renukeshwar-mahadev-1.jpg',
+                        '/sonebhadra/renukeshwar-mahadev/renukeshwar-mahadev-2.jpg'
+                    ],
+                    googleImagesUrl: getGoogleImagesUrl('Renukeshwar Mahadev Temple Sonbhadra', 'Sonbhadra'),
+                    coordinates: { lat: 24.2100, lng: 83.0200 },
+                    insiderTip: 'Well-maintained gardens make it a tranquil spiritual sanctuary.',
+                    tags: ['Shiva Temple', 'Lake Vista', 'Peaceful Grounds']
+                }
+            ]
+        },
+        lucknow: {
+            name: 'Lucknow',
+            tagline: 'City of Nawabs, Grand Imambaras & Awadhi Heritage',
+            image: '/lucknow/bara-imambara/bara-imambara-1.jpg',
+            images: [
+                '/lucknow/bara-imambara/bara-imambara-1.jpg',
+                '/lucknow/rumi-darwaza/rumi-darwaza-1.jpg',
+                '/lucknow/chota-imambada/chota-imambada-1.jpg',
+                '/lucknow/ambedkar-memorial/ambedkar-memorial-1.jpg'
+            ],
+            googleImagesUrl: getGoogleImagesUrl('Bara Imambara Rumi Darwaza Lucknow', 'Lucknow'),
+            coordinates: { lat: 26.8467, lng: 80.9462 },
+            hotels: {
+                budget: { name: 'Clarks Heritage Stay (Hazratganj)', type: 'Budget Boutique Stay', pricePerNight: 1500, address: 'Hazratganj, Lucknow', rating: 4.3, amenities: ['Wi-Fi', 'Central Location', 'Breakfast'], coordinates: { lat: 26.8490, lng: 80.9430 } },
+                moderate: { name: 'La Place Sarovar Portico', type: '3-Star Heritage Hotel', pricePerNight: 3400, address: 'Shah Najaf Road, Hazratganj, Lucknow', rating: 4.5, amenities: ['Awadhi Dining', 'AC Rooms', 'City Tours'], coordinates: { lat: 26.8540, lng: 80.9510 } },
+                luxury: { name: 'Taj Mahal Lucknow', type: '5-Star Heritage Luxury', pricePerNight: 8500, address: 'Gomti Nagar, Lucknow', rating: 4.9, amenities: ['Pool', 'Fine Awadhi Cuisine', 'Private Chauffeur'], coordinates: { lat: 26.8565, lng: 80.9760 } }
+            },
+            culinarySpots: [
+                { name: 'Tunday Kababi (Aminabad & Chowk)', specialty: 'Legendary Galouti Kebabs & Ulte Tawe Ka Paratha', mealType: 'Lunch/Dinner', avgCost: 220, coordinates: { lat: 26.8442, lng: 80.9278 } },
+                { name: 'Royal Cafe (Hazratganj)', specialty: 'signature Basket Chaat & Old-World Snacks', mealType: 'Evening Snack', avgCost: 200, coordinates: { lat: 26.8510, lng: 80.9445 } }
+            ],
+            sights: [
+                {
+                    id: 'l_bara_imambara',
+                    place: 'Bara Imambara & Bhool Bhulaiya',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Architecture',
+                    icon: '🕌',
+                    activity: 'Bara Imambara Hall, Bhool Bhulaiya Labyrinth & Shahi Baoli',
+                    description: 'Built in 1784 by Nawab Asaf-ud-Daula, renowned for its unsupported arched central hall and famous 1,000-passage labyrinth.',
+                    duration: '2.5 hrs',
+                    distFromBase: '4.5 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 50,
+                    image: '/lucknow/bara-imambara/bara-imambara-1.jpg',
+                    images: ['/lucknow/bara-imambara/bara-imambara-1.jpg', '/lucknow/bara-imambara/bara-imambara-2.jpg', '/lucknow/bara-imambara/bara-imambara-3.jpg', '/lucknow/bara-imambara/bara-imambara-4.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Bara Imambara Bhool Bhulaiya', 'Lucknow'),
+                    coordinates: { lat: 26.8693, lng: 80.9129 },
+                    insiderTip: 'Hire an authorized guide at the gate for the Bhool Bhulaiya rooftop views.',
+                    tags: ['Awadhi Heritage', 'Labyrinth', 'Stepwell']
+                },
+                {
+                    id: 'l_rumi_darwaza',
+                    place: 'Rumi Darwaza & Chota Imambada',
+                    category: 'heritage',
+                    categoryLabel: 'Heritage & Monuments',
+                    icon: '🏛️',
+                    activity: 'Iconic Rumi Gate & Palace of Lights Heritage Walk',
+                    description: 'Stroll beneath the towering 60-foot signature Rumi Darwaza into the chandelier-filled Chota Imambada complex.',
+                    duration: '1.5 hrs',
+                    distFromBase: '5.0 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 50,
+                    image: '/lucknow/rumi-darwaza/rumi-darwaza-1.jpg',
+                    images: ['/lucknow/rumi-darwaza/rumi-darwaza-1.jpg', '/lucknow/chota-imambada/chota-imambada-1.jpg', '/lucknow/chota-imambada/chota-imambada-2.jpg', '/lucknow/rumi-darwaza/rumi-darwaza-2.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Rumi Darwaza Chota Imambada', 'Lucknow'),
+                    coordinates: { lat: 26.8711, lng: 80.9110 },
+                    insiderTip: 'Visit near sunset when Rumi Darwaza’s floral chhatri lights up warmly.',
+                    tags: ['Iconic Gateway', 'Chandeliers', 'Hussainabad']
+                },
+                {
+                    id: 'l_residency',
+                    place: 'The Residency & Hazratganj Walk',
+                    category: 'heritage',
+                    categoryLabel: 'Historical Ruins & Culture',
+                    icon: '🌿',
+                    activity: '1857 Residency Museum Ruins & Hazratganj Ganjing Trail',
+                    description: 'Explore tranquil red-brick 1857 heritage lawns followed by a Victorian boulevard stroll through Hazratganj.',
+                    duration: '2 hrs',
+                    distFromBase: '2.5 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 25,
+                    image: '/lucknow/the-residency/the-residency-1.jpg',
+                    images: ['/lucknow/the-residency/the-residency-1.jpg', '/lucknow/hazratganj/hazratganj-1.jpg', '/lucknow/la-martiniere-college/la-martiniere-college-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('The Residency Hazratganj', 'Lucknow'),
+                    coordinates: { lat: 26.8606, lng: 80.9265 },
+                    insiderTip: 'Pair Residency ruins with Royal Cafe Basket Chaat on Hazratganj MG Marg.',
+                    tags: ['1857 Memorial', 'Chikankari', 'Heritage Walk']
+                },
+                {
+                    id: 'l_ambedkar',
+                    place: 'Dr. B. R. Ambedkar Memorial & Gomti Riverfront',
+                    category: 'ghats_culture',
+                    categoryLabel: 'Monumental Architecture',
+                    icon: '✨',
+                    activity: 'Sunset Sandstone Colonnade & Gomti Riverfront Breeze',
+                    description: 'Stroll across monumental Chunar-sandstone domes and stone elephant galleries bordering the glowing Gomti Riverfront Park.',
+                    duration: '1.5 hrs',
+                    distFromBase: '6.0 km',
+                    travelTimeCab: '15 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '25 mins',
+                    cost: 20,
+                    image: '/lucknow/ambedkar-memorial/ambedkar-memorial-1.jpg',
+                    images: ['/lucknow/ambedkar-memorial/ambedkar-memorial-1.jpg', '/lucknow/gomti-riverfront-park/gomti-riverfront-park-1.jpg', '/lucknow/janeshwar-mishra-park/janeshwar-mishra-park-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Ambedkar Memorial Park Lucknow', 'Lucknow'),
+                    coordinates: { lat: 26.8473, lng: 80.9765 },
+                    insiderTip: 'Reach around 5:00 PM for twilight sandstone glow and riverfront fountains.',
+                    tags: ['Pink Sandstone', 'Gomti Riverfront', 'Sunset Vista']
+                },
+                {
+                    id: 'l_mankameshwar',
+                    place: 'Shri Mankameshwar Temple & Sri Ramakrishna Math',
+                    category: 'spiritual',
+                    categoryLabel: 'Spiritual & Sacred',
+                    icon: '🕉️',
+                    activity: 'Ancient Gomti Riverside Shiva Darshan & Peace Sanctuary',
+                    description: 'Seek serene blessings at historic Mankameshwar Temple on the Gomti banks and Sri Ramakrishna Math.',
+                    duration: '1.5 hrs',
+                    distFromBase: '4.0 km',
+                    travelTimeCab: '12 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 0,
+                    image: '/lucknow/mankameshwar-temple/mankameshwar-temple-3.jpg',
+                    images: ['/lucknow/mankameshwar-temple/mankameshwar-temple-3.jpg', '/lucknow/ramakrishna-math/ramakrishna-math-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Mankameshwar Temple Lucknow', 'Lucknow'),
+                    coordinates: { lat: 26.8669, lng: 80.9317 },
+                    insiderTip: 'Morning arati offers tranquil serenity beside the river.',
+                    tags: ['Shiva Temple', 'Meditation', 'Gomti Banks']
+                }
+            ]
+        },
+        ayodhya: {
+            name: 'Ayodhya',
+            tagline: 'Sacred Dham of Shri Ram, Saryu Ghats & Ancient Heritage',
+            image: '/ayodhya/ram-janmabhoomi/ram-janmabhoomi-1.jpg',
+            images: [
+                '/ayodhya/ram-janmabhoomi/ram-janmabhoomi-1.jpg',
+                '/ayodhya/hanuman-garhi/hanuman-garhi-2.jpg',
+                '/ayodhya/kanak-bhawan/kanak-bhawan-2.jpg',
+                '/ayodhya/saryu-ghat/saryu-ghat-1.jpg'
+            ],
+            googleImagesUrl: getGoogleImagesUrl('Shri Ram Janmabhoomi Temple Ayodhya', 'Ayodhya'),
+            coordinates: { lat: 26.7957, lng: 82.1944 },
+            hotels: {
+                budget: { name: 'Ramprastha Dham Yatri Niwas', type: 'Sacred Pilgrim Guesthouse', pricePerNight: 1400, address: 'Naya Ghat / Ram Path, Ayodhya', rating: 4.3, amenities: ['Clean AC Rooms', 'Temple Transfers'], coordinates: { lat: 26.8030, lng: 82.2010 } },
+                moderate: { name: 'Taraji Resort / Ramayana Hotel', type: '3-Star Heritage Stay', pricePerNight: 3600, address: 'Ram Path, Ayodhya', rating: 4.6, amenities: ['Sattvik Restaurant', 'Courtyard', 'Shuttle Service'], coordinates: { lat: 26.7860, lng: 82.1890 } },
+                luxury: { name: 'The Ramayana Luxury Boutique', type: '4-Star Premium Hotel', pricePerNight: 7500, address: 'Ayodhya Dham Highway, Ayodhya', rating: 4.8, amenities: ['Concierge Darshan Help', 'Spa', 'Fine Dining'], coordinates: { lat: 26.7790, lng: 82.1950 } }
+            },
+            culinarySpots: [
+                { name: 'Bhakti Path Traditional Mithai Shops', specialty: 'Pure Desi Ghee Besan Laddoos & Kheer Prasadam', mealType: 'Prasad/Breakfast', avgCost: 120, coordinates: { lat: 26.7980, lng: 82.1960 } },
+                { name: 'Naya Ghat Satvik Bhojanalaya', specialty: 'Traditional Poori-Sabzi, Kadhi Chawal & Saffron Rabri', mealType: 'Lunch', avgCost: 180, coordinates: { lat: 26.8050, lng: 82.2050 } }
+            ],
+            sights: [
+                {
+                    id: 'ay_ram_mandir',
+                    place: 'Shree Ram Janmabhoomi Temple',
+                    category: 'spiritual',
+                    categoryLabel: 'Supreme Sacred Shrine',
+                    icon: '🛕',
+                    activity: 'Shree Ram Janmabhoomi Darshan & Sandstone Mandapas',
+                    description: 'Monumental three-story Nagara pink-sandstone temple enshrining Shri Ram Lalla at the sacred birthplace of Lord Rama.',
+                    duration: '2 hrs',
+                    distFromBase: '2.0 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 0,
+                    image: '/ayodhya/ram-janmabhoomi/ram-janmabhoomi-1.jpg',
+                    images: ['/ayodhya/ram-janmabhoomi/ram-janmabhoomi-1.jpg', '/ayodhya/ram-janmabhoomi/ram-janmabhoomi-2.jpg', '/ayodhya/ram-janmabhoomi/ram-janmabhoomi-3.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Shree Ram Janmabhoomi Temple Ayodhya', 'Ayodhya'),
+                    coordinates: { lat: 26.7957, lng: 82.1944 },
+                    insiderTip: 'Leave phones/bags in free Janmabhoomi Path lockers before entering the darshan queue.',
+                    tags: ['Ram Mandir', 'Nagara Sandstone', 'Birthplace']
+                },
+                {
+                    id: 'ay_hanuman_garhi',
+                    place: 'Shri Hanuman Garhi Mandir & Kanak Bhawan',
+                    category: 'spiritual',
+                    categoryLabel: 'Fortress Temple & Palace',
+                    icon: '🙏',
+                    activity: 'Hanuman Garhi Hilltop Darshan & Kanak Bhawan Golden Shrine',
+                    description: 'Ascend 76 steps to seek Lord Hanuman’s blessings before visiting Queen Kaikeyi’s golden-crowned Kanak Bhawan palace shrine.',
+                    duration: '1.5 hrs',
+                    distFromBase: '1.8 km',
+                    travelTimeCab: '8 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 0,
+                    image: '/ayodhya/hanuman-garhi/hanuman-garhi-2.jpg',
+                    images: ['/ayodhya/hanuman-garhi/hanuman-garhi-2.jpg', '/ayodhya/kanak-bhawan/kanak-bhawan-2.jpg', '/ayodhya/dashrath-mahal/dashrath-mahal-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Hanuman Garhi Kanak Bhawan Ayodhya', 'Ayodhya'),
+                    coordinates: { lat: 26.7966, lng: 82.1995 },
+                    insiderTip: 'Traditional Ayodhya pilgrimage visits Hanuman Garhi prior to Ram Janmabhoomi.',
+                    tags: ['Hanuman Garhi', 'Kanak Bhawan', 'Dashrath Mahal']
+                },
+                {
+                    id: 'ay_saryu_ghat',
+                    place: 'Saryu Ghat & Ram Ki Paidi',
+                    category: 'ghats_culture',
+                    categoryLabel: 'Sacred Riverfront',
+                    icon: '🪔',
+                    activity: 'Evening Saryu Aarti, Ram Ki Paidi Canal Pools & Deepotsav Steps',
+                    description: 'Witness luminous dusk aartis along the peaceful stepped ghats of the Saryu River flanked by Nageshwar Nath Mandir.',
+                    duration: '1.5 hrs',
+                    distFromBase: '3.0 km',
+                    travelTimeCab: '10 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '15 mins',
+                    cost: 0,
+                    image: '/ayodhya/saryu-ghat/saryu-ghat-1.jpg',
+                    images: ['/ayodhya/saryu-ghat/saryu-ghat-1.jpg', '/ayodhya/nageshwar-nath-mandir/nageshwar-nath-mandir-1.jpg', '/ayodhya/ram-katha-park/ram-katha-park-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Saryu Ghat Ram Ki Paidi Ayodhya', 'Ayodhya'),
+                    coordinates: { lat: 26.8077, lng: 82.2036 },
+                    insiderTip: 'Arrive around 5:30 PM to see Ram Ki Paidi stone bridges glow warmly at sunset.',
+                    tags: ['Saryu Aarti', 'Ram Ki Paidi', 'Nageshwar Nath']
+                },
+                {
+                    id: 'ay_guptar_gulab',
+                    place: 'Guptar Ghat, Mani Parvat & Gulab Bari',
+                    category: 'heritage',
+                    categoryLabel: 'River & Royal Heritage',
+                    icon: '🏰',
+                    activity: 'Serene Guptar Ghat Bend & Historical Gulab Bari Gardens',
+                    description: 'Explore peaceful riverside ghats revered in Ramayana lore along with Awadhi rose-garden heritage at Imambada Gulab Bari.',
+                    duration: '2 hrs',
+                    distFromBase: '6.5 km',
+                    travelTimeCab: '20 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '30 mins',
+                    cost: 20,
+                    image: '/ayodhya/guptar-ghat/guptar-ghat-4.jpg',
+                    images: ['/ayodhya/guptar-ghat/guptar-ghat-4.jpg', '/ayodhya/gulab-bari/gulab-bari-1.jpg', '/ayodhya/mani-parvat/mani-parvat-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Guptar Ghat Gulab Bari Ayodhya', 'Ayodhya'),
+                    coordinates: { lat: 26.7852, lng: 82.1190 },
+                    insiderTip: 'Perfect peaceful afternoon circuit away from main temple lane crowds.',
+                    tags: ['Guptar Ghat', 'Gulab Bari', 'Mani Parvat']
+                }
+            ]
+        },
+        mathura: {
+            name: 'Mathura & Vrindavan',
+            tagline: 'Sacred Birthplace of Lord Krishna, Marble Temples & Yamuna Ghats',
+            image: '/mathura/prem-mandir/prem-mandir-1.jpg',
+            images: [
+                '/mathura/prem-mandir/prem-mandir-1.jpg',
+                '/mathura/krishna-janmasthan/krishna-janmasthan-1.jpg',
+                '/mathura/banke-bihari-mandir/banke-bihari-mandir-2.jpg',
+                '/mathura/vishram-ghat/vishram-ghat-1.jpg'
+            ],
+            googleImagesUrl: getGoogleImagesUrl('Prem Mandir Krishna Janmasthan Mathura', 'Mathura'),
+            coordinates: { lat: 27.4924, lng: 77.6737 },
+            hotels: {
+                budget: { name: 'Brijwasi Inn (Junction Road)', type: 'Comfort Pilgrim Hotel', pricePerNight: 1400, address: 'Dampier Nagar, Mathura', rating: 4.3, amenities: ['Pure Veg Dining', 'Clean AC Rooms'], coordinates: { lat: 27.4940, lng: 77.6750 } },
+                moderate: { name: 'Nidhivan Sarovar Portico', type: '3-Star Vrindavan Retreat', pricePerNight: 3600, address: 'Khasra 797, Vrindavan', rating: 4.6, amenities: ['Sattvik Buffet', 'E-Rickshaw Desk', 'Lush Courtyard'], coordinates: { lat: 27.5710, lng: 77.6755 } },
+                luxury: { name: 'Kadamb Resort & Heritage Braj', type: '4-Star Sanctuary Resort', pricePerNight: 7200, address: 'Chhatikara–Vrindavan Road', rating: 4.8, amenities: ['Pool', 'Temple Transfers', 'Braj Cultural Shows'], coordinates: { lat: 27.5680, lng: 77.6520 } }
+            },
+            culinarySpots: [
+                { name: 'Brijwasi Mithai Wala (Holi Gate)', specialty: 'Authentic Mathura Peda, Bedai Poori & Kulhad Lassi', mealType: 'Breakfast', avgCost: 140, coordinates: { lat: 27.5030, lng: 77.6850 } },
+                { name: 'Govinda’s Restaurant (ISKCON Vrindavan)', specialty: 'Pure Sattvik Prasadam Thali & Herbal Drinks', mealType: 'Lunch/Dinner', avgCost: 300, coordinates: { lat: 27.5720, lng: 77.6790 } }
+            ],
+            sights: [
+                {
+                    id: 'mt_janmasthan',
+                    place: 'Shri Krishna Janmasthan & Dwarkadhish Temple',
+                    category: 'spiritual',
+                    categoryLabel: 'Sacred Birthplace',
+                    icon: '🦚',
+                    activity: 'Garbha Griha Prison Sanctum, Bhagavata Bhawan & Dwarkadhish',
+                    description: 'Begin your Braj pilgrimage at Lord Krishna’s holy birthplace before exploring the ornate Rajasthani haveli carvings of Dwarkadhish Temple.',
+                    duration: '2.5 hrs',
+                    distFromBase: '2.0 km',
+                    travelTimeCab: '12 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '20 mins',
+                    cost: 0,
+                    image: '/mathura/krishna-janmasthan/krishna-janmasthan-1.jpg',
+                    images: ['/mathura/krishna-janmasthan/krishna-janmasthan-1.jpg', '/mathura/dwarkadhish-temple/dwarkadhish-temple-2.png', '/mathura/kans-quila/kans-quila-2.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Shri Krishna Janmasthan Mathura', 'Mathura'),
+                    coordinates: { lat: 27.5048, lng: 77.6696 },
+                    insiderTip: 'Store phones and leather belts in the official gate lockers outside Janmasthan prior to queuing.',
+                    tags: ['Janmasthan', 'Dwarkadhish', 'Kans Quila']
+                },
+                {
+                    id: 'mt_prem_mandir',
+                    place: 'Prem Mandir & ISKCON Vrindavan',
+                    category: 'spiritual',
+                    categoryLabel: 'White Marble Shrines',
+                    icon: '🏛️',
+                    activity: 'Evening Illuminated Prem Mandir & ISKCON Hare Krishna Kirtan',
+                    description: 'Experience blissful devotional kirtan at Raman Reti’s marble ISKCON temple followed by Prem Mandir’s illuminated Krishna Leela gardens.',
+                    duration: '2.5 hrs',
+                    distFromBase: '11 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '35 mins',
+                    cost: 0,
+                    image: '/mathura/prem-mandir/prem-mandir-1.jpg',
+                    images: ['/mathura/prem-mandir/prem-mandir-1.jpg', '/mathura/iskcon-vrindavan/iskcon-vrindavan-2.jpg', '/mathura/prem-mandir/prem-mandir-2.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Prem Mandir ISKCON Vrindavan', 'Vrindavan'),
+                    coordinates: { lat: 27.5719, lng: 77.6725 },
+                    insiderTip: 'Stay at Prem Mandir until 7:00 PM to enjoy the shifting rainbow marble illumination and water show.',
+                    tags: ['Italian Marble', 'ISKCON Kirtan', 'Light Show']
+                },
+                {
+                    id: 'mt_banke_bihari',
+                    place: 'Banke Bihari Mandir, Nidhivan & Radha Raman',
+                    category: 'spiritual',
+                    categoryLabel: 'Ancient Braj Kunjs',
+                    icon: '🙏',
+                    activity: 'Sacred Jhanki Darshan & Mystic Tulsi Grove Trail',
+                    description: 'Seek joyful blessings in the heart of old Vrindavan spanning Banke Bihari, ancient Radha Raman Lal, and mystical Nidhivan.',
+                    duration: '2 hrs',
+                    distFromBase: '12 km',
+                    travelTimeCab: '25 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '35 mins',
+                    cost: 0,
+                    image: '/mathura/banke-bihari-mandir/banke-bihari-mandir-2.jpg',
+                    images: ['/mathura/banke-bihari-mandir/banke-bihari-mandir-2.jpg', '/mathura/nidhivan-vrindavan/nidhivan-vrindavan-2.jpg', '/mathura/radha-raman-temple/radha-raman-temple-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Banke Bihari Nidhivan Vrindavan', 'Vrindavan'),
+                    coordinates: { lat: 27.5801, lng: 77.6901 },
+                    insiderTip: 'Tuck away eyeglasses safely in Vrindavan narrow lanes; Nidhivan gates close strictly before dark.',
+                    tags: ['Banke Bihari', 'Nidhivan', 'Radha Raman']
+                },
+                {
+                    id: 'mt_vishram_kusum',
+                    place: 'Vishram Ghat & Kusum Sarovar (Govardhan)',
+                    category: 'heritage',
+                    categoryLabel: 'Ghats & Sandstone Kunds',
+                    icon: '🪔',
+                    activity: 'Kusum Sarovar Jat Chhatris & Dusk Yamuna Aarti at Vishram Ghat',
+                    description: 'Marvel at mirror-still royal sandstone pavilions along Govardhan hill and conclude with floating oil lamps on the Yamuna.',
+                    duration: '2.5 hrs',
+                    distFromBase: '20 km',
+                    travelTimeCab: '35 mins',
+                    travelTimeTrain: '—',
+                    travelTimeBus: '50 mins',
+                    cost: 0,
+                    image: '/mathura/kusum-sarovar/kusum-sarovar-1.jpg',
+                    images: ['/mathura/kusum-sarovar/kusum-sarovar-1.jpg', '/mathura/vishram-ghat/vishram-ghat-1.jpg', '/mathura/radha-rani-barsana/radha-rani-barsana-1.jpg'],
+                    googleImagesUrl: getGoogleImagesUrl('Kusum Sarovar Vishram Ghat', 'Mathura'),
+                    coordinates: { lat: 27.5150, lng: 77.4795 },
+                    insiderTip: 'Reach Kusum Sarovar in afternoon sunlight and return to Vishram Ghat right before sunset aarti.',
+                    tags: ['Vishram Ghat', 'Kusum Sarovar', 'Yamuna Aarti']
                 }
             ]
         }
     };
+
+    // 2. Helper to check if a destination possesses sights matching user's selected category
+    const destinationHasMatchingSights = (cityId) => {
+        const sights = DESTINATION_MASTER[cityId]?.sights || [];
+        return sights.some(s => isInterestMatch(s.category));
+    };
+
+    // Helper to map user's chosen pickup or focus location strictly to the starting hub destination
+    const getStartCityId = (loc) => {
+        const str = (loc || '').toLowerCase().trim();
+        if (str.includes('mathura') || str.includes('vrindavan')) return 'mathura';
+        if (str.includes('ayodhya') || str.includes('faizabad')) return 'ayodhya';
+        if (str.includes('lucknow')) return 'lucknow';
+        if (str.includes('varanasi') || str.includes('banaras') || str.includes('kashi') || str.includes('vns')) return 'banaras';
+        if (str.includes('allahabad') || str.includes('prayagraj') || str.includes('sangam')) return 'allahabad';
+        if (str.includes('mirzapur') || str.includes('vindhyachal') || str.includes('chunar')) return 'mirzapur';
+        if (str.includes('sonbhadra') || str.includes('sonebhadra') || str.includes('robertsganj')) return 'sonbhadra';
+        return 'banaras';
+    };
+
+    const startCityId = getStartCityId(formData.focusCity || pickupLoc);
+    const startCityObj = ranked.find(c => c.id === startCityId) || {
+        id: startCityId,
+        name: DESTINATION_MASTER[startCityId]?.name || startCityId,
+        tagline: DESTINATION_MASTER[startCityId]?.tagline || '',
+        image: DESTINATION_MASTER[startCityId]?.image || '',
+        images: DESTINATION_MASTER[startCityId]?.images || [],
+        scores: { final: 96 },
+        matchReasons: ['Direct Hub Start', 'Custom Attraction Anchor'],
+        highlights: (DESTINATION_MASTER[startCityId]?.sights || []).slice(0, 3).map(s => s.place)
+    };
+
+    // Destinations that actually have sights matching the user's category preference
+    const categoryMatchingCities = ranked.filter(c => destinationHasMatchingSights(c.id));
+    const viableCities = categoryMatchingCities.length > 0 ? categoryMatchingCities : ranked;
+
+    // Build the circuit:
+    let circuitCities = [];
+    let isPickupGatewayOnly = false;
+
+    const isExtendedHub = startCityId === 'lucknow' || startCityId === 'ayodhya' || startCityId === 'mathura';
+
+    if (isExtendedHub || destinationHasMatchingSights(startCityId) || formData.selectedPlace) {
+        // Start directly in the user's selected/pickup city!
+        if (totalDays === 1) {
+            circuitCities = [startCityObj];
+        } else if (totalDays === 2) {
+            if (isExtendedHub) {
+                const secondId = startCityId === 'lucknow' ? 'ayodhya' : startCityId === 'ayodhya' ? 'banaras' : 'lucknow';
+                circuitCities = [startCityObj, { id: secondId, name: DESTINATION_MASTER[secondId].name }];
+            } else {
+                const nextCity = viableCities.find(c => c.id !== startCityId) || startCityObj;
+                circuitCities = [startCityObj, nextCity];
+            }
+        } else if (totalDays <= 4) {
+            if (isExtendedHub) {
+                const secondId = startCityId === 'lucknow' ? 'ayodhya' : startCityId === 'ayodhya' ? 'banaras' : 'ayodhya';
+                const thirdId = startCityId === 'lucknow' ? 'banaras' : startCityId === 'ayodhya' ? 'allahabad' : 'lucknow';
+                circuitCities = [
+                    startCityObj,
+                    { id: secondId, name: DESTINATION_MASTER[secondId].name },
+                    { id: thirdId, name: DESTINATION_MASTER[thirdId].name }
+                ];
+            } else {
+                const others = viableCities.filter(c => c.id !== startCityId);
+                circuitCities = [startCityObj, others[0] || startCityObj, others[1] || others[0] || startCityObj];
+            }
+        } else {
+            const others = viableCities.filter(c => c.id !== startCityId);
+            circuitCities = [startCityObj, ...others];
+        }
+    } else {
+        // The pickup city is purely an arrival gateway hub (e.g. arrived at Varanasi Airport for Waterfalls)
+        isPickupGatewayOnly = true;
+        const primaryDest = viableCities[0] || startCityObj;
+        const secondaryDest = viableCities[1] || primaryDest;
+        const tertiaryDest = viableCities[2] || secondaryDest;
+
+        if (totalDays <= 2) {
+            circuitCities = [primaryDest, secondaryDest];
+        } else if (totalDays <= 4) {
+            circuitCities = [primaryDest, secondaryDest];
+        } else {
+            circuitCities = [primaryDest, secondaryDest, tertiaryDest];
+        }
+    }
+
+    const uniqueCircuit = Array.from(new Set(circuitCities.map(c => c.id)))
+        .map(id => ranked.find(c => c.id === id) || { id, name: DESTINATION_MASTER[id]?.name || id });
+
+    const topCity = uniqueCircuit[0] || startCityObj;
+    const routeCircuitNames = isPickupGatewayOnly 
+        ? [DESTINATION_MASTER[startCityId]?.name.split(' ')[0], ...uniqueCircuit.map(c => c.name.split(' ')[0])]
+        : uniqueCircuit.map(c => c.name.split(' ')[0]);
+    const routeCircuitString = routeCircuitNames.join(' → ');
 
     // 3. Helper for Transport Transit Times & Distance
     const getTransitDetails = (fromCityId, toCityId) => {
@@ -1766,9 +2808,26 @@ export const generateTripPlan = (formData, customRanked = null) => {
         };
     };
 
-    // 4. Build Structured Day-by-Day Schedule
+    // 4. Build Structured Day-by-Day Schedule with Global Deduplication
     const itineraryDays = [];
     let cumulativeCost = 0;
+
+    // Global Trip Deduplication Trackers
+    const visitedSightIds = new Set();
+    const visitedPlaceNames = new Set();
+
+    const isSightVisited = (sight) => {
+        if (!sight) return true;
+        const norm = (sight.place || '').toLowerCase().trim();
+        return visitedSightIds.has(sight.id) || visitedPlaceNames.has(norm);
+    };
+
+    const markVisited = (sight) => {
+        if (!sight) return;
+        visitedSightIds.add(sight.id);
+        const norm = (sight.place || '').toLowerCase().trim();
+        visitedPlaceNames.add(norm);
+    };
 
     // Distribute days across circuit
     for (let dayNum = 1; dayNum <= totalDays; dayNum++) {
@@ -1791,27 +2850,38 @@ export const generateTripPlan = (formData, customRanked = null) => {
         const activeCityId = activeCityObj.id;
         const cityData = DESTINATION_MASTER[activeCityId] || DESTINATION_MASTER.banaras;
 
-        const prevCityId = dayNum > 1 ? (itineraryDays[dayNum - 2]?.destinationId || activeCityId) : activeCityId;
-        const isTransitDay = prevCityId !== activeCityId;
+        // Determine if this is an intercity transit day
+        let prevCityId = activeCityId;
+        let isTransitDay = false;
+
+        if (dayNum === 1) {
+            if (isPickupGatewayOnly && startCityId !== activeCityId) {
+                isTransitDay = true;
+                prevCityId = startCityId;
+            } else {
+                isTransitDay = false;
+                prevCityId = activeCityId;
+            }
+        } else {
+            prevCityId = itineraryDays[dayNum - 2]?.destinationId || activeCityId;
+            isTransitDay = prevCityId !== activeCityId;
+        }
+
         const transitInfo = getTransitDetails(prevCityId, activeCityId);
-
-        // Sights Prioritization based on User Interests
-        const allSights = cityData.sights.map(s => {
-            const isMatch = userInterests.includes(s.category);
-            return {
-                ...s,
-                isUserPreferenceMatch: isMatch,
-                matchBadge: isMatch ? `🌟 Priority: Matches your ${s.categoryLabel} preference` : null
-            };
-        }).sort((a, b) => (b.isUserPreferenceMatch ? 1 : 0) - (a.isUserPreferenceMatch ? 1 : 0));
-
         const activityMultiplier = budgetTier === 'luxury' ? 1.6 : budgetTier === 'budget' ? 0.9 : 1.1;
 
         // Structured Activities Timeline - 100% Focused on Tourist Places
         const activities = [];
 
         if (isTransitDay) {
-            // Intercity Scenic Transit between destinations
+            const transitTitle = (dayNum === 1 && isPickupGatewayOnly)
+                ? `Morning Arrival & Pickup at ${DESTINATION_MASTER[prevCityId]?.name.split(' ')[0]} → Scenic Drive to ${cityData.name.split(' ')[0]}`
+                : transitInfo.route;
+
+            const transitDesc = (dayNum === 1 && isPickupGatewayOnly)
+                ? `Welcome to Eastern Uttar Pradesh! Morning pickup from ${DESTINATION_MASTER[prevCityId]?.name} (Airport / Railway Hub) followed by a scenic drive along the highway to ${cityData.name}. Enjoy rolling Vindhyan terrain, rural vistas, and river crossings as you head into the attraction valley.`
+                : `Smooth scenic transit from ${DESTINATION_MASTER[prevCityId]?.name} to ${cityData.name}. Enjoy rolling Vindhyan terrain, rural vistas, and river crossings along Eastern UP highways.`;
+
             activities.push({
                 id: `d${dayNum}_act_transit`,
                 day: dayNum,
@@ -1824,8 +2894,8 @@ export const generateTripPlan = (formData, customRanked = null) => {
                 startTime: '08:30 AM',
                 endTime: '10:30 AM',
                 timeSlot: '08:30 AM – 10:30 AM',
-                activity: transitInfo.route,
-                description: `Smooth scenic transit from ${DESTINATION_MASTER[prevCityId]?.name} to ${cityData.name}. Enjoy rolling Vindhyan terrain, rural vistas, and river crossings along Eastern UP highways.`,
+                activity: transitTitle,
+                description: transitDesc,
                 estimatedDuration: transitInfo.duration,
                 distance: transitInfo.distance,
                 travelTime: transitInfo.duration,
@@ -1842,90 +2912,81 @@ export const generateTripPlan = (formData, customRanked = null) => {
                 isUserPreferenceMatch: false,
                 matchBadge: null
             });
+        }
 
-            // 3 Tourist Attractions for Transit Day
-            const sightOffset = ((dayNum - 1) * 3) % allSights.length;
-            const slotSights = [
-                { sight: allSights[sightOffset % allSights.length], start: '11:00 AM', end: '01:30 PM', label: 'Midday Tourist Excursion' },
-                { sight: allSights[(sightOffset + 1) % allSights.length], start: '02:15 PM', end: '04:45 PM', label: 'Afternoon Landmark Exploration' },
-                { sight: allSights[(sightOffset + 2) % allSights.length], start: '05:15 PM', end: '07:30 PM', label: 'Evening Sunset & Cultural Vista' }
-            ];
+        // Gather unvisited candidate sights strictly from active city
+        // 1. First priority: Unvisited sights matching user's selected category in active city
+        let unvisitedCandidates = cityData.sights.filter(s => isInterestMatch(s.category) && !isSightVisited(s));
 
-            slotSights.forEach((slot, sIdx) => {
-                const s = slot.sight || allSights[0];
-                activities.push({
-                    id: `d${dayNum}_act_${sIdx + 1}_${s.id}`,
-                    day: dayNum,
-                    destination: cityData.name,
-                    destinationId: activeCityId,
-                    place: s.place,
-                    category: s.category,
-                    categoryLabel: s.categoryLabel,
-                    icon: s.icon,
-                    startTime: slot.start,
-                    endTime: slot.end,
-                    timeSlot: `${slot.start} – ${slot.end}`,
-                    activity: s.activity,
-                    description: s.description,
-                    estimatedDuration: s.duration,
-                    distance: s.distFromBase,
-                    travelTime: transportType === 'cab' ? s.travelTimeCab : transportType === 'train' ? (s.travelTimeTrain !== '—' ? s.travelTimeTrain : s.travelTimeCab) : s.travelTimeBus,
-                    meal: null,
-                    stay: null,
-                    estimatedCost: Math.round(s.cost * activityMultiplier * people),
-                    image: s.image || cityData.image,
-                    images: s.images || (cityData.images || [cityData.image]),
-                    googleImagesUrl: s.googleImagesUrl || getGoogleImagesUrl(s.place, cityData.name),
-                    googleMapsUrl: getGoogleMapsPlaceUrl(s.place, cityData.name),
-                    coordinates: s.coordinates || cityData.coordinates,
-                    insiderTip: s.insiderTip,
-                    tags: s.tags,
-                    isUserPreferenceMatch: s.isUserPreferenceMatch,
-                    matchBadge: s.matchBadge
-                });
+        // 2. Second priority: If active city ran out of matching sights, pick unvisited scenic/heritage sights from THIS SAME CITY
+        if (unvisitedCandidates.length === 0) {
+            unvisitedCandidates = cityData.sights.filter(s => !isSightVisited(s));
+        }
+
+        // 3. If user launched "Start My Trip" from a specific landmark card, prioritize that landmark first on Day 1
+        if (dayNum === 1 && formData.selectedPlace && formData.selectedPlace.name) {
+            const targetNorm = formData.selectedPlace.name.toLowerCase();
+            const keywords = targetNorm.split(/[\s,&()]+/).filter(w => w.length > 3);
+            const allUnvisitedInCity = cityData.sights.filter(s => !isSightVisited(s));
+            const directMatch = allUnvisitedInCity.find(s => {
+                const sn = s.place.toLowerCase();
+                return sn.includes(targetNorm) || targetNorm.includes(sn) || keywords.some(k => sn.includes(k));
             });
-        } else {
-            // Full Day: 4 Distinct Tourist Attractions
-            const sightOffset = ((dayNum - 1) * 3) % allSights.length;
-            const slotSights = [
-                { sight: allSights[sightOffset % allSights.length], start: '08:00 AM', end: '10:30 AM', label: 'Early Morning Sight / Darshan / Falls' },
-                { sight: allSights[(sightOffset + 1) % allSights.length], start: '11:00 AM', end: '01:30 PM', label: 'Midday Heritage & Geological Excursion' },
-                { sight: allSights[(sightOffset + 2) % allSights.length], start: '02:15 PM', end: '04:45 PM', label: 'Afternoon Scenic Wonder & Nature Hike' },
-                { sight: allSights[(sightOffset + 3) % allSights.length] || allSights[0], start: '05:15 PM', end: '07:30 PM', label: 'Evening Twilight / Sunset & Sacred Ritual' }
-            ];
+            if (directMatch) {
+                unvisitedCandidates = [directMatch, ...unvisitedCandidates.filter(s => s.id !== directMatch.id)];
+            }
+        }
 
-            slotSights.forEach((slot, sIdx) => {
-                const s = slot.sight || allSights[0];
-                activities.push({
-                    id: `d${dayNum}_act_${sIdx + 1}_${s.id}`,
-                    day: dayNum,
-                    destination: cityData.name,
-                    destinationId: activeCityId,
-                    place: s.place,
-                    category: s.category,
-                    categoryLabel: s.categoryLabel,
-                    icon: s.icon,
-                    startTime: slot.start,
-                    endTime: slot.end,
-                    timeSlot: `${slot.start} – ${slot.end}`,
-                    activity: s.activity,
-                    description: s.description,
-                    estimatedDuration: s.duration,
-                    distance: s.distFromBase,
-                    travelTime: transportType === 'cab' ? s.travelTimeCab : transportType === 'train' ? (s.travelTimeTrain !== '—' ? s.travelTimeTrain : s.travelTimeCab) : s.travelTimeBus,
-                    meal: null,
-                    stay: null,
-                    estimatedCost: Math.round(s.cost * activityMultiplier * people),
-                    image: s.image || cityData.image,
-                    images: s.images || (cityData.images || [cityData.image]),
-                    googleImagesUrl: s.googleImagesUrl || getGoogleImagesUrl(s.place, cityData.name),
-                    googleMapsUrl: getGoogleMapsPlaceUrl(s.place, cityData.name),
-                    coordinates: s.coordinates || cityData.coordinates,
-                    insiderTip: s.insiderTip,
-                    tags: s.tags,
-                    isUserPreferenceMatch: s.isUserPreferenceMatch,
-                    matchBadge: s.matchBadge
-                });
+        // Target number of sights for today:
+        // Transit day: 2 high-quality unique attractions (plus morning highway transit)
+        // Full day: 3 high-quality unique attractions (Morning, Afternoon, Evening)
+        const targetSlotsCount = isTransitDay ? 2 : 3;
+        const slotsTiming = isTransitDay ? [
+            { start: '11:30 AM', end: '02:00 PM', label: 'Midday Scenic Excursion' },
+            { start: '02:45 PM', end: '05:15 PM', label: 'Afternoon Nature / Heritage Wonder' }
+        ] : [
+            { start: '08:30 AM', end: '11:30 AM', label: 'Morning Exploration / Trek / Darshan' },
+            { start: '12:30 PM', end: '03:30 PM', label: 'Midday Natural Wonder & Heritage Landmark' },
+            { start: '04:30 PM', end: '07:00 PM', label: 'Evening Sunset Vista / Sacred Twilight Ritual' }
+        ];
+
+        for (let sIdx = 0; sIdx < targetSlotsCount; sIdx++) {
+            if (unvisitedCandidates.length === 0) break; // Don't repeat if no unvisited sights remain!
+            const s = unvisitedCandidates.shift();
+            markVisited(s);
+
+            const slot = slotsTiming[sIdx] || { start: '02:00 PM', end: '04:30 PM', label: 'Scenic Excursion' };
+            const isMatch = isInterestMatch(s.category);
+
+            activities.push({
+                id: `d${dayNum}_act_${sIdx + 1}_${s.id}`,
+                day: dayNum,
+                destination: cityData.name,
+                destinationId: activeCityId,
+                place: s.place,
+                category: s.category,
+                categoryLabel: s.categoryLabel,
+                icon: s.icon,
+                startTime: slot.start,
+                endTime: slot.end,
+                timeSlot: `${slot.start} – ${slot.end}`,
+                activity: s.activity,
+                description: s.description,
+                estimatedDuration: s.duration,
+                distance: s.distFromBase,
+                travelTime: transportType === 'cab' ? s.travelTimeCab : transportType === 'train' ? (s.travelTimeTrain !== '—' ? s.travelTimeTrain : s.travelTimeCab) : s.travelTimeBus,
+                meal: null,
+                stay: null,
+                estimatedCost: Math.round(s.cost * activityMultiplier * people),
+                image: s.image || cityData.image,
+                images: s.images || (cityData.images || [cityData.image]),
+                googleImagesUrl: s.googleImagesUrl || getGoogleImagesUrl(s.place, cityData.name),
+                googleMapsUrl: getGoogleMapsPlaceUrl(s.place, cityData.name),
+                coordinates: s.coordinates || cityData.coordinates,
+                insiderTip: s.insiderTip,
+                tags: s.tags,
+                isUserPreferenceMatch: isMatch,
+                matchBadge: isMatch ? `🌟 Priority: Matches your ${s.categoryLabel} preference` : null
             });
         }
 
@@ -2091,9 +3152,10 @@ export const getStoredTripPlan = () => {
  * Enhanced buildAndSaveUserProfile: also triggers and attaches the central TripPlan
  */
 export const buildAndSaveUserProfile = (formData) => {
-    const rankedDestinations = evaluateUPDestinations(formData);
-    const topDestination = rankedDestinations[0];
     const tripPlan = generateTripPlan(formData);
+    const rankedDestinations = evaluateUPDestinations(formData);
+    const startCityId = tripPlan.itinerary[0]?.destinationId;
+    const topDestination = rankedDestinations.find(c => c.id === startCityId) || rankedDestinations[0];
 
     const profile = {
         id: 'up_trip_' + Date.now(),

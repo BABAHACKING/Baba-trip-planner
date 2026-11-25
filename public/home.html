@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/wizard-modal.css">
 </head>
 
 <body>
@@ -19,7 +20,7 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="home.html">Home</a></li>
-                <li><a href="/wizard">Plan Route</a></li>
+                <li><a href="javascript:void(0)" onclick="openTripWizardModal()">Plan Route</a></li>
                 <li><a href="/profile">My Profile</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="packages.html">Packages</a></li>
@@ -70,7 +71,7 @@
 
         <!-- Route Planner CTA -->
         <div class="route-planner-cta">
-            <a href="/wizard" class="route-planner-btn">🗺️ Plan Your Perfect Route</a>
+            <a href="javascript:void(0)" onclick="openTripWizardModal()" class="route-planner-btn">🗺️ Plan Your Perfect Route</a>
         </div>
     </section>
 
@@ -377,6 +378,315 @@
         </div>
     </footer>
 
+    <!-- Trip Planner Step-by-Step Popup Modal -->
+    <div id="trip-wizard-modal">
+        <div class="wizard-modal-dialog">
+            <!-- Modal Header -->
+            <div class="wizard-modal-header">
+                <div class="wizard-modal-nav-row">
+                    <button type="button" id="wizard-back-btn" class="wizard-back-btn hidden" onclick="wizardGoBack()">
+                        ← Back
+                    </button>
+                    <span id="wizard-step-badge" class="wizard-step-badge">Question 1 of 6</span>
+                    <button type="button" class="wizard-close-btn" onclick="closeTripWizardModal()" title="Close">
+                        ✕
+                    </button>
+                </div>
+                <div class="wizard-progress-track">
+                    <div id="wizard-progress-fill" class="wizard-progress-fill"></div>
+                </div>
+            </div>
+
+            <!-- Modal Body (One Question Per Pane) -->
+            <div class="wizard-modal-body">
+
+                <div id="wizard-place-anchor" class="wizard-place-anchor"></div>
+
+                <!-- Step 1: Group Type -->
+                <div id="wizard-step-1" class="wizard-step-pane active">
+                    <h3 class="wizard-question-title">Who is traveling with you?</h3>
+                    <p class="wizard-question-subtitle">Select your travel companions to customize group pace, comfort & sightseeing style.</p>
+                    <div class="wizard-options-grid">
+                        <div class="wizard-option-card" onclick="handleWizardSelect(1, 'groupType', 'single', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">👤</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Solo Traveler</div>
+                            <span class="wizard-option-badge">1 Traveler</span>
+                            <p class="wizard-option-desc">Flexible, self-paced spiritual exploration & photography freedom.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(1, 'groupType', 'couple', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">💑</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Romantic Couple</div>
+                            <span class="wizard-option-badge">2 Travelers</span>
+                            <p class="wizard-option-desc">Scenic riverfront ghats, sunset boat rides & peaceful hillside waterfalls.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(1, 'groupType', 'friends', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🧑‍🤝‍🧑</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Friends Squad</div>
+                            <span class="wizard-option-badge">3–4 Travelers</span>
+                            <p class="wizard-option-desc">Waterfall treks, ancient fort climbs, road-trips & high-energy fun.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(1, 'groupType', 'family', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">👨‍👩‍👧‍👦</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Family Vacation</div>
+                            <span class="wizard-option-badge">4+ Travelers</span>
+                            <p class="wizard-option-desc">Comfort-first temple darshan, clean transport & relaxed itinerary.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Duration -->
+                <div id="wizard-step-2" class="wizard-step-pane">
+                    <h3 class="wizard-question-title">How many days will you travel?</h3>
+                    <p class="wizard-question-subtitle">Select your trip length to build a geographically optimized itinerary.</p>
+                    <div class="wizard-options-grid single-col">
+                        <div class="wizard-option-card" onclick="handleWizardSelect(2, 'days', 1, this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">⚡</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">1 Day · Flash Excursion</div>
+                            <p class="wizard-option-desc">Express highlights focusing on premier sights in Varanasi or Mirzapur.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(2, 'days', 2, this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🌿</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">2 Days · Weekend Deep Dive</div>
+                            <p class="wizard-option-desc">Varanasi sacred heritage combined with Mirzapur's Chunar Fort & waterfalls.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(2, 'days', 3, this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🌟</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">3 Days · Classic Eastern UP Circuit</div>
+                            <span class="wizard-option-badge">Recommended</span>
+                            <p class="wizard-option-desc">The ideal balance: Varanasi + Mirzapur hills + Sonbhadra geological wonders.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(2, 'days', 5, this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">✨</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">5 Days · Comprehensive Cultural & Nature Trail</div>
+                            <p class="wizard-option-desc">Varanasi, Mirzapur, Sonbhadra, and Prayagraj Triveni Sangam.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(2, 'days', 7, this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">👑</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">7 Days · Grand Eastern UP Expedition</div>
+                            <p class="wizard-option-desc">The ultimate all-inclusive 4-district journey with all 88+ iconic tourist spots.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Landscapes & Experiences -->
+                <div id="wizard-step-3" class="wizard-step-pane">
+                    <h3 class="wizard-question-title">What experiences excite you most?</h3>
+                    <p class="wizard-question-subtitle">Pick the central theme for your sightseeing itinerary.</p>
+                    <div class="wizard-options-grid">
+                        <div class="wizard-option-card" onclick="handleWizardSelect(3, 'landscapes', 'waterfalls', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🌊</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Waterfalls & Nature Cascades</div>
+                            <p class="wizard-option-desc">Windom Falls, Sirsi Dam, Mukha Fall, Khajuri & scenic sandstone streams.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(3, 'landscapes', 'spiritual', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🛕</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Sacred Ghats & Ganga Aarti</div>
+                            <p class="wizard-option-desc">Kashi Vishwanath Jyotirlinga, Dashashwamedh Aarti & Maa Vindhyavasini.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(3, 'landscapes', 'forts', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🏰</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Ancient Hilltop Forts</div>
+                            <p class="wizard-option-desc">Chunar Fort river battlements, Vijaygarh Fort & Ramnagar museum.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(3, 'landscapes', 'all', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🌿</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">All-Round Balanced Mix</div>
+                            <span class="wizard-option-badge">Best Variety</span>
+                            <p class="wizard-option-desc">A curated daily balance of sacred darshan, waterfalls, forts and local heritage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Budget Style -->
+                <div id="wizard-step-4" class="wizard-step-pane">
+                    <h3 class="wizard-question-title">What is your preferred budget style?</h3>
+                    <p class="wizard-question-subtitle">Tailored for tourist entry passes, transport, and activity style.</p>
+                    <div class="wizard-options-grid single-col">
+                        <div class="wizard-option-card" onclick="handleWizardSelect(4, 'budget', 'budget', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🪙</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Budget-Friendly · ₹1,000 – ₹2,200 / day</div>
+                            <p class="wizard-option-desc">Shared transit, free public ghats, pocket-friendly entry passes & authentic sights.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(4, 'budget', 'moderate', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🌟</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Standard & Comfortable · ₹2,500 – ₹4,800 / day</div>
+                            <span class="wizard-option-badge">Popular Choice</span>
+                            <p class="wizard-option-desc">Dedicated AC cab with chauffeur, guided attraction tours & all tourist entry permits.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(4, 'budget', 'luxury', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">👑</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Premium & Luxury · ₹5,500+ / day</div>
+                            <p class="wizard-option-desc">VIP temple darshan passes, private luxury river cruises & private heritage guide.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5: Transit Mode -->
+                <div id="wizard-step-5" class="wizard-step-pane">
+                    <h3 class="wizard-question-title">How would you like to travel?</h3>
+                    <p class="wizard-question-subtitle">Choose your transit mode between hills, ghats, and monuments.</p>
+                    <div class="wizard-options-grid single-col">
+                        <div class="wizard-option-card" onclick="handleWizardSelect(5, 'transport', 'cab', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🚗</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Private AC Cab / Chauffeur</div>
+                            <span class="wizard-option-badge">Best for Waterfalls & Forts</span>
+                            <p class="wizard-option-desc">Dedicated vehicle with pickup & drop directly at all waterfall trails and temples.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(5, 'transport', 'train', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🚆</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Train / Rail Network</div>
+                            <p class="wizard-option-desc">Comfortable express train connections linking Varanasi, Mirzapur & Prayagraj stations.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(5, 'transport', 'bus', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">🚌</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Bus & Shared Local Transit</div>
+                            <p class="wizard-option-desc">Economical intercity buses and local shared autos for backpacker-style travel.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Pickup City -->
+                <div id="wizard-step-6" class="wizard-step-pane">
+                    <h3 class="wizard-question-title">Where should your journey start?</h3>
+                    <p class="wizard-question-subtitle">Select your pickup or arrival hub to order the circuit geographically.</p>
+                    <div class="wizard-options-grid">
+                        <div class="wizard-option-card" onclick="handleWizardSelect(6, 'pickupLocation', 'Varanasi', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">📍</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Varanasi</div>
+                            <span class="wizard-option-badge">VNS Airport / Cantt</span>
+                            <p class="wizard-option-desc">Ideal entry point with international flights & high-speed train connectivity.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(6, 'pickupLocation', 'Prayagraj (Allahabad)', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">📍</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Prayagraj</div>
+                            <span class="wizard-option-badge">Sangam Junction</span>
+                            <p class="wizard-option-desc">Start at the holy confluence and head east through Mirzapur to Varanasi.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(6, 'pickupLocation', 'Mirzapur', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">📍</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Mirzapur</div>
+                            <span class="wizard-option-badge">Vindhyachal</span>
+                            <p class="wizard-option-desc">Start right at the foot of the Vindhya range, waterfalls & Chunar Fort.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(6, 'pickupLocation', 'Sonbhadra', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">📍</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Sonbhadra</div>
+                            <span class="wizard-option-badge">Robertsganj</span>
+                            <p class="wizard-option-desc">Begin in the lush southern eco-tourism and ancient fossil heartland.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(6, 'pickupLocation', 'Lucknow', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">📍</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Lucknow</div>
+                            <span class="wizard-option-badge">State Capital</span>
+                            <p class="wizard-option-desc">Explore Bara Imambara, Rumi Darwaza &amp; connect across UP.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(6, 'pickupLocation', 'Ayodhya', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">📍</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Ayodhya</div>
+                            <span class="wizard-option-badge">Shri Ram Dham</span>
+                            <p class="wizard-option-desc">Begin at Shree Ram Janmabhoomi, Hanuman Garhi &amp; Saryu Ghat.</p>
+                        </div>
+                        <div class="wizard-option-card" onclick="handleWizardSelect(6, 'pickupLocation', 'Mathura', this)">
+                            <div class="wizard-option-icon-row">
+                                <span class="wizard-option-icon">📍</span>
+                                <span class="wizard-option-check">✓</span>
+                            </div>
+                            <div class="wizard-option-title">Mathura</div>
+                            <span class="wizard-option-badge">Braj &amp; Vrindavan</span>
+                            <p class="wizard-option-desc">Start across Krishna Janmasthan, Prem Mandir &amp; Yamuna ghats.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Generating Screen -->
+                <div id="wizard-generating-screen" class="wizard-step-pane wizard-generating-screen">
+                    <div class="wizard-spinner"></div>
+                    <h3 class="wizard-generating-title">Curating Your Perfect Itinerary...</h3>
+                    <p class="wizard-generating-desc">Matching top sights, morning riverboats, afternoon waterfalls & evening aartis ✨</p>
+                    <div id="wizard-summary-pills" class="wizard-summary-pills"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Wizard Modal Script -->
+    <script src="js/wizard-modal.js"></script>
 </body>
 
 </html>
